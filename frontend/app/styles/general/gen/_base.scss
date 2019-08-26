@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  font-family: $sans-serif;
+  font-family: 'Roboto',$sans-serif;
   line-height: 1.6;
 }
 
@@ -30,12 +30,6 @@ a {
   @extend .transition;
   &:focus {
     outline: none;
-  }
-  &.weypro {
-    font-weight: 600;
-    &:hover {
-      color: #379bd5 !important;
-    }
   }
 }
 

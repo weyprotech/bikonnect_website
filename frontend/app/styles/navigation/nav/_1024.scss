@@ -1,0 +1,43 @@
+@include susy-breakpoint(1024px, 12) {
+	.header_nav {
+    display: flex;
+    > ul {
+      text-align: right;
+      font-size: 0;
+      > li {
+        display: inline-block;
+        text-align: center;
+        > a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 70px;
+          padding: 0 1.5625em;
+          box-sizing: border-box;
+          color: $main;
+          font-size: 1rem;
+          &:hover, &.current {
+            background-color: $gray-lightest;
+          }
+          &.current {
+            color: $blue;
+          }
+        }
+      }
+    }
+    .language {
+      min-width: 140px;
+      font-size: 1rem;
+      box-shadow: 4px 0 4px -4px rgba($gray-lighten, 0.5), -4px 0 4px -4px rgba($gray-lighten, 0.5);
+      .dropdown_head {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 70px;
+      }
+      .dropdown_list {
+        box-shadow: 0 4px 4px rgba($gray-lighten, 0.5);
+      }
+    }
+  }
+}

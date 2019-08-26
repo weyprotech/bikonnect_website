@@ -21,6 +21,12 @@ $(document).ready(function () {
       $(this).toggleClass('active').siblings('ul').stop().slideToggle();
     }
   });
+  $(document).on(clickHandler, function(event) {
+    if (!$(event.target).is('#sidebar, #sidebar *, #btn_menu, #btn_menu *')) {
+      $('#sidebar').trigger('sidebar:close').removeClass('active');
+      $('#btn_menu').removeClass('active');
+    }
+  });
 
   //Nav
   $('.head_nav ul li').on('mouseenter', function (event) {
@@ -45,24 +51,46 @@ $(document).ready(function () {
     scaleCaptcha();
   }
 
-  // Header Search
-  // $('#head_search').on(clickHandler, '.btn_scarch', function(event) {
-  //   event.preventDefault();
-  //   $('#head_search .head_search_form').addClass('active');
-  // });
-  // $(document).on(clickHandler, function(event) {
-  //   if (!$(e.target).is('#head_search, #head_search *')) {
-  //     $('#head_search .head_search_form').removeClass('active');
-  //   }
-  // });
+  // Dropdown
+  if ($('.dropdown').length > 0) {
+    $('.dropdown').on(clickHandler, '.dropdown_head', function() {
+      $(this).toggleClass('active').parent('.dropdown').toggleClass('active');
+      $(this).next('.dropdown_list').stop().slideToggle();
+    });
+    $('.dropdown').on(clickHandler, '.dropdown_list a', function () {
+      var txt = $(this).text();
+      $(this).addClass('active').parents('.dropdown_list').stop().slideUp().find('a').not(this).removeClass('active');
+      $(this).parents('.dropdown').removeClass('active').children('.dropdown_head').text(txt).removeClass('active');
+    });
+    $(document).on(clickHandler, function(event) {
+      if (!$(event.target).is('.dropdown.active, .dropdown.active *')) {
+        $('.dropdown.active').children('.dropdown_head').removeClass('active');
+        $('.dropdown.active').children('.dropdown_list').stop().slideUp();
+        $('.dropdown.active').removeClass('active');
+      }
+    });
+  }
 
   // Slick Slider
-  // $('.news_slider').slick({
-  //   infinite: true,
-  //   speed: 300,
-  //   autoplay: true,
-  //   autoplaySpeed: 8000
-  // });
+  if ($('.index_banner_slider').length > 0) {
+    var indexBanner = $('.index_banner_slider');
+    var bannerSlider = indexBanner.find('.slider');
+    var bannerDots = indexBanner.find('.slider_dots');
+
+    bannerSlider.slick({
+      fade: true,
+      infinite: true,
+      arrows: false,
+      dots: true,
+      speed: 800,
+      autoplay: true,
+      autoplaySpeed: 8000,
+      appendDots: bannerDots
+    }).on('setPosition', function (event, slick) {
+      slick.$slides.css('height', 'auto');
+      slick.$slides.css('height', slick.$slideTrack.height() + 'px');
+    });
+  }
 
   // Popup Close
   // $(document).on(clickHandler, '.popup-modal-dismiss', function (event) {
@@ -156,7 +184,6 @@ $(window).on('load', function () {
   var $target = $('[data-anchor="' + hashName + '"]');
 
   if ($target.length > 0) {
-    console.log
     // Reset where animation starts.
     $('html, body').scrollTop(0);
     // Animate to

@@ -23,7 +23,7 @@ nav {
   max-width: calc(100vw - 44px - 1em);
   height: 100%;
   overflow: auto;
-  padding: 3em 1.5em;
+  padding: 1.5em;
   box-sizing: border-box;
   background-color: $white;
   &.active {
@@ -31,26 +31,40 @@ nav {
   }
   .sidebar_logo {
     max-width: 190px;
-    margin: 0 auto 1.5em;
+    margin: 0 auto 1em;
     text-align: center;
-    a {
+    img {
       display: block;
     }
   }
   .sidebar_menu {
-    ul {
-      li {
-        position: relative;
-        a {
+    > ul {
+      margin-bottom: 1em;
+      > li {
+        > a {
           display: block;
+          padding: 0.5rem;
+          box-sizing: border-box;
+          border-radius: 5px;
           color: $main;
+          font-family: 'Ubuntu', $sans-serif;
           font-size: 1.25em;
-          line-height: 44px;
           text-align: center;
           &:hover, &.current {
-            
+            background-color: $gray-lightest;
+          }
+          &.current {
+            color: $blue;
           }
         }
+      }
+    }
+    .language {
+      box-shadow: 0 0 4px rgba($gray-lighten, 0.5);
+      .dropdown_list {
+        position: relative;
+        top: auto;
+        left: auto;
       }
     }
   }

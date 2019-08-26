@@ -1,0 +1,41 @@
+@include susy-breakpoint(1200px, 12) {
+  // Index
+  .index_banner_slider {
+    .slide {
+      text-align: center;
+      .slide_inner {
+        max-width: 1110px;
+      }
+      .slide_content {
+        width: 58%;
+        padding: 0 1.25em;
+        text-align: left;
+        h2 {
+          font-size: 4.25em;
+        }
+      }
+      .slide_img {
+        width: calc(42% + (100vw - 1110px) / 2 + 2.5em);
+        margin-left: -2.5em;
+        margin-right: calc((100vw - 1110px) / 2);
+      }
+    }
+  }
+  .index_experience {
+    .experience_items {
+      .item {
+        @include gallery(3 of 12 2);
+      }
+    }
+  }
+  .index_solutions {
+    .solutions_content {
+      width: 46%;
+      padding-left: 0;
+    }
+    .solutions_img {
+      width: calc(54% + (100vw - 1110px) / 2);
+      margin-right: calc((100vw - 1110px) / 2);
+    }
+  }
+}

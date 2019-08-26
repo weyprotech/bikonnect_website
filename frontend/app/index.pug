@@ -1,3 +1,59 @@
 extends layouts/default.pug
 
 block main
+  .index_banner_slider
+    .slider
+      .slide
+        .bg(style="background-image: url(images/banner_index.jpg);")
+        .slide_inner
+          .slide_content
+            h2 Connect Your Bike#[br]Ride the Future
+            a.btn_more.big(href="javascript:;")
+              | Learn More
+          .slide_img
+            img(src="images/img_index_banner.png")
+      .slide
+        .bg(style="background-image: url(images/banner_index.jpg);")
+        .slide_inner
+          .slide_content
+            h2 2 Connect Your Bike#[br]Ride the Future
+            a.btn_more.big(href="javascript:;")
+              | Learn More
+          .slide_img
+            img(src="images/img_index_banner.png")
+    .slider_dots
+    .wave
+      img(src="images/img_wave.png", alt="wave")
+  .index_experience.page_block
+    .block_inner
+      h2.block_title
+        | More Intelligent Cycling#[br]Experience
+      .text
+        p
+          | I have hinted that I would often jerk poor Queequeg from between the whale and the ship—where he would occasionally fall, from the incessant rolling and swaying of both. But this was not the only jamming jeopardy he was exposed to.
+      .experience_items
+        .item
+          img.thumb(src="images/img_index_experience01.png", alt="E-Bike computer")
+          h3 E-Bike computer
+        .item
+          img.thumb(src="images/img_index_experience02.png", alt="E-Bike APP")
+          h3 E-Bike APP
+        .item
+          img.thumb(src="images/img_index_experience03.png", alt="Dealer management system")
+          h3 Dealer management system
+        .item
+          img.thumb(src="images/img_index_experience04.png", alt="Cycling Data Platform")
+          h3 Cycling Data Platform
+  .index_strength.page_block
+    .block_inner
+  .index_solutions.page_block
+    .block_inner
+      .solutions_content
+        h2.block_title Smart Solutions
+        h3.block_subtitle Data Management &amp; Analysis
+        .text
+          p Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever fap. 
+        a.btn_more.green(href="javascript:;")
+          | Learn more
+      .solutions_img
+        img(src="images/img_index_solutions.png", alt="Smart Solutions Picture")

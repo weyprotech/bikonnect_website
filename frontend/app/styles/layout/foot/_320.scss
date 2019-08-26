@@ -1,17 +1,20 @@
 #footer {
-	padding: 2em 1em;
-	// background-color: $dark-gray;
-	// color: $white;
+  padding: 1.25em 1em;
+  box-sizing: border-box;
+	background-color: $main;
+	color: $white;
 	.footer_inner {
-		max-width: 1170px;
+		max-width: 1110px;
 		margin: 0 auto;
-		@extend .clear;
 	}
 	.copyright {
+    font-family: 'Ubuntu',$sans-serif;
+    font-size: 0.875em;
+    text-align: center;
 		a {
-			// color: $white;
+      color: $white;
 			&:hover {
-				// color: $orange;
+				color: $blue;
 			}
 		}
 	}

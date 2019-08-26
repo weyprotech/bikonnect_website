@@ -50,7 +50,36 @@
 			left: 6px;
 		}
 	}
-	@include breakpoint(1280px) {
+	@include breakpoint(1024px) {
 		display: none;
 	}	
+}
+
+.btn_more {
+  display: inline-block;
+  padding: 0 1em;
+  border-radius: 21px;
+  background-color: $blue;
+  color: $white;
+  font-family: 'Ubuntu', $sans-serif;
+  font-size: 1.125em;
+  font-weight: 500;
+  line-height: 42px;
+  &:hover {
+    background-color: $main;
+  }
+  &.green {
+    background-color: $green;
+    &:hover {
+      background-color: darken($green, 10%);
+    }
+  }
+  @include breakpoint(1024px) {
+    &.big {
+      padding: 0 1.5em;
+      border-radius: 36px;
+      font-size: 1.5em;
+      line-height: 72px;
+    }
+  }
 }

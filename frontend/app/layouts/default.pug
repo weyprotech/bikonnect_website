@@ -55,16 +55,8 @@ html
       header#header
         .header_inner
           a.header_logo(href="index.html")
-            img.retina(src="images/logo.png")
+            img.retina(src="images/logo.png", alt="Bikonnect")
           include partials/navigator-head.pug
-          .dropdown.language
-            .dropdown_head
-              | ENGLISH
-            .dorpdown_list
-              .item
-                a.current(href="javascript:;") English
-              .item
-                a(href="javascript:;") 中文
           a#btn_menu(href="javascript:;") #[span]
 
       main#main
@@ -73,12 +65,12 @@ html
 
       footer#footer
         .copyright.
-          2019 ALL RIGHTS RESERVED. #[a(href="javascript:;") Privacy &nbsp;| &nbsp;Polity].
+          2019 ALL RIGHTS RESERVED. &nbsp;#[a(href="javascript:;") Privacy &nbsp;| &nbsp;Polity].
 
     #sidebar
       .sidebar_logo
         a(href="index.html")
-          img(src="images/logo.png", alt="")
+          img(src="images/logo.png", alt="Bikonnect")
       include partials/navigator-sidebar.pug
 
     block popup
