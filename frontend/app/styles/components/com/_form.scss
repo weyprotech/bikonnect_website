@@ -34,24 +34,29 @@ input[type="date"],
 select {
   display: block;
   width: 100%;
-  height: 46px;
+  height: 38px;
   padding: 0 10px;
   margin: 0;
-  border: none;
+  border: rgba($blue, 0.44) 1px solid;
+  box-sizing: border-box;
   border-radius: 0;
   outline: none;
-  box-sizing: border-box;
-  font-size: 1.125rem;
+  &:focus {
+    border-color: $blue;
+  }
 }
 
 textarea {
   display: block;
   width: 100%;
-  height: 300px;
+  height: 156px;
   padding: 10px;
   outline: none;
-  border: none;
+  border: rgba($blue, 0.44) 1px solid;
   box-sizing: border-box;
+  &:focus {
+    border-color: $blue;
+  }
 }
 
 input[type="submit"],
@@ -116,13 +121,19 @@ button {
 }
 
 .controls {
+  position: relative;
   line-height: 46px;
   .text {
     font-size: 1.125em;
   }
   .error_text {
+    position: absolute;
+    top: 100%;
+    left: 0;
     display: none;
+    width: 100%;
     padding-left: .3em;
+    box-sizing: border-box;
     color: red;
     font-size: .875em;
     line-height: 1.6;
@@ -131,7 +142,7 @@ button {
     input[type="text"],
     input[type="password"],
     input[type="email"],
-    select {
+    select, textarea {
       box-shadow: 0 0 0 1px red;
     }
     .error_text {
@@ -143,27 +154,10 @@ button {
 .controls_group {
   margin-bottom: 1em;
   @extend .clear;
-  >label {
+  > label {
     display: block;
-    padding: 0 .5em;
-    margin-bottom: .5em;
+    margin-bottom: .3em;
     box-sizing: border-box;
-    font-size: 1.125em;
-  }
-  @include breakpoint(768px) {
-    >label {
-      width: 110px;
-      float: left;
-      padding-right: 1rem;
-      margin-bottom: 0;
-      box-sizing: border-box;
-      background-color: transparent;
-      line-height: 46px;
-    }
-    .controls {
-      width: calc(100% - 110px);
-      float: left;
-    }
   }
 }
 
@@ -234,14 +228,58 @@ button {
 
 // Captcha
 .captcha {
-  margin-bottom: 1.5rem;
-  text-align: center;
   font-size: 0;
   .captcha_inner {
     display: inline-block;
     width: 304px; //use width google reCaptcha
     font-size: 1rem;
-    transform-origin: left center;
-    -webkit-transform-origin: left center;
+    transform-origin: 0 0;
+  }
+}
+
+// Contact
+.contact_form {
+  .controls_group {
+    margin-bottom: 1.25em;
+    > label {
+      color: $gray-darken;
+    }
+    @include breakpoint(1024px) {
+      margin-bottom: 1.75em;
+      >label {
+        width: 84px;
+        float: left;
+        padding-right: 1rem;
+        margin-bottom: 0;
+        box-sizing: border-box;
+        background-color: transparent;
+        line-height: 38px;
+      }
+      .controls {
+        width: calc(100% - 84px);
+        float: left;
+      }
+    }
+  }
+  .call_action {
+    text-align: center;
+    .captcha {
+      margin: 0 auto 1.25rem;
+    }
+    @include breakpoint(480px) {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      text-align: left;
+      .captcha {
+        width: calc(100% - 110px - 1rem);
+        max-width: 240px;
+        margin: 0;
+      }
+    }
+    @include breakpoint(1024px) {
+      padding-left: 84px;
+      box-sizing: border-box;
+    }
   }
 }

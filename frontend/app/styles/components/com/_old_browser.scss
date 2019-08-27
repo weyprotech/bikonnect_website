@@ -6,7 +6,7 @@
   left: 0;
   right: 0;
   padding: 30px 0;
-  background-color: #333333;
+  background-color: $main;
   text-align: center;
   .old_browser_inner {
     color: $white;
@@ -24,6 +24,10 @@
     }
     a {
       text-decoration: underline;
+      color: $green;
+      &:hover {
+        color: $blue;
+      }
     }
     table {
       margin: 0 auto;

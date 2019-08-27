@@ -31,4 +31,17 @@
       }
     }
   }
+
+  // Contact
+  .contact {
+    padding: 5.625em 1em;
+    .contact_info {
+      width: 38%;
+      padding: 2.875em 1.5em;
+    }
+    .contact_form {
+      width: calc(62% - 1em);
+      padding: 2.875em 4.375em 2.875em 1.5em;
+    }
+  }
 }

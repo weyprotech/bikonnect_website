@@ -26,3 +26,9 @@ $susy: (
 //Plugins
 @import "plugins/slick";
 @import "plugins/slick-theme";
+
+.slick-slide {
+  &:focus {
+    outline: none;
+  }
+}

@@ -7,7 +7,7 @@
         max-width: 1110px;
       }
       .slide_content {
-        width: 58%;
+        width: 65%;
         padding: 0 1.25em;
         text-align: left;
         h2 {
@@ -15,8 +15,8 @@
         }
       }
       .slide_img {
-        width: calc(42% + (100vw - 1110px) / 2 + 2.5em);
-        margin-left: -2.5em;
+        width: calc(42% + (100vw - 1110px) / 2);
+        margin-left: -7%;
         margin-right: calc((100vw - 1110px) / 2);
       }
     }
@@ -29,6 +29,9 @@
     }
   }
   .index_solutions {
+    .block_title {
+      font-size: 3.75em;
+    }
     .solutions_content {
       width: 46%;
       padding-left: 0;
@@ -36,6 +39,16 @@
     .solutions_img {
       width: calc(54% + (100vw - 1110px) / 2);
       margin-right: calc((100vw - 1110px) / 2);
+    }
+  }
+  .index_partners {
+    .block_title {
+      font-size: 3.4375em;
+    }
+  }
+  .index_vision {
+    .block_title {
+      font-size: 3.75em;
     }
   }
 }

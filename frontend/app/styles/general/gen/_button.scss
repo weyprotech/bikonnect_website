@@ -83,3 +83,18 @@
     }
   }
 }
+
+.btn_submit {
+  display: inline-block;
+  height: 42px;
+  min-width: 110px;
+  padding: 0 1em;
+  border-radius: 21px;
+  background-color: $blue;
+  color: $white;
+  font-size: 1.125em;
+  text-align: center;
+  &:hover {
+    background-color: $main;
+  }
+}

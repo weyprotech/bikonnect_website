@@ -1,3 +1,31 @@
 *[class^="icon_"] {
   display: inline-block;
 }
+
+.icon_facebook {
+  @include retina-sprite($icon-facebook-group);
+}
+
+.icon_twitter {
+  @include retina-sprite($icon-twitter-group);
+}
+
+.icon_instagram {
+  @include retina-sprite($icon-instagram-group);
+}
+
+.icon_location {
+  @include retina-sprite($icon-location-group);
+}
+
+.icon_mail {
+  @include retina-sprite($icon-mail-group);
+}
+
+.icon_tel {
+  @include retina-sprite($icon-tel-group);
+}
+
+.icon_fax {
+  @include retina-sprite($icon-fax-group);
+}
