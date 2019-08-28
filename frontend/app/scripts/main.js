@@ -77,6 +77,9 @@ $(document).ready(function () {
     var bannerSlider = indexBanner.find('.slider');
     var bannerDots = indexBanner.find('.slider_dots');
 
+    bannerSlider.on('init', function (event, slick) {
+      $(slick.$slider[0]).addClass('loaded');
+    })
     bannerSlider.slick({
       fade: true,
       infinite: true,

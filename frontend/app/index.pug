@@ -70,9 +70,24 @@ block main
                     h3 Business Strategy
                     hr
                     p Store Management System Cycling Data Platform
-        .strength_animate
+        .strength_animation
           .img
-            img(src="images/img_index_strength.png")
+            svg#strengthSVG(width='1920px' height='1390px' viewbox='0 0 1920 1390' version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink')
+              defs
+                rect#path(x='0' y='0' width='1920' height='1390')
+              g(stroke='none' stroke-width='1' fill='none' fill-rule='evenodd')
+                mask#mask(fill='white')
+                  use(xlink:href='#path')
+                use(fill='#002855' xlink:href='#path')
+                g(mask='url(#mask)' transform='translate(100.000000, -77.000000)')
+                  path(data-duration="80" d='M1665.74135,1020.9529 C1609.9631,914.14307 1508.3933,832.371367 1380.65488,805.840932 C1262.02272,781.122043 1144.33068,809.021758 1051.84202,873.551918 C985.920949,909.46071 861.43294,963.878953 745.192857,940.566138 C745.192857,940.566138 611.264427,926.650377 480.273191,752.324982 C422.169232,657.960111 327.065947,586.788329 209.584451,562.381158 C102.755929,540.201581 -3.36581267,560.549506 -91.0054022,611.877116' stroke='#FFFFFF' stroke-width='5' transform='translate(787.367975, 787.221006) rotate(-45.000000) translate(-787.367975, -787.221006) ')
+                  g(stroke='none' stroke-width='1' fill-rule='evenodd' transform='translate(22.666667, 298.333333)')
+                    path(data-async data-duration="5" d='M2.24858592,978.571839 C4.08070467,986.430527 6.6405578,988.246361 9.9281453,984.019342 C13.2157328,979.792324 17.3345828,974.406161 22.2846953,967.860855' stroke='#FFFFFF' stroke-width='5' stroke-linecap='round' transform='translate(12.266641, 977.048910) scale(1, -1) rotate(197.000000) translate(-12.266641, -977.048910) ')
+                    circle(fill='#00AEC7' cx='1506.6624' cy='18.6624' r='18.6624')
+                    circle(fill='#FFFFFF' cx='953.329067' cy='507.995733' r='18.6624')
+                    circle(fill='#0078FF' cx='1197.32907' cy='81.3290667' r='18.6624')
+                    path(data-async data-duration="5" d='M1535.42697,23.0906505 C1537.25909,30.949338 1539.81894,32.7651724 1543.10653,28.5381537 C1546.39412,24.3111349 1550.51297,18.9249724 1555.46308,12.3796662' stroke='#FFFFFF' stroke-width='3.1104' stroke-linecap='round' transform='translate(1545.445026, 21.567721) scale(-1, -1) rotate(129.000000) translate(-1545.445026, -21.567721) ')
+            img#strengthIMG(src="images/img_index_strength.png")
   .index_solutions.page_block
     .block_inner
       .solutions_content
@@ -188,3 +203,29 @@ block main
 
 block js
   script(src='https://www.google.com/recaptcha/api.js')
+  // build:js scripts/vivus.js
+  script(src='../bower_components/vivus/dist/vivus.js')
+  // endbuild
+  // build:js scripts/waypoints.js
+  script(src='../bower_components/waypoints/lib/jquery.waypoints.js')
+  // endbuild
+  script.
+    $(function() {
+      var strength = new Vivus('strengthSVG', {
+        start: 'manual',
+        type: 'scenario-sync',
+        duration: 10,
+        forceRender: false,
+        onReady: function (vivusObj) {
+          var waypoint = new Waypoint({
+            element: document.getElementById('strengthSVG'),
+            handler: function(direction) {
+              vivusObj.play();
+            },
+            offset: '70%' 
+          })
+        }
+      }, function() {
+        $('#strengthIMG').fadeIn(800);
+      });
+    });
