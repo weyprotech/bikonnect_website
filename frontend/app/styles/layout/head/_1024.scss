@@ -5,3 +5,12 @@
     }
   }
 }
+
+@include susy-breakpoint(1440px, 12) {
+  #header {
+    .header_inner {
+      width: 75%;
+      max-width: inherit;
+    }
+  }
+}

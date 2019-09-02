@@ -7,24 +7,23 @@
         max-width: 1110px;
       }
       .slide_content {
-        width: 65%;
+        left: calc((100vw - 1110px) / 2);
         padding: 0 1.25em;
         text-align: left;
         h2 {
           font-size: 4.25em;
         }
       }
-      .slide_img {
-        width: calc(42% + (100vw - 1110px) / 2);
-        margin-left: -7%;
-        margin-right: calc((100vw - 1110px) / 2);
-      }
     }
   }
   .index_experience {
     .experience_items {
-      .item {
-        @include gallery(3 of 12 2);
+      padding: 0;
+      .slick-prev {
+        left: -26px;
+      }
+      .slick-next {
+        right: -26px;
       }
     }
   }

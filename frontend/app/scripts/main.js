@@ -94,6 +94,29 @@ $(document).ready(function () {
       slick.$slides.css('height', slick.$slideTrack.height() + 'px');
     });
   }
+  if ($('.experience_items').length > 0) {
+    $('.experience_items').slick({
+      slide: '.item',
+      slidesToShow: 4,
+      slidesToScroll: 4,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        },
+        {
+          breakpoint: 560,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    });
+  }
   if ($('.strength_sliders .slider').length > 0) {
     $('.strength_sliders .slider').slick({
       infinite: true,

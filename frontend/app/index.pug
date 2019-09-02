@@ -5,26 +5,16 @@ block main
     .slider
       .slide
         .bg(style="background-image: url(images/banner_index.jpg);")
-        .slide_inner
-          .slide_content
-            h2 Connect Your Bike#[br]Ride the Future
-            a.btn_more.big(href="javascript:;")
-              | Learn More
-          .slide_img
-            //↓ 圖片建議尺寸 寬:900px 高:700px ↓
-            img(src="images/img_index_banner.png")
-            //↑ 圖片建議尺寸 寬:900px 高:700px ↑
+        .slide_content
+          h2 Connect Your Bike#[br]Ride the Future
+          a.btn_more.big(href="javascript:;")
+            | Learn More
       .slide
         .bg(style="background-image: url(images/banner_index.jpg);")
-        .slide_inner
-          .slide_content
-            h2 2 Connect Your Bike#[br]Ride the Future
-            a.btn_more.big(href="javascript:;")
-              | Learn More
-          .slide_img
-            //↓ 圖片建議尺寸 寬:900px 高:700px ↓
-            img(src="images/img_index_banner.png")
-            //↑ 圖片建議尺寸 寬:900px 高:700px ↑
+        .slide_content
+          h2 2Connect Your Bike#[br]Ride the Future
+          a.btn_more.big(href="javascript:;")
+            | Learn More
     .slider_dots
     .wave
       img(src="images/img_wave.png", alt="wave")
@@ -55,6 +45,8 @@ block main
       .strength_content
         .strength_sliders
           .item
+            .mobile_img
+              img(src="images/img_index_strength_m01.png" alt="Strangth Mobile Picture 01")
             .slider
               each i inArray(3)
                 .slide
@@ -63,6 +55,8 @@ block main
                     hr
                     p Data Transmission Firmware Update
           .item
+            .mobile_img
+              img(src="images/img_index_strength_m02.png" alt="Strangth Mobile Picture 02")
             .slider
               each i inArray(3)
                 .slide
@@ -131,6 +125,7 @@ block main
           img(src="images/partners/img_partners12.png", alt="悠遊卡 EASY CARD")
         //↑ 圖片建議尺寸 寬:230px以下 高:70px ↑
   .index_vision.page_block
+    .bg
     .block_inner
       .vision_content
         h2.block_title Our Vision
