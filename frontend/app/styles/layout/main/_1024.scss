@@ -45,3 +45,11 @@
     }
   }
 }
+
+@include susy-breakpoint(1110px, 12) {
+  .index_solutions {
+    .solutions_img {
+      width: calc(50% + (100vw - 1110px) / 2);
+    }
+  }
+}
