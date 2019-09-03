@@ -1,0 +1,62 @@
+.contact.page_block
+  .block_inner
+    .contact_info
+      .contact_logo
+        img.retina(src="images/logo_big.png")
+      h2
+        | Let's get#[br]
+        big Connect
+      .follow_us
+        span follow us!
+        .social_links
+          a(href="javascript:;", target="_blank")
+            i.icon_facebook
+          a(href="javascript:;", target="_blank")
+            i.icon_twitter
+          a(href="javascript:;", target="_blank")
+            i.icon_instagram
+      .info_list
+        .item
+          i.icon_location
+          a(href="https://goo.gl/maps/djPnGB4bzScakSzS9", target="_blank")
+            | 7F, No.402, Shizheng Rd, Xitun Dist., Taichung City 407.,Taiwan
+        .item
+          i.icon_mail
+          a(href="mailto:smart_ebike@program.com.tw")
+            | smart_ebike@program.com.tw
+        .item
+          i.icon_tel
+          a(href="tel:+886-4-2369-2699")
+            | +886-4-2369-2699
+        .item
+          i.icon_fax
+          span
+            | +886-4-2258-8577
+    .contact_form
+      //↓ 輸入有誤時 controls 的 class 加 'error' 即可顯示 error_text, 並在 error_text 顯示錯誤訊息 ↓
+      .controls_group
+        label Name
+        .controls
+          input(type="text")
+          .error_text Error!
+      .controls_group
+        label Phone
+        .controls
+          input(type="text")
+          .error_text Error!
+      .controls_group
+        label E-mail
+        .controls
+          input(type="email")
+          .error_text Error!
+      .controls_group
+        label Message
+        .controls
+          textarea
+          .error_text Error!
+      //↑ 輸入有誤時 controls 的 class 加 'error' 即可顯示 error_text, 並在 error_text 顯示錯誤訊息 ↑
+      .call_action
+        .captcha
+          .captcha_inner
+            .g-recaptcha(data-sitekey="6LcHGhITAAAAABIgEAplK2EWsVFkaE5o0DWUpsIs")
+        button.btn_submit(type="submit") Send

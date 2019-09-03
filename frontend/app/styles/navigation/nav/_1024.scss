@@ -5,6 +5,7 @@
       text-align: right;
       font-size: 0;
       > li {
+        position: relative;
         display: inline-block;
         text-align: center;
         > a {
@@ -16,11 +17,38 @@
           box-sizing: border-box;
           color: $main;
           font-size: 1rem;
-          &:hover, &.current {
+          &:hover, &.current, &.active {
             background-color: $gray-lightest;
           }
           &.current {
             color: $blue;
+          }
+        }
+        > ul {
+          position: absolute;
+          top: 100%;
+          left: 50%;
+          display: none;
+          width: 180px;
+          background-color: $white;
+          box-shadow: 0 4px 4px rgba($gray-lighten, 0.5);
+          transform: translateX(-50%);
+          > li {
+            border-top: rgba($gray-lighten, 0.5) 1px solid;
+            > a {
+              display: block;
+              padding: 0.5em;
+              box-sizing: border-box;
+              color: $gray-darken;
+              font-size: 1rem;
+              line-height: 1.4;
+              &:hover, &.current {
+                background-color: $gray-lightest;
+              }
+              &.current {
+                color: $blue;
+              }
+            }
           }
         }
       }

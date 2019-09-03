@@ -1,5 +1,9 @@
 extends layouts/default.pug
 
+block value
+  - var currentUrl = 'index'
+  - var subCurrent = ''
+
 block main
   .index_banner_slider
     .slider
@@ -16,9 +20,9 @@ block main
           a.btn_more.big(href="javascript:;")
             | Learn More
     .slider_dots
+  .index_experience.page_block
     .wave
       img(src="images/img_wave.png", alt="wave")
-  .index_experience.page_block
     .block_inner
       h2.block_title
         | More Intelligent Cycling#[br]Experience
@@ -84,14 +88,14 @@ block main
             img#strengthIMG(src="images/img_index_strength.png")
   .index_solutions.page_block
     .block_inner
-      .solutions_content
+      .block_content
         h2.block_title Smart Solutions
         h3.block_subtitle Data Management &amp; Analysis
         .text
           p Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever fap. 
         a.btn_more.green(href="javascript:;")
           | Learn more
-      .solutions_img
+      .block_img
         img(src="images/img_index_solutions.png", alt="Smart Solutions Picture")
   .index_partners.page_block
     .block_inner
@@ -133,71 +137,9 @@ block main
         .text
           p Nam porttitor blandit accumsan. Ut vel dictum sem, a pretium dui.
         a.btn_more Read More
-  .contact.page_block
-    .block_inner
-      .contact_info
-        .contact_logo
-          img.retina(src="images/logo_big.png")
-        h2
-          | Let's get#[br]
-          big Connect
-        .follow_us
-          span follow us!
-          .social_links
-            a(href="javascript:;", target="_blank")
-              i.icon_facebook
-            a(href="javascript:;", target="_blank")
-              i.icon_twitter
-            a(href="javascript:;", target="_blank")
-              i.icon_instagram
-        .info_list
-          .item
-            i.icon_location
-            a(href="https://goo.gl/maps/djPnGB4bzScakSzS9", target="_blank")
-              | 7F, No.402, Shizheng Rd, Xitun Dist., Taichung City 407.,Taiwan
-          .item
-            i.icon_mail
-            a(href="mailto:smart_ebike@program.com.tw")
-              | smart_ebike@program.com.tw
-          .item
-            i.icon_tel
-            a(href="tel:+886-4-2369-2699")
-              | +886-4-2369-2699
-          .item
-            i.icon_fax
-            span
-              | +886-4-2258-8577
-      .contact_form
-        //↓ 輸入有誤時 controls 的 class 加 'error' 即可顯示 error_text, 並在 error_text 顯示錯誤訊息 ↓
-        .controls_group
-          label Name
-          .controls
-            input(type="text")
-            .error_text Error!
-        .controls_group
-          label Phone
-          .controls
-            input(type="text")
-            .error_text Error!
-        .controls_group
-          label E-mail
-          .controls
-            input(type="email")
-            .error_text Error!
-        .controls_group
-          label Message
-          .controls
-            textarea
-            .error_text Error!
-        //↑ 輸入有誤時 controls 的 class 加 'error' 即可顯示 error_text, 並在 error_text 顯示錯誤訊息 ↑
-        .call_action
-          .captcha
-            .captcha_inner
-              .g-recaptcha(data-sitekey="6LcHGhITAAAAABIgEAplK2EWsVFkaE5o0DWUpsIs")
-          button.btn_submit(type="submit") Send
+  include layouts/partials/contact.pug
 
 block js
-  script(src='https://www.google.com/recaptcha/api.js')
   // build:js scripts/vivus.js
   script(src='../bower_components/vivus/dist/vivus.js')
   // endbuild

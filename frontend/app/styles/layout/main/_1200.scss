@@ -51,15 +51,10 @@
     }
   }
   .index_solutions {
-    .block_title {
-      font-size: 3.75em;
-    }
-    .solutions_content {
-      width: 46%;
-      padding-left: 0;
-    }
-    .solutions_img {
-      width: calc(54% + (100vw - 1110px) / 2);
+    .block_content {
+      .block_title {
+        font-size: 3.75em;
+      }
     }
   }
   .index_partners {
@@ -68,8 +63,21 @@
     }
   }
   .index_vision {
-    .block_title {
-      font-size: 3.75em;
+    .vision_content {
+      width: 38%;
+      .block_title {
+        font-size: 3.75em;
+      }
+    }
+  }
+}
+
+@include susy-breakpoint(1280px, 12) {
+  // Product
+  .product_keyAdvantages {
+    .block_img {
+      width: 50%;
+      margin-left: -6%;
     }
   }
 }

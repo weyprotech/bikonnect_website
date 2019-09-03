@@ -1,0 +1,60 @@
+extends layouts/default.pug
+
+block value
+  - var currentUrl = 'products'
+  - var subCurrent = 'product01'
+
+block main
+  .product_introduction.page_block
+    .block_inner
+      .block_content
+        h1.block_title Cyling Data Platform
+        .text
+          p The E-Bike cycling data platform provides easy-to-use data services for regular bike and E-bike brands or component manufacturers, allowing operators to know the real-time cycling data, bikes or components repair status of members, and even texting marketing notifications and events management to members.
+      .block_img
+        img(src="images/products/porduct01/intro.png")
+  .product_characteristic.page_block
+    .wave.top
+      img(src="images/product_char_wave_top.png")
+    .block_inner
+      .block_content
+        h2.block_subtitle Integrate Store#[br]Management System
+        .text
+          p Meanwhile, it could integrate with store management system to quickly know the service data of dealers and members, with technology connecting cyclists, dealers and owners; therefore, it drives business strategy to create brand value and enhance market competitiveness.
+      .block_img
+        img(src="images/products/porduct01/characteristic.png")
+    .wave.bottom
+      img(src="images/product_char_wave_bottom.png")
+    .bike
+      img(src="images/product_char_bike.png")
+  .product_keyAdvantages.page_block
+    .block_inner
+      .block_content
+        h2.block_subtitle Key Advantages
+        ul.key_list
+          li Visualized members’cycling data statistics
+          li Member's relevant data is easy to query
+          li Easily send marketing messages to members
+          li E-Bike system equipments management for members’E-Bike
+          li Assign easily to administrative authorizations of members’data 
+          li Integrated store management system
+      .block_img
+        img(src="images/products/porduct01/key.png")
+  .product_future.page_block
+    .block_inner
+      h2.block_subtitle Connect your bike#[br]Ride the future
+      .future_img_video
+        img(src="images/products/porduct01/future.jpg")
+  .product_application.page_block
+    .block_inner
+      h2.block_subtitle Application Range
+      .aplication_items
+        .item
+          .icon_img
+            img(src="images/products/porduct01/icon_img01.png")
+          span E-Bike brand operators
+        .item
+          .icon_img
+            img(src="images/products/porduct01/icon_img02.png")
+          span Bike brands operators
+  include layouts/partials/contact.pug

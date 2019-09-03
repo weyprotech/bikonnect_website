@@ -28,9 +28,26 @@
     }
   }
   .index_solutions {
-    .solutions_img {
-      width: calc(54% + (100vw - 75vw) / 2);
-      margin-right: calc((100vw - 75vw) / 2);
+    .block_content {
+      width: 46%;
+    }
+    .block_img {
+      width: calc(52% + (100vw - (100vw - 2em) * 0.75) / 2);
+      margin-right: calc(((100vw - (100vw - 2em) * 0.75) / 2) * -1);
+    }
+  }
+
+  // Product
+  .product_introduction {
+    padding-top: 6.875em;
+    .block_img {
+      margin-top: -6.875em;
+      margin-right: calc(((100vw - (100vw - 2em) * 0.75) / 2) * -1);
+    }
+  }
+  .product_characteristic {
+    .block_img {
+      margin-left: calc(((100vw - (100vw - 2em) * 0.75) / 2) * -1);
     }
   }
 
@@ -38,6 +55,15 @@
   .contact {
     .block_inner {
       max-width: 1110px;
+    }
+  }
+}
+
+@include susy-breakpoint(1600px, 12) {
+  // Product
+  .product_introduction {
+    .block_inner {
+      align-items: center;
     }
   }
 }
