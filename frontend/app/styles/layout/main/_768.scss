@@ -152,4 +152,27 @@
       margin: 0 auto;
     }
   }
+  .solution_application {
+    .application_items {
+      .item {
+        span {
+          font-size: 1.125em;
+        }
+      }
+    }
+  }
+  .solution_keyFeatures {
+    .keyFeature_slider {
+      .pic_text {
+        .pic {
+          margin-right: 3em;
+        }
+        .text {
+          h3 {
+            font-size: 1.25em;
+          }
+        }
+      }
+    }
+  }
 }

@@ -404,9 +404,11 @@
     }
     .slick-prev {
       left: 0;
+      @include retina-sprite($arrow-slider-prev-group);
     }
     .slick-next {
       right: 0;
+      @include retina-sprite($arrow-slider-next-group);
     }
     @include breakpoint(370px) {
       .slick-prev {
@@ -462,9 +464,13 @@
       margin: 0;
       width: 38vw;
       height: 38vw;
+      max-width: 460px;
+      max-height: 460px;
       .slide {
         width: 38vw;
         height: 38vw;
+        max-width: 460px;
+        max-height: 460px;
       }
       h3 {
         font-size: 1.25em;
@@ -808,6 +814,7 @@
   background-color: $blue-lighten;
   .wave {
     position: absolute;
+    z-index: 0;
     left: 0;
     width: 100%;
     &.top {
@@ -824,6 +831,7 @@
   }
   .bike {
     position: absolute;
+    z-index: 1;
     right: 0;
     bottom: -14vw - 3.5vw;
     width: 42.1875vw;
@@ -832,6 +840,10 @@
       width: 100%;
       max-width: inherit;
     }
+  }
+  .block_inner {
+    position: relative;
+    z-index: 2;
   }
   .block_content {
     margin-bottom: 1.5em;
@@ -1000,6 +1012,7 @@
   .block_title {
     margin-bottom: 0;
     color: $white;
+    font-weight: 700;
     text-align: center;
   }
 }
@@ -1054,6 +1067,155 @@
       }
       .text {
         order: 0;
+      }
+    }
+  }
+}
+.solution_application {
+  background-color: $blue-lighten;
+  .block_subtitle {
+    text-align: center;
+  }
+  .application_items {
+    padding: 0 calc(26px + 0.5rem);
+    margin: 0 -1em;
+    box-sizing: border-box;
+    .item {
+      margin: 0 1em;
+      text-align: center;
+      img {
+        display: block;
+        max-width: 80%;
+        max-height: inherit;
+        margin: 0 auto 0.8em;
+      }
+      span {
+        display: block;
+        line-height: 1.4;
+      }
+    }
+    .slick-prev {
+      @include retina-sprite($arrow-slider-prev-blue-group);
+      left: 0.5rem;
+    }
+    .slick-next {
+      @include retina-sprite($arrow-slider-next-blue-group);
+      right: 0.5rem;
+    }
+  }
+}
+.solution_cyclists_operators {
+  .content_block {
+    overflow: hidden;
+    margin-bottom: 1.5em;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    .block_subtitle {
+      text-align: center;
+    }
+    .table {
+      position: relative;
+      padding-left: 1.25em;
+      box-sizing: border-box;
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 4px;
+        height: 9999%;
+      }
+      .tr {
+        margin-bottom: 1em;
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+      .th {
+        font-size: 1.125em;
+        font-weight: 500;
+        line-height: 1.4;
+      }
+    }
+    &.cyclists {
+      .table {
+        &:before {
+          background-color: $blue;
+        }
+      }
+    }
+    &.operators {
+      .table {
+        &:before {
+          background-color: $green;
+        }
+      }
+    }
+  }
+  @include breakpoint(660px) {
+    .block_inner {
+      display: flex;
+    }
+    .content_block {
+      width: 48%;
+      margin-right: 4%;
+      margin-bottom: 0;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+}
+.solution_keyFeatures {
+  background-color: $main;
+  color: $white;
+  .block_subtitle {
+    color: $white;
+    text-align: center;
+  }
+  .keyFeature_slider {
+    margin: 0 26px;
+    .pic {
+      .img {
+        width: 230px;
+        height: 230px;
+        margin: 0 auto;
+        border: $white 3px solid;
+        border-radius: 50%;
+        box-sizing: border-box;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    }
+    .text {
+      h3 {
+        margin-top: 0;
+        margin-bottom: 0.5em;
+        color: $green;
+        font-size: 1.125em;
+        font-weight: 500;
+      }
+    }
+    .slick-prev {
+      left: calc(-26px - 0.5rem);
+      @include retina-sprite($arrow-slider-prev-group);
+    }
+    .slick-next {
+      right: calc(-26px - 0.5rem);
+      @include retina-sprite($arrow-slider-next-group);
+    }
+    @include breakpoint(660px) {
+      .pic_text {
+        .pic {
+          width: 230px;
+          margin-right: 1.5em;
+        }
+        .text {
+          flex: 1 1 auto;
+        }
       }
     }
   }

@@ -127,6 +127,48 @@ $(document).ready(function () {
       speed: 800
     })
   }
+  if ($('.application_items').length > 0) {
+    $('.application_items').slick({
+      slide: '.item',
+      slidesToShow: 5,
+      slidesToScroll: 5,
+      responsive: [{
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 4,
+            slidesToScroll: 4
+          }
+        },
+        {
+          breakpoint: 660,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3
+          }
+        },
+        {
+          breakpoint: 560,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        },
+        {
+          breakpoint: 375,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    });
+  }
+  if ($('.keyFeature_slider').length > 0) {
+    $('.keyFeature_slider').slick({
+      infinite: true,
+      speed: 800
+    })
+  }
 
   // Fit Vidos - jquery.fitvids.js
   $('#wrapper').fitVids();

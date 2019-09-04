@@ -65,6 +65,45 @@
       }
     }
   }
+
+  // Solution
+  .solution_cyclists_operators {
+    .content_block {
+      .table {
+        display: table;
+        padding-left: 2em;
+        &:before {
+          width: 6px;
+        }
+        .tr {
+          display: table-row;
+        }
+        .th, .td {
+          display: table-cell;
+        }
+        .th {
+          width: 136px;
+        }
+      }
+    }
+  }
+  .solution_keyFeatures {
+    .keyFeature_slider {
+      .pic_text {
+        width: 72%;
+        min-width: 788px;
+        margin: 0 auto;
+        .pic {
+          margin-right: 3em;
+        }
+        .text {
+          h3 {
+            font-size: 1.5em;
+          }
+        }
+      }
+    }
+  }
 }
 
 @include susy-breakpoint(1142px, 12) {
@@ -92,6 +131,19 @@
   .product_keyAdvantages {
     .block_inner {
       align-items: center;
+    }
+  }
+
+  // Solution
+  .solution_keyFeatures {
+    .keyFeature_slider {
+      margin: 0;
+      .slick-prev {
+        left: 0;
+      }
+      .slick-next {
+        right: 0;
+      }
     }
   }
 }

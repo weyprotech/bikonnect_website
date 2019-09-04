@@ -70,6 +70,19 @@
       }
     }
   }
+
+  // Solution
+  .solution_application {
+    .application_items {
+      padding: 0;
+      .slick-prev {
+        left: -26px;
+      }
+      .slick-next {
+        right: -26px;
+      }
+    }
+  }
 }
 
 @include susy-breakpoint(1280px, 12) {

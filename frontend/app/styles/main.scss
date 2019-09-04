@@ -37,12 +37,6 @@ $susy: (
     opacity: 0.5;
   }
 }
-.slick-prev {
-  @include retina-sprite($arrow-slider-prev-group);
-}
-.slick-next {
-  @include retina-sprite($arrow-slider-next-group);
-}
 .slick-slide {
   &:focus {
     outline: none;
