@@ -128,6 +128,9 @@ $(document).ready(function () {
     })
   }
 
+  // Fit Vidos - jquery.fitvids.js
+  $('#wrapper').fitVids();
+
   // Popup Close
   // $(document).on(clickHandler, '.popup-modal-dismiss', function (event) {
   //     event.preventDefault();
@@ -136,27 +139,6 @@ $(document).ready(function () {
 
   // Tab - jquery.tabber.js
   // $('.tabber_wrapper').tabber();
-
-  // Fit Vidos - jquery.fitvids.js
-  // $('#wrapper').fitVids();
-
-  // Body Scroll
-  // $(window).scroll(function () {
-  //   $('[data-anchor]').each(function (index, el) {
-  //     var scrolltop = $(window).scrollTop(),
-  //       position = $(this).offset().top,
-  //       headerH = $('#header').outerHeight(true),
-  //       selfH = $(this).outerHeight(true),
-  //       anchor = $(this).attr('data-anchor');
-
-  //     if (scrolltop >= position - headerH - 5 && scrolltop <= position - headerH + selfH - 5) {
-  //       $('#stickyNav ul a.active').removeClass('active');
-  //       $('#stickyNav ul a[href="#' + anchor + '"]').addClass('active');
-  //     } else {
-  //       $('#stickyNav ul a[href="#' + anchor + '"]').removeClass('active');
-  //     }
-  //   });
-  // });
 
   // Back to top
   if ($('#backTop').length > 0) {

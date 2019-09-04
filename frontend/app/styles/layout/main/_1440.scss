@@ -2,8 +2,7 @@
   // Page_block
   .page_block {
     .block_inner {
-      width: 75%;
-      max-width: inherit;
+      max-width: 75%;
     }
   }
 
@@ -58,6 +57,12 @@
     .block_inner {
       max-width: 1110px;
     }
+  }
+
+  // Solution
+  .solution_banner {
+    padding-top: 9em !important;
+    padding-bottom: 9em !important;
   }
 }
 

@@ -1,0 +1,100 @@
+extends layouts/default.pug
+
+block value
+  - var currentUrl = 'solution'
+  - var subCurrent = ''
+
+block main
+  .solution_banner.page_block
+    .block_inner
+      h1.block_title E-Bike Data Service Solution
+  .solution_introduction.page_block
+    .block_inner
+      .image_video
+        iframe(width="560" height="315" src="https://www.youtube.com/embed/QOKVoRQH9hk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+      .text
+        p The “E-Bike Data Service Solution” provided by Microprogram enhance E-Bike cyclist experience and bike brand service value with IoT and Big Data to make smart technologies improve global competition for E-Bike. Compared to regular bicycles, E-Bike offers the advantage of power supply, and E-Bike data service has combined E-Bike Computer and E-Bike App, which could provide cyclists' real-time dynamic cycling data to the cycling data platform to bike brands or component manufacturers.
+        p Through cyclists' data to assist the brand’s business decision-making, the E-Bike digital upgrades practically to create more added value for brand owners. For cyclists, a series of smart bike products, including E-Bike Computer and E-Bike App, make the cyclists’ experience more intelligent, reaching a win-win situation for cyclists, bike brands, dealers and component manufacturers.
+  .divide_line
+    img(src="images/bg_line.png")
+  .solution_help.page_block
+    .block_inner
+      h2.block_subtitle We Can Help You
+      .pic_text
+        .pic
+          img(src="images/img_solution_help.jpg")
+        .text
+          ul.common_list
+            li E-Bike digital upgrade, system integration of offline products and online services
+            li Dealer after-sales service management (maintenance history, repair and maintenance online appointment)
+            li Member cycling data collection and analysis
+            li E-Bike OTA version update
+            li E-Bike anti-theft
+  .solution_keyAdvantages.page_block
+    .block_inner
+      h2.block_subtitle Key Advantages
+      .pic_text
+        .pic
+          img(src="images/img_solution_keyAdvantages.jpg")
+        .text
+          ul.common_list
+            li Analyze cycling and E-Bike data to provide brands with future market trends
+            li Online E-Bike App integrates Offline E-Bike computer
+            li Classable authorizations to members’data management for management platform
+            li User data collection
+  .solution_application.page_block
+    .block_inner
+      h2.block_subtitle Application Range
+      .application_items
+        .item
+          img(src="images/icon_app01.png")
+          span E-Bike brand#[br]operators
+        .item
+          img(src="images/icon_app02.png")
+          span Bike brands#[br]operators
+        .item
+          img(src="images/icon_app03.png")
+          span Bike brands
+        .item
+          img(src="images/icon_app04.png")
+          span Bike stores/#[br]dealers
+        .item
+          img(src="images/icon_app05.png")
+          span Bike parts#[br]operators
+  .solution_cyclists_operators.page_block
+    .block_inner
+      .content_block
+        h2.block_subtitle Cyclists
+        .table
+          .tr
+            .th Cycling aspect:
+            .td E-Bike computer, cycling record with E-Bike APP, devices connection by Bluetooth ,personal riding route track
+          .tr
+            .th Repair aspect:
+            .td repair and maintenance appointment, appointment reminder, maintenance history
+      .content_block
+        h2.block_subtitle Operators
+        .table
+          .tr
+            .th Sales aspect:
+            .td members’data collection, customers preference inquiry, notifications of preferential activities, service-related history
+          .tr
+            .th Market aspect:
+            .td business decisions, Big Data analysis, optimization upgrade
+          .tr
+            .th Brand aspect:
+            .td master comprehensive information, improve user satisfaction
+  .solution_keyFeatures.page_block
+    .block_inner
+      .content_block
+        h2.block_subtitle Key Features
+        .keyFeature_slider
+          each i inArray(3)
+            .slide
+              .pic_text
+                .pic
+                  img(src="images/img_solution_keyFeatures01.png")
+                .text
+                  h3 Cycling data platform
+                  p Collect the cyclists’cycling data, user behavior, consumption information and others data; and through categorized users, Big Data analysis, cycling heat map, and bicycle accident location statistics, quantified data as precision marketing, strategy planning, decision-making judgment indicators for enterprises to provide customers with the most accurate service and create the corporate value promotion.
+  include layouts/partials/contact.pug

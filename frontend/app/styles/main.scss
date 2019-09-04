@@ -27,6 +27,22 @@ $susy: (
 @import "plugins/slick";
 @import "plugins/slick-theme";
 
+//Slick Setting
+.slick-prev,
+.slick-next {
+  &:before {
+    display: none;
+  }
+  &:hover {
+    opacity: 0.5;
+  }
+}
+.slick-prev {
+  @include retina-sprite($arrow-slider-prev-group);
+}
+.slick-next {
+  @include retina-sprite($arrow-slider-next-group);
+}
 .slick-slide {
   &:focus {
     outline: none;

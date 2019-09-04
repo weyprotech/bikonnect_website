@@ -1,8 +1,7 @@
 @include susy-breakpoint(1440px) {
 	#footer {
     .footer_inner {
-      width: 75%;
-      max-width: inherit;
+      max-width: 75%;
     }
   }
 }
