@@ -55,17 +55,13 @@
 
   // Contact
   .contact {
-    .block_inner {
-      display: flex;
-    }
     .contact_info {
-      flex: 0 0 auto;
       width: 295px;
-      margin-bottom: 0;
-      margin-right: 1em;
+      h2 {
+        font-size: 3em;
+      }
     }
     .contact_form {
-      flex: 1 1 auto;
       width: calc(100% - 295px - 1em);
     }
   }
@@ -90,6 +86,20 @@
       width: calc(52% + 1em);
     }
   }
+  .product_keyAdvantages {
+    .block_content {
+      .key_list {
+        li {
+          margin-bottom: 1.5em;
+          &:before {
+            left: -30px;
+            width: 14px;
+            height: 14px;
+          }
+        }
+      }
+    }
+  }
   .product_application {
     .aplication_items {
       .item {
@@ -103,20 +113,6 @@
       }
       span {
         font-size: 1.25em;
-      }
-    }
-  }
-  .product_keyAdvantages {
-    .block_content {
-      .key_list {
-        li {
-          margin-bottom: 1.5em;
-          &:before {
-            left: -30px;
-            width: 14px;
-            height: 14px;
-          }
-        }
       }
     }
   }

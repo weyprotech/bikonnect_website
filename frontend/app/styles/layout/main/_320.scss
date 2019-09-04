@@ -193,7 +193,7 @@
         }
       }
     }
-    @include breakpoint(560px) {
+    @include breakpoint(660px) {
       bottom: 15.9722222222222vw;
     }
   }
@@ -392,7 +392,7 @@
       max-width: inherit;
     }
   }
-  @include breakpoint(560px) {
+  @include breakpoint(660px) {
     min-height: 88vw;
     .strength_content {
       position: relative;
@@ -422,13 +422,15 @@
       margin: 0;
       width: 38vw;
       height: 38vw;
-      //max-width: 458px;
-      //max-height: 458px;
       .slide {
         width: 38vw;
         height: 38vw;
-        //max-width: 458px;
-        //max-height: 458px;
+      }
+      h3 {
+        font-size: 1.25em;
+      }
+      p {
+        font-size: 1.125em;
       }
     }
     .strength_animation {
@@ -439,16 +441,6 @@
       display: block;
       width: 100vw;
       margin-left: -50vw;
-    }
-  }
-  @include breakpoint(660px) {
-    .slider {
-      h3 {
-        font-size: 1.25em;
-      }
-      p {
-        font-size: 1.125em;
-      }
     }
   }
 }
@@ -477,7 +469,7 @@
       float: right;
     }
   }
-  @include breakpoint(560px) {
+  @include breakpoint(660px) {
     .block_inner {
       display: flex;
       align-items: center;
@@ -554,7 +546,7 @@
       }
     }
   }
-  @include breakpoint(560px) {
+  @include breakpoint(660px) {
     position: relative;
     display: flex;
     align-items: center;
@@ -613,10 +605,10 @@
   .contact_info {
     margin-bottom: 1.5em;
     .contact_logo {
+      max-width: 230px;
+      margin: 0 auto;
       img {
         display: block;
-        max-width: 230px;
-        margin: 0 auto;
       }
     }
     h2 {
@@ -652,7 +644,7 @@
       }
     }
     .follow_us {
-      width: 240px;
+      max-width: 240px;
       margin: 0 auto 1.5em;
       span {
         display: inline-block;
@@ -668,7 +660,7 @@
       }
       a {
         display: inline-block;
-        margin-right: 0.5rem;
+        margin-right: 0.3rem;
         vertical-align: middle;
         i[class^="icon_"] {
           display: block;
@@ -682,19 +674,14 @@
       }
     }
     .info_list {
-      width: 240px;
+      max-width: 240px;
       margin: 0 auto;
       color: $gray-darken;
-      a {
-        color: $gray-darken;
-        &:hover {
-          color: $blue;
-        }
-      }
       .item {
         margin-bottom: 0.5rem;
         line-height: 1.4;
         font-size: 0;
+        word-break: break-all;
         &:last-child {
           margin-bottom: 0;
         }
@@ -710,6 +697,30 @@
           vertical-align: top;
         }
       }
+      a {
+        color: $gray-darken;
+        &:hover {
+          color: $blue;
+        }
+      }
+    }
+  }
+  @include breakpoint(660px) {
+    .block_inner {
+      display: flex;
+    }
+    .contact_info {
+      flex: 0 0 auto;
+      width: 250px;
+      margin-bottom: 0;
+      margin-right: 1em;
+      h2 {
+        font-size: 2.5em;
+      }
+    }
+    .contact_form {
+      flex: 1 1 auto;
+      width: calc(100% - 250px - 1em);
     }
   }
 }
@@ -730,7 +741,7 @@
       max-width: inherit;
     }
   }
-  @include breakpoint(560px) {
+  @include breakpoint(660px) {
     .block_inner {
       display: flex;
       align-items: flex-start;
@@ -788,7 +799,7 @@
   .block_img {
     margin: 0 -1em;
   }
-  @include breakpoint(560px) {
+  @include breakpoint(660px) {
     .block_inner {
       display: flex;
       align-items: center;
@@ -798,6 +809,7 @@
       order: 1;
       flex: 0 0 auto;
       width: 52%;
+      margin-bottom: 0;
       text-align: right;
     }
     .block_img {
@@ -847,7 +859,7 @@
       margin: 0 auto;
     }
   }
-  @include breakpoint(560px) {
+  @include breakpoint(660px) {
     padding-top: 22vw !important;
     padding-bottom: 10vw !important;
     .block_inner {
@@ -895,7 +907,7 @@
       max-width: inherit;
     }
   }
-  @include breakpoint(560px) {
+  @include breakpoint(660px) {
     padding-top: 8.75vw !important;
     .block_inner {
       display: flex;
@@ -935,7 +947,7 @@
         display: block;
         max-width: inherit;
         max-height: 44px;
-        @include breakpoint(660px) {
+        @include breakpoint(560px) {
           max-height: 66px;
         }
       }

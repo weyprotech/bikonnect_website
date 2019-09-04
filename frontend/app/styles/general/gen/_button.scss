@@ -73,7 +73,7 @@
       background-color: darken($green, 10%);
     }
   }
-  @include breakpoint(560px) {
+  @include breakpoint(660px) {
     border-radius: 21px;
     font-size: 1.125em;
     line-height: 42px;

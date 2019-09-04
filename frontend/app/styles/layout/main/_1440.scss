@@ -41,13 +41,15 @@
   .product_introduction {
     padding-top: 6.875em;
     .block_img {
+      width: calc(52% + (100vw - (100vw - 2em) * 0.75) / 2);
       margin-top: -6.875em;
-      margin-right: calc(((100vw - (100vw - 2em) * 0.75) / 2) * -1);
+      margin-right: calc((100vw - (100vw - 2em) * 0.75) / 2 * -1);
     }
   }
   .product_characteristic {
     .block_img {
-      margin-left: calc(((100vw - (100vw - 2em) * 0.75) / 2) * -1);
+      width: calc(52% + (100vw - (100vw - 2em) * 0.75) / 2);
+      margin-left: calc((100vw - (100vw - 2em) * 0.75) / 2 * -1);
     }
   }
 
