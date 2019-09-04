@@ -3,6 +3,10 @@
     min-height: calc(100vh - 70px - 62px);
   }
 
+  .image_video {
+    padding: 1.5em;
+  }
+
   // Page_block
   .page_block {
     padding: 5em 1em;
@@ -49,11 +53,6 @@
   .product_introduction {
     .block_img {
       margin-top: -5em;
-    }
-  }
-  .product_future {
-    .future_img_video {
-      padding: 1.875em;
     }
   }
   .product_application {
