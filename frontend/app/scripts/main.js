@@ -166,8 +166,50 @@ $(document).ready(function () {
   if ($('.keyFeature_slider').length > 0) {
     $('.keyFeature_slider').slick({
       infinite: true,
-      speed: 800
+      speed: 800,
+      adaptiveHeight: true
     })
+  }
+  if ($('.team_intro').length > 0) {
+    $('.team_intro').slick({
+      slide: '.item',
+      slidesToShow: 3,
+      slidesToScroll: 3,
+      infinite: false,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2
+          }
+        },
+        {
+          breakpoint: 660,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    });
+  }
+  if ($('#timeline_slider').length > 0) {
+    $('#timeline_slider').on('init', function (event, slick) {
+      var currentIndex = slick.currentSlide;
+      var years = $(slick.$slides[currentIndex]).data('years');
+      $('#timeline_years').find('span').text(years);
+    });
+    $('#timeline_slider').slick({
+      infinite: true,
+      speed: 800,
+      adaptiveHeight: true,
+      appendArrows: $('#timeline_arrows')
+    });
+    $('#timeline_slider').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
+      var years = $(slick.$slides[nextSlide]).data('years');
+      $('#timeline_years').find('span').text(years);
+    });
   }
 
   // Fit Vidos - jquery.fitvids.js

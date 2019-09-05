@@ -60,12 +60,6 @@
       max-width: 1110px;
     }
   }
-
-  // Solution
-  .solution_banner {
-    padding-top: 9em !important;
-    padding-bottom: 9em !important;
-  }
 }
 
 @include susy-breakpoint(1600px, 12) {

@@ -35,6 +35,15 @@
       }
     }
   }
+  .partners_supporters {
+    &.in_about {
+      .partners_items {
+        padding: 2rem;
+        width: 88%;
+        max-width: 980px;
+      }
+    }
+  }
 
   // Contact
   .contact {
@@ -93,14 +102,47 @@
         width: 72%;
         min-width: 788px;
         margin: 0 auto;
-        .pic {
-          margin-right: 3em;
-        }
+        padding: 0;
         .text {
           h3 {
             font-size: 1.5em;
           }
         }
+      }
+    }
+  }
+  
+  // About
+  .about_introduction,
+  .bikonnect_introduction {
+    padding-top: 4.375em;
+    padding-bottom: 4.375em;
+    .block_subtitle {
+      font-size: 1.5em ;
+    }
+  }
+  .about_timeline {
+    padding-top: 3.75em;
+    padding-bottom: 10em !important;
+    .timeline_header {
+      .block_subtitle {
+        padding-left: calc(26px + 4.375rem);
+      }
+    }
+    #timeline_slider {
+      .slide {
+        padding-left: 4.375em;
+      }
+    }
+  }
+  .about_team {
+    .team_intro {
+      padding: 0;
+      .slick-prev {
+        left: calc(-26px - 1em);
+      }
+      .slick-next {
+        right: calc(-26px - 1em);
       }
     }
   }

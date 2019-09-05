@@ -5,7 +5,7 @@ block value
   - var subCurrent = ''
 
 block main
-  .solution_banner.page_block
+  .page_banner.page_block.in_solution
     .block_inner
       h1.block_title E-Bike Data Service Solution
   .solution_introduction.page_block
@@ -89,12 +89,32 @@ block main
       .content_block
         h2.block_subtitle Key Features
         .keyFeature_slider
-          each i inArray(3)
-            .slide
-              .pic_text
-                .pic
-                  .img(style="background-image: url(images/img_solution_keyFeatures01.jpg);")
-                .text
-                  h3 Cycling data platform
-                  p Collect the cyclists’cycling data, user behavior, consumption information and others data; and through categorized users, Big Data analysis, cycling heat map, and bicycle accident location statistics, quantified data as precision marketing, strategy planning, decision-making judgment indicators for enterprises to provide customers with the most accurate service and create the corporate value promotion.
+          .slide
+            .pic_text
+              .pic
+                .img(style="background-image: url(images/img_solution_keyFeatures01.jpg);")
+              .text
+                h3 E-Bike APP
+                p connected cycling data, cycling record, bike maintenance reminder, one-click diagnosis, route navigation, comprehensive after-sales service offering users a better experience.
+          .slide
+            .pic_text
+              .pic
+                .img(style="background-image: url(images/img_solution_keyFeatures01.jpg);")
+              .text
+                h3 E-Bike computer
+                p displays the demand of important information for E-Bike commuter and leisure users, which pair with E-Bike APP by Bluetooth to achieve the collection and recording of personal cycling data and extend more personalized function services.
+          .slide
+            .pic_text
+              .pic
+                .img(style="background-image: url(images/img_solution_keyFeatures01.jpg);")
+              .text
+                h3 Store management system
+                p maintenance and repair online appointment, consumer bike situation feedback, maintenance history, members management, and simple operation but enhanced management efficiency and service quality of store management system.
+          .slide
+            .pic_text
+              .pic
+                .img(style="background-image: url(images/img_solution_keyFeatures01.jpg);")
+              .text
+                h3 Cycling data platform
+                p Collect the cyclists’cycling data, user behavior, consumption information and others data; and through categorized users, Big Data analysis, cycling heat map, and bicycle accident location statistics, quantified data as precision marketing, strategy planning, decision-making judgment indicators for enterprises to provide customers with the most accurate service and create the corporate value promotion.
   include layouts/partials/contact.pug

@@ -36,6 +36,9 @@ $susy: (
   &:hover {
     opacity: 0.5;
   }
+  &.slick-disabled {
+    visibility: hidden;
+  }
 }
 .slick-slide {
   &:focus {
