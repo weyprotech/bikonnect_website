@@ -727,6 +727,7 @@
         display: inline-block;
       }
       a {
+        pointer-events: none;
         display: inline-block;
         margin-right: 0.3rem;
         vertical-align: middle;
