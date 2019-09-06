@@ -11,13 +11,13 @@ block main
         .bg(style="background-image: url(images/banner_index.jpg);")
         .slide_content
           h2 Connect Your Bike#[br]Ride the Future
-          a.btn_more.big(href="javascript:;")
+          a.btn_more.big(href="solution.html")
             | Learn More
       .slide
         .bg(style="background-image: url(images/banner_index.jpg);")
         .slide_content
-          h2 2Connect Your Bike#[br]Ride the Future
-          a.btn_more.big(href="javascript:;")
+          h2 Connect Your Bike#[br]Ride the Future
+          a.btn_more.big(href="solution.html")
             | Learn More
     .slider_dots
   .index_experience.page_block
@@ -31,17 +31,21 @@ block main
           | I have hinted that I would often jerk poor Queequeg from between the whale and the ship—where he would occasionally fall, from the incessant rolling and swaying of both. But this was not the only jamming jeopardy he was exposed to.
       .experience_items
         .item
-          img.thumb(src="images/img_index_experience01.png", alt="E-Bike computer")
-          h3 E-Bike computer
+          a(href="product05.html")
+            img.thumb(src="images/img_index_experience01.png", alt="E-Bike computer")
+            h3 E-Bike computer
         .item
-          img.thumb(src="images/img_index_experience02.png", alt="E-Bike APP")
-          h3 E-Bike APP
+          a(href="product02.html")
+            img.thumb(src="images/img_index_experience02.png", alt="E-Bike APP")
+            h3 E-Bike APP
         .item
-          img.thumb(src="images/img_index_experience03.png", alt="Dealer management system")
-          h3 Dealer management system
+          a(href="product04.html")
+            img.thumb(src="images/img_index_experience03.png", alt="Dealer management system")
+            h3 Dealer management system
         .item
-          img.thumb(src="images/img_index_experience04.png", alt="Cycling Data Platform")
-          h3 Cycling Data Platform
+          a(href="product01.html")
+            img.thumb(src="images/img_index_experience04.png", alt="Cycling Data Platform")
+            h3 Cycling Data Platform
   .index_strength.page_block
     .block_inner.proportion
       h2.block_title
@@ -93,7 +97,7 @@ block main
         h3.block_subtitle Data Management &amp; Analysis
         .text
           p Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever fap. 
-        a.btn_more.green(href="javascript:;")
+        a.btn_more.green(href="solution.html")
           | Learn more
       .block_img
         img(src="images/img_index_solutions.png", alt="Smart Solutions Picture")
@@ -128,7 +132,7 @@ block main
         h3.block_subtitle Your bike best secretary
         .text
           p Nam porttitor blandit accumsan. Ut vel dictum sem, a pretium dui.
-        a.btn_more Read More
+        a.btn_more(href="solution.html") Read More
   include layouts/partials/contact.pug
 
 block js

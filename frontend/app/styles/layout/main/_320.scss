@@ -1557,3 +1557,25 @@
     }
   }
 }
+
+// Privacy Polity
+.privacy_polity {
+  .block_title {
+    text-align: center;
+  }
+  .text {
+    p, ul li {
+      text-align: justify;
+      text-justify: auto;
+    }
+    ul {
+      padding-left: 1.5em;
+    }
+  }
+  a {
+    color: $blue;
+    &:hover {
+      color: $green;
+    }
+  }
+}
