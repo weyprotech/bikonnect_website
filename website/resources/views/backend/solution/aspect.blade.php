@@ -46,7 +46,7 @@
 
                                             <div class="col-sm-10">
                                                 <button class="btn btn-info btn-labeled" type="submit"> <span class="btn-label"><i class="fa fa-refresh"></i></span>儲存排序 </button>
-                                                <a class="btn btn-success btn-labeled" type="button" href=""> <span class="btn-label"><i class="fa fa-plus"></i></span>新增特點</a>
+                                                <a class="btn btn-success btn-labeled" type="button" href="{{ route('solution.aspect.add') }}"> <span class="btn-label"><i class="fa fa-plus"></i></span>新增特點</a>
                                             </div>
 
                                         </div>
@@ -76,8 +76,8 @@
                                                     </label>
                                                 </td>
                                                 <td>Cycling aspect</td>
-                                                <td class="text-center"><a href="#" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>
-                                                <td class="text-center"><a href="#" class="btn btn-danger btn-xs del" data-toggle="modal" data-href="＃" data-target="#confirm-delete"><i class="fa fa-trash-o"></i></a></td>
+                                                <td class="text-center"><a href="{{ route('solution.aspect.edit', 1) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>
+                                                <td class="text-center"><a href="#" class="btn btn-danger btn-xs del" data-toggle="modal" data-href="#" data-target="#confirm-delete"><i class="fa fa-trash-o"></i></a></td>
                                             </tr>
                                             
                                         </tbody>

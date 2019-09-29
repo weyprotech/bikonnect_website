@@ -18,7 +18,7 @@
                 <div class="jarviswidget" id="wid-id-4" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-collapsed="false" data-widget-sortable="false">
                     <header>
                         <span class="widget-icon"> <i class="fa fa-pencil-square-o"></i> </span>
-                        <h2>影片區維護</h2>
+                        <h2>編輯特點</h2>
                         
                         <ul class="nav nav-tabs pull-right in">
 
@@ -45,7 +45,7 @@
                         <!-- widget content -->
                         <div class="widget-body">
                             
-                            <form id="form" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('solution.video') }}"
+                            <form id="form" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('solution.aspect.edit', 1) }}"
                             data-bv-message="This value is not valid"
 							data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
 							data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -64,11 +64,11 @@
                                             <input type="hidden" name="videolangs[][videoid]" value="">
                                             
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label">Youtube</label>
+                                                <label class="col-lg-2 control-label">標題</label>
                                                 <div class="col-lg-5">
                                                     <input type="text" class="form-control" name="videolangs[][title]" value=""
                                                     data-bv-notempty="true"
-                                                    data-bv-notempty-message="請輸入Youtube"
+                                                    data-bv-notempty-message="請輸入標題"
                                                     >
                                                 </div>
                                             </div>
@@ -95,11 +95,11 @@
                                             <input type="hidden" name="videolangs[][videoid]" value="">
                                             
                                             <div class="form-group">
-                                                <label class="col-lg-2 control-label">Youtube</label>
+                                                <label class="col-lg-2 control-label">標題</label>
                                                 <div class="col-lg-5">
                                                     <input type="text" class="form-control" name="videolangs[][title]" value=""
                                                     data-bv-notempty="true"
-                                                    data-bv-notempty-message="請輸入Youtube"
+                                                    data-bv-notempty-message="請輸入標題"
                                                     >
                                                 </div>
                                             </div>
@@ -121,6 +121,9 @@
                                     
                                     <div class="row">
                                         <div class="col-md-12">
+                                            <a class="btn btn-default" href="{{ route('solution.aspect') }}">
+                                                Back
+                                            </a>
                                             <button class="btn btn-primary" type="submit">
                                                 <i class="fa fa-save"></i>
                                                 Submit

@@ -19,7 +19,7 @@
 
                     <header>
                         <span class="widget-icon"> <i class="fa fa-table"></i> </span>
-                        <h2>內文維護</h2>
+                        <h2>圖文區維護</h2>
 
                     </header>
 
@@ -74,8 +74,8 @@
                                                         <input type="hidden" name="newstypefreqs[][newstypeid]" value="">
                                                     </label>
                                                 </td>
-                                                <td>We can help you</td>
-                                                <td class="text-center"><a href="{{ route('solution.content.edit', 1) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>
+                                                <td>A new data partner for riding experiences and operational decision services.</td>
+                                                <td class="text-center"><a href="{{ route('about.content.edit', 1) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>
                                             </tr>
                                             <tr>
                                                 <td>
@@ -84,8 +84,8 @@
                                                         <input type="hidden" name="newstypefreqs[][newstypeid]" value="">
                                                     </label>
                                                 </td>
-                                                <td>Key Advantages</td>
-                                                <td class="text-center"><a href="{{ route('solution.content.edit', 1) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>
+                                                <td>Connect Your Bike, Ride the Future.</td>
+                                                <td class="text-center"><a href="{{ route('about.content.edit', 1) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>
                                             </tr>
                                             
                                         </tbody>

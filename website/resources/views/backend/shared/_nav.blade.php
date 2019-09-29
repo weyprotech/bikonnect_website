@@ -14,10 +14,10 @@
         <li>
             <a href="#"><i class="fa fa-lg fa-fw fa-cog"></i> <span class="menu-item-parent">關於我們管理</span></a>
             <ul>
-                <li><a href="">圖文區維護</a></li>
-                <li><a href="">沿革維護</a></li>
-                <li><a href="">團隊維護</a></li>
-                <li><a href="">廠商維護</a></li>
+                <li><a href="{{ route('about.content') }}">圖文區維護</a></li>
+                <li><a href="{{ route('about.history') }}">沿革維護</a></li>
+                <li><a href="{{ route('about.team') }}">團隊維護</a></li>
+                <li><a href="{{ route('about.partner') }}">廠商維護</a></li>
             </ul>
         </li>
         <li>
