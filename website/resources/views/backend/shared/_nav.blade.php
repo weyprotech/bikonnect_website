@@ -24,7 +24,7 @@
             <a href=""><i class="fa fa-lg fa-fw fa-cog"></i> <span class="menu-item-parent">產品管理</span></a>
         </li>
         <li>
-            <a href=""><i class="fa fa-lg fa-fw fa-lock"></i> <span class="menu-item-parent">權限管理</span></a>
+            <a href="{{ route('admin.auth') }}"><i class="fa fa-lg fa-fw fa-lock"></i> <span class="menu-item-parent">權限管理</span></a>
         </li>
     </ul>
 </nav>

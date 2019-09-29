@@ -41,4 +41,10 @@ Route::group(['prefix' => 'backend'], function(){
         Route::match(['get', 'post'], '/partner/add', array('as' => 'about.partner.add', 'uses' => 'Backend\AboutController@addpartner'));
         Route::match(['get', 'post'], '/partner/edit/{partnerid}', array('as' => 'about.partner.edit', 'uses' => 'Backend\AboutController@editpartner'));
     });
+
+    Route::group(['prefix' => 'admin'], function(){
+        Route::match(['get', 'post'], '/auth', array('as' => 'admin.auth', 'uses' => 'Backend\AdminController@auth'));
+        Route::match(['get', 'post'], '/auth/add', array('as' => 'admin.auth.add', 'uses' => 'Backend\AdminController@addauth'));
+        Route::match(['get', 'post'], '/auth/edit/{authid}', array('as' => 'admin.auth.edit', 'uses' => 'Backend\AdminController@editauth'));
+    });
 });

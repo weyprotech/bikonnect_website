@@ -19,7 +19,7 @@
 			<div id="logo-group">
 
 				<!-- PLACE YOUR LOGO HERE -->
-				<span id="logo"> <img src="/backend/img/logo.png"> </span>
+				<span id="logo"> <img src="{{ URL::asset('backend/img/logo.png') }}"> </span>
 				<!-- END LOGO PLACEHOLDER -->
 
 			</div>
@@ -55,7 +55,7 @@
 				<span> <!-- User image size is adjusted inside CSS, it should stay as is --> 
 					
 					<a href="javascript:void(0);" id="show-shortcut">
-						<img src="/backend/img/avatars/sunny.png" alt="me" class="online" /> 
+						<img src="{{ URL::asset('backend/img/avatars/sunny.png') }}" alt="me" class="online" /> 
 						<span>
 							john.doe 
 						</span>
