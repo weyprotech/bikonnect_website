@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::group(['prefix' => 'backend'], function(){
     Route::get('/', array('as' => 'panel.index', 'uses' => 'Backend\PanelController@index'));
     Route::get('/login', array('as' => 'panel.login', 'uses' => 'Backend\PanelController@login'));
+    Route::post('/login', array('as' => 'panel.loginprocess', 'uses' => 'Backend\PanelController@loginprocess'));
 
     Route::group(['prefix' => 'solution'], function(){
         Route::match(['get', 'post'], '/video', array('as' => 'solution.video', 'uses' => 'Backend\SolutionController@video'));

@@ -47,7 +47,7 @@
                                         <div class="form-group">
                                             <label class="col-lg-2 control-label">姓名</label>
                                             <div class="col-lg-2">
-                                                <input type="text" class="form-control" name="videolangs[][title]" value=""
+                                                <input type="text" class="form-control" name="name" value=""
                                                 data-bv-notempty="true"
                                                 data-bv-notempty-message="請輸入姓名"
                                                 >
@@ -57,7 +57,7 @@
                                         <div class="form-group">
                                             <label class="col-lg-2 control-label">帳號</label>
                                             <div class="col-lg-2">
-                                                <input type="text" class="form-control" name="videolangs[][title]" value=""
+                                                <input type="text" class="form-control" name="username" value=""
                                                 data-bv-notempty="true"
                                                 data-bv-notempty-message="請輸入帳號"
                                                 >
@@ -67,7 +67,7 @@
                                         <div class="form-group">
                                             <label class="col-lg-2 control-label">密碼</label>
                                             <div class="col-lg-2">
-                                                <input type="password" class="form-control" name="videolangs[][title]" value=""
+                                                <input type="password" class="form-control" name="password" value=""
                                                 data-bv-notempty="true"
                                                 data-bv-notempty-message="請輸入密碼"
                                                 >
