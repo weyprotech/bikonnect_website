@@ -57,7 +57,7 @@
 					<a href="javascript:void(0);" id="show-shortcut">
 						<img src="{{ URL::asset('backend/img/avatars/sunny.png') }}" alt="me" class="online" /> 
 						<span>
-							john.doe 
+							<?= session('backend.account') ?>
 						</span>
 					</a> 
 					

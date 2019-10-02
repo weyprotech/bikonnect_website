@@ -34,12 +34,12 @@
                         <!-- widget content -->
                         <div class="widget-body">
                             
-                            <form id="form" method="post" class="form-horizontal" action="{{ route('admin.auth.add') }}"
+                            <form id="form" method="post" class="form-horizontal" action="{{ URL::route('admin.auth.add') }}"
                             data-bv-message="This value is not valid"
 							data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
 							data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
 							data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
-                                
+                                @csrf
                                 <div class="tab-content">
                                     
                                     <fieldset>
@@ -57,7 +57,7 @@
                                         <div class="form-group">
                                             <label class="col-lg-2 control-label">帳號</label>
                                             <div class="col-lg-2">
-                                                <input type="text" class="form-control" name="username" value=""
+                                                <input type="text" class="form-control" name="account" value=""
                                                 data-bv-notempty="true"
                                                 data-bv-notempty-message="請輸入帳號"
                                                 >

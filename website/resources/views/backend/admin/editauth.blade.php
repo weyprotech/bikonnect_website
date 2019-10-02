@@ -43,11 +43,11 @@
                                 <div class="tab-content">
                                     
                                     <fieldset>
-
+                                        @csrf
                                         <div class="form-group">
                                             <label class="col-lg-2 control-label">姓名</label>
                                             <div class="col-lg-2">
-                                                <input type="text" class="form-control" name="name" value=""
+                                                <input type="text" class="form-control" name="name" value="{{ $name }}"
                                                 data-bv-notempty="true"
                                                 data-bv-notempty-message="請輸入姓名"
                                                 >
@@ -57,7 +57,7 @@
                                         <div class="form-group">
                                             <label class="col-lg-2 control-label">帳號</label>
                                             <div class="col-lg-2">
-                                                <input type="text" class="form-control" name="username" value=""
+                                                <input type="text" class="form-control" name="account" value="{{ $account }}"
                                                 data-bv-notempty="true"
                                                 data-bv-notempty-message="請輸入帳號"
                                                 >

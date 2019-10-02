@@ -65,7 +65,7 @@
             var reader = new FileReader();
             reader.readAsDataURL(this.files[0]);
             reader.onload = function(e){
-                $("#" + obj.attr('name') + "preview").attr('src', e.target.result).show();
+                $("#" + obj.data('prev')).attr('src', e.target.result).show();
             }
         });
         
@@ -76,5 +76,13 @@
         $('#form').bootstrapValidator({
             excluded: ":disabled"
         });
+        $("div#preview").hover(
+            function () {
+                $(this).css("overflow", "visible").css("z-index", 99);
+            },
+            function () {
+                $(this).css("overflow", "hidden").css("z-index", 1);
+            }
+        );
     });
 </script>

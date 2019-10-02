@@ -41,17 +41,17 @@
 					</div>
 					<div class="col-xs-12 col-sm-12 col-md-5 col-lg-4">
 						<div class="well no-padding">
-							<form action="index.html" id="login-form" class="smart-form client-form">
+							<form action="{{ URL::route('panel.loginprocess') }}" id="login-form" class="smart-form client-form" method="post">
 								<header>
 									登入後台
 								</header>
 
 								<fieldset>
-									
+									@csrf
 									<section>
 										<label class="label">帳號</label>
 										<label class="input"> <i class="icon-append fa fa-user"></i>
-											<input type="email" name="email">
+											<input name="username">
                                             <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> 請輸入帳號</b>
                                         </label>
 									</section>
@@ -71,13 +71,10 @@
 									</button>
 								</footer>
 							</form>
-
 						</div>
-						
 					</div>
 				</div>
 			</div>
-
 		</div>
 
 		<!--================================================== -->	

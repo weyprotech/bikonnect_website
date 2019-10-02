@@ -21,14 +21,11 @@
                         <h2>新增特點</h2>
                         
                         <ul class="nav nav-tabs pull-right in">
-
-                            <li class="active">
-                                <a data-toggle="tab" href="#hb_1"> <span class="hidden-mobile hidden-tablet"> 英文 </span> </a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#hb_2"> <span class="hidden-mobile hidden-tablet"> 中文 </span> </a>
-                            </li>
-                            
+                            @foreach($web_langList as $langKey => $langValue)
+                                <li {{ $langKey == 0 ? 'class=active' : '' }}>
+                                    <a data-toggle="tab" href="#hb_{{ $langValue->langId }}"> <span class="hidden-mobile hidden-tablet"> {{ $langValue->name }} </span> </a>
+                                </li>
+                            @endforeach                            
                         </ul>
 
                     </header>
@@ -52,69 +49,33 @@
 							data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
                                 
                                 <div class="tab-content">
-                                    
-                                    <div class="tab-pane active" id="hb_1">
-
-                                        <fieldset>
-
-                                            <legend>英文 語系</legend>
-                                            
-                                            <input type="hidden" name="videolangs[][videolangid]" value="">
-                                            <input type="hidden" name="videolangs[][languageid]" value="">
-                                            <input type="hidden" name="videolangs[][videoid]" value="">
-                                            
-                                            <div class="form-group">
-                                                <label class="col-lg-2 control-label">標題</label>
-                                                <div class="col-lg-5">
-                                                    <input type="text" class="form-control" name="videolangs[][title]" value=""
-                                                    data-bv-notempty="true"
-                                                    data-bv-notempty-message="請輸入標題"
-                                                    >
+                                    @foreach($web_langList as $langKey => $langValue)
+                                        <div class="tab-pane {{ $langKey == 0 ? 'active' : '' }}" id="hb_{{ $langValue->langId }}">
+                                            <fieldset>
+                                                <legend>{{ $langValue->name }}</legend>
+                                                @csrf
+                                                <input type="hidden" name="aspect[{{ $langValue->langId }}][langId]" value="{{ $langValue->langId }}">                                            
+                                                
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label">標題</label>
+                                                    <div class="col-lg-5">
+                                                        <input type="text" class="form-control" name="aspect[{{ $langValue->langId }}][title]" value=""
+                                                        data-bv-notempty="true"
+                                                        data-bv-notempty-message="請輸入標題"
+                                                        >
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label class="col-lg-2 control-label">內文</label>
-                                                <div class="col-lg-5">
-                                                    <textarea class="form-control" name="associationlangs[][content]" placeholder="內文" rows="4" data-bv-notempty="true" data-bv-notempty-message="請輸入內文"></textarea>
-                                                </div>
-                                            </div>  
-                                            
-                                        </fieldset>
-
-                                    </div>
-
-                                    <div class="tab-pane" id="hb_2">
-
-                                        <fieldset>
-
-                                            <legend>中文 語系</legend>
-                                            
-                                            <input type="hidden" name="videolangs[][videolangid]" value="">
-                                            <input type="hidden" name="videolangs[][languageid]" value="">
-                                            <input type="hidden" name="videolangs[][videoid]" value="">
-                                            
-                                            <div class="form-group">
-                                                <label class="col-lg-2 control-label">標題</label>
-                                                <div class="col-lg-5">
-                                                    <input type="text" class="form-control" name="videolangs[][title]" value=""
-                                                    data-bv-notempty="true"
-                                                    data-bv-notempty-message="請輸入標題"
-                                                    >
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label class="col-lg-2 control-label">內文</label>
-                                                <div class="col-lg-5">
-                                                    <textarea class="form-control" name="associationlangs[][content]" placeholder="內文" rows="4" data-bv-notempty="true" data-bv-notempty-message="請輸入內文"></textarea>
-                                                </div>
-                                            </div>  
-                                            
-                                        </fieldset>
-
-                                    </div>
-                                    
+                                                
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label">內文</label>
+                                                    <div class="col-lg-5">
+                                                        <textarea class="form-control" name="aspect[{{ $langValue->langId }}][content]" placeholder="內文" rows="4" data-bv-notempty="true" data-bv-notempty-message="請輸入內文"></textarea>
+                                                    </div>
+                                                </div>  
+                                                
+                                            </fieldset>
+                                        </div>
+                                    @endforeach
                                 </div>
                                 
                                 <div class="form-actions">
