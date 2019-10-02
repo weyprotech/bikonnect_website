@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', array('as' => 'main.index', 'uses' => 'Frontend\MainController@index'));
+Route::get('/solution', array('as' => 'main.solution', 'uses' => 'Frontend\MainController@solution'));
+Route::get('/about', array('as' => 'main.about', 'uses' => 'Frontend\MainController@about'));
+Route::get('/product/{productid}', array('as' => 'main.product', 'uses' => 'Frontend\MainController@product'));
 
 Route::group(['prefix' => 'backend'], function(){
     Route::get('/', array('as' => 'panel.index', 'uses' => 'Backend\PanelController@index'));
@@ -24,12 +25,12 @@ Route::group(['prefix' => 'backend'], function(){
         Route::match(['get', 'post'], '/video', array('as' => 'solution.video', 'uses' => 'Backend\SolutionController@video'));
         Route::match(['get', 'post'], '/content', array('as' => 'solution.content', 'uses' => 'Backend\SolutionController@content'));
         Route::match(['get', 'post'], '/content/edit/{solutionid}', array('as' => 'solution.content.edit', 'uses' => 'Backend\SolutionController@editcontent'));
-        Route::post('/content/order_save',array('as' => 'solution.content.order_save','uses' => 'Backend\SolutionController@content_order_save'));
+        Route::post('/content/order_save', array('as' => 'solution.content.order_save', 'uses' => 'Backend\SolutionController@content_order_save'));
         Route::match(['get', 'post'], '/aspect', array('as' => 'solution.aspect', 'uses' => 'Backend\SolutionController@aspect'));
         Route::match(['get', 'post'], '/aspect/add', array('as' => 'solution.aspect.add', 'uses' => 'Backend\SolutionController@addaspect'));
         Route::match(['get', 'post'], '/aspect/edit/{aspectid}', array('as' => 'solution.aspect.edit', 'uses' => 'Backend\SolutionController@editaspect'));
-        Route::post('/aspect/order_save',array('as' => 'solution.aspect.order_save','uses' => 'Backend\SolutionController@aspect_order_save'));        
-        Route::get('/aspect/delete/{aId}',array('as' => 'solution.aspect.delete','uses' => 'Backend\SolutionController@aspect_delete'));
+        Route::post('/aspect/order_save', array('as' => 'solution.aspect.order_save', 'uses' => 'Backend\SolutionController@aspect_order_save'));        
+        Route::get('/aspect/delete/{aId}', array('as' => 'solution.aspect.delete', 'uses' => 'Backend\SolutionController@aspect_delete'));
     });
 
     Route::group(['prefix' => 'about'], function(){
@@ -50,6 +51,6 @@ Route::group(['prefix' => 'backend'], function(){
         Route::match(['get', 'post'], '/auth', array('as' => 'admin.auth', 'uses' => 'Backend\AdminController@auth'));
         Route::match(['get', 'post'], '/auth/add', array('as' => 'admin.auth.add', 'uses' => 'Backend\AdminController@addauth'));
         Route::match(['get', 'post'], '/auth/edit/{authid}', array('as' => 'admin.auth.edit', 'uses' => 'Backend\AdminController@editauth'));
-        Route::get('auth/delete/{authid}',array('as' => 'admin.auth.delete','uses' => 'Backend\AdminController@deleteauth'));
+        Route::get('auth/delete/{authid}', array('as' => 'admin.auth.delete', 'uses' => 'Backend\AdminController@deleteauth'));
     });
 });
