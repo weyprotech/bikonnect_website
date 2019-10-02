@@ -15,6 +15,7 @@ Route::get('/', array('as' => 'main.index', 'uses' => 'Frontend\MainController@i
 Route::get('/solution', array('as' => 'main.solution', 'uses' => 'Frontend\MainController@solution'));
 Route::get('/about', array('as' => 'main.about', 'uses' => 'Frontend\MainController@about'));
 Route::get('/product/{productid}', array('as' => 'main.product', 'uses' => 'Frontend\MainController@product'));
+Route::get('/privacy', array('as' => 'main.privacy', 'uses' => 'Frontend\MainController@privacy'));
 
 Route::group(['prefix' => 'backend'], function(){
     Route::get('/', array('as' => 'panel.index', 'uses' => 'Backend\PanelController@index'));

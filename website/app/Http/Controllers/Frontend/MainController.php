@@ -11,4 +11,19 @@ class MainController extends Controller
     {
         return view('frontend.index');
     }
+
+    public function about() 
+    {
+        return view('frontend.about');
+    }
+
+    public function solution() 
+    {
+        return view('frontend.solution');
+    }
+
+    public function privacy() 
+    {
+        return view('frontend.privacy');
+    }
 }

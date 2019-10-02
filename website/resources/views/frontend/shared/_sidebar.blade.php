@@ -1,8 +1,8 @@
 <div id="sidebar">
-    <div class="sidebar_logo"><a href="index.html"><img src="{{ URL::asset('frontend/images/logo.png') }}" alt="Bikonnect"></a></div>
+    <div class="sidebar_logo"><a href="{{ route('main.index') }}"><img src="{{ URL::asset('frontend/images/logo.png') }}" alt="Bikonnect"></a></div>
     <nav class="sidebar_menu">
     <ul>
-        <li><a href="solution.html">Solution</a></li>
+        <li><a href="{{ route('main.solution') }}">Solution</a></li>
         <li><a href="javascript:;">Products</a>
         <ul>
             <li><a href="product01.html">Cyling Data Platform</a></li>
@@ -12,7 +12,7 @@
             <li><a href="product05.html">E-Bike computer</a></li>
         </ul>
         </li>
-        <li><a href="about.html">About Us</a></li>
+        <li><a href="{{ route('main.about') }}">About Us</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="javascript:;">Blog</a></li>
     </ul>
