@@ -71,7 +71,7 @@
                                                     <td>{{ $aspectValue['lang'][0]['title'] }}</td>
                                                     <td>
                                                         <label class="input">
-                                                        <input type="textbox" class="text-center form-control" name="order[{{ $aspectValue->Id }}][order]" value="{{ $aspectValue->order }}">
+                                                            <input type="textbox" class="text-center form-control" name="order[{{ $aspectValue->Id }}][order]" value="{{ $aspectValue->order }}">
                                                             <input type="hidden" name="order[{{ $aspectValue->Id }}][aId]" value="<?= $aspectValue->Id ?>">
                                                         </label>
                                                     </td>

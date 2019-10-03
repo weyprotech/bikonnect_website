@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\SolutionVideoLangModel;
 use Illuminate\Http\Request;
 
-class SolutionVideoLangModelController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +40,10 @@ class SolutionVideoLangModelController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\SolutionVideoLangModel  $solutionVideoLangModel
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(SolutionVideoLangModel $solutionVideoLangModel)
+    public function show($id)
     {
         //
     }
@@ -52,10 +51,10 @@ class SolutionVideoLangModelController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\SolutionVideoLangModel  $solutionVideoLangModel
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(SolutionVideoLangModel $solutionVideoLangModel)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class SolutionVideoLangModelController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SolutionVideoLangModel  $solutionVideoLangModel
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SolutionVideoLangModel $solutionVideoLangModel)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class SolutionVideoLangModelController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\SolutionVideoLangModel  $solutionVideoLangModel
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SolutionVideoLangModel $solutionVideoLangModel)
+    public function destroy($id)
     {
         //
     }

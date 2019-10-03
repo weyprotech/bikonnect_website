@@ -25,12 +25,11 @@
                             <li class="active">
                                 <a data-toggle="tab" href="#hb_1"> <span class="hidden-mobile hidden-tablet"> 基本資料 </span> </a>
                             </li>
-                            <li>
-                                <a data-toggle="tab" href="#hb_2"> <span class="hidden-mobile hidden-tablet"> 英文 </span> </a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#hb_3"> <span class="hidden-mobile hidden-tablet"> 中文 </span> </a>
-                            </li>
+                            @foreach($web_langList as $langKey => $langValue)
+                                <li>
+                                    <a data-toggle="tab" href="#hb_{{ $langKey+2 }}"> <span class="hidden-mobile hidden-tablet"> {{ $langValue->name }} </span> </a>
+                                </li>
+                            @endforeach    
                             
                         </ul>
 
@@ -48,11 +47,12 @@
                         <!-- widget content -->
                         <div class="widget-body">
                             
-                            <form id="form" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('about.partner.edit', 1) }}"
+                            <form id="form" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('about.partner.edit', $content->Id) }}"
                             data-bv-message="This value is not valid"
 							data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
 							data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
 							data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+                            <input type="hidden" name="uuid" value="{{ $content->uuid }}">
                                 
                                 <div class="tab-content">
                                     
@@ -66,9 +66,10 @@
                                                 <label class="col-lg-2 control-label">Logo</label>
                                                 <div class="col-lg-5">
                                                     <p>
-                                                        <img id="photopreview" src="" width="auto" style="max-width:150px" />
+                                                        <img id="preview" src="{{ $content->img }}" width="auto" style="max-width:150px" />
                                                     </p>
-                                                    <input type="file" class="btn btn-default imageupload" name="photo"
+                                                    <input type="file" class="btn btn-default imageupload" name="img"
+                                                        data-prev="preview"
                                                         data-bv-file="true"
                                                         data-bv-file-extension="png,gif,jpg,jpeg"
                                                         data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif"
@@ -80,54 +81,30 @@
 
                                     </div>
 
-                                    <div class="tab-pane" id="hb_2">
+                                    @foreach($web_langList as $langKey => $langValue)
+                                        <div class="tab-pane" id="hb_{{ $langKey+2 }}">
 
-                                        <fieldset>
+                                            <fieldset>
 
-                                            <legend>英文 語系</legend>
-                                            
-                                            <input type="hidden" name="videolangs[][videolangid]" value="">
-                                            <input type="hidden" name="videolangs[][languageid]" value="">
-                                            <input type="hidden" name="videolangs[][videoid]" value="">
-                                            
-                                            <div class="form-group">
-                                                <label class="col-lg-2 control-label">標題</label>
-                                                <div class="col-lg-2">
-                                                    <input type="text" class="form-control" name="videolangs[][title]" value=""
-                                                    data-bv-notempty="true"
-                                                    data-bv-notempty-message="請輸入標題"
-                                                    >
+                                                <legend>{{ $langValue->name }}</legend>
+                                                @csrf
+                                                <input type="hidden" name="partnerlangs[{{ $langValue->langId }}][langId]" value="{{ $langValue->langId }}">
+                                                <input type="hidden" name="partnerlangs[{{ $langValue->langId }}][tId]" value="{{ $langValue->tId }}">
+                                                
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label">標題</label>
+                                                    <div class="col-lg-2">
+                                                        <input type="text" class="form-control" name="partnerlangs[{{ $langValue->langId }}][title]" value="{{ $langdata[$langValue->langId]->title }}"
+                                                        data-bv-notempty="true"
+                                                        data-bv-notempty-message="請輸入標題"
+                                                        >
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            
-                                        </fieldset>
+                                                
+                                            </fieldset>
 
-                                    </div>
-
-                                    <div class="tab-pane" id="hb_3">
-
-                                        <fieldset>
-
-                                            <legend>中文 語系</legend>
-                                            
-                                            <input type="hidden" name="videolangs[][videolangid]" value="">
-                                            <input type="hidden" name="videolangs[][languageid]" value="">
-                                            <input type="hidden" name="videolangs[][videoid]" value="">
-                                            
-                                            <div class="form-group">
-                                                <label class="col-lg-2 control-label">標題</label>
-                                                <div class="col-lg-2">
-                                                    <input type="text" class="form-control" name="videolangs[][title]" value=""
-                                                    data-bv-notempty="true"
-                                                    data-bv-notempty-message="請輸入標題"
-                                                    >
-                                                </div>
-                                            </div>
-                                            
-                                        </fieldset>
-
-                                    </div>
-                                    
+                                        </div>
+                                    @endforeach
                                 </div>
                                 
                                 <div class="form-actions">

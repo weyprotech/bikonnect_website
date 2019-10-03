@@ -57,7 +57,7 @@ class SolutionController extends Controller
     /***圖文區維護***/
     public function content() 
     {
-        $contentList = SolutionContentModel::with('lang')->where('is_enable',1)->get();
+        $contentList = SolutionContentModel::with('lang')->where('is_enable',1)->orderby('order','asc')->get();
         $data = array(
             'contentList' => $contentList
         );
@@ -135,7 +135,7 @@ class SolutionController extends Controller
     /**** 特點維護 ****/
     public function aspect() 
     {
-        $aspectList = SolutionAspectModel::where('is_enable',1)->with('lang')->get();
+        $aspectList = SolutionAspectModel::where('is_enable',1)->with('lang')->orderby('order','asc')->get();
         // $lang = SolutionAspectLangModel::where('aId',$aspectList[0]->Id)->get();
         $data = array(
             'aspectList' => $aspectList
@@ -144,13 +144,15 @@ class SolutionController extends Controller
     }
 
     public function addaspect(Request $request)
-    {        
+    {
+        $aspectList = SolutionAspectModel::limit(1)->orderby('order','desc')->get();
         if($request->isMethod('post')){
             $uuid = Uuid::uuid1();
             $aspect = new SolutionAspectModel();
             $aspect->is_enable = 1;
             $aspect->id = $uuid;
             $aspect->uuid = $uuid;
+            $aspect->order = $aspectList[0]->order+1;
             $aspect->save();
             foreach ($request->aspect as $langKey => $langValue) {
                 $lang = new SolutionAspectLangModel();
@@ -186,7 +188,7 @@ class SolutionController extends Controller
                 return redirect('backend/solution/aspect');                  
             }
         }
-        //讀出圖文的語系資料
+        //讀出特點的語系資料
         foreach ($content->lang as $contentKey => $contentValue) {
             foreach ($web_langList as $langKey => $langValue) {
                 if($contentValue->langId == $langValue->langId){
@@ -220,4 +222,6 @@ class SolutionController extends Controller
         $aspect->save();
         return redirect('backend/solution/aspect');        
     }
+
+
 }

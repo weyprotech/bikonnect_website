@@ -78,7 +78,7 @@
         });
         $("div#preview").hover(
             function () {
-                $(this).css("overflow", "visible").css("z-index", 99);
+                $(this).css("overflow", "visible").css("z-index", 9999);
             },
             function () {
                 $(this).css("overflow", "hidden").css("z-index", 1);

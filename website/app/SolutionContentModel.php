@@ -19,6 +19,6 @@ class SolutionContentModel extends Model
     );
 
     public function lang(){
-        return $this->hasMany(SolutionContentLangModel::class,'cId','Id');
+        return $this->hasMany(SolutionContentLangModel::class,'cId','Id')->orderby('langId','asc');
     }
 }

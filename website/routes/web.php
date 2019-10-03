@@ -37,15 +37,25 @@ Route::group(['prefix' => 'backend'], function(){
     Route::group(['prefix' => 'about'], function(){
         Route::match(['get', 'post'], '/content', array('as' => 'about.content', 'uses' => 'Backend\AboutController@content'));
         Route::match(['get', 'post'], '/content/edit/{aboutid}', array('as' => 'about.content.edit', 'uses' => 'Backend\AboutController@editcontent'));
+        Route::post('/content/order_save', array('as' => 'about.content.order_save', 'uses' => 'Backend\AboutController@content_order_save'));
+        
         Route::match(['get', 'post'], '/history', array('as' => 'about.history', 'uses' => 'Backend\AboutController@history'));
         Route::match(['get', 'post'], '/history/add', array('as' => 'about.history.add', 'uses' => 'Backend\AboutController@addhistory'));
         Route::match(['get', 'post'], '/history/edit/{historyid}', array('as' => 'about.history.edit', 'uses' => 'Backend\AboutController@edithistory'));
+        Route::post('/history/order_save', array('as' => 'about.history.order_save', 'uses' => 'Backend\AboutController@history_order_save'));
+        Route::get('/history/delete/{aId}', array('as' => 'about.history.delete', 'uses' => 'Backend\AboutController@history_delete'));
+
         Route::match(['get', 'post'], '/team', array('as' => 'about.team', 'uses' => 'Backend\AboutController@team'));
         Route::match(['get', 'post'], '/team/add', array('as' => 'about.team.add', 'uses' => 'Backend\AboutController@addteam'));
         Route::match(['get', 'post'], '/team/edit/{teamid}', array('as' => 'about.team.edit', 'uses' => 'Backend\AboutController@editteam'));
+        Route::post('/team/order_save', array('as' => 'about.team.order_save', 'uses' => 'Backend\AboutController@team_order_save'));
+        Route::get('/team/delete/{tId}', array('as' => 'about.team.delete', 'uses' => 'Backend\AboutController@team_delete'));
+        
         Route::match(['get', 'post'], '/partner', array('as' => 'about.partner', 'uses' => 'Backend\AboutController@partner'));
         Route::match(['get', 'post'], '/partner/add', array('as' => 'about.partner.add', 'uses' => 'Backend\AboutController@addpartner'));
         Route::match(['get', 'post'], '/partner/edit/{partnerid}', array('as' => 'about.partner.edit', 'uses' => 'Backend\AboutController@editpartner'));
+        Route::post('/partner/order_save', array('as' => 'about.partner.order_save', 'uses' => 'Backend\AboutController@partner_order_save'));
+        Route::get('/partner/delete/{pId}', array('as' => 'about.partner.delete', 'uses' => 'Backend\AboutController@partner_delete'));
     });
 
     Route::group(['prefix' => 'admin'], function(){

@@ -25,12 +25,11 @@
                             <li class="active">
                                 <a data-toggle="tab" href="#hb_1"> <span class="hidden-mobile hidden-tablet"> 基本資料 </span> </a>
                             </li>
-                            <li>
-                                <a data-toggle="tab" href="#hb_2"> <span class="hidden-mobile hidden-tablet"> 英文 </span> </a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#hb_3"> <span class="hidden-mobile hidden-tablet"> 中文 </span> </a>
-                            </li>
+                            @foreach($web_langList as $langKey => $langValue)
+                                <li>
+                                    <a data-toggle="tab" href="#hb_{{ $langKey+2 }}"> <span class="hidden-mobile hidden-tablet"> {{ $langValue->name }} </span> </a>
+                                </li>
+                            @endforeach   
                             
                         </ul>
 
@@ -48,11 +47,12 @@
                         <!-- widget content -->
                         <div class="widget-body">
                             
-                            <form id="form" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('about.team.edit', 1) }}"
+                            <form id="form" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('about.team.edit', $content->Id) }}"
                             data-bv-message="This value is not valid"
 							data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
 							data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
 							data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+                            <input type="hidden" name="uuid" value="{{ $content->uuid }}">
                                 
                                 <div class="tab-content">
                                     
@@ -66,9 +66,10 @@
                                                 <label class="col-lg-2 control-label">圖片</label>
                                                 <div class="col-lg-5">
                                                     <p>
-                                                        <img id="photopreview" src="" width="auto" style="max-width:250px" />
+                                                        <img id="preview" src="{{ $content->img }}" width="auto" style="max-width:250px" />
                                                     </p>
-                                                    <input type="file" class="btn btn-default imageupload" name="photo"
+                                                    <input type="file" class="btn btn-default imageupload" name="img"
+                                                        data-prev="preview"                                                    
                                                         data-bv-file="true"
                                                         data-bv-file-extension="png,gif,jpg,jpeg"
                                                         data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif"
@@ -82,89 +83,49 @@
                                         </fieldset>
 
                                     </div>
-
-                                    <div class="tab-pane" id="hb_2">
-
-                                        <fieldset>
-
-                                            <legend>英文 語系</legend>
-                                            
-                                            <input type="hidden" name="videolangs[][videolangid]" value="">
-                                            <input type="hidden" name="videolangs[][languageid]" value="">
-                                            <input type="hidden" name="videolangs[][videoid]" value="">
-                                            
-                                            <div class="form-group">
-                                                <label class="col-lg-2 control-label">職稱</label>
-                                                <div class="col-lg-2">
-                                                    <input type="text" class="form-control" name="videolangs[][title]" value=""
-                                                    data-bv-notempty="true"
-                                                    data-bv-notempty-message="請輸入職稱"
-                                                    >
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="col-lg-2 control-label">姓名</label>
-                                                <div class="col-lg-2">
-                                                    <input type="text" class="form-control" name="videolangs[][title]" value=""
-                                                    data-bv-notempty="true"
-                                                    data-bv-notempty-message="請輸入姓名"
-                                                    >
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label class="col-lg-2 control-label">內文</label>
-                                                <div class="col-lg-5">
-                                                    <textarea class="form-control" name="associationlangs[][content]" placeholder="內文" rows="4" data-bv-notempty="true" data-bv-notempty-message="請輸入內文"></textarea>
-                                                </div>
-                                            </div>  
-                                            
-                                        </fieldset>
-
-                                    </div>
-
-                                    <div class="tab-pane" id="hb_3">
-
-                                        <fieldset>
-
-                                            <legend>中文 語系</legend>
-                                            
-                                            <input type="hidden" name="videolangs[][videolangid]" value="">
-                                            <input type="hidden" name="videolangs[][languageid]" value="">
-                                            <input type="hidden" name="videolangs[][videoid]" value="">
-                                            
-                                            <div class="form-group">
-                                                <label class="col-lg-2 control-label">職稱</label>
-                                                <div class="col-lg-2">
-                                                    <input type="text" class="form-control" name="videolangs[][title]" value=""
-                                                    data-bv-notempty="true"
-                                                    data-bv-notempty-message="請輸入職稱"
-                                                    >
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="col-lg-2 control-label">姓名</label>
-                                                <div class="col-lg-2">
-                                                    <input type="text" class="form-control" name="videolangs[][title]" value=""
-                                                    data-bv-notempty="true"
-                                                    data-bv-notempty-message="請輸入姓名"
-                                                    >
-                                                </div>
-                                            </div>
-                                            
-                                            <div class="form-group">
-                                                <label class="col-lg-2 control-label">內文</label>
-                                                <div class="col-lg-5">
-                                                    <textarea class="form-control" name="associationlangs[][content]" placeholder="內文" rows="4" data-bv-notempty="true" data-bv-notempty-message="請輸入內文"></textarea>
-                                                </div>
-                                            </div>
-                                            
-                                        </fieldset>
-
-                                    </div>
                                     
+                                    @foreach($web_langList as $langKey => $langValue)
+
+                                        <div class="tab-pane" id="hb_{{ $langKey+2 }}">
+
+                                            <fieldset>
+
+                                                <legend>{{ $langValue->name }}</legend>
+                                                @csrf
+                                                <input type="hidden" name="teamlangs[{{ $langValue->langId }}][langId]" value="{{ $langValue->langId }}">
+                                                <input type="hidden" name="teamlangs[{{ $langValue->langId }}][tId]" value="{{ $langValue->tId }}">
+                                                
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label">職稱</label>
+                                                    <div class="col-lg-2">
+                                                        <input type="text" class="form-control" name="teamlangs[{{ $langValue->langId }}][title]" value="{{ $langdata[$langValue->langId]->title }}"
+                                                        data-bv-notempty="true"
+                                                        data-bv-notempty-message="請輸入職稱"
+                                                        >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label">姓名</label>
+                                                    <div class="col-lg-2">
+                                                        <input type="text" class="form-control" name="teamlangs[{{ $langValue->langId }}][name]" value="{{ $langdata[$langValue->langId]->name }}"
+                                                        data-bv-notempty="true"
+                                                        data-bv-notempty-message="請輸入姓名"
+                                                        >
+                                                    </div>
+                                                </div>
+                                                
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label">內文</label>
+                                                    <div class="col-lg-5">
+                                                        <textarea class="form-control" name="teamlangs[{{ $langValue->langId }}][content]" placeholder="內文" rows="4" data-bv-notempty="true" data-bv-notempty-message="請輸入內文">{{ $langdata[$langValue->langId]->content }}</textarea>
+                                                    </div>
+                                                </div>  
+                                                
+                                            </fieldset>
+
+                                        </div>
+                                    @endforeach                                    
                                 </div>
                                 
                                 <div class="form-actions">

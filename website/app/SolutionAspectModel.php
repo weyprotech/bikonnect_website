@@ -20,6 +20,6 @@ class SolutionAspectModel extends Model
     );
 
     public function lang(){
-        return $this->hasMany(SolutionAspectLangModel::class,'aId','Id');
+        return $this->hasMany(SolutionAspectLangModel::class,'aId','Id')->orderby('langId','asc');
     }
 }

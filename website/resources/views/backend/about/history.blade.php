@@ -36,8 +36,8 @@
                         <!-- widget content -->
                         <div class="widget-body">
                             
-                            <form id="form" method="post" action="">
-                            
+                            <form id="form" method="post" action="{{ route('about.history.order_save') }}">
+                                @csrf
                                 <div class="widget-body-toolbar">
 
                                     <div class="row">
@@ -59,29 +59,29 @@
 
                                     <table id="dt_basic" class="table table-striped table-bordered table-hover">
                                         <thead>			                
-                                            <tr>
-                                                <th class="text-center" width="6%">排序</th>
+                                            <tr>                                                
                                                 <th class="text-center" width="12%">時間</th>
                                                 <th>標題</th>
+                                                <th class="text-center" width="6%">排序</th>
                                                 <th width="5%" class="text-center">編輯</th>
                                                 <th width="5%" class="text-center">刪除</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            
-                                            <tr>
-                                                <td>
-                                                    <label class="input">
-                                                        <input type="textbox" class="text-center form-control" name="newstypefreqs[][freq]" value="">
-                                                        <input type="hidden" name="newstypefreqs[][newstypeid]" value="">
-                                                    </label>
-                                                </td>
-                                                <td class="text-center">2016-2017</td>
-                                                <td>Operation Service</td>
-                                                <td class="text-center"><a href="{{ route('about.history.edit', 1) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>
-                                                <td class="text-center"><a href="#" class="btn btn-danger btn-xs del" data-toggle="modal" data-href="#" data-target="#confirm-delete"><i class="fa fa-trash-o"></i></a></td>
-                                            </tr>
-                                            
+                                            @foreach($historyList as $historyKey => $historyValue)
+                                                <tr>
+                                                    <td class="text-center">{{ $historyValue['lang'][0]['year'] }}</td>
+                                                    <td>{{ $historyValue['lang'][0]['title'] }}</td>
+                                                    <td>
+                                                        <label class="input">
+                                                            <input type="textbox" class="text-center form-control" name="order[{{ $historyValue->Id }}][order]" value="{{ $historyValue->order }}">
+                                                            <input type="hidden" name="order[{{ $historyValue->Id }}][hId]" value="<?= $historyValue->Id ?>">
+                                                        </label>
+                                                    </td>
+                                                    <td class="text-center"><a href="{{ route('about.history.edit', $historyValue['Id']) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>
+                                                    <td class="text-center"><a href="{{ route('about.history.delete', $historyValue['Id']) }}" class="btn btn-danger btn-xs del" onclick="return confirm('確定要刪除?');"><i class="fa fa-trash-o"></i></a></td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
 

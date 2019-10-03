@@ -19,6 +19,6 @@ class SolutionVideoModel extends Model
     );
 
     public function lang(){
-        return $this->hasMany(SolutionVideoLangModel::class,'vId','Id');
+        return $this->hasMany(SolutionVideoLangModel::class,'vId','Id')->orderby('langId','asc');
     }
 }
