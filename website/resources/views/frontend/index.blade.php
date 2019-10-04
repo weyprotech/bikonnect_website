@@ -140,7 +140,7 @@
     </div>
     <div class="partners_supporters page_block">
         <div class="block_inner">
-            <h2 class="block_subtitle">{{ trans('lang.ourpartner') }}</h2>
+            <h2 class="block_title">{{ trans('lang.ourpartner') }}</h2>
             <div class="partners_items">
                 @foreach($partnerList as $partnerKey => $partnerValue)
                     <!--↓ 圖片建議尺寸 寬:230px以下 高:70px ↓-->                

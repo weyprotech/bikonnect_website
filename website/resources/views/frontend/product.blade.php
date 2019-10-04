@@ -51,10 +51,10 @@
         <h2 class="block_subtitle">{{ trans('lang.applicationrange') }}</h2>
         <div class="aplication_items">
             <div class="item">
-                <div class="icon_img"><img src="images/products/porduct01/icon_img01.png" alt=""></div><span>E-Bike brand operators</span>
+                <div class="icon_img"><img src="{{ URL::asset('frontend/images/products/porduct01/icon_img01.png') }}" alt=""></div><span>E-Bike brand operators</span>
             </div>
             <div class="item">
-                <div class="icon_img"><img src="images/products/porduct01/icon_img02.png" alt=""></div><span>Bike brands operators</span>
+                <div class="icon_img"><img src="{{ URL::asset('frontend/images/products/porduct01/icon_img02.png') }}" alt=""></div><span>Bike brands operators</span>
             </div>
         </div>
         </div>
