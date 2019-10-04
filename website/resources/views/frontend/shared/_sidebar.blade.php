@@ -2,8 +2,8 @@
     <div class="sidebar_logo"><a href="{{ route('main.index') }}"><img src="{{ URL::asset('frontend/images/logo.png') }}" alt="Bikonnect"></a></div>
     <nav class="sidebar_menu">
     <ul>
-        <li><a href="{{ route('main.solution') }}">Solution</a></li>
-        <li><a href="javascript:;">Products</a>
+        <li><a href="{{ route('main.solution') }}">{{ trans('lang.solution') }}</a></li>
+        <li><a href="javascript:;">{{ trans('lang.products') }}</a>
         <ul>
             <li><a href="product01.html">Cyling Data Platform</a></li>
             <li><a href="product02.html">E-Bike App</a></li>
@@ -12,9 +12,9 @@
             <li><a href="product05.html">E-Bike computer</a></li>
         </ul>
         </li>
-        <li><a href="{{ route('main.about') }}">About Us</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="javascript:;">Blog</a></li>
+        <li><a href="{{ route('main.about') }}">{{ trans('lang.aboutus') }}</a></li>
+        <li><a href="#contact">{{ trans('lang.contact') }}</a></li>
+        <li><a href="javascript:;">{{ trans('lang.blog') }}</a></li>
     </ul>
     <div class="dropdown language">
         <div class="dropdown_head">ENGLISH</div>

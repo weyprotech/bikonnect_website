@@ -9,13 +9,13 @@
         <div class="slide">
             <div class="bg" style="background-image: url({{ URL::asset('frontend/images/banner_index.jpg') }});"></div>
             <div class="slide_content">
-            <h2>Connect Your Bike<br>Ride the Future</h2><a class="btn_more big" href="solution.html">Learn More</a>
+            <h2>Connect Your Bike<br>Ride the Future</h2><a class="btn_more big" href="{{ route('main.solution') }}">{{ trans('lang.learnmore') }}</a>
             </div>
         </div>
         <div class="slide">
             <div class="bg" style="background-image: url({{ URL::asset('frontend/images/banner_index.jpg') }});"></div>
             <div class="slide_content">
-            <h2>Connect Your Bike<br>Ride the Future</h2><a class="btn_more big" href="solution.html">Learn More</a>
+            <h2>Connect Your Bike<br>Ride the Future</h2><a class="btn_more big" href="{{ route('main.solution') }}">{{ trans('lang.learnmore') }}</a>
             </div>
         </div>
         </div>
@@ -24,9 +24,9 @@
     <div class="index_experience page_block">
         <div class="wave"><img src="{{ URL::asset('frontend/images/img_wave.png') }}" alt=""></div>
         <div class="block_inner">
-        <h2 class="block_title">More Intelligent Cycling<br>Experience</h2>
+        <h2 class="block_title">{{ trans('moreint') }}</h2>
         <div class="text">
-            <p>Bikonnect provides one-stop technology digitalization services such as the E-Bike Computer, E-Bike App, Store Management System, and Cycling Data Platform to achieve a win-win situation between riders, brands, component manufacturers and stores.</p>
+            <p>{{ trans('moreintcontent') }}</p>
         </div>
         <div class="experience_items">
             <div class="item"><a href="product05.html"><img class="thumb" src="{{ URL::asset('frontend/images/img_index_experience01.png') }}" alt="E-Bike computer">
@@ -42,7 +42,7 @@
     </div>
     <div class="index_strength page_block">
         <div class="block_inner proportion">
-        <h2 class="block_title">Our Strength</h2>
+        <h2 class="block_title">{{ trans('lang.ourstrength') }}</h2>
         <div class="strength_content">
             <div class="strength_sliders">
             <div class="item">
@@ -50,23 +50,23 @@
                 <div class="slider">
                 <div class="slide">
                     <div class="slide_inner">
-                    <h3>Smart Integration</h3>
+                    <h3>{{ trans('lang.smartintegration') }}</h3>
                     <hr>
-                    <p>Data Transmission Firmware Update</p>
+                    <p>{{ trans('lang.smartintegrationcontent') }}</p>
                     </div>
                 </div>
                 <div class="slide">
                     <div class="slide_inner">
-                    <h3>Smart Integration</h3>
+                    <h3>{{ trans('lang.smartintegration') }}</h3>
                     <hr>
-                    <p>Data Transmission Firmware Update</p>
+                    <p>{{ trans('lang.smartintegrationcontent') }}</p>
                     </div>
                 </div>
                 <div class="slide">
                     <div class="slide_inner">
-                    <h3>Smart Integration</h3>
+                    <h3>{{ trans('lang.smartintegration') }}</h3>
                     <hr>
-                    <p>Data Transmission Firmware Update</p>
+                    <p>{{ trans('lang.smartintegrationcontent') }}</p>
                     </div>
                 </div>
                 </div>
@@ -76,23 +76,23 @@
                 <div class="slider">
                 <div class="slide">
                     <div class="slide_inner">
-                    <h3>Business Strategy</h3>
+                    <h3>{{ trans('lang.businessstrategy') }}</h3>
                     <hr>
-                    <p>Store Management System Cycling Data Platform</p>
+                    <p>{{ trans('lang.businessstrategycontent') }}</p>
                     </div>
                 </div>
                 <div class="slide">
                     <div class="slide_inner">
-                    <h3>Business Strategy</h3>
+                    <h3>{{ trans('lang.businessstrategy') }}</h3>
                     <hr>
-                    <p>Store Management System Cycling Data Platform</p>
+                    <p>{{ trans('lang.businessstrategycontent') }}</p>
                     </div>
                 </div>
                 <div class="slide">
                     <div class="slide_inner">
-                    <h3>Business Strategy</h3>
+                    <h3>{{ trans('lang.businessstrategy') }}</h3>
                     <hr>
-                    <p>Store Management System Cycling Data Platform</p>
+                    <p>{{ trans('lang.businessstrategycontent') }}</p>
                     </div>
                 </div>
                 </div>
@@ -129,18 +129,18 @@
     <div class="index_solutions page_block">
         <div class="block_inner proportion">
         <div class="block_content">
-            <h2 class="block_title">Smart Solutions</h2>
-            <h3 class="block_subtitle">Data Management &amp; Analysis</h3>
+            <h2 class="block_title">{{ trans('lang.smartsolutions') }}</h2>
+            <h3 class="block_subtitle">{{ trans('lang.datamanagement') }}</h3>
             <div class="text">
-            <p>Visualized members’cycling data statistics<br>Assign easily to administrative authorizations of members’data </p>
-            </div><a class="btn_more green" href="solution.html">Learn more</a>
+            <p>{{ trans('lang.datamanagementcontent') }}</p>
+            </div><a class="btn_more green" href="{{ route('main.solution') }}">{{ trans('lang.learnmore') }}</a>
         </div>
         <div class="block_img"><img src="{{ URL::asset('frontend/images/img_index_solutions.png') }}" alt="Smart Solutions Picture"></div>
         </div>
     </div>
     <div class="partners_supporters page_block">
         <div class="block_inner">
-            <h2 class="block_subtitle">Our Partners &amp; Supporters</h2>
+            <h2 class="block_subtitle">{{ trans('lang.ourpartner') }}</h2>
             <div class="partners_items">
                 @foreach($partnerList as $partnerKey => $partnerValue)
                     <!--↓ 圖片建議尺寸 寬:230px以下 高:70px ↓-->                
@@ -154,11 +154,11 @@
         <div class="bg"></div>
         <div class="block_inner proportion">
         <div class="vision_content">
-            <h2 class="block_title">Our Vision</h2>
-            <h3 class="block_subtitle">Your bike best secretary</h3>
+            <h2 class="block_title">{{ trans('lang.ourvision') }}</h2>
+            <h3 class="block_subtitle">{{ trans('lang.ourvisioncontent') }}</h3>
             <div class="text">
             <!-- p Nam porttitor blandit accumsan. Ut vel dictum sem, a pretium dui.-->
-            </div><a class="btn_more" href="{{ route('main.solution') }}">Read More</a>
+            </div><a class="btn_more" href="{{ route('main.solution') }}">{{ trans('lang.readmore') }}</a>
         </div>
         </div>
     </div>
