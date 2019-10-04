@@ -26,4 +26,11 @@ return [
     'operators' => 'Operators',
     'keyfeatures' => 'Key Features',
     'applicationrange' => 'Application Range',
+    'businesstimeline' => 'Business Timeline',
+    'team' => 'Team',
+    'address' => '7F, No.402, Shizheng Rd, Xitun Dist., Taichung City 407., Taiwan',
+    'name' => 'Name',
+    'phone' => 'Phone',
+    'message' => 'Message',
+    'send' => 'Send',
 ];
