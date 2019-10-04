@@ -25,4 +25,5 @@ return [
     'cyclists' => 'Cyclists',
     'operators' => 'Operators',
     'keyfeatures' => 'Key Features',
+    'applicationrange' => 'Application Range',
 ];
