@@ -327,7 +327,7 @@ class AboutController extends Controller
     }
 
     /*** 廠商維護 ***/
-    public function partner() 
+    public function partner()
     {
         $partnerList = AboutPartnerModel::with('lang')->where('is_enable',1)->orderby('order','asc')->get();
         $data = array(
@@ -456,5 +456,5 @@ class AboutController extends Controller
         $team->is_enable = 0;
         $team->save();
         return redirect('backend/about/partner');
-    }
+    }    
 }

@@ -21,7 +21,7 @@
             </ul>
         </li>
         <li class="{{ (Request::is('backend/product') or Request::is('backend/product/*')) ? 'active' : '' }}">
-            <a href=""><i class="fa fa-lg fa-fw fa-cog"></i> <span class="menu-item-parent">產品管理</span></a>
+            <a href="{{ route('product.index') }}"><i class="fa fa-lg fa-fw fa-cog"></i> <span class="menu-item-parent">產品管理</span></a>
         </li>
         <li class="{{ (Request::is('backend/admin') or Request::is('backend/admin/*')) ? 'active' : '' }}">
             <a href="{{ route('admin.auth') }}"><i class="fa fa-lg fa-fw fa-lock"></i> <span class="menu-item-parent">權限管理</span></a>

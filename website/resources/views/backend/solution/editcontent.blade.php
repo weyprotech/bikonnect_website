@@ -90,9 +90,13 @@
                                                 
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">內文</label>
-                                                    <div class="col-lg-5">
-                                                        <textarea class="form-control" name="contentlangs[{{ $langValue->langId }}][content]" placeholder="內文" rows="4" data-bv-notempty="true" data-bv-notempty-message="請輸入內文">{{ $langdata[$langValue->langId]->content }}</textarea>
+                                                    <div class="col-sm-9">
+                                                        <div class="content-edit">{{ $langdata[$langValue->langId]->content }}</div>
+                                                        <input type="hidden" id="content" name="contentlangs[{{ $langValue->langId }}][content]">
                                                     </div>
+                                                    <!-- <div class="col-lg-5">
+                                                        <textarea class="form-control" name="contentlangs[{{ $langValue->langId }}][content]" placeholder="內文" rows="4" data-bv-notempty="true" data-bv-notempty-message="請輸入內文">{{ $langdata[$langValue->langId]->content }}</textarea>
+                                                    </div> -->
                                                 </div>                                                  
                                             </fieldset>
                                         </div>
@@ -106,7 +110,7 @@
                                             <a class="btn btn-default" href="{{ route('solution.content') }}">
                                                 Back
                                             </a>
-                                            <button class="btn btn-primary" type="submit">
+                                            <button class="btn btn-primary" type="submit" id="save">
                                                 <i class="fa fa-save"></i>
                                                 Submit
                                             </button>

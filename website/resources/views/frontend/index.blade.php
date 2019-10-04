@@ -140,7 +140,14 @@
     </div>
     <div class="partners_supporters page_block">
         <div class="block_inner">
-            @include('frontend.shared._partner')
+            <h2 class="block_subtitle">Our Partners &amp; Supporters</h2>
+            <div class="partners_items">
+                @foreach($partnerList as $partnerKey => $partnerValue)
+                    <!--↓ 圖片建議尺寸 寬:230px以下 高:70px ↓-->                
+                    <div class="item"><img src="{{ $partnerValue->img }}" alt="{{ $partnerValue->lang[0]->title }}"></div>
+                @endforeach
+                <!--↑ 圖片建議尺寸 寬:230px以下 高:70px ↑-->
+            </div>
         </div>
     </div>
     <div class="index_vision page_block">

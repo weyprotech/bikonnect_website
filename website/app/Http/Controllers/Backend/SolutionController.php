@@ -74,8 +74,7 @@ class SolutionController extends Controller
                 $content->uuid = Uuid::uuid1();
                 $content->save();
 
-                foreach ($request->contentlangs as $contentKey => $contentValue) {
-                    
+                foreach ($request->contentlangs as $contentKey => $contentValue) {                    
                     $content = SolutionContentLangModel::where('langId',$contentValue['langId'])->where('cId',$contentId)->get();
                     
                     // //上傳圖檔
@@ -100,7 +99,7 @@ class SolutionController extends Controller
                     DB::table('tb_solution_content_lang')
                     ->where('cId',$contentId)
                     ->where('langId',$contentValue['langId'])
-                    ->update(array('langId' => $contentValue['langId'], 'title' => $contentValue['title'], 'content'=> $contentValue['content'],'img' => $contentValue['img']));
+                    ->update(array('langId' => $contentValue['langId'], 'title' => $contentValue['title'], 'content'=> html_entity_decode($contentValue['content']),'img' => $contentValue['img']));
                 }
                 return redirect('backend/solution/content');                  
             }

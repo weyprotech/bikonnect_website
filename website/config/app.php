@@ -82,6 +82,18 @@ return [
 
     'locale' => 'en',
 
+    'supported_locales' => [
+        'en' => [
+            'name' => 'English',
+        ],
+        'zh-tw' => [
+            'name' => '正體中文',
+        ],
+        'zh-cn' => [
+            'name' => '簡體中文',
+        ],
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale

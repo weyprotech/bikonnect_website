@@ -58,6 +58,14 @@ Route::group(['prefix' => 'backend'], function(){
         Route::get('/partner/delete/{pId}', array('as' => 'about.partner.delete', 'uses' => 'Backend\AboutController@partner_delete'));
     });
 
+    Route::group(['prefix' => 'product'],function(){
+        Route::match(['get', 'post'], '/index', array('as' => 'product.index', 'uses' => 'Backend\ProductController@index'));
+        Route::match(['get', 'post'], '/add', array('as' => 'product.add', 'uses' => 'Backend\ProductController@add'));
+        Route::match(['get', 'post'], '/edit/{productid}', array('as' => 'product.edit', 'uses' => 'Backend\ProductController@edit'));
+        Route::post('/order_save', array('as' => 'product.order_save', 'uses' => 'Backend\ProductController@order_save'));
+        Route::get('/delete/{aId}', array('as' => 'product.delete', 'uses' => 'Backend\ProductController@delete'));
+    });
+
     Route::group(['prefix' => 'admin'], function(){
         Route::match(['get', 'post'], '/auth', array('as' => 'admin.auth', 'uses' => 'Backend\AdminController@auth'));
         Route::match(['get', 'post'], '/auth/add', array('as' => 'admin.auth.add', 'uses' => 'Backend\AdminController@addauth'));

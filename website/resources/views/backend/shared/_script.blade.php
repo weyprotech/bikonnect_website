@@ -48,6 +48,10 @@
 <script src="{{ URL::asset('backend/js/plugin/superbox/superbox.min.js') }}"></script>
 <script src="{{ URL::asset('backend/js/plugin/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
 
+<link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('backend/css/summernote.css') }}">
+<script type="text/javascript" src="{{ URL::asset('backend/js/plugin/summernote/summernote.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('backend/js/plugin/summernote/summernote-zh-TW.js') }}"></script>
+
 <!--[if IE 8]>
     <h1>Your browser is out of date, please update your browser by going to www.microsoft.com/download</h1>
 <![endif]-->
@@ -84,5 +88,35 @@
                 $(this).css("overflow", "hidden").css("z-index", 1);
             }
         );
+        $("#save, #back").click(function (e) {
+            $('div.content-edit').each(function () {
+                var content = $(this).summernote('code').replace(/[\u00A0-\u9999<>\&]/gim, function (i) {
+                    return '&#' + i.charCodeAt(0) + ';';
+                });
+
+                $(this).siblings(':hidden').val(content);
+            });
+        });
+
+        $('div.content-edit').each(function (index, element) {
+            $(element).summernote({
+                height: 500,
+                lang: 'zh-TW',
+                toolbar: [
+                    ['misc', ['codeview']]
+                    //['font', ['fontname', 'fontsize', 'color', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subsript', 'clear']],
+                    //['para', ['style', 'ol', 'ul', 'paragraph', 'height']],
+                    // ['insert', ['picture']],
+                    //['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
+                ],
+                callbacks: {
+                    onImageUpload: function (files) {
+                        for (var i = 0; i < files.length; i++) {
+                            sendFile(files[i], $(this));
+                        }
+                    }
+                }
+            });
+        });
     });
 </script>
