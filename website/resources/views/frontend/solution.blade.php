@@ -20,21 +20,36 @@
         </div>
     </div>
     <div class="divide_line"><img src="{{ URL::asset('frontend/images/bg_line.png') }}" alt=""></div>
-        @foreach($contentList as $contentKey => $contentValue)
-        <div class="solution_help page_block">
-            <div class="block_inner">
-            <h2 class="block_subtitle">{{ $contentValue->lang[0]->title }}</h2>
-            <div class="pic_text">
-                <div class="pic"><img src="{{ $contentValue->lang[0]->img }}" alt="{{ $contentValue->lang[0]->title }}"></div>
-                <div class="text">
+
+    @foreach($contentList as $contentKey => $contentValue)
+    <div class="solution_help page_block">
+        <div class="block_inner">
+        <h2 class="block_subtitle">{{ $contentValue->lang[0]->title }}</h2>
+        <div class="pic_text">
+            <div class="pic"><img src="{{ $contentValue->lang[0]->img }}" alt="{{ $contentValue->lang[0]->title }}"></div>
+            <div class="text">
                 <ul class="common_list">
                     {!!  html_entity_decode($contentValue->lang[0]->content) !!}
                 </ul>
-                </div>
-            </div>
             </div>
         </div>
-        @endforeach
+        </div>
+    </div>
+    @endforeach
+
+    <div class="solution_application page_block">
+        <div class="block_inner">
+            <h2 class="block_subtitle">{{ trans('lang.applicationrange') }}</h2>
+            <div class="application_items">
+                <div class="item"><img src="{{ URL::asset('frontend/images/icon_app01.png') }}" alt="Application Range 01"><span>{!! trans('lang.ar1') !!}</span></div>
+                <div class="item"><img src="{{ URL::asset('frontend/images/icon_app02.png') }}" alt="Application Range 02"><span>{!! trans('lang.ar2') !!}</span></div>
+                <div class="item"><img src="{{ URL::asset('frontend/images/icon_app03.png') }}" alt="Application Range 03"><span>{!! trans('lang.ar3') !!}</span></div>
+                <div class="item"><img src="{{ URL::asset('frontend/images/icon_app04.png') }}" alt="Application Range 04"><span>{!! trans('lang.ar4') !!}</span></div>
+                <div class="item"><img src="{{ URL::asset('frontend/images/icon_app05.png') }}" alt="Application Range 05"><span>{!! trans('lang.ar5') !!}</span></div>
+            </div>
+        </div>
+    </div>
+
     <div class="solution_cyclists_operators page_block">
         <div class="block_inner">
         <div class="content_block cyclists">
@@ -61,10 +76,11 @@
         </div>
         </div>
     </div>
+
     <div class="solution_keyFeatures page_block">
         <div class="block_inner">
-        <div class="content_block">
-            <h2 class="block_subtitle">{{ trans('lang.keyfeatures') }}</h2>
+            <div class="content_block">
+                <h2 class="block_subtitle">{{ trans('lang.keyfeatures') }}</h2>
                 <div class="keyFeature_slider">
                     @foreach($productList as $productKey => $productValue)
                     <div class="slide">
@@ -79,8 +95,8 @@
                         </div>
                     </div>
                     @endforeach
+                </div>
             </div>
-        </div>
         </div>
     </div>
     @include('frontend.shared._contact')
