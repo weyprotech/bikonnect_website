@@ -19,10 +19,14 @@
             </div>
         </div>
     </div>
+
     <div class="divide_line"><img src="{{ URL::asset('frontend/images/bg_line.png') }}" alt=""></div>
 
+    <?php
+    $k = 1;
+    ?>
     @foreach($contentList as $contentKey => $contentValue)
-    <div class="solution_help page_block">
+    <div class="<?=($k%2==0)?"solution_keyAdvantages":"solution_help"?> page_block">
         <div class="block_inner">
         <h2 class="block_subtitle">{{ $contentValue->lang[0]->title }}</h2>
         <div class="pic_text">
@@ -35,6 +39,9 @@
         </div>
         </div>
     </div>
+        <?php
+        $k++;
+        ?>
     @endforeach
 
     <div class="solution_application page_block">
