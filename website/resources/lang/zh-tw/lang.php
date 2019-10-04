@@ -21,4 +21,8 @@ return [
     'ourvision' => 'Our Vision',
     'ourvisioncontent' => 'Your bike best secretary',
     'readmore' => 'Read More',
+    'solutiontitle' => 'E-Bike Data Service Solution',
+    'cyclists' => 'Cyclists',
+    'operators' => 'Operators',
+    'keyfeatures' => 'Key Features',
 ];

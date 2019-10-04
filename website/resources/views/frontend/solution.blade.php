@@ -6,7 +6,7 @@
 <main id="main">
     <div class="page_banner page_block in_solution">
         <div class="block_inner">
-        <h1 class="block_title">E-Bike Data Service Solution</h1>
+        <h1 class="block_title">{{ trans('lang.solutiontitle') }}</h1>
         </div>
     </div>
     <div class="solution_introduction page_block">
@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="divide_line"><img src="{{ URL::asset('frontend/images/bg_line.png') }}" alt=""></div>
-    @foreach($contentList as $contentKey => $contentValue)
+        @foreach($contentList as $contentKey => $contentValue)
         <div class="solution_help page_block">
             <div class="block_inner">
             <h2 class="block_subtitle">{{ $contentValue->lang[0]->title }}</h2>
@@ -34,28 +34,28 @@
             </div>
             </div>
         </div>
-    @endforeach
+        @endforeach
     <div class="solution_cyclists_operators page_block">
         <div class="block_inner">
         <div class="content_block cyclists">
-            <h2 class="block_subtitle">Cyclists</h2>
+            <h2 class="block_subtitle">{{ trans('lang.cyclists') }}</h2>
             <div class="table">
-            @for($i=0;$i<=1;$i++)
+                @for($i=0;$i<=1;$i++)
                 <div class="tr">
                     <div class="th">{{ $aspectList[$i]->lang[0]->title }}</div>
                     <div class="td">{{ $aspectList[$i]->lang[0]->content }}</div>
                 </div>
-            @endfor
+                @endfor
             </div>
         </div>
         <div class="content_block operators">
-            <h2 class="block_subtitle">Operators</h2>
+            <h2 class="block_subtitle">{{ trans('lang.operators') }}</h2>
             <div class="table">
-                @for($i=2;$i<5;$i++)
-                    <div class="tr">
-                        <div class="th">{{ $aspectList[$i]->lang[0]->title }}</div>
-                        <div class="td">{{ $aspectList[$i]->lang[0]->content }}</div>
-                    </div>
+                @for($i=2; $i<5; $i++)
+                <div class="tr">
+                    <div class="th">{{ $aspectList[$i]->lang[0]->title }}</div>
+                    <div class="td">{{ $aspectList[$i]->lang[0]->content }}</div>
+                </div>
                 @endfor            
             </div>
         </div>
@@ -64,9 +64,9 @@
     <div class="solution_keyFeatures page_block">
         <div class="block_inner">
         <div class="content_block">
-            <h2 class="block_subtitle">Key Features</h2>
+            <h2 class="block_subtitle">{{ trans('lang.keyfeatures') }}</h2>
                 <div class="keyFeature_slider">
-                @foreach($productList as $productKey => $productValue)
+                    @foreach($productList as $productKey => $productValue)
                     <div class="slide">
                         <div class="pic_text">
                         <div class="pic">
@@ -78,7 +78,7 @@
                         </div>
                         </div>
                     </div>
-                @endforeach
+                    @endforeach
             </div>
         </div>
         </div>
