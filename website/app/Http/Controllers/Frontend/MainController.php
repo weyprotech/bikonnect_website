@@ -50,7 +50,7 @@ class MainController extends Controller
         //沿革列表
         $historyList = AboutHistoryModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
             $query->where('langId','=',$this->langList[0]->langId);
-        }]);
+        }])->get();
 
         //團隊列表
         $teamList = AboutTeamModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
