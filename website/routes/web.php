@@ -10,12 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/{locale?}', array('as' => 'main.index', 'uses' => 'Frontend\MainController@index'));
+Route::get('{locale?}/', array('as' => 'main.index', 'uses' => 'Frontend\MainController@index'));
+Route::get('/solution/{locale?}', array('as' => 'main.solution', 'uses' => 'Frontend\MainController@solution'));
+Route::get('/about/{locale?}', array('as' => 'main.about', 'uses' => 'Frontend\MainController@about'));
+Route::get('/product/{productid}/{locale?}', array('as' => 'main.product', 'uses' => 'Frontend\MainController@product'));
+Route::get('/privacy/{locale?}', array('as' => 'main.privacy', 'uses' => 'Frontend\MainController@privacy'));
 
-Route::get('/', array('as' => 'main.index', 'uses' => 'Frontend\MainController@index'));
-Route::get('/solution', array('as' => 'main.solution', 'uses' => 'Frontend\MainController@solution'));
-Route::get('/about', array('as' => 'main.about', 'uses' => 'Frontend\MainController@about'));
-Route::get('/product/{productid}', array('as' => 'main.product', 'uses' => 'Frontend\MainController@product'));
-Route::get('/privacy', array('as' => 'main.privacy', 'uses' => 'Frontend\MainController@privacy'));
+
+// Route::get('/', array('as' => 'main.index', 'uses' => 'Frontend\MainController@index'));
+// Route::get('/', array('as' => 'main.index', 'uses' => 'Frontend\MainController@index'));
+// Route::get('/solution', array('as' => 'main.solution', 'uses' => 'Frontend\MainController@solution'));
+// Route::get('/about', array('as' => 'main.about', 'uses' => 'Frontend\MainController@about'));
+// Route::get('/product/{productid}', array('as' => 'main.product', 'uses' => 'Frontend\MainController@product'));
+// Route::get('/privacy', array('as' => 'main.privacy', 'uses' => 'Frontend\MainController@privacy'));
+
 
 Route::group(['prefix' => 'backend'], function(){
     Route::get('/', array('as' => 'panel.index', 'uses' => 'Backend\PanelController@index'));

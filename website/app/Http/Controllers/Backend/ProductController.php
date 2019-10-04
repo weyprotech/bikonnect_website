@@ -39,16 +39,15 @@ class ProductController extends Controller
     public function add(Request $request)
     {
         $uuid = Str::uuid();
-        
-        $productList = ProductModel::limit(1)->orderby('order','desc')->get();
+       
         if($request->isMethod('post')){
 
-
+            $productList = ProductModel::limit(1)->orderby('order','desc')->get();
             $product = new ProductModel();
             $product->is_enable = 1;
             $product->Id = $uuid;
             $product->uuid = $uuid;
-            $product->order = intval($productList[0]->order)+1;
+            $product->order = 1;
             $product->save();
             
             foreach ($request->productlangs as $langKey => $langValue) {

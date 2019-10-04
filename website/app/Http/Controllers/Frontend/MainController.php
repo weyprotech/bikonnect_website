@@ -104,7 +104,7 @@ class MainController extends Controller
         return view('frontend.solution',$data);
     }
 
-    public function product($productId){
+    public function product($productId,$locale){
         //產品列表
         $productList = ProductModel::where('is_enable',1)->with(['lang' => function($query){
             $query->where('langId','=',$this->langList[0]->langId);

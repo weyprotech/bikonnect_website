@@ -235,7 +235,7 @@
                                     
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <a class="btn btn-default" href="{{ route('about.history') }}">
+                                            <a class="btn btn-default" href="{{ route('product.index') }}">
                                                 Back
                                             </a>
                                             <button class="btn btn-primary" type="submit" id="save">

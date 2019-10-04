@@ -71,7 +71,7 @@
                                                     <td class="text-center">{{$adminValue->account}}</td>
                                                     <td>{{ $adminValue->name }}</td>
                                                     <td class="text-center"><a href="{{ route('admin.auth.edit', $adminValue->id) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>
-                                                    <td class="text-center"><a href="{{ route('admin.auth.delete', $adminValue->id) }}" class="btn btn-danger btn-xs del" data-toggle="modal" data-href="#" data-target="#confirm-delete"><i class="fa fa-trash-o"></i></a></td>
+                                                    <td class="text-center"><a href="{{ route('admin.auth.delete', $adminValue->id) }}" class="btn btn-danger btn-xs del" onclick="return confirm('確定要刪除?');"><i class="fa fa-trash-o"></i></a></td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

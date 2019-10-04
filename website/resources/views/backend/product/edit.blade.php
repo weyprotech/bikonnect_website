@@ -200,7 +200,7 @@
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">標題_4</label>
                                                     <div class="col-lg-5">
-                                                        <textarea class="form-control" name="productlangs[{{ $langValue->langId }}][title_2]" placeholder="內文" rows="8" data-bv-notempty="true" data-bv-notempty-message="請輸入內文">{{ $langdata[$langValue->langId]->title_4 }}</textarea> 
+                                                        <textarea class="form-control" name="productlangs[{{ $langValue->langId }}][title_4]" placeholder="內文" rows="8" data-bv-notempty="true" data-bv-notempty-message="請輸入內文">{{ $langdata[$langValue->langId]->title_4 }}</textarea> 
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -235,7 +235,7 @@
                                     
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <a class="btn btn-default" href="{{ route('about.history') }}">
+                                            <a class="btn btn-default" href="{{ route('product.index') }}">
                                                 Back
                                             </a>
                                             <button class="btn btn-primary" type="submit" id="save">
