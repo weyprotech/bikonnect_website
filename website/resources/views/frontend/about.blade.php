@@ -19,7 +19,7 @@
             </div>
         </div>
     </div>
-    <div class="divide_line"><img src="images/bg_line2.png" alt=""></div>
+    <div class="divide_line"><img src="{{ URL::asset('frontend/images/bg_line2.png') }}" alt=""></div>
     <div class="bikonnect_introduction page_block">
         <div class="block_inner">
         <div class="pic_text">

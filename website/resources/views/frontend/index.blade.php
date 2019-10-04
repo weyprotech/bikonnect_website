@@ -132,7 +132,7 @@
             <h2 class="block_title">{{ trans('lang.smartsolutions') }}</h2>
             <h3 class="block_subtitle">{{ trans('lang.datamanagement') }}</h3>
             <div class="text">
-            <p>{{ trans('lang.datamanagementcontent') }}</p>
+            <p>{!! trans('lang.datamanagementcontent') !!}</p>
             </div><a class="btn_more green" href="{{ route('main.solution') }}">{{ trans('lang.learnmore') }}</a>
         </div>
         <div class="block_img"><img src="{{ URL::asset('frontend/images/img_index_solutions.png') }}" alt="Smart Solutions Picture"></div>
