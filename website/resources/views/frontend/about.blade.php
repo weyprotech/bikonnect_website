@@ -40,14 +40,14 @@
                 <div id="timeline_arrows"></div>
             </div>
             <div id="timeline_slider">
-                    @foreach($historyList as $historyKey => $historyValue)
-                    <div class="slide" data-years="{{ $historyValue->lang[0]->year }}">
-                        <h3>{{ $historyValue->lang[0]->title }}</h3>
-                        <ul>
-                            {!! $historyValue->lang[0]->content !!}
-                        </ul>
-                    </div>
-                    @endforeach
+                @foreach($historyList as $historyKey => $historyValue)
+                <div class="slide" data-years="{{ $historyValue->lang[0]->year }}">
+                    <h3>{{ $historyValue->lang[0]->title }}</h3>
+                    <ul>
+                        {!! $historyValue->lang[0]->content !!}
+                    </ul>
+                </div>
+                @endforeach
             </div>
         </div>
     </div>
