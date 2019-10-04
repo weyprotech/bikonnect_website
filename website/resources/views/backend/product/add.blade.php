@@ -133,10 +133,7 @@
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">標題_2</label>
                                                     <div class="col-lg-5">
-                                                        <input type="text" class="form-control" name="productlangs[{{ $langValue->langId }}][title_2]"
-                                                        data-bv-notempty="true"
-                                                        data-bv-notempty-message="請輸入標題"
-                                                        >
+                                                        <textarea class="form-control" name="productlangs[{{ $langValue->langId }}][title_2]" placeholder="內文" rows="8" data-bv-notempty="true" data-bv-notempty-message="請輸入內文"></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -203,10 +200,7 @@
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">標題_4</label>
                                                     <div class="col-lg-5">
-                                                        <input type="text" class="form-control" name="productlangs[{{ $langValue->langId }}][title_4]"
-                                                        data-bv-notempty="true"
-                                                        data-bv-notempty-message="請輸入標題"
-                                                        >
+                                                        <textarea class="form-control" name="productlangs[{{ $langValue->langId }}][title_4]" placeholder="內文" rows="8" data-bv-notempty="true" data-bv-notempty-message="請輸入內文"></textarea> 
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

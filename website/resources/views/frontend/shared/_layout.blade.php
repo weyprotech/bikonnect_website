@@ -28,7 +28,7 @@
       </div>
     </div><![endif]-->
     <div id="wrapper">
-      @include('frontend.shared._header')
+      @include('frontend.shared._header',['productList' => $productList])
       
       @yield('content')
 

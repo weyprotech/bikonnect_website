@@ -22,9 +22,15 @@ class MainController extends Controller
             $query->where('langId', '=', $this->langList[0]->langId);
         }])->get();
         
+        //產品列表
+        $productList = ProductModel::where('is_enable',1)->with(['lang' => function($query){
+            $query->where('langId','=',$this->langList[0]->langId);
+        }])->get();
+
         // print_r($partnerList->toArray());exit;
         $data = array(
-            'partnerList' => $partnerList
+            'partnerList' => $partnerList,
+            'productList' => $productList
         );
         return view('frontend.index',$data);
     }
@@ -51,10 +57,16 @@ class MainController extends Controller
             $query->where('langId','=',$this->langList[0]->langId);
         }])->get();
 
+        //產品列表
+        $productList = ProductModel::where('is_enable',1)->with(['lang' => function($query){
+            $query->where('langId','=',$this->langList[0]->langId);
+        }])->get();
+
         $data = array(
             'contentList' => $contentList,
             'partnerList' => $partnerList,
             'historyList' => $historyList,
+            'productList' => $productList,            
             'teamList' => $teamList
         );
         return view('frontend.about',$data);
@@ -90,6 +102,22 @@ class MainController extends Controller
             'productList' => $productList
         );
         return view('frontend.solution',$data);
+    }
+
+    public function product($productId){
+        //產品列表
+        $productList = ProductModel::where('is_enable',1)->with(['lang' => function($query){
+            $query->where('langId','=',$this->langList[0]->langId);
+        }])->get();
+
+        $product = ProductModel::find($productId);
+        
+        $data = array(
+            'productList' => $productList,
+            'product' => $product,
+            'productId' => $productId
+        );
+        return view('frontend.product',$data);
     }
 
     public function privacy() 

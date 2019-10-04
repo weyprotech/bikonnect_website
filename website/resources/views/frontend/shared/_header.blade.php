@@ -4,13 +4,11 @@
         <ul>
             <li><a href="{{ route('main.solution') }}">{{ trans('lang.solution') }}</a></li>
             <li><a href="javascript:;">{{ trans('lang.products') }}</a>
-            <ul>
-                <li><a href="product01.html">Cyling Data Platform</a></li>
-                <li><a href="product02.html">E-Bike App</a></li>
-                <li><a href="product03.html">Smart Lock for E-Bike</a></li>
-                <li><a href="product04.html">E-Bike store management system</a></li>
-                <li><a href="product05.html">E-Bike computer</a></li>
-            </ul>
+                <ul>
+                    @foreach($productList as $productKey => $productValue)
+                        <li><a href="{{ route('main.product',$productValue->Id) }}">{{ $productValue->lang[0]->title }}</a></li>
+                    @endforeach
+                </ul>
             </li>
             <li><a href="{{ route('main.about') }}">{{ trans('lang.aboutus') }}</a></li>
             <li><a href="#contact">{{ trans('lang.contact') }}</a></li>
