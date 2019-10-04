@@ -24,9 +24,9 @@
     <div class="index_experience page_block">
         <div class="wave"><img src="{{ URL::asset('frontend/images/img_wave.png') }}" alt=""></div>
         <div class="block_inner">
-        <h2 class="block_title">{{ trans('moreint') }}</h2>
+        <h2 class="block_title">{{ trans('lang.moreint') }}</h2>
         <div class="text">
-            <p>{{ trans('moreintcontent') }}</p>
+            <p>{{ trans('lang.moreintcontent') }}</p>
         </div>
         <div class="experience_items">
             <div class="item"><a href="product05.html"><img class="thumb" src="{{ URL::asset('frontend/images/img_index_experience01.png') }}" alt="E-Bike computer">
