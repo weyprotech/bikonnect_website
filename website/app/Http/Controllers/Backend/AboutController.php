@@ -126,7 +126,7 @@ class AboutController extends Controller
                 $lang->hId = $uuid;
                 $lang->title = $langValue['title'];
                 $lang->year = $langValue['year'];
-                $lang->content = $langValue['content'];
+                $lang->content = html_entity_decode($langValue['content']);
                 $lang->save();
             }
             return redirect('backend/about/history');            
@@ -162,7 +162,7 @@ class AboutController extends Controller
                     DB::table('tb_about_history_lang')
                     ->where('hId',$historyid)
                     ->where('langId',$contentValue['langId'])
-                    ->update(array('langId' => $contentValue['langId'],'year' => $contentValue['year'], 'title' => $contentValue['title'], 'content'=> $contentValue['content']));
+                    ->update(array('langId' => $contentValue['langId'],'year' => $contentValue['year'], 'title' => $contentValue['title'], 'content'=> html_entity_decode($contentValue['content'])));
                 }
                 return redirect('backend/about/history');                  
             }

@@ -40,6 +40,8 @@ class ProductController extends Controller
     {
         $uuid = Str::uuid();
        
+        $productList = ProductModel::limit(1)->orderby('order','desc')->get();
+        
         if($request->isMethod('post')){
 
             $productList = ProductModel::limit(1)->orderby('order','desc')->get();
@@ -47,7 +49,7 @@ class ProductController extends Controller
             $product->is_enable = 1;
             $product->Id = $uuid;
             $product->uuid = $uuid;
-            $product->order = 1;
+            $product->order = $productList[0]->order+1;
             $product->save();
             
             foreach ($request->productlangs as $langKey => $langValue) {
@@ -72,7 +74,7 @@ class ProductController extends Controller
                 $lang->img_4 = $img[4];
                 $lang->content_1 = $langValue['content_1'];
                 $lang->content_2 = $langValue['content_2'];
-                $lang->content_3 = $langValue['content_3'];
+                $lang->content_3 = html_entity_decode($langValue['content_3']);
                 $lang->content_4 = $langValue['content_4'];
                 $lang->save();
             }
@@ -125,7 +127,7 @@ class ProductController extends Controller
                         'img_4' => $img[4],                        
                         'content_1'=> $contentValue['content_1'],
                         'content_2'=> $contentValue['content_2'],
-                        'content_3'=> $contentValue['content_3'],
+                        'content_3'=> html_entity_decode($contentValue['content_3']),
                         'content_4'=> $contentValue['content_4']
                     ));
                 }
@@ -152,9 +154,16 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      */
-    public function order_save()
+    public function order_save(Request $request)
     {
-
+        if($order = $request->order){
+            foreach ($order as $orderKey => $orderValue) {
+                $content = ProductModel::find($orderValue['pId']);
+                $content->order = $orderValue['order'];
+                $content->save();
+            }
+        }
+        return redirect('backend/product/index');
     }
 
     /**
@@ -163,9 +172,12 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($productid)
     {
-        //
+        $productid = ProductModel::find($productid);
+        $productid->is_enable = 0;
+        $productid->save();
+        return redirect('backend/product');   
     }
 
     /**

@@ -25,8 +25,8 @@
         <div class="pic_text">
             <div class="pic"><img src="{{ $contentList[1]->lang[0]->img }}" alt="Bikonnect Introduction"></div>
             <div class="text">
-                <h2 class="block_subtitle">{{ $contentList[0]->lang[0]->title }}</h2>
-                <p>{{ $contentList[0]->lang[0]->content }}</p>
+                <h2 class="block_subtitle">{{ $contentList[1]->lang[0]->title }}</h2>
+                <p>{{ $contentList[1]->lang[0]->content }}</p>
             </div>
         </div>
         </div>
@@ -44,7 +44,7 @@
                 <div class="slide" data-years="{{ $historyValue->lang[0]->year }}">
                     <h3>{{ $historyValue->lang[0]->title }}</h3>
                     <ul>
-                        {!! $historyValue->lang[0]->content !!}
+                        {!!  html_entity_decode($historyValue->lang[0]->content) !!}
                     </ul>
                 </div>
                 @endforeach

@@ -188,7 +188,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">內文_3</label>
-                                                    <div class="col-sm-9">
+                                                    <div class="col-lg-9">
                                                         <div class="content-edit">{{ $langdata[$langValue->langId]->content_3 }}</div>
                                                         <input type="hidden" id="content" name="productlangs[{{ $langValue->langId }}][content_3]">
                                                     </div>
@@ -221,7 +221,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="col-lg-2 control-label">內文_4</label>
+                                                    <label class="col-lg-2 control-label">Key Features</label>
                                                     <div class="col-lg-5">
                                                         <textarea class="form-control" name="productlangs[{{ $langValue->langId }}][content_4]" placeholder="內文" rows="8" data-bv-notempty="true" data-bv-notempty-message="請輸入內文">{{ $langdata[$langValue->langId]->content_4 }}</textarea>
                                                     </div>

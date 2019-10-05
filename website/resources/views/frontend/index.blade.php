@@ -29,13 +29,13 @@
             <p>{{ trans('lang.moreintcontent') }}</p>
         </div>
         <div class="experience_items">
-            <div class="item"><a href="product05.html"><img class="thumb" src="{{ URL::asset('frontend/images/img_index_experience01.png') }}" alt="E-Bike computer">
+            <div class="item"><a href="{{ route('main.product',['28cff062-ed94-44d0-b6b6-7692a47495f5',app()->getLocale()]) }}"><img class="thumb" src="{{ URL::asset('frontend/images/img_index_experience01.png') }}" alt="E-Bike computer">
                 <h3>E-Bike computer</h3></a></div>
-            <div class="item"><a href="product02.html"><img class="thumb" src="{{ URL::asset('frontend/images/img_index_experience02.png') }}" alt="E-Bike APP">
+            <div class="item"><a href="{{ route('main.product',['dcebd914-a2fc-42c6-867e-17ec4138c4c9',app()->getLocale()]) }}"><img class="thumb" src="{{ URL::asset('frontend/images/img_index_experience02.png') }}" alt="E-Bike APP">
                 <h3>E-Bike APP</h3></a></div>
-            <div class="item"><a href="product04.html"><img class="thumb" src="{{ URL::asset('frontend/images/img_index_experience03.png') }}" alt="Dealer management system">
+            <div class="item"><a href="{{ route('main.product',['cc31abdf-3f9b-49b9-8dff-8c9563edd36c',app()->getLocale()]) }}"><img class="thumb" src="{{ URL::asset('frontend/images/img_index_experience03.png') }}" alt="Dealer management system">
                 <h3>Dealer management system</h3></a></div>
-            <div class="item"><a href="product01.html"><img class="thumb" src="{{ URL::asset('frontend/images/img_index_experience04.png') }}" alt="Cycling Data Platform">
+            <div class="item"><a href="{{ route('main.product',['05716e4e-2c50-4f3a-8309-96306d7a5fb1',app()->getLocale()]) }}"><img class="thumb" src="{{ URL::asset('frontend/images/img_index_experience04.png') }}" alt="Cycling Data Platform">
                 <h3>Cycling Data Platform</h3></a></div>
         </div>
         </div>

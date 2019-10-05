@@ -15,7 +15,7 @@
                 <iframe width="560" height="315" src="{{ $videoList[0]->lang[0]->youtube }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="text">
-                {{$videoList[0]->lang[0]->content}}
+                {!! nl2br($videoList[0]->lang[0]->content) !!}
             </div>
         </div>
     </div>

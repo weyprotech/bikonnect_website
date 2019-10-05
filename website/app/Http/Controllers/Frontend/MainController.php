@@ -13,6 +13,8 @@ use App\SolutionVideoModel;
 use App\SolutionContentModel;
 use App\SolutionAspectModel;
 use App\ProductModel;
+use App\Mail\contactEmail;
+use Illuminate\Support\Facades\Mail;
 
 class MainController extends Controller 
 {
@@ -23,7 +25,7 @@ class MainController extends Controller
         }])->get();
         
         //產品列表
-        $productList = ProductModel::where('is_enable',1)->with(['lang' => function($query){
+        $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
             $query->where('langId','=',$this->langList[0]->langId);
         }])->get();
 
@@ -58,7 +60,7 @@ class MainController extends Controller
         }])->get();
 
         //產品列表
-        $productList = ProductModel::where('is_enable',1)->with(['lang' => function($query){
+        $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
             $query->where('langId','=',$this->langList[0]->langId);
         }])->get();
 
@@ -85,13 +87,13 @@ class MainController extends Controller
         }])->get();
 
         //特點列表
-        $aspectList = SolutionAspectModel::where('is_enable',1)->with(['lang' => function($query){
+        $aspectList = SolutionAspectModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
             $query->where('langId','=',$this->langList[0]->langId);
         }])->get();
         // print_r($aspectList->toArray());exit;
 
         //產品列表
-        $productList = ProductModel::where('is_enable',1)->with(['lang' => function($query){
+        $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
             $query->where('langId','=',$this->langList[0]->langId);
         }])->get();
 
@@ -106,7 +108,7 @@ class MainController extends Controller
 
     public function product($productId,$locale){
         //產品列表
-        $productList = ProductModel::where('is_enable',1)->with(['lang' => function($query){
+        $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
             $query->where('langId','=',$this->langList[0]->langId);
         }])->get();
 
@@ -123,5 +125,17 @@ class MainController extends Controller
     public function privacy() 
     {
         return view('frontend.privacy');
+    }
+
+    public function send_email(Request $request){
+        $data = array(
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'content' => $request->content
+        );
+        
+        Mail::to('smart_ebike@program.com.tw')->send(new contactEmail($data));
+        return redirect('main.index');
     }
 }

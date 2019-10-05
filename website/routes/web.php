@@ -16,6 +16,7 @@ Route::get('/solution/{locale?}', array('as' => 'main.solution', 'uses' => 'Fron
 Route::get('/about/{locale?}', array('as' => 'main.about', 'uses' => 'Frontend\MainController@about'));
 Route::get('/product/{productid}/{locale?}', array('as' => 'main.product', 'uses' => 'Frontend\MainController@product'));
 Route::get('/privacy/{locale?}', array('as' => 'main.privacy', 'uses' => 'Frontend\MainController@privacy'));
+Route::post('/send_email',array('as' => 'main.send_email','uses' => 'Frontend\MainController@send_email'));
 
 
 // Route::get('/', array('as' => 'main.index', 'uses' => 'Frontend\MainController@index'));

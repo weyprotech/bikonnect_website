@@ -18,7 +18,8 @@
         </div>
         <div class="contact_form">
             <!--↓ 輸入有誤時 controls 的 class 加 'error' 即可顯示 error_text, 並在 error_text 顯示錯誤訊息 ↓-->
-            <form id="contact-form" action="" method="post">
+            <form id="contact-form" action="{{ route('main.send_email') }}" method="post">
+                @csrf
                 <div class="controls_group">
                     <label>{{ trans('lang.name') }}</label>
                     <div class="controls">
@@ -43,7 +44,7 @@
                 <div class="controls_group">
                     <label>{{ trans('lang.message') }}</label>
                     <div class="controls">
-                        <textarea id="message" name="message"></textarea>
+                        <textarea id="content" name="content"></textarea>
                         <!--<div class="error_text">Error!</div>-->
                     </div>
                 </div>

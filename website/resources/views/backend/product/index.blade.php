@@ -50,7 +50,7 @@
                         <!-- widget content -->
                         <div class="widget-body">
                             
-                            <form id="form" method="post" action="{{ route('about.content.order_save') }}">
+                            <form id="form" method="post" action="{{ route('product.order_save') }}">
                                 @csrf                            
                                 <div class="widget-body-toolbar">
 
@@ -92,10 +92,11 @@
                                                     <td>
                                                         <label class="input">
                                                             <input type="textbox" class="text-center form-control" name="order[{{ $contentValue->Id }}][order]" value="{{ $contentValue->order }}">
-                                                            <input type="hidden" name="order[{{ $contentValue->Id }}][cId]" value="<?= $contentValue->Id ?>">
+                                                            <input type="hidden" name="order[{{ $contentValue->Id }}][pId]" value="<?= $contentValue->Id ?>">
                                                         </label>
                                                     </td>
                                                     <td class="text-center"><a href="{{ route('product.edit', $contentValue->Id) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>
+                                                    <!-- <td class="text-center"><a href="{{ route('product.delete',$contentValue->Id) }}" class="btn btn-danger btn-xs del" onclick="return confirm('確定要刪除?');"><i class="fa fa-trash-o"></i></a></td>                                                     -->
                                                 </tr>
                                             @endforeach
                                         </tbody>
