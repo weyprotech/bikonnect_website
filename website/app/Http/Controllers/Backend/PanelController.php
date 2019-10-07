@@ -30,7 +30,7 @@ class PanelController extends Controller
         if($request->input('username') == 'weypro' && $request->input('password') == 'weypro12ab'){
             Session::put('backend.account', 'weypro');
             Session::put('backend.password', 'weypro12ab');   
-            return redirect('backend');
+            return redirect('backend/index');
         }else{
             $admin = AdminModel::where('account',$request->input('username'))->get();
             if($admin->isEmpty()){
@@ -39,7 +39,7 @@ class PanelController extends Controller
                 if(Hash::check($request->input('password'),$admin[0]->password)){
                     Session::put('backend.account',$request->input('username'));
                     Session::put('backend.password',$request->input('password'));   
-                    return redirect('backend');
+                    return redirect('backend/index');
                 }else{
                     return redirect('backend/login');                    
                 }

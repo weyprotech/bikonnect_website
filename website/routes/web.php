@@ -28,7 +28,7 @@ Route::post('/send_email',array('as' => 'main.send_email','uses' => 'Frontend\Ma
 
 
 Route::group(['prefix' => 'backend'], function(){
-    Route::get('/', array('as' => 'panel.index', 'uses' => 'Backend\PanelController@index'));
+    Route::get('/index', array('as' => 'panel.index', 'uses' => 'Backend\PanelController@index'));
     Route::get('/login', array('as' => 'panel.login', 'uses' => 'Backend\PanelController@login'));
     Route::post('/login', array('as' => 'panel.loginprocess', 'uses' => 'Backend\PanelController@loginprocess'));
 
