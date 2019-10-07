@@ -1,18 +1,5 @@
 @extends('backend.shared._layout')
-<style>
-    div#preview {
-        width: 100%;
-        height: 30px;
-        overflow: hidden;
-        position: relative;
-    }
 
-    div#preview img {
-        width: 100%;
-        padding: 3px;
-        background-color: white;
-    }
-</style>
 @section('title', 'Bikonnect')
 
 @section('content')
@@ -83,7 +70,7 @@
                                         <tbody>
                                             @foreach($partnerList as $contentKey => $contentValue)
                                                 <tr>
-                                                    <td><div id="preview">{!! (!empty($contentValue->img) ? '<img src="'.$contentValue->img.'">' : '') !!}</div></td>
+                                                    <td class="text-center">{!! (!empty($contentValue->img) ? '<img src="'.$contentValue->img.'" width="150px">' : '') !!}</td>
                                                     <td>{{ $contentValue->lang[0]->title }}</td>
                                                     <td>
                                                         <label class="input">

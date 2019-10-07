@@ -1,19 +1,5 @@
 @extends('backend.shared._layout')
-<style>
-    div#preview {
-        width: 100%;
-        height: 30px;
-        overflow: hidden;
-        position: relative;
-    }
 
-    div#preview img {
-        width: 100%;
-        padding: 3px;
-        margin: -50% 0;
-        background-color: white;
-    }
-</style>
 @section('title', 'Bikonnect')
 
 @section('content')
@@ -84,10 +70,9 @@
                                         <tbody>
                                             @foreach($productList as $contentKey => $contentValue)                                            
                                                 <tr>
-                                                    <td><div id="preview">{!! (!empty($contentValue->lang[0]->img_1) ? '<img src="'.$contentValue->lang[0]->img_1.'">' : '') !!}</div></td>
-                                                    <td><div id="preview">{!! (!empty($contentValue->lang[0]->img_2) ? '<img src="'.$contentValue->lang[0]->img_2.'">' : '') !!}</div></td>
-                                                    <td><div id="preview">{!! (!empty($contentValue->lang[0]->img_3) ? '<img src="'.$contentValue->lang[0]->img_3.'">' : '') !!}</div></td>
-                                                    
+                                                    <td class="text-center">{!! (!empty($contentValue->lang[0]->img_1) ? '<img src="'.$contentValue->lang[0]->img_1.'" width="150px">' : '') !!}</td>
+                                                    <td class="text-center">{!! (!empty($contentValue->lang[0]->img_2) ? '<img src="'.$contentValue->lang[0]->img_2.'" width="150px">' : '') !!}</td>
+                                                    <td class="text-center">{!! (!empty($contentValue->lang[0]->img_3) ? '<img src="'.$contentValue->lang[0]->img_3.'" width="150px">' : '') !!}</td>               
                                                     <td>{{$contentValue->lang[0]->title}}</td>
                                                     <td>
                                                         <label class="input">

@@ -1,19 +1,5 @@
 @extends('backend.shared._layout')
-<style>
-    div#preview {
-        width: 100%;
-        height: 30px;
-        overflow: hidden;
-        position: relative;
-    }
 
-    div#preview img {
-        width: 100%;
-        padding: 3px;
-        margin: -50% 0;
-        background-color: white;
-    }
-</style>
 @section('title', 'Bikonnect')
 
 @section('content')
@@ -85,7 +71,7 @@
                                         <tbody>
                                             @foreach($teamList as $teamKey => $teamValue)                                            
                                                 <tr>
-                                                    <td><div id="preview">{!! (!empty($teamValue->img) ? '<img src="'.$teamValue->img.'">' : '') !!}</div></td>
+                                                    <td>{!! (!empty($teamValue->img) ? '<img src="'.$teamValue->img.'" width="150px">' : '') !!}</td>
                                                     <td class="text-center">{{ $teamValue['lang'][0]['title'] }}</td>
                                                     <td>{{ $teamValue['lang'][0]['name'] }}</td>
                                                     <td>

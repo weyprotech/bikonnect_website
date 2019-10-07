@@ -103,7 +103,8 @@
                 height: 500,
                 lang: 'zh-TW',
                 toolbar: [
-                    ['misc', ['codeview']]
+                    ['misc', ['codeview']],
+                    ['para', ['ul']]
                     //['font', ['fontname', 'fontsize', 'color', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subsript', 'clear']],
                     //['para', ['style', 'ol', 'ul', 'paragraph', 'height']],
                     // ['insert', ['picture']],
