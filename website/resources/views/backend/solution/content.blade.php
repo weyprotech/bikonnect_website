@@ -60,7 +60,7 @@
                                     <table id="dt_basic" class="table table-striped table-bordered table-hover">
                                         <thead>			                
                                             <tr>
-                                                <th class="text-center" width="40%">圖片</th>                                                
+                                                <th class="text-center" width="15%">圖片</th>                                                
                                                 <th>標題</th>
                                                 <th class="text-center" width="6%">排序</th>
                                                 <th width="5%" class="text-center">編輯</th>

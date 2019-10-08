@@ -189,7 +189,7 @@
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">內文_3</label>
                                                     <div class="col-lg-9">
-                                                        <div class="content-edit">{{ $langdata[$langValue->langId]->content_3 }}</div>
+                                                        <div class="content-edit">{!! $langdata[$langValue->langId]->content_3 !!}</div>
                                                         <input type="hidden" id="content" name="productlangs[{{ $langValue->langId }}][content_3]">
                                                     </div>
                                                     <!-- <div class="col-lg-5">

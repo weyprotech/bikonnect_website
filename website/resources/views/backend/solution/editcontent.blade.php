@@ -91,7 +91,7 @@
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">內文</label>
                                                     <div class="col-sm-9">
-                                                        <div class="content-edit">{{ $langdata[$langValue->langId]->content }}</div>
+                                                        <div class="content-edit">{!! $langdata[$langValue->langId]->content !!}</div>
                                                         <input type="hidden" id="content" name="contentlangs[{{ $langValue->langId }}][content]">
                                                     </div>
                                                     <!-- <div class="col-lg-5">

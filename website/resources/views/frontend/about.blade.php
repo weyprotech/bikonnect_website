@@ -43,9 +43,7 @@
                 @foreach($historyList as $historyKey => $historyValue)
                 <div class="slide" data-years="{{ $historyValue->lang[0]->year }}">
                     <h3>{{ $historyValue->lang[0]->title }}</h3>
-                    <ul>
-                        {!!  html_entity_decode($historyValue->lang[0]->content) !!}
-                    </ul>
+                    {!! html_entity_decode($historyValue->lang[0]->content) !!}
                 </div>
                 @endforeach
             </div>

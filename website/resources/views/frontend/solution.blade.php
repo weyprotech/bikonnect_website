@@ -32,9 +32,7 @@
         <div class="pic_text">
             <div class="pic"><img src="{{ $contentValue->lang[0]->img }}" alt="{{ $contentValue->lang[0]->title }}"></div>
             <div class="text">
-                <ul class="common_list">
-                    {!!  html_entity_decode($contentValue->lang[0]->content) !!}
-                </ul>
+            {!!  html_entity_decode($contentValue->lang[0]->content) !!}
             </div>
         </div>
         </div>

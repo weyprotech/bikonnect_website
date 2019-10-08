@@ -33,9 +33,7 @@
         <div class="block_inner">
         <div class="block_content">
             <h2 class="block_subtitle">{{ $product->lang[0]->title_3 }}</h2>
-            <ul class="key_list">
-                {!!  html_entity_decode($product->lang[0]->content_3) !!}
-            </ul>
+            {!!  html_entity_decode($product->lang[0]->content_3) !!}
         </div>
         <div class="block_img"><img src="{{ $product->lang[0]->img_3 }}" alt=""></div>
         </div>

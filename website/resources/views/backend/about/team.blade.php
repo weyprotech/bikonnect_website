@@ -60,7 +60,7 @@
                                     <table id="dt_basic" class="table table-striped table-bordered table-hover">
                                         <thead>			                
                                             <tr>
-                                                <th class="text-center" width="40%">圖片</th>
+                                                <th class="text-center" width="15%">圖片</th>
                                                 <th class="text-center" width="8%">職稱</th>
                                                 <th>姓名</th>
                                                 <th class="text-center" width="6%">排序</th>                                                
@@ -71,7 +71,7 @@
                                         <tbody>
                                             @foreach($teamList as $teamKey => $teamValue)                                            
                                                 <tr>
-                                                    <td>{!! (!empty($teamValue->img) ? '<img src="'.$teamValue->img.'" width="150px">' : '') !!}</td>
+                                                    <td class="text-center">{!! (!empty($teamValue->img) ? '<img src="'.$teamValue->img.'" width="150px">' : '') !!}</td>
                                                     <td class="text-center">{{ $teamValue['lang'][0]['title'] }}</td>
                                                     <td>{{ $teamValue['lang'][0]['name'] }}</td>
                                                     <td>
