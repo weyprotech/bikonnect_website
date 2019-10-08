@@ -2,9 +2,8 @@
 <html lang="en-us" id="extr-page">
 	<head>
 		<meta charset="utf-8">
-		<title>Bikonnect後台登入</title>
-		<meta name="description" content="">
-		<meta name="author" content="">
+		<title>Bikonnect 後台登入</title>
+		<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		
 		@include('backend.shared._header')
@@ -46,12 +45,18 @@
 									登入後台
 								</header>
 
+								@if($errors->any())
+								<p class="alert alert-danger">
+								{{$errors->first()}}
+								</p>
+								@endif
+
 								<fieldset>
 									@csrf
 									<section>
 										<label class="label">帳號</label>
 										<label class="input"> <i class="icon-append fa fa-user"></i>
-											<input name="username">
+											<input id="username" name="username">
                                             <b class="tooltip tooltip-top-right"><i class="fa fa-user txt-color-teal"></i> 請輸入帳號</b>
                                         </label>
 									</section>
@@ -59,7 +64,7 @@
 									<section>
 										<label class="label">密碼</label>
 										<label class="input"> <i class="icon-append fa fa-lock"></i>
-											<input type="password" name="password">
+											<input type="password" id="password" name="password">
                                             <b class="tooltip tooltip-top-right"><i class="fa fa-lock txt-color-teal"></i> 請輸入密碼</b> 
                                         </label>
 									</section>
@@ -80,6 +85,32 @@
 		<!--================================================== -->	
 
 	    @include('backend.shared._script')
+
+		<script>
+			$(function(){
+				$("#login-form").validate({
+					rules:{
+						username : {
+							required : true
+						},
+						password : {
+							required : true
+						}
+					},
+					messages : {
+						username : {
+							required : '請輸入帳號'
+						},
+						password : {
+							required : '請輸入密碼'
+						}
+					},
+					errorPlacement : function(error, element) {
+						error.insertAfter(element.parent());
+					}
+				});
+			});
+		</script>
 
 	</body>
 </html>

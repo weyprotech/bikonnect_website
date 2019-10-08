@@ -3,9 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>@yield('title')</title>
-		<meta name="description" content="">
-		<meta name="author" content="">
-			
+		<META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">			
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		
 		@include('backend.shared._header')

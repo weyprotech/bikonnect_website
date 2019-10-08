@@ -32,16 +32,16 @@ class PanelController extends Controller
             Session::put('backend.password', 'weypro12ab');   
             return redirect('backend/index');
         }else{
-            $admin = AdminModel::where('account',$request->input('username'))->get();
+            $admin = AdminModel::where('account', $request->input('username'))->get();
             if($admin->isEmpty()){
-                return redirect('backend/login');
+                return back()->withErrors(['查無此帳號']);
             }else{
                 if(Hash::check($request->input('password'),$admin[0]->password)){
                     Session::put('backend.account',$request->input('username'));
                     Session::put('backend.password',$request->input('password'));   
                     return redirect('backend/index');
-                }else{
-                    return redirect('backend/login');                    
+                }else{   
+                    return back()->withErrors(['密碼錯誤']);               
                 }
             }
         }
