@@ -211,6 +211,16 @@ $(document).ready(function () {
       $('#timeline_years').find('span').text(years);
     });
   }
+  if ($('.blog_slider').length > 0) {
+    $('.blog_slider').slick({
+      infinite: true,
+      arrows: false,
+      dots: true,
+      speed: 800,
+      autoplay: true,
+      autoplaySpeed: 8000
+    })
+  }
 
   // Fit Vidos - jquery.fitvids.js
   $('#wrapper').fitVids();

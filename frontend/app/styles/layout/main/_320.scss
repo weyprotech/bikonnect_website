@@ -1579,3 +1579,115 @@
     }
   }
 }
+
+// Blog
+.blog_slider {
+  margin-bottom: 0 !important;
+  .slide {
+    a {
+      position: relative;
+      display: block;
+      height: 300px;
+      padding: 2em 1em;
+      box-sizing: border-box;
+      color: $white;
+      &:before {
+        content: '';
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-image: url(../images/mask_blog_slide_hover.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    }
+    .pic {
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .slide_content {
+      position: relative;
+      z-index: 2;
+      max-width: 1110px;
+      margin: 0 auto;
+      .date_sort {
+        font-size: 0;
+        > * {
+          display: inline-block;
+          font-size: 1rem;
+          vertical-align: middle;
+        }
+        .date {
+          font-family: 'Ubuntu',$sans-serif;
+          font-weight: 500;
+        }
+        .line {
+          width: 1px;
+          height: 16px;
+          margin: 0 1.5rem;
+          background-color: $white;
+        }
+        .sort {
+          font-family: 'Ubuntu',
+          $sans-serif;
+        }
+      }
+      h3 {
+        margin: 0.5em 0;
+        max-height: 1.5em * 2;
+        font-family: 'Ubuntu',$sans-serif;
+        font-size: 1.5em;
+        font-weight: 500;
+        line-height: 1.5;
+        overflow: hidden;
+        @extend .transition;
+      }
+      p {
+        max-height: 1.6em * 3;
+        overflow: hidden;
+        @extend .transition;
+      }
+    }
+  }
+  .slick-dots {
+    pointer-events: none;;
+    width: 100%;
+    bottom: 0.8rem;
+    font-size: 0;
+    li {
+      pointer-events: visible;
+      width: auto;
+      height: auto;
+      button {
+        width: 14px;
+        height: 14px;
+        padding: 0;
+        border-radius: 7px;
+        background-color: $white;
+        box-shadow: 0 0 3px rgba($black, 0.35);
+        pointer-events: visible;
+        &:before {
+          display: none;
+        }
+      }
+      &.slick-active {
+        button {
+          width: 38px;
+          background-color: $blue;
+        }
+      }
+    }
+  }
+}
