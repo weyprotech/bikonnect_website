@@ -14,7 +14,7 @@
                 <div class="pic"><img src="{{ $contentList[0]->lang[0]->img }}" alt="About Introduction"></div>
                 <div class="text">
                 <h2 class="block_subtitle">{{ $contentList[0]->lang[0]->title }}</h2>
-                <p>{{ $contentList[0]->lang[0]->content }}</p>
+                <p>{!! nl2br(e($contentList[0]->lang[0]->content)) !!}</p>
                 </div>
             </div>
         </div>
@@ -26,7 +26,7 @@
             <div class="pic"><img src="{{ $contentList[1]->lang[0]->img }}" alt="Bikonnect Introduction"></div>
             <div class="text">
                 <h2 class="block_subtitle">{{ $contentList[1]->lang[0]->title }}</h2>
-                <p>{{ $contentList[1]->lang[0]->content }}</p>
+                <p>{!! nl2br(e($contentList[1]->lang[0]->content)) !!}</p>
             </div>
         </div>
         </div>
@@ -61,7 +61,7 @@
                             <h3>{{ $teamValue->lang[0]->name }}</h3>
                             <h4>{{ $teamValue->lang[0]->title }}</h4>
                             <hr>
-                            <p>{{$teamValue->lang[0]->content}}</p>
+                            <p>{!! nl2br(e($teamValue->lang[0]->content)) !!}</p>
                         </div>
                     </div>
                     <div class="name_jobTitle">

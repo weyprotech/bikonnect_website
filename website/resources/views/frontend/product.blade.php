@@ -9,7 +9,7 @@
         <div class="block_content">
             <h1 class="block_title">{{ $product->lang[0]->title_1 }}</h1>
             <div class="text">
-                <p>{{ $product->lang[0]->content_1 }}</p>
+                <p>{!! nl2br(e($product->lang[0]->content_1)) !!}</p>
             </div>
         </div>
         <div class="block_img"><img src="{{ $product->lang[0]->img_1 }}" alt=""></div>
@@ -19,9 +19,9 @@
         <div class="wave top"><img src="{{ URL::asset('frontend/images/product_char_wave_top.png') }}" alt=""></div>
         <div class="block_inner proportion">
         <div class="block_content">
-            <h2 class="block_subtitle">{!! nl2br($product->lang[0]->title_2) !!}</h2>
+            <h2 class="block_subtitle">{!! nl2br(e($product->lang[0]->title_2)) !!}</h2>
             <div class="text">
-            <p>{{ $product->lang[0]->content_2 }}</p>
+            <p>{!! nl2br(e($product->lang[0]->content_2)) !!}</p>
             </div>
         </div>
         <div class="block_img"><img src="{{ $product->lang[0]->img_2 }}" alt=""></div>

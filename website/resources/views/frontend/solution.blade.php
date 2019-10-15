@@ -15,7 +15,7 @@
                 <iframe width="560" height="315" src="{{ $videoList[0]->lang[0]->youtube }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="text">
-                {!! nl2br($videoList[0]->lang[0]->content) !!}
+                {!! nl2br(e($videoList[0]->lang[0]->content)) !!}
             </div>
         </div>
     </div>
@@ -60,7 +60,7 @@
         <div class="content_block cyclists">
             <h2 class="block_subtitle">{{ trans('lang.cyclists') }}</h2>
             <div class="table">
-                @for($i=0;$i<=1;$i++)
+                @for($i=0; $i<=1; $i++)
                 <div class="tr">
                     <div class="th">{{ $aspectList[$i]->lang[0]->title }}</div>
                     <div class="td">{{ $aspectList[$i]->lang[0]->content }}</div>
