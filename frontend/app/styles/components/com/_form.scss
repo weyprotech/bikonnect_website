@@ -111,7 +111,7 @@ button {
   select {
     width: 100%;
     background-image: url(../images/arrow_select.png);
-    background-position: right center;
+    background-position: calc(100% - 14px) center;
     background-repeat: no-repeat;
     appearance: none;
     &::-ms-expand {
@@ -280,6 +280,101 @@ button {
     @include breakpoint(1024px) {
       padding-left: 84px;
       box-sizing: border-box;
+    }
+  }
+}
+
+// Blog Search Form
+.blog_search_form {
+  .search_controls {
+    position: relative;
+    input[type="text"],
+    input[type="search"] {
+      padding-right: 35px;
+    }
+    button {
+      position: absolute;
+      top: 50%;
+      right: 0.3rem;
+      display: block;
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      background-color: transparent;
+      font-size: 0;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+// Message Form
+.message_form {
+  border: 1px solid #BDBDBD;
+  box-sizing: border-box;
+  background-color: $gray-lightest;
+  a.form_toggle {
+    position: relative;
+    display: block;
+    padding: 0.8em 1.25em;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 1.125em;
+      display: block;
+      @include retina-sprite($arrow-down-group);
+      transform: translateY(-50%);
+      @extend .transition;
+    }
+    &.active {
+      &:after {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+    .icon_message {
+      display: inline-block;
+      margin-right: 0.8em;
+      vertical-align: middle;
+    }
+    h2 {
+      margin: 0;
+      display: inline-block;
+      color: $main;
+      font-family: 'Ubuntu',$sans-serif;
+      font-size: 1.125em;
+      font-weight: 400;
+      vertical-align: middle;
+    }
+  }
+  .form_main {
+    display: none;
+    margin-top: 1em;
+    padding: 0 1.25em 1.875em;
+    box-sizing: border-box;
+    .controls_wrapper {
+      max-width: 630px;
+      margin: 0 auto;
+    }
+    .call_action {
+      text-align: right;
+    }
+    @include breakpoint(768px) {
+      .controls_group {
+        margin-bottom: 1.5em;
+        > label {
+          width: 84px;
+          float: left;
+          padding-right: 1rem;
+          margin-bottom: 0;
+          box-sizing: border-box;
+          background-color: transparent;
+          line-height: 38px;
+        }
+        .controls {
+          width: calc(100% - 84px);
+          float: left;
+        }
+      }
     }
   }
 }

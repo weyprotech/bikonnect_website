@@ -29,3 +29,19 @@
 .icon_fax {
   @include retina-sprite($icon-fax-group);
 }
+
+.icon_search {
+  @include retina-sprite($icon-search-group);
+}
+
+.icon_share_facebook {
+  @include retina-sprite($icon-share-facebook-group);
+}
+
+.icon_share_line {
+  @include retina-sprite($icon-share-line-group);
+}
+
+.icon_message {
+  @include retina-sprite($icon-message-group);
+}

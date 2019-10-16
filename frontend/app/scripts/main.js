@@ -225,14 +225,17 @@ $(document).ready(function () {
   // Fit Vidos - jquery.fitvids.js
   $('#wrapper').fitVids();
 
-  // Popup Close
-  // $(document).on(clickHandler, '.popup-modal-dismiss', function (event) {
-  //     event.preventDefault();
-  //     $.magnificPopup.close();
-  // });
-
-  // Tab - jquery.tabber.js
-  // $('.tabber_wrapper').tabber();
+  // Message Form
+  if ($('.message_form').length > 0) {
+    $('.message_form').on(clickHandler, '.form_toggle', function() {
+      $(this).toggleClass('active').next('.form_main').stop().slideToggle();
+    });
+  }
+  if ($('.message_responses').length > 0) {
+    $('.message_responses').on(clickHandler, '.responses_toggle', function () {
+      $(this).hide().next('.responses_items').stop().slideDown();
+    });
+  }
 
   // Back to top
   if ($('#backTop').length > 0) {

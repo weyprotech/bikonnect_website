@@ -1,4 +1,22 @@
 @include susy-breakpoint(768px, 12) {
+  // Pager
+  .pager_navigation {
+    a {
+      min-width: 52px;
+      font-size: 1.5rem;
+      text-align: center;
+      line-height: 60px;
+      &.arrow {
+        &.prev {
+          margin-right: 4rem;
+        }
+        &.next {
+          margin-left: 4rem;
+        }
+      }
+    }
+  }
+
   // Page_block
   .page_block {
     padding: 3em 1em;
@@ -10,6 +28,7 @@
     font-size: 1.5em;
   }
 
+  // Common Setting
   .common_list {
     padding-left: 1.875em;
     li {
@@ -192,6 +211,30 @@
     #timeline_slider {
       h3 {
         font-size: 1.5em;
+      }
+    }
+  }
+
+  // Blog
+  .blog_list_wrapper {
+    .blog_search_form {
+      margin-bottom: 3em;
+    }
+    .blog_list {
+      .item {
+        margin-bottom: 2.625em;
+      }
+    }
+  }
+  .blog_message {
+    .message_responses {
+      .responses_items {
+        .item {
+          padding: 1.5em 2.5em;
+        }
+        .reply {
+          padding: 1.125em 2.125em 0;
+        }
       }
     }
   }

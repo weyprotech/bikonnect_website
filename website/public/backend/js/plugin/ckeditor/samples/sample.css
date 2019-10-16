@@ -142,7 +142,7 @@ form
 
 pre.samples
 {
-	background-color: #F7F7F7;
+	background-color: $gray-lightest;
 	border: 1px solid #D7D7D7;
 	overflow: auto;
 	padding: 0.25em;
