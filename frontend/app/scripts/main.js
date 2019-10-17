@@ -225,6 +225,20 @@ $(document).ready(function () {
   // Fit Vidos - jquery.fitvids.js
   $('#wrapper').fitVids();
 
+  // Share Links
+  if ($('.share_links').length > 0) {
+    var locationUrl = window.location.href,
+        locationTitle = document.title;
+
+    $('.share_links').find('a').each(function() {
+      if($(this).hasClass('facebook')) {
+        $(this).attr('href', 'https://www.facebook.com/sharer.php?u=' + locationUrl);
+      } else if ($(this).hasClass('line')) {
+        $(this).attr('href', 'https://lineit.line.me/share/ui?url=' + locationUrl + '&text=' + locationTitle);
+      }
+    })
+  }
+
   // Message Form
   if ($('.message_form').length > 0) {
     $('.message_form').on(clickHandler, '.form_toggle', function() {
@@ -245,15 +259,7 @@ $(document).ready(function () {
         scrollTop: 0
       }, 500, 'swing');
     });
-    $(window).on('scroll', function () {
-      if ($(window).scrollTop() > 100) {
-        $('#backTop').stop().fadeIn(400, function () {
-          $(this).css('display', 'block');
-        });
-      } else {
-        $('#backTop').stop().fadeOut(400);
-      }
-    });
+    
   }
 
   // Block Link
@@ -281,15 +287,15 @@ $(document).ready(function () {
 // Resize
 $(window).on('resize', function () {
   if (windowWidth != $(window).width()) {
-    $('#header').unstick();
+    windowWidth = $(window).width();
+
+    $('#pageButton').trigger('sticky_kit:detach');
     sticky();
 
     if ($('.captcha').length > 0) {
       $('.captcha').css({ 'width': '', 'height': '' });
       scaleCaptcha();
     }
-
-    windowWidth = $(window).width();
   }
 });
 
@@ -322,10 +328,17 @@ $(window).on('hashchange', function () {
 });
 
 function sticky() {
-  $('#header').sticky({
-    topSpacing: 0,
-    zIndex: 99
+  $('#header').stick_in_parent({
+    offset_top: 0
   });
+  
+  if ($('#pageButton').length > 0 && windowWidth >= 1024) {
+    $('#pageButton').stick_in_parent({
+      offset_top: $(window).height() - 148,
+      spacer: false,
+      recalc_every: 1
+    });
+  }
 }
 
 //use width google reCaptcha

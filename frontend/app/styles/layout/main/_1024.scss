@@ -212,6 +212,19 @@
       }
     }
   }
+  #pageButton {
+    position: relative;
+    top: inherit;
+    right: inherit;
+    width: 52px;
+    a {
+      padding: 0.5em;
+      margin-bottom: 1.5em;
+      span {
+        font-size: 1em;
+      }
+    }
+  }
   .blog_container {
     padding: 3.75em 1em;
     .block_inner {

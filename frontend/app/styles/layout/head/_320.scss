@@ -7,9 +7,6 @@
   background-color: $white;
   box-shadow: 0 0 7px rgba($black, 0.1);
 	@extend .transition;
-	&.scroll {
-		box-shadow: 0 3px 10px rgba($black,0.3);
-	}
 	.header_inner {
     display: flex;
     align-items: center;

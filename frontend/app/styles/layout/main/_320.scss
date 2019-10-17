@@ -1815,6 +1815,36 @@
     }
   }
 }
+#pageButton {
+  position: fixed;
+  z-index: 98;
+  right: 0.5em;
+  bottom: 0.5em;
+  width: 40px;
+  a {
+    display: block;
+    padding: 0.3em;
+    margin-bottom: 0.5em;
+    background-origin: 5px;
+    box-sizing: border-box;
+    background-color: $blue-lighten;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    img {
+      display: block;
+      margin: 0 auto 0.15em;
+    }
+    span {
+      display: block;
+      color: $main;
+      font-family: 'Ubuntu',$sans-serif;
+      font-size: 0.75em;
+      text-align: center;
+      line-height: 1.2;
+    }
+  }
+}
 .blog_container {
   .block_inner {
     max-width: 1060px;
