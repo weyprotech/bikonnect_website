@@ -30,6 +30,7 @@ $susy: (
 //Slick Setting
 .slick-prev,
 .slick-next {
+  z-index: 2;
   &:before {
     display: none;
   }
