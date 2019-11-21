@@ -44,7 +44,6 @@
         <div class="block_img">
           <img class="size" src="{{ URL::asset('frontend/images/size_porduct_key.png') }}" alt="">
           <img class="pic" src="{{ $product->lang[0]->img_3 }}" alt="">
-          <img src="{{ $product->lang[0]->img_3 }}" alt="">
         </div>
         </div>
     </div>
