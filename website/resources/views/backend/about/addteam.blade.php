@@ -72,7 +72,7 @@
                                                         data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif"
                                                         data-bv-file-message="圖檔格式不符">
                                                     <p class="help-block">
-                                                        最佳解析度：280 x 376
+                                                        圖片大小：280 x 376
                                                     </p>
                                                 </div>
                                             </div>

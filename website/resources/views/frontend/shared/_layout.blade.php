@@ -2,9 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>@yield('title')</title>
-    <meta name="KeyWords" content="bikonnect">
-    <meta name="Description" content="Bikonnect Website">
+    <title>{{ $seoList[app()->getLocale()]['title'] }}</title>
+    <meta name="KeyWords" content="{{ $seoList[app()->getLocale()]['keyword'] }}">
+    <meta name="Description" content="{{ $seoList[app()->getLocale()]['description'] }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     @include('frontend.shared._css')

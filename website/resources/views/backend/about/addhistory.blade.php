@@ -66,7 +66,6 @@
                                                         >
                                                     </div>
                                                 </div>
-
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">標題</label>
                                                     <div class="col-lg-5">
@@ -80,14 +79,13 @@
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">內文</label>
                                                     <div class="col-sm-9">
-                                                        <div class="content-edit">{{ $langdata[$langValue->langId]->content }}</div>
+                                                        <div class="content-edit"></div>
                                                         <input type="hidden" id="content" name="history[{{ $langValue->langId }}][content]">
                                                     </div>
                                                     <!-- <div class="col-lg-5">
                                                         <textarea class="form-control" name="history[{{ $langValue->langId }}][content]" placeholder="內文" rows="8" data-bv-notempty="true" data-bv-notempty-message="請輸入內文"></textarea>
                                                     </div> -->
-                                                </div>  
-                                                
+                                                </div>                                                  
                                             </fieldset>
                                         </div>
                                     @endforeach
@@ -133,5 +131,29 @@
 @endsection
 
 @section('script')
-
+<script>
+document.addEventListener('DOMContentLoaded', function(){ 
+    $('div.content-edit').each(function (index, element) {
+        $(element).summernote({
+            height: 500,
+            lang: 'zh-TW',
+            toolbar: [
+                ['misc', ['codeview']],
+                ['para', ['ul']],
+                //['font', ['fontname', 'fontsize', 'color', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subsript', 'clear']],
+                //['para', ['style', 'ol', 'ul', 'paragraph', 'height']],
+                // ['insert', ['picture']]
+                //['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
+            ],
+            callbacks: {
+                onImageUpload: function (files) {
+                    for (var i = 0; i < files.length; i++) {
+                        sendFile(files[i], $(this));
+                    }
+                }
+            }
+        });
+    });
+});
+</script>
 @endsection

@@ -34,7 +34,7 @@
                         <!-- widget content -->
                         <div class="widget-body">
                             
-                            <form id="form" method="post" class="form-horizontal" action="{{ route('admin.auth.edit', 1) }}"
+                            <form id="form" method="post" class="form-horizontal" action="{{ route('admin.auth.edit', $authid) }}"
                             data-bv-message="This value is not valid"
 							data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
 							data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"

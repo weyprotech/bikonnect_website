@@ -65,6 +65,7 @@
                                                 <th>標題</th>
                                                 <th class="text-center" width="6%">排序</th>
                                                 <th width="5%" class="text-center">編輯</th>
+                                                <th width="5%" class="text-center">刪除</th>                                                
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -81,7 +82,7 @@
                                                         </label>
                                                     </td>
                                                     <td class="text-center"><a href="{{ route('product.edit', $contentValue->Id) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>
-                                                    <!-- <td class="text-center"><a href="{{ route('product.delete',$contentValue->Id) }}" class="btn btn-danger btn-xs del" onclick="return confirm('確定要刪除?');"><i class="fa fa-trash-o"></i></a></td>                                                     -->
+                                                    <td class="text-center"><a href="{{ route('product.delete',$contentValue->Id) }}" class="btn btn-danger btn-xs del" onclick="return confirm('確定要刪除?');"><i class="fa fa-trash-o"></i></a></td>                                                    
                                                 </tr>
                                             @endforeach
                                         </tbody>

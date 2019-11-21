@@ -60,7 +60,8 @@
                                     <table id="dt_basic" class="table table-striped table-bordered table-hover">
                                         <thead>			                
                                             <tr>
-                                                <th class="text-center" width="15%">圖片</th>                                                
+                                                <th class="text-center" width="15%">中文版圖片</th>
+                                                <th class="text-center" width="15%">英文版圖片</th>
                                                 <th>標題</th>
                                                 <th class="text-center" width="6%">排序</th>
                                                 <th width="5%" class="text-center">編輯</th>
@@ -70,6 +71,7 @@
                                             @foreach($contentList as $contentKey => $contentValue)
                                                 <tr>
                                                     <td class="text-center">{!! (!empty($contentValue->lang[0]->img) ? '<img src="'.$contentValue->lang[0]->img.'" width="150px">' : '') !!}</td>
+                                                    <td class="text-center">{!! (!empty($contentValue->lang[1]->img) ? '<img src="'.$contentValue->lang[1]->img.'" width="150px">' : '') !!}</td>                                                    
                                                     <td>{{$contentValue->lang[0]->title}}</td>
                                                     <td>
                                                         <label class="input">
@@ -82,9 +84,7 @@
                                             @endforeach
                                         </tbody>
                                     </table>
-
                                 </div>
-                                
                             </form>
 
                         </div>

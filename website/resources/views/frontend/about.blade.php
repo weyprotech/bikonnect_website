@@ -1,4 +1,4 @@
-@extends('frontend.shared._layout')
+@extends('frontend.shared._layout',array('seoList' => $seoList))
 
 @section('title', 'Bikonnect')
 

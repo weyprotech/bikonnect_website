@@ -139,5 +139,29 @@
 @endsection
 
 @section('script')
-
+<script>
+document.addEventListener('DOMContentLoaded', function(){ 
+    $('div.content-edit').each(function (index, element) {
+        $(element).summernote({
+            height: 500,
+            lang: 'zh-TW',
+            toolbar: [
+                ['misc', ['codeview']],
+                ['para', ['ul']],
+                //['font', ['fontname', 'fontsize', 'color', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subsript', 'clear']],
+                //['para', ['style', 'ol', 'ul', 'paragraph', 'height']],
+                // ['insert', ['picture']]
+                //['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
+            ],
+            callbacks: {
+                onImageUpload: function (files) {
+                    for (var i = 0; i < files.length; i++) {
+                        sendFile(files[i], $(this));
+                    }
+                }
+            }
+        });
+    });
+});    
+</script>
 @endsection

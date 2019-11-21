@@ -16,12 +16,10 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     public $langList;
 
-    public function __construct(){
-        
-        $this->langList = WebsiteLangModel::where('locale',app()->getLocale())->get();
-        
-    }
 
+    public function set_locale(){
+        $this->langList = WebsiteLangModel::where('locale',app()->getLocale())->get();
+    }
     public function set_view($view,$data = []){
         if(!Session::has('backend.account')){
             return redirect('backend/login');

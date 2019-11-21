@@ -83,7 +83,7 @@
                                                             data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif"
                                                             data-bv-file-message="圖檔格式不符">
                                                         <p class="help-block">
-                                                            最佳解析度：638 x 425
+                                                            圖片大小：638 x 425
                                                         </p>
                                                     </div>
                                                 </div>
@@ -142,5 +142,29 @@
 @endsection
 
 @section('script')
-
+<script>
+document.addEventListener('DOMContentLoaded', function(){ 
+    $('div.content-edit').each(function (index, element) {
+        $(element).summernote({
+            height: 500,
+            lang: 'zh-TW',
+            toolbar: [
+                ['misc', ['codeview']],
+                ['para', ['ul']],
+                //['font', ['fontname', 'fontsize', 'color', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subsript', 'clear']],
+                //['para', ['style', 'ol', 'ul', 'paragraph', 'height']],
+                // ['insert', ['picture']]
+                //['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
+            ],
+            callbacks: {
+                onImageUpload: function (files) {
+                    for (var i = 0; i < files.length; i++) {
+                        sendFile(files[i], $(this));
+                    }
+                }
+            }
+        });
+    });
+});    
+</script>
 @endsection

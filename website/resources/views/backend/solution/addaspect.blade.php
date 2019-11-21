@@ -21,9 +21,12 @@
                         <h2>新增特點</h2>
                         
                         <ul class="nav nav-tabs pull-right in">
+                            <?php $i = 1; ?>
+                            <li class='active'><a data-toggle="tab" href="#hb_<?= $i++ ?>">基本資料</a></li>
+
                             @foreach($web_langList as $langKey => $langValue)
-                                <li {{ $langKey == 0 ? 'class=active' : '' }}>
-                                    <a data-toggle="tab" href="#hb_{{ $langValue->langId }}"> <span class="hidden-mobile hidden-tablet"> {{ $langValue->name }} </span> </a>
+                                <li>
+                                    <a data-toggle="tab" href="#hb_<?= $i++ ?>"> <span class="hidden-mobile hidden-tablet"> {{ $langValue->name }} </span> </a>
                                 </li>
                             @endforeach                            
                         </ul>
@@ -49,8 +52,29 @@
 							data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
                                 
                                 <div class="tab-content">
+                                    <?php $i = 1; ?>
+                                    <div class="tab-pane active" id="hb_<?= $i++ ?>">
+                                        <fieldset>
+                                            <legend>基本資料</legend>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">分類</label>
+
+                                                <div class="col-sm-9">
+                                                    <label class="radio radio-inline">
+                                                        <input type="radio" class="radiobox" name="category" value="0" checked>
+                                                        <span>Cyclists</span>
+                                                    </label>
+
+                                                    <label class="radio radio-inline">
+                                                        <input type="radio" class="radiobox" name="category" value="1">
+                                                        <span>Operators</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
                                     @foreach($web_langList as $langKey => $langValue)
-                                        <div class="tab-pane {{ $langKey == 0 ? 'active' : '' }}" id="hb_{{ $langValue->langId }}">
+                                        <div class="tab-pane" id="hb_<?= $i++ ?>">
                                             <fieldset>
                                                 <legend>{{ $langValue->name }}</legend>
                                                 @csrf
@@ -78,8 +102,7 @@
                                     @endforeach
                                 </div>
                                 
-                                <div class="form-actions">
-                                    
+                                <div class="form-actions">                                    
                                     <div class="row">
                                         <div class="col-md-12">
                                             <a class="btn btn-default" href="{{ route('solution.aspect') }}">
