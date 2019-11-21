@@ -48,6 +48,8 @@
 <script src="{{ URL::asset('backend/js/plugin/superbox/superbox.min.js') }}"></script>
 <script src="{{ URL::asset('backend/js/plugin/bootstrap-progressbar/bootstrap-progressbar.min.js') }}"></script>
 
+<script src="{{ URL::asset('backend/js/sweetalert2.all.min.js') }}"></script>
+
 <link media="all" type="text/css" rel="stylesheet" href="{{ URL::asset('backend/css/summernote.css') }}">
 <script type="text/javascript" src="{{ URL::asset('backend/js/plugin/summernote/summernote.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('backend/js/plugin/summernote/summernote-zh-TW.js') }}"></script>
@@ -95,28 +97,6 @@
                 });
 
                 $(this).siblings(':hidden').val(content);
-            });
-        });
-
-        $('div.content-edit').each(function (index, element) {
-            $(element).summernote({
-                height: 500,
-                lang: 'zh-TW',
-                toolbar: [
-                    ['misc', ['codeview']],
-                    ['para', ['ul']]
-                    //['font', ['fontname', 'fontsize', 'color', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subsript', 'clear']],
-                    //['para', ['style', 'ol', 'ul', 'paragraph', 'height']],
-                    // ['insert', ['picture']],
-                    //['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
-                ],
-                callbacks: {
-                    onImageUpload: function (files) {
-                        for (var i = 0; i < files.length; i++) {
-                            sendFile(files[i], $(this));
-                        }
-                    }
-                }
             });
         });
     });

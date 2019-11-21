@@ -111,7 +111,7 @@ class AboutController extends Controller
 
     public function addhistory(Request $request) 
     {
-        $historyList = AboutHistoryModel::limit(1)->orderby('order','desc')->get();
+        $historyList = AboutHistoryModel::where('is_enable',1)->limit(1)->orderby('order','desc')->get();        
         if($request->isMethod('post')){
             $uuid = Uuid::uuid1();
             $history = new AboutHistoryModel();
@@ -188,7 +188,12 @@ class AboutController extends Controller
         $history = AboutHistoryModel::find($historyid);
         $history->is_enable = 0;
         $history->save();
-        return redirect('backend/about/history');        
+        $historyList = AboutHistoryModel::where('is_enable',1)->orderby('order','asc')->get();
+        foreach($historyList as $historyKey => $historyValue){
+            $historyValue->order = $historyKey+1;
+            $historyValue->save();       
+        }
+        return redirect('backend/about/history');
     }
 
     /**** 團隊維護 ****/
@@ -323,6 +328,11 @@ class AboutController extends Controller
         $team = AboutTeamModel::find($teamId);
         $team->is_enable = 0;
         $team->save();
+        $teamList = AboutTeamModel::where('is_enable',1)->orderby('order','asc')->get();
+        foreach($teamList as $teamKey => $teamValue){
+            $teamValue->order = $teamKey+1;
+            $teamValue->save();       
+        }
         return redirect('backend/about/team');
     }
 
@@ -455,6 +465,11 @@ class AboutController extends Controller
         $team = AboutPartnerModel::find($partnerId);
         $team->is_enable = 0;
         $team->save();
+        $teamList = AboutPartnerModel::where('is_enable',1)->orderby('order','asc')->get();
+        foreach($teamList as $teamKey => $teamValue){
+            $teamValue->order = $teamKey+1;
+            $teamValue->save();       
+        }
         return redirect('backend/about/partner');
     }    
 }

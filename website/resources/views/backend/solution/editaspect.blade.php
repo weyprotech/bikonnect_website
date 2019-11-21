@@ -21,10 +21,12 @@
                         <h2>編輯特點</h2>
                         
                         <ul class="nav nav-tabs pull-right in">
+                            <?php $i = 1; ?>
+                            <li class='active'><a data-toggle="tab" href="#hb_<?= $i++ ?>">基本資料</a></li>
 
                             @foreach($web_langList as $langKey => $langValue)
-                                <li {{ $langKey == 0 ? 'class=active' : '' }}>
-                                    <a data-toggle="tab" href="#hb_{{ $langValue->langId }}"> <span class="hidden-mobile hidden-tablet"> {{ $langValue->name }} </span> </a>
+                                <li>
+                                    <a data-toggle="tab" href="#hb_<?= $i++ ?>"> <span class="hidden-mobile hidden-tablet"> {{ $langValue->name }} </span> </a>
                                 </li>
                             @endforeach
                             
@@ -52,16 +54,34 @@
                             <input type="hidden" name="uuid" value="{{ $content->uuid }}">
                                 
                                 <div class="tab-content">
+                                    <?php $i = 1; ?>
+                                    <div class="tab-pane active" id="hb_<?= $i++ ?>">
+                                        <fieldset>
+                                            <legend>基本資料</legend>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">分類</label>
+                                                <div class="col-sm-9">
+                                                    <label class="radio radio-inline">
+                                                        <input type="radio" class="radiobox" name="category" value="0" {{$content->category == 0 ? 'checked' : '' }}>
+                                                        <span>Cyclists</span>
+                                                    </label>
+
+                                                    <label class="radio radio-inline">
+                                                        <input type="radio" class="radiobox" name="category" value="1" {{$content->category == 1 ? 'checked' : '' }}>
+                                                        <span>Operators</span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
                                     @foreach($web_langList as $langKey => $langValue)                                    
-                                        <div class="tab-pane {{ $langKey == 0 ? 'active' : '' }}" id="hb_{{ $langValue->langId }}">
-
+                                        <div class="tab-pane" id="hb_<?= $i++ ?>">
                                             <fieldset>
-
                                                 <legend>{{ $langValue->name }}</legend>
                                                 @csrf                                            
                                                 <input type="hidden" name="aspectlangs[{{ $langValue->langId }}][langId]" value="{{ $langValue->langId }}">
-                                                <input type="hidden" name="aspectlangs[{{ $langValue->langId }}][aId]" value="{{ $langValue->aId }}">
-                                                
+                                                <input type="hidden" name="aspectlangs[{{ $langValue->langId }}][aId]" value="{{ $langValue->aId }}">                                               
+
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">標題</label>
                                                     <div class="col-lg-5">
@@ -77,10 +97,8 @@
                                                     <div class="col-lg-5">
                                                         <textarea class="form-control" name="aspectlangs[{{ $langValue->langId }}][content]" placeholder="內文" rows="4" data-bv-notempty="true" data-bv-notempty-message="請輸入內文">{{ $langdata[$langValue->langId]->content }}</textarea>
                                                     </div>
-                                                </div>  
-                                                
+                                                </div>                                                  
                                             </fieldset>
-
                                         </div>
                                     @endforeach
                                 </div>
@@ -104,7 +122,6 @@
 
                         </div>
                         <!-- end widget content -->
-
                     </div>
                     <!-- end widget div -->
 

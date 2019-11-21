@@ -1,4 +1,4 @@
-@extends('frontend.shared._layout')
+@extends('frontend.shared._layout',array('seoList' => $seoList))
 
 @section('title', 'Bikonnect')
 
@@ -15,7 +15,7 @@
                 <iframe width="560" height="315" src="{{ $videoList[0]->lang[0]->youtube }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <div class="text">
-                {!! nl2br(e($videoList[0]->lang[0]->content)) !!}
+                {!! nl2br($videoList[0]->lang[0]->content) !!}
             </div>
         </div>
     </div>
@@ -60,23 +60,27 @@
         <div class="content_block cyclists">
             <h2 class="block_subtitle">{{ trans('lang.cyclists') }}</h2>
             <div class="table">
-                @for($i=0; $i<=1; $i++)
-                <div class="tr">
-                    <div class="th">{{ $aspectList[$i]->lang[0]->title }}</div>
-                    <div class="td">{{ $aspectList[$i]->lang[0]->content }}</div>
-                </div>
-                @endfor
+                @foreach($aspectList as $aspectValue)  
+                    @if($aspectValue->category == 0)              
+                        <div class="tr">
+                            <div class="th">{{ $aspectValue->lang[0]->title }}</div>
+                            <div class="td">{{ $aspectValue->lang[0]->content }}</div>
+                        </div>
+                    @endif
+                @endforeach
             </div>
         </div>
         <div class="content_block operators">
             <h2 class="block_subtitle">{{ trans('lang.operators') }}</h2>
             <div class="table">
-                @for($i=2; $i<5; $i++)
-                <div class="tr">
-                    <div class="th">{{ $aspectList[$i]->lang[0]->title }}</div>
-                    <div class="td">{{ $aspectList[$i]->lang[0]->content }}</div>
-                </div>
-                @endfor            
+                @foreach($aspectList as $aspectValue)
+                    @if($aspectValue->category == 1)
+                        <div class="tr">
+                            <div class="th">{{ $aspectValue->lang[0]->title }}</div>
+                            <div class="td">{{ $aspectValue->lang[0]->content }}</div>
+                        </div>
+                    @endif
+                @endforeach
             </div>
         </div>
         </div>
@@ -91,7 +95,7 @@
                     <div class="slide">
                         <div class="pic_text">
                         <div class="pic">
-                            <div class="img" style="background-image: url({{ URL::asset('frontend/images/img_solution_keyFeatures01.jpg') }});" alt="Key Features 01"></div>
+                            <div class="img" style="background-image: url({{ URL::asset($productValue->lang[0]->img_5) }});" alt="{{ $productValue->lang[0]->title }}"></div>
                         </div>
                         <div class="text">
                             <h3>{{ $productValue->lang[0]->title }}</h3>

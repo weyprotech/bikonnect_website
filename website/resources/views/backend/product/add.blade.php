@@ -119,7 +119,7 @@
                                                             data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif"
                                                             data-bv-file-message="圖檔格式不符">
                                                         <p class="help-block">
-                                                            最佳解析度：1057 x 771
+                                                            圖片大小：1057 x 771
                                                         </p>
                                                     </div>
                                                 </div>
@@ -149,7 +149,7 @@
                                                             data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif"
                                                             data-bv-file-message="圖檔格式不符">
                                                         <p class="help-block">
-                                                            最佳解析度：1040 x 700
+                                                            圖片大小：1040 x 700
                                                         </p>
                                                     </div>
                                                 </div>
@@ -182,7 +182,7 @@
                                                             data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif"
                                                             data-bv-file-message="圖檔格式不符">
                                                         <p class="help-block">
-                                                            最佳解析度：748 x 724
+                                                            圖片大小：748 x 724
                                                         </p>
                                                     </div>
                                                 </div>
@@ -216,7 +216,7 @@
                                                             data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif"
                                                             data-bv-file-message="圖檔格式不符">
                                                         <p class="help-block">
-                                                            最佳解析度：752 x 402
+                                                            圖片大小：752 x 402
                                                         </p>
                                                     </div>
                                                 </div>
@@ -224,6 +224,23 @@
                                                     <label class="col-lg-2 control-label">Key Features</label>
                                                     <div class="col-lg-5">
                                                         <textarea class="form-control" name="productlangs[{{ $langValue->langId }}][content_4]" placeholder="內文" rows="8" data-bv-notempty="true" data-bv-notempty-message="請輸入內文"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label">key Features圖片</label>
+                                                    <div class="col-lg-5">
+                                                        <p>
+                                                            <img id="preview_{{$langValue->langId}}_5" src="" width="auto" style="max-width:250px" />
+                                                        </p>
+                                                        <input type="file" class="btn btn-default imageupload" name="productlangs[{{ $langValue->langId }}][img_5]"
+                                                            data-prev="preview_{{$langValue->langId}}_5"
+                                                            data-bv-file="true"
+                                                            data-bv-file-extension="png,gif,jpg,jpeg"
+                                                            data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif"
+                                                            data-bv-file-message="圖檔格式不符">
+                                                        <p class="help-block">
+                                                            圖片大小：230 x 230
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </fieldset>
@@ -270,5 +287,29 @@
 @endsection
 
 @section('script')
-
+<script>
+document.addEventListener('DOMContentLoaded', function(){ 
+    $('div.content-edit').each(function (index, element) {
+        $(element).summernote({
+            height: 500,
+            lang: 'zh-TW',
+            toolbar: [
+                ['misc', ['codeview']],
+                ['para', ['ul']],
+                //['font', ['fontname', 'fontsize', 'color', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subsript', 'clear']],
+                //['para', ['style', 'ol', 'ul', 'paragraph', 'height']],
+                // ['insert', ['picture']]
+                //['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
+            ],
+            callbacks: {
+                onImageUpload: function (files) {
+                    for (var i = 0; i < files.length; i++) {
+                        sendFile(files[i], $(this));
+                    }
+                }
+            }
+        });
+    });
+});    
+</script>
 @endsection

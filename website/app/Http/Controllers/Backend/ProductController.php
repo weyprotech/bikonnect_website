@@ -11,6 +11,7 @@ use DB;
 use Illuminate\Support\Str;
 use App\ProductLangModel;
 use App\WebsiteLangModel;
+use Intervention\Image\ImageManagerStatic as Image;
 
 
 class ProductController extends Controller
@@ -53,10 +54,12 @@ class ProductController extends Controller
             $product->save();
             
             foreach ($request->productlangs as $langKey => $langValue) {
-                
-                for($i = 1;$i<=4;$i++){
-                    $img[$i] = $this->upload_img($request,'productlangs.'.$langValue['langId'].'.img_'.$i,$uuid);
-                }
+                $img_1 = $this->upload_img($request,'productlangs.'.$langValue['langId'].'.img_1',$uuid,false,'img_1',1057);
+                $img_2 = $this->upload_img($request,'productlangs.'.$langValue['langId'].'.img_2',$uuid,false,'img_2',1040);
+                $img_3 = $this->upload_img($request,'productlangs.'.$langValue['langId'].'.img_3',$uuid,false,'img_3',748);
+                $img_4 = $this->upload_img($request,'productlangs.'.$langValue['langId'].'.img_4',$uuid,false,'img_4',752);
+                $img_5 = $this->upload_img($request,'productlangs.'.$langValue['langId'].'.img_5',$uuid,false,'img_5',230);                
+
                 $lang = new ProductLangModel();
                 $lang->pId = $uuid;                
                 $lang->langId = $langValue['langId'];
@@ -68,10 +71,11 @@ class ProductController extends Controller
                 $lang->title_2 = $langValue['title_2'];
                 $lang->title_3 = $langValue['title_3'];
                 $lang->title_4 = $langValue['title_4'];
-                $lang->img_1 = $img[1];
-                $lang->img_2 = $img[2];
-                $lang->img_3 = $img[3];
-                $lang->img_4 = $img[4];
+                $lang->img_1 = $img_1;
+                $lang->img_2 = $img_2;
+                $lang->img_3 = $img_3;
+                $lang->img_4 = $img_4;
+                $lang->img_5 = $img_5;
                 $lang->content_1 = $langValue['content_1'];
                 $lang->content_2 = $langValue['content_2'];
                 $lang->content_3 = html_entity_decode($langValue['content_3']);
@@ -105,9 +109,12 @@ class ProductController extends Controller
                     $content = ProductLangModel::where('langId',$contentValue['langId'])->where('pId',$productId)->get();
                     // print_r($content[0]->toArray());exit;
                     //上傳圖檔
-                    for($i = 1;$i<=4;$i++){
-                        $img[$i] = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_'.$i,$productId,$content[0],'img_'.$i);
-                    }
+                    $img_1 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_1',$productId,$content[0],'img_1',1057);
+                    $img_2 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_2',$productId,$content[0],'img_2',1040);
+                    $img_3 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_3',$productId,$content[0],'img_3',748);
+                    $img_4 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_4',$productId,$content[0],'img_4',752);
+                    $img_5 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_5',$productId,$content[0],'img_5',230);
+
                     DB::table('tb_product_lang')
                     ->where('pId',$productId)
                     ->where('langId',$contentValue['langId'])
@@ -121,10 +128,11 @@ class ProductController extends Controller
                         'title_2' => $contentValue['title_2'],
                         'title_3' => $contentValue['title_3'],
                         'title_4' => $contentValue['title_4'],
-                        'img_1' => $img[1],
-                        'img_2' => $img[2],
-                        'img_3' => $img[3],
-                        'img_4' => $img[4],                        
+                        'img_1' => $img_1,
+                        'img_2' => $img_2,
+                        'img_3' => $img_3,
+                        'img_4' => $img_4,
+                        'img_5' => $img_5,                                                                        
                         'content_1'=> $contentValue['content_1'],
                         'content_2'=> $contentValue['content_2'],
                         'content_3'=> html_entity_decode($contentValue['content_3']),
@@ -177,14 +185,14 @@ class ProductController extends Controller
         $productid = ProductModel::find($productid);
         $productid->is_enable = 0;
         $productid->save();
-        return redirect('backend/product');   
+        return redirect('backend/product/index');   
     }
 
     /**
      * 上傳圖片
      * 
      */
-    public function upload_img($request,$name,$uuid,$content = false,$file_name = ''){
+    public function upload_img($request,$name,$uuid,$content = false,$file_name = '',$width){
         //上傳圖檔
         if ($request->hasFile($name)) {
             if($request->file($name)->isValid()){
@@ -192,13 +200,21 @@ class ProductController extends Controller
                 // getting image extension
                 $extension = $request->file($name)->getClientOriginalExtension();
                 
+                if (!file_exists($destinationPath)) { //Verify if the directory exists
+                    mkdir($destinationPath, 666, true); //create it if do not exists
+                }
+
                 // uuid renameing image
                 $fileName = Str::uuid() . '_product_.' . $extension;
             
+                Image::make($request->file($name))->resize($width,null,function($constraint){
+                    $constraint->aspectRatio();
+                })->save($destinationPath.'/thumb_'.$fileName);
+
                 // move file to dest
                 $request->file($name)->move($destinationPath, $fileName);
                 // save data
-                $img = '/uploads/product/'.$uuid.'/'.$fileName;                             
+                $img = '/uploads/product/'.$uuid.'/thumb_'.$fileName;                             
             }
         }else{
             if($content){

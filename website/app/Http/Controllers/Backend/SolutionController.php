@@ -14,6 +14,9 @@ use App\SolutionContentLangModel;
 use Illuminate\Support\Str;
 use App\SolutionAspectModel;
 use App\SolutionAspectLangModel;
+use App\SolutionKeyfeatureModel;
+use App\SolutionKeyfeatureLangModel;
+use Intervention\Image\ImageManagerStatic as Image;
 
 
 class SolutionController extends Controller 
@@ -151,6 +154,7 @@ class SolutionController extends Controller
             $aspect->is_enable = 1;
             $aspect->id = $uuid;
             $aspect->uuid = $uuid;
+            $aspect->category = $request->category;
             $aspect->order = $aspectList[0]->order+1;
             $aspect->save();
             foreach ($request->aspect as $langKey => $langValue) {
@@ -175,6 +179,7 @@ class SolutionController extends Controller
         if($request->isMethod('post')){
             if($request->uuid == $content->uuid){
                 $content->uuid = Uuid::uuid1();
+                $content->category = $request->category;
                 $content->save();
 
                 foreach ($request->aspectlangs as $contentKey => $contentValue) {
@@ -223,4 +228,163 @@ class SolutionController extends Controller
     }
 
 
+    /**** key-feature *****/
+    public function key_feature()
+    {
+        $keyfeatureList = SolutionKeyfeatureModel::with('keyfeaturelang')->where('is_enable',1)->get();
+        $data = array(
+            'keyfeatureList' => $keyfeatureList
+        );
+
+        return view('backend.solution.keyfeature',$data);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *@param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function addkey_feature(Request $request)
+    {
+        if($request->isMethod('post')){
+            $Id = Str::uuid();
+            $uuid = Str::uuid(); 
+            $keyfeatureList = SolutionKeyfeatureModel::orderby('order','desc')->first();
+            if($request->hasFile('Img')){
+                if($request->file('Img')->isValid()){
+                    $destinationPath = base_path() . '/public/uploads/key_feature/'.$Id;
+
+                    // getting image extension
+                    $extension = $request->file('Img')->getClientOriginalExtension();
+                    
+                    if (!file_exists($destinationPath)) { //Verify if the directory exists
+                        mkdir($destinationPath, 666, true); //create it if do not exists
+                    }
+                    
+                    // uuid renameing image
+                    $fileName = Str::uuid() . '.' .$extension;
+    
+                    Image::make($request->file('Img'))->resize('320',null,function($constraint){
+                        $constraint->aspectRatio();
+                    })->save($destinationPath.'/thumb_'.$fileName);
+                    $Img = '/uploads/key_feature/'.$Id.'/thumb_'.$fileName;
+                }
+            }
+
+            $row = new SolutionKeyfeatureModel();            
+            $row->is_enable = 1;
+            $row->is_visible = $request->is_visible;            
+            $row->Id = $Id;
+            $row->Img = $Img;
+            $row->order = isset($keyfeatureList[0]->order) ? $keyfeatureList[0]->order+1 : 1;
+            $row->uuid = $uuid;
+            $row->save();
+            foreach ($request->contentlangs as $langKey => $langValue) {
+                $lang = new SolutionKeyfeatureLangModel();
+                $lang->langId = $langValue['langId'];
+                $lang->fId = $Id;
+                $lang->title = $langValue['title'];  
+                $lang->content = $langValue['content'];
+            
+                $lang->save();
+            }            
+            return redirect(action('Backend\SolutionController@editkey_feature',[$Id]));
+        }
+        
+        return $this->set_view('backend.solution.addkeyfeature',array());
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editkey_feature($Id,Request $request)
+    {
+        $row = SolutionKeyfeatureModel::with('keyfeaturelang')->find($Id);
+        $web_langList = WebsiteLangModel::where('is_enable',1)->get();
+
+        if($request->isMethod('post')){
+            if($request->uuid == $row->uuid){
+                $row->uuid = Uuid::uuid1();
+                //上傳圖檔
+                if ($request->hasFile('Img')) {                                        
+                    if($request->file('Img')->isValid()){
+                        $destinationPath = base_path() . '/public/uploads/key_feature/'.$Id;
+
+                        // getting image extension
+                        $extension = $request->file('Img')->getClientOriginalExtension();
+                        
+                        if (!file_exists($destinationPath)) { //Verify if the directory exists
+                            mkdir($destinationPath, 666, true); //create it if do not exists
+                        }
+                        
+                        // uuid renameing image
+                        $fileName = Str::uuid() . '.' .$extension;
+        
+                        Image::make($request->file('Img'))->resize('320',null,function($constraint){
+                            $constraint->aspectRatio();
+                        })->save($destinationPath.'/thumb_'.$fileName);
+                        $row->Img = '/uploads/key_feature/'.$Id.'/thumb_'.$fileName;                  
+                    }
+                }
+                $row->is_visible = $request->is_visible;
+                $row->save();
+                foreach ($request->contentlangs as $langKey => $langValue) {
+                    $lang = SolutionKeyfeatureLangModel::where('fId',$Id)->where('langId',$langValue['langId'])->first();
+                    $lang->langId = $langValue['langId'];
+                    $lang->fId = $Id;
+                    $lang->title = $langValue['title'];  
+                    $lang->content = $langValue['content'];
+                    $lang->save();
+                }
+                return redirect(action('Backend\SolutionController@editkey_feature',[$Id]));                  
+            }
+        }
+
+        //讀出keyfeature的語系資料
+        foreach ($row->keyfeaturelang as $rowKey => $rowValue) {
+            foreach ($web_langList as $langKey => $langValue) {
+                if($rowValue->langId == $langValue->langId){
+                    $langdata[$langValue->langId] = $rowValue;
+                }
+            }
+        }
+        $data = array(
+            'row' => $row,
+            'langdata' => $langdata
+        );
+
+        return $this->set_view('backend.solution.editkeyfeature',$data);
+    }
+
+    /**
+     * order
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function key_feature_order_save(Request $request){
+        if($order = $request->order){
+            foreach ($order as $orderKey => $orderValue) {
+                $content = SolutionKeyfeatureModel::find($orderValue['Id']);
+                $content->order = $orderValue['order'];
+                $content->save();
+            }
+        }
+        return redirect(action('Backend\SolutionController@key_feature'));
+    }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $Id
+     * @return \Illuminate\Http\Response
+     */
+    public function key_feature_delete($Id)
+    {
+        $row = SolutionKeyfeatureModel::find($Id);
+        $row->is_enable = 0;
+        $row->save();
+        return redirect(action('Backend\SolutionController@key_feature'));
+    }
 }

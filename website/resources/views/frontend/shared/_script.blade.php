@@ -10,9 +10,9 @@
     $('.language_option').on('click',function(event){
         var language = $(this).data('language');
         Cookies.set('shop_laravel_language',language);
-        
-        // window.location=<?= $_SERVER['REMOTE_HOST'] ?>+"index.php/"+language;        
-        location.reload();
+        // console.log('<?= $_SERVER['REMOTE_HOST'].$_SERVER['REQUEST_URI'] ?>');
+        window.location='{{ URL::route('main.index') }}'+'/'+language;        
+        // location.reload();
     });
     $(function() {
         $("#contact-form").validate({

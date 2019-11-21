@@ -37,8 +37,9 @@ class AdminController extends Controller
 
     public function editauth($authid,Request $request) 
     {
-        if($request->isMethod('post')){
-            $row = new AdminModel();
+        $row = AdminModel::find($authid);
+        
+        if($request->isMethod('post')){  
             $row->is_enable = 1;
             $row->account = $request->account;
             $row->password = Hash::make($request->password);
@@ -48,9 +49,9 @@ class AdminController extends Controller
             $row->save();
             return redirect('backend/admin/auth');     
         }else{
-            $row = AdminModel::find($authid);
 
             $data = array(
+                'authid' => $authid,
                 'is_enable' => 1,
                 'account' => $row->account,
                 'name' => $row->name,

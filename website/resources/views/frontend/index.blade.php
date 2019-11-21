@@ -1,42 +1,36 @@
-@extends('frontend.shared._layout')
-
-@section('title', 'Bikonnect')
+@extends('frontend.shared._layout',array('seoList' => $seoList))
 
 @section('content')
 <main id="main">
     <div class="index_banner_slider">
         <div class="slider">
-        <div class="slide">
-            <div class="bg" style="background-image: url({{ URL::asset('frontend/images/banner_index.jpg') }});"></div>
-            <div class="slide_content">
-            <h2>Connect Your Bike<br>Ride the Future</h2><a class="btn_more big" href="{{ route('main.solution') }}">{{ trans('lang.learnmore') }}</a>
+        @foreach($bannerList as $bannerKey => $bannerValue)
+            <div class="slide">
+                <div class="bg" style="background-image: url({{ URL::asset($bannerValue->bannerImg) }});"></div>
+                <div class="slide_content">
+                <h2>{!! nl2br(e($bannerValue->bannerlang[0]->title)) !!}</h2>
+                <a class="btn_more big" href="{{ route('main.solution',app()->getLocale()) }}">{{ trans('lang.learnmore') }}</a>
+                </div>
             </div>
-        </div>
-        <div class="slide">
-            <div class="bg" style="background-image: url({{ URL::asset('frontend/images/banner_index.jpg') }});"></div>
-            <div class="slide_content">
-            <h2>Connect Your Bike<br>Ride the Future</h2><a class="btn_more big" href="{{ route('main.solution') }}">{{ trans('lang.learnmore') }}</a>
-            </div>
-        </div>
+        @endforeach        
         </div>
         <div class="slider_dots"></div>
     </div>
     <div class="index_experience page_block">
         <div class="wave"><img src="{{ URL::asset('frontend/images/img_wave.png') }}" alt=""></div>
         <div class="block_inner">
-        <h2 class="block_title">{!! trans('lang.moreint') !!}</h2>
+        <h2 class="block_title">{!! nl2br(e($content1->content1lang[0]->title)) !!}</h2>
         <div class="text">
-            <p>{{ trans('lang.moreintcontent') }}</p>
+            <p>{!! nl2br(e($content1->content1lang[0]->content)) !!}</p>
         </div>
         <div class="experience_items">
-            <div class="item"><a href="{{ route('main.product',['28cff062-ed94-44d0-b6b6-7692a47495f5',app()->getLocale()]) }}"><img class="thumb" src="{{ URL::asset('frontend/images/img_index_experience01.png') }}" alt="E-Bike computer">
-                <h3>E-Bike computer</h3></a></div>
-            <div class="item"><a href="{{ route('main.product',['dcebd914-a2fc-42c6-867e-17ec4138c4c9',app()->getLocale()]) }}"><img class="thumb" src="{{ URL::asset('frontend/images/img_index_experience02.png') }}" alt="E-Bike APP">
-                <h3>E-Bike APP</h3></a></div>
-            <div class="item"><a href="{{ route('main.product',['cc31abdf-3f9b-49b9-8dff-8c9563edd36c',app()->getLocale()]) }}"><img class="thumb" src="{{ URL::asset('frontend/images/img_index_experience03.png') }}" alt="Dealer management system">
-                <h3>Dealer management system</h3></a></div>
-            <div class="item"><a href="{{ route('main.product',['05716e4e-2c50-4f3a-8309-96306d7a5fb1',app()->getLocale()]) }}"><img class="thumb" src="{{ URL::asset('frontend/images/img_index_experience04.png') }}" alt="Cycling Data Platform">
-                <h3>Cycling Data Platform</h3></a></div>
+            @foreach($content2List as $content2Key => $content2Value)
+                <div class="item">
+                    <a href="{{ route('main.product',[$content2Value->Id,app()->getLocale()]) }}"><img class="thumb" src="{{ URL::asset($content2Value->Img) }}" alt="{{ $content2Value->content2lang[0]->title }}">
+                        <h3>{{ $content2Value->content2lang[0]->title }}</h3>
+                    </a>
+                </div>
+            @endforeach
         </div>
         </div>
     </div>
@@ -48,27 +42,15 @@
             <div class="item">
                 <div class="mobile_img"><img src="{{ URL::asset('frontend/images/img_index_strength_m01.png') }}" alt="Strangth Mobile Picture 01"></div>
                 <div class="slider">
-                <div class="slide">
-                    <div class="slide_inner">
-                    <h3>{{ trans('lang.smartintegration') }}</h3>
-                    <hr>
-                    <p>{{ trans('lang.smartintegrationcontent') }}</p>
+                @foreach($content3List as $content3Key => $content3Value)
+                    <div class="slide">
+                        <div class="slide_inner">                        
+                        <h3>{!! nl2br(e($content3Value->content3lang[0]->title)) !!}</h3>
+                        <hr>
+                        <p>{!! nl2br(e($content3Value->content3lang[0]->content)) !!}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="slide">
-                    <div class="slide_inner">
-                    <h3>{{ trans('lang.smartintegration') }}</h3>
-                    <hr>
-                    <p>{{ trans('lang.smartintegrationcontent') }}</p>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="slide_inner">
-                    <h3>{{ trans('lang.smartintegration') }}</h3>
-                    <hr>
-                    <p>{{ trans('lang.smartintegrationcontent') }}</p>
-                    </div>
-                </div>
+                @endforeach
                 </div>
             </div>
             <div class="item">
@@ -126,14 +108,14 @@
         </div>
         </div>
     </div>
-    <div class="index_solutions page_block">
+    <div class="index_solutions page_block" style="background-image: url({{ $content4->Img }});">
         <div class="block_inner proportion">
         <div class="block_content">
-            <h2 class="block_title">{{ trans('lang.smartsolutions') }}</h2>
-            <h3 class="block_subtitle">{{ trans('lang.datamanagement') }}</h3>
+            <h2 class="block_title">{!! nl2br(e($content4->content4lang[0]->title)) !!}</h2>
+            <h3 class="block_subtitle">{!! nl2br(e($content4->content4lang[0]->description)) !!}</h3>
             <div class="text">
-            <p>{!! trans('lang.datamanagementcontent') !!}</p>
-            </div><a class="btn_more green" href="{{ route('main.solution') }}">{{ trans('lang.learnmore') }}</a>
+            <p>{!! nl2br(e($content4->content4lang[0]->content)) !!}</p>
+            </div><a class="btn_more green" href="{{ route('main.solution',app()->getLocale()) }}">{{ trans('lang.learnmore') }}</a>
         </div>
         <div class="block_img"><img src="{{ URL::asset('frontend/images/img_index_solutions.png') }}" alt="Smart Solutions Picture"></div>
         </div>
@@ -158,11 +140,11 @@
             <h3 class="block_subtitle">{{ trans('lang.ourvisioncontent') }}</h3>
             <div class="text">
             <!-- p Nam porttitor blandit accumsan. Ut vel dictum sem, a pretium dui.-->
-            </div><a class="btn_more" href="{{ route('main.solution') }}">{{ trans('lang.readmore') }}</a>
+            </div><a class="btn_more" href="{{ route('main.solution',app()->getLocale()) }}">{{ trans('lang.readmore') }}</a>
         </div>
         </div>
     </div>
-    @include('frontend.shared._contact')
+    @include('frontend.shared._contact',array('contact' => $contact))
 </main>
 @endsection
 

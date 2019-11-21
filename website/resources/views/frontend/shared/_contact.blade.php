@@ -10,10 +10,10 @@
                 <div class="social_links"><a href="javascript:;" target="_blank"><i class="icon_facebook"></i></a><a href="javascript:;" target="_blank"><i class="icon_twitter"></i></a><a href="javascript:;" target="_blank"><i class="icon_instagram"></i></a></div>
             </div>
             <div class="info_list">
-                <div class="item"><i class="icon_location"></i><a href="https://goo.gl/maps/djPnGB4bzScakSzS9" target="_blank">{{ trans('lang.address') }}</a></div>
-                <div class="item"><i class="icon_mail"></i><a href="mailto:smart_ebike@program.com.tw">smart_ebike@program.com.tw</a></div>
-                <div class="item"><i class="icon_tel"></i><a href="tel:+886-4-2369-2699">+886-4-2369-2699</a></div>
-                <div class="item"><i class="icon_fax"></i><span>+886-4-2258-8577</span></div>
+                <div class="item"><i class="icon_location"></i><a href="{{ $contact->contactlang[0]->map }}" target="_blank">{{ $contact->contactlang[0]->address }}</a></div>
+                <div class="item"><i class="icon_mail"></i><a href="mailto:{{ $contact->contactlang[0]->email }}">{{ $contact->contactlang[0]->email }}</a></div>
+                <div class="item"><i class="icon_tel"></i><a href="tel:{{ $contact->contactlang[0]->phone }}">{{ $contact->contactlang[0]->phone }}</a></div>
+                <div class="item"><i class="icon_fax"></i><span>{{ $contact->contactlang[0]->fax }}</span></div>
             </div>
         </div>
         <div class="contact_form">

@@ -59,6 +59,7 @@
                                     <table id="dt_basic" class="table table-striped table-bordered table-hover">
                                         <thead>			                
                                             <tr>
+                                                <th>分類</th>
                                                 <th>標題</th>
                                                 <th class="text-center" width="6%">排序</th>                                                
                                                 <th width="5%" class="text-center">編輯</th>
@@ -67,7 +68,8 @@
                                         </thead>
                                         <tbody>
                                             @foreach($aspectList as $aspectKey => $aspectValue)
-                                                <tr>                                                    
+                                                <tr>
+                                                    <td>{{ $aspectValue['category'] == 0 ? 'Cyclists' : 'Operators' }}</td>                                           
                                                     <td>{{ $aspectValue['lang'][0]['title'] }}</td>
                                                     <td>
                                                         <label class="input">
