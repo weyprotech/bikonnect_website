@@ -12,7 +12,10 @@
                 <p>{!! nl2br(e($product->lang[0]->content_1)) !!}</p>
             </div>
         </div>
-        <div class="block_img"><img src="{{ $product->lang[0]->img_1 }}" alt=""></div>
+        <div class="block_img">
+          <img class="size" src="{{ URL::asset('frontend/images/size_porduct_intro.png') }}" alt="">
+          <img class="pic" src="{{ $product->lang[0]->img_1 }}" alt="">
+        </div>
         </div>
     </div>
     <div class="product_characteristic page_block">
@@ -24,7 +27,10 @@
             <p>{!! nl2br(e($product->lang[0]->content_2)) !!}</p>
             </div>
         </div>
-        <div class="block_img"><img src="{{ $product->lang[0]->img_2 }}" alt=""></div>
+        <div class="block_img">
+          <img class="size" src="{{ URL::asset('frontend/images/size_porduct_characteristic.png') }}" alt="">
+          <img class="pic" src="{{ $product->lang[0]->img_2 }}" alt="">
+        </div>
         </div>
         <div class="wave bottom"><img src="{{ URL::asset('frontend/images/product_char_wave_bottom.png') }}" alt=""></div>
         <div class="bike"><img src="{{ URL::asset('frontend/images/product_char_bike.png') }}" alt=""></div>
@@ -35,7 +41,11 @@
             <h2 class="block_subtitle">{{ $product->lang[0]->title_3 }}</h2>
             {!!  html_entity_decode($product->lang[0]->content_3) !!}
         </div>
-        <div class="block_img"><img src="{{ $product->lang[0]->img_3 }}" alt=""></div>
+        <div class="block_img">
+          <img class="size" src="{{ URL::asset('frontend/images/size_porduct_key.png') }}" alt="">
+          <img class="pic" src="{{ $product->lang[0]->img_3 }}" alt="">
+          <img src="{{ $product->lang[0]->img_3 }}" alt="">
+        </div>
         </div>
     </div>
     <div class="product_future page_block">

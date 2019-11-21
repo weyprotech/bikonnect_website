@@ -56,7 +56,10 @@
                 @foreach($teamList as $teamKey => $teamValue)
                 <div class="item">
                     <div class="info">
-                        <div class="info_pic"><img src="{{ $teamValue->img }}" alt="{{ $teamValue->lang[0]->name }}"></div>
+                        <div class="info_pic">
+                          <img class="size" src="{{ URL::asset('frontend/images/size_team_info.png') }}" alt="">
+                          <img class="pic" src="{{ $teamValue->img }}" alt="{{ $teamValue->lang[0]->name }}">
+                        </div>
                         <div class="info_content">
                             <h3>{{ $teamValue->lang[0]->name }}</h3>
                             <h4>{{ $teamValue->lang[0]->title }}</h4>

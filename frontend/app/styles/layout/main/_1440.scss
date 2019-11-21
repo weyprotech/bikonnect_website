@@ -61,12 +61,3 @@
     }
   }
 }
-
-@include susy-breakpoint(1600px, 12) {
-  // Product
-  .product_introduction {
-    .block_inner {
-      align-items: center;
-    }
-  }
-}
