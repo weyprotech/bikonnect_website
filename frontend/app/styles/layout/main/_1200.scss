@@ -65,6 +65,13 @@
   .index_vision {
     .vision_content {
       width: 38%;
+      padding: 0;
+      &:after {
+        top: -1.5em;
+        left: -1.5em;
+        width: calc(100% + 3em);
+        height: calc(100% + 3em);
+      }
       .block_title {
         font-size: 3.75em;
       }
