@@ -18,7 +18,10 @@ html {
 body {
   color: $gray-darken;
   font-family: 'Roboto',$sans-serif;
-  line-height: 1.6;
+  line-height: 1.4;
+  // @include breakpoint(768px) {
+  //   line-height: 1.6;
+  // }
 }
 
 main {
