@@ -6,8 +6,8 @@
                 <big>Connect</big>
             </h2>
             <div class="follow_us">
-                <span>follow us!</span>
-                <div class="social_links"><a href="javascript:;" target="_blank"><i class="icon_facebook"></i></a><a href="javascript:;" target="_blank"><i class="icon_twitter"></i></a><a href="javascript:;" target="_blank"><i class="icon_instagram"></i></a></div>
+                <!-- <span>follow us!</span>
+                <div class="social_links"><a href="javascript:;" target="_blank"><i class="icon_facebook"></i></a><a href="javascript:;" target="_blank"><i class="icon_twitter"></i></a><a href="javascript:;" target="_blank"><i class="icon_instagram"></i></a></div> -->
             </div>
             <div class="info_list">
                 <div class="item"><i class="icon_location"></i><a href="{{ $contact->contactlang[0]->map }}" target="_blank">{{ $contact->contactlang[0]->address }}</a></div>

@@ -22,8 +22,7 @@
             <ul>
                 <li class="{{ Request::is('backend/solution/video') ? 'active' : '' }}"><a href="{{ route('solution.video') }}">影片區維護</a></li>
                 <li class="{{ (Request::is('backend/solution/content') or Request::is('backend/solution/content/*')) ? 'active' : '' }}"><a href="{{ route('solution.content') }}">圖文區維護</a></li>
-                <li class="{{ (Request::is('backend/solution/aspect') or Request::is('backend/solution/aspect/*')) ? 'active' : '' }}"><a href="{{ route('solution.aspect') }}">特點維護</a></li>
-                <li class="{{ (Request::is('backend/solution/key_feature') or Request::is('backend/solution/key_feature/*')) ? 'active' : '' }}"><a href="{{ route('solution.key_feature') }}">key_feature</a></li>                
+                <li class="{{ (Request::is('backend/solution/aspect') or Request::is('backend/solution/aspect/*')) ? 'active' : '' }}"><a href="{{ route('solution.aspect') }}">特點維護</a></li>            
             </ul>
         </li>
         <li class="{{ Request::is('backend/about') ? 'active' : '' }}">

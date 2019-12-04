@@ -10,6 +10,7 @@
             <div class="text">
                 {!! nl2br(e($privacy->privacylang[0]->content)) !!}
                 <br>
+                <br>                
                 @foreach($termList as $termKey => $termValue)
                     <h2 class="block_subtitle">{!! nl2br(e($termValue->privacyTermlang[0]->title)) !!}</h2>
                     {!!  html_entity_decode($termValue->privacyTermlang[0]->content) !!}
