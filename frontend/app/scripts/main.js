@@ -101,6 +101,10 @@ $(document).ready(function () {
   if ($('.experience_items').length > 0) {
     $('.experience_items').slick({
       slide: '.item',
+      arrows: false,
+      speed: 800,
+      autoplay: true,
+      autoplaySpeed: 5000,
       slidesToShow: 4,
       slidesToScroll: 4,
       responsive: [
@@ -165,9 +169,18 @@ $(document).ready(function () {
   }
   if ($('.keyFeature_slider').length > 0) {
     $('.keyFeature_slider').slick({
+      arrows: true,
       infinite: true,
       speed: 800,
-      adaptiveHeight: true
+      adaptiveHeight: true,
+      responsive: [
+        {
+          breakpoint: 660,
+          settings: {
+            arrows: false
+          }
+        }
+      ]
     })
   }
   if ($('.team_intro').length > 0) {

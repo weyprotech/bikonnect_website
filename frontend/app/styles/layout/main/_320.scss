@@ -378,7 +378,7 @@
     .thumb {
       display: block;
       width: 100%;
-      max-width: 220px;
+      max-width: 230px;
       margin: 0 auto 0.8em;
     }
     h3 {
@@ -1303,7 +1303,6 @@
     text-align: center;
   }
   .keyFeature_slider {
-    margin: 0 26px;
     .pic_text {
       padding: 0 0.8em;
       box-sizing: border-box;
@@ -1338,6 +1337,9 @@
     .slick-next {
       right: calc(-26px - 0.5rem);
       @include retina-sprite($arrow-slider-next-group);
+    }
+    @include breakpoint(480px) {
+      margin: 0 26px;
     }
     @include breakpoint(660px) {
       .pic_text {
@@ -1827,12 +1829,12 @@
         }
         h3 {
           overflow: hidden;
-          max-height: 1.2em * 2;
+          max-height: 1.4em * 2;
           margin: 0.6em 0;
           color: $main;
           font-size: 1.125em;
           font-weight: 400;
-          line-height: 1.2;
+          line-height: 1.4;
         }
         .sort {
           color: $blue;
@@ -1957,10 +1959,6 @@
         margin-bottom: 0;
       }
     }
-    // p {
-    //   text-align: justify;
-    //   text-justify: auto;
-    // }
     img {
       height: auto !important;
     }
@@ -2059,15 +2057,16 @@
         margin-bottom: 0.8em;
       }
       .text {
+        line-height: 1.5;
         h3 {
           overflow: hidden;
-          max-height: 1.2em * 2;
+          max-height: 1.4em * 2;
           margin: 0 0 0.6em;
           color: $main;
           font-family: 'Ubuntu',$sans-serif;
           font-size: 1.125em;
           font-weight: 400;
-          line-height: 1.2;
+          line-height: 1.4;
         }
         .sort {
           color: $blue;

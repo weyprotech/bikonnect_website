@@ -12,10 +12,10 @@
     padding: 5em 1em;
   }
   .block_title {
-    font-size: 3em !important;
+    font-size: 3em;
   }
   .block_subtitle {
-    font-size: 2.25em !important;
+    font-size: 2.25em;
   }
 
   // Index
@@ -33,6 +33,19 @@
       h3 {
         font-size: 1.375em;
       }
+    }
+  }
+  .index_strength {
+    .block_title {
+      font-size: 3em;
+    }
+  }
+  .index_solutions {
+    .block_title {
+      font-size: 3em;
+    }
+    .block_subtitle {
+      font-size: 2.25em;
     }
   }
   .partners_supporters {
