@@ -2,4 +2,4 @@
 .env
 /storage/*.key
 /public/uploads/
-/vendor
+/vendor/
