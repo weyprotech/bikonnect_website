@@ -47,13 +47,18 @@ class Content2Controller extends Controller
                 //上傳圖檔
                 if ($request->hasFile('Img')) {                                        
                     if($request->file('Img')->isValid()){
+                        if(!empty($content->Img)){
+                            @chmod(base_path() . '/public/'.$content->Img, 0777);
+                            @unlink(base_path() . '/public/'.$content->Img);
+                        }
+
                         $destinationPath = base_path() . '/public/uploads/homepage/content2/'.$Id;
 
                         // getting image extension
                         $extension = $request->file('Img')->getClientOriginalExtension();
                         
                         if (!file_exists($destinationPath)) { //Verify if the directory exists
-                            mkdir($destinationPath, 666, true); //create it if do not exists
+                            mkdir($destinationPath, 0777, true); //create it if do not exists
                         }
                         
                         // uuid renameing image

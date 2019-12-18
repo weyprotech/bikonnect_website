@@ -102,6 +102,11 @@ class BlogController extends Controller
         if($request->isMethod('post')){
             if($request->uuid == $blog->uuid){
                 $uuid = Uuid::uuid1();
+                if(!empty($blog->img)){
+                    @chmod(base_path() . '/public/'.$blog->img, 0777);
+                    @unlink(base_path() . '/public/'.$blog->img);
+                }
+
                 $blog->is_enable = 1;
                 $blog->img = $this->upload_img($request,'img',$bId,$blog,'img','1920');
                 $blog->is_visible = $request->is_visible;
@@ -177,13 +182,14 @@ class BlogController extends Controller
         //上傳圖檔
         if ($request->hasFile($name)) {
             if($request->file($name)->isValid()){
+
                 $destinationPath = base_path() . '/public/uploads/blog/'.$uuid;
 
                 // getting image extension
                 $extension = $request->file($name)->getClientOriginalExtension();
 
                 if (!file_exists($destinationPath)) { //Verify if the directory exists
-                    mkdir($destinationPath, 666, true); //create it if do not exists
+                    mkdir($destinationPath, 0777, true); //create it if do not exists
                 }
                 // uuid renameing image
                 $fileName = Str::uuid() . '_blog_.' . $extension;

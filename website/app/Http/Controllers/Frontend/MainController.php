@@ -416,7 +416,11 @@ class MainController extends Controller
             $query->where('langId',$this->langList[0]->langId);
         }])->where('is_enable',1)->where('Id','!=',$blogId)->get();
         
-        $related_blog = $blogList->random(2);
+        if($blogList->count() > 2){
+            $related_blog = $blogList->random(2);
+        }else{
+            $related_blog = $blogList;
+        }
 
         //如果回傳的類別是post
         if($request->isMethod('post')){

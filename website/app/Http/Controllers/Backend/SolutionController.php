@@ -84,6 +84,10 @@ class SolutionController extends Controller
                     if ($request->hasFile('contentlangs.'.$contentValue['langId'].'.img')) {
                         
                         if($request->file('contentlangs.'.$contentValue['langId'].'.img')->isValid()){
+                            if(!empty($content[0]->img)){
+                                @chmod(base_path() . '/public/'.$content[0]->img, 0777);
+                                @unlink(base_path() . '/public/'.$content[0]->img);
+                            }
                             $destinationPath = base_path() . '/public/uploads/solution/'.$contentId;
                             // getting image extension
                             $extension = $request->file('contentlangs.'.$contentValue['langId'].'.img')->getClientOriginalExtension();
@@ -258,7 +262,7 @@ class SolutionController extends Controller
                     $extension = $request->file('Img')->getClientOriginalExtension();
                     
                     if (!file_exists($destinationPath)) { //Verify if the directory exists
-                        mkdir($destinationPath, 666, true); //create it if do not exists
+                        mkdir($destinationPath, 0777, true); //create it if do not exists
                     }
                     
                     // uuid renameing image
@@ -311,13 +315,18 @@ class SolutionController extends Controller
                 //上傳圖檔
                 if ($request->hasFile('Img')) {                                        
                     if($request->file('Img')->isValid()){
+                        if(!empty($row->Img)){
+                            @chmod(base_path() . '/public/'.$row->Img, 0777);
+                            @unlink(base_path() . '/public/'.$row->Img);
+                        }
+
                         $destinationPath = base_path() . '/public/uploads/key_feature/'.$Id;
 
                         // getting image extension
                         $extension = $request->file('Img')->getClientOriginalExtension();
                         
                         if (!file_exists($destinationPath)) { //Verify if the directory exists
-                            mkdir($destinationPath, 666, true); //create it if do not exists
+                            mkdir($destinationPath, 0777, true); //create it if do not exists
                         }
                         
                         // uuid renameing image

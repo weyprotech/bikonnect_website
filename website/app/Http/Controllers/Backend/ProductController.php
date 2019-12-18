@@ -108,6 +108,28 @@ class ProductController extends Controller
                 foreach ($request->productlangs as $contentKey => $contentValue) {
                     $content = ProductLangModel::where('langId',$contentValue['langId'])->where('pId',$productId)->get();
                     // print_r($content[0]->toArray());exit;
+                    
+                    //刪除圖檔
+                    if(!empty($content->img_1)){
+                        @chmod(base_path() . '/public/'.$content->img_1, 0777);
+                        @unlink(base_path() . '/public/'.$content->img_1);
+                    }
+                    if(!empty($content->img_2)){
+                        @chmod(base_path() . '/public/'.$content->img_2, 0777);
+                        @unlink(base_path() . '/public/'.$content->img_2);
+                    }
+                    if(!empty($content->img_3)){
+                        @chmod(base_path() . '/public/'.$content->img_3, 0777);
+                        @unlink(base_path() . '/public/'.$content->img_3);
+                    }
+                    if(!empty($content->img_4)){
+                        @chmod(base_path() . '/public/'.$content->img_4, 0777);
+                        @unlink(base_path() . '/public/'.$content->img_4);
+                    }
+                    if(!empty($content->img_5)){
+                        @chmod(base_path() . '/public/'.$content->img_5, 0777);
+                        @unlink(base_path() . '/public/'.$content->img_5);
+                    }
                     //上傳圖檔
                     $img_1 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_1',$productId,$content[0],'img_1',1057);
                     $img_2 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_2',$productId,$content[0],'img_2',1040);
@@ -196,12 +218,13 @@ class ProductController extends Controller
         //上傳圖檔
         if ($request->hasFile($name)) {
             if($request->file($name)->isValid()){
+
                 $destinationPath = base_path() . '/public/uploads/product/'.$uuid;
                 // getting image extension
                 $extension = $request->file($name)->getClientOriginalExtension();
                 
                 if (!file_exists($destinationPath)) { //Verify if the directory exists
-                    mkdir($destinationPath, 666, true); //create it if do not exists
+                    mkdir($destinationPath, 0777, true); //create it if do not exists
                 }
 
                 // uuid renameing image

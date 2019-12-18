@@ -48,7 +48,7 @@ class BannerController extends Controller
                     $extension = $request->file('bannerImg')->getClientOriginalExtension();
                     
                     if (!file_exists($destinationPath)) { //Verify if the directory exists
-                        mkdir($destinationPath, 666, true); //create it if do not exists
+                        mkdir($destinationPath, 0777, true); //create it if do not exists
                     }
                     
                     // uuid renameing image
@@ -96,17 +96,27 @@ class BannerController extends Controller
 
         if($request->isMethod('post')){
             if($request->uuid == $banner->uuid){
+                if(!empty($banner->bannerImg)){
+                    @chmod(base_path() . '/public/'.$banner->bannerImg, 0777);
+                    @unlink(base_path() . '/public/'.$banner->bannerImg);
+                }
+
                 $banner->uuid = Uuid::uuid1();
                 //上傳圖檔
-                if ($request->hasFile('bannerImg')) {                                        
+                if ($request->hasFile('bannerImg')) {
                     if($request->file('bannerImg')->isValid()){
+                        if(!empty($banner->bannerImg)){
+                            @chmod(base_path() . '/public/'.$banner->bannerImg, 0777);
+                            @unlink(base_path() . '/public/'.$banner->bannerImg);
+                        }
+                        
                         $destinationPath = base_path() . '/public/uploads/banner/'.$bannerId;
 
                         // getting image extension
                         $extension = $request->file('bannerImg')->getClientOriginalExtension();
                         
                         if (!file_exists($destinationPath)) { //Verify if the directory exists
-                            mkdir($destinationPath, 666, true); //create it if do not exists
+                            mkdir($destinationPath, 0777, true); //create it if do not exists
                         }
                         
                         // uuid renameing image

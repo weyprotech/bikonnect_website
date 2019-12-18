@@ -41,13 +41,17 @@ class AboutController extends Controller
                 $content->uuid = Uuid::uuid1();
                 $content->save();
 
-                foreach ($request->contentlangs as $contentKey => $contentValue) {     
-
+                foreach ($request->contentlangs as $contentKey => $contentValue) {                         
                     $content = AboutContentLangModel::where('langId',$contentValue['langId'])->where('cId',$contentId)->get();
                     //上傳圖檔
                     if ($request->hasFile('contentlangs.'.$contentValue['langId'].'.img')) {
                         
                         if($request->file('contentlangs.'.$contentValue['langId'].'.img')->isValid()){
+                            if(!empty($content[0]->img)){
+                                @chmod(base_path() . '/public/'.$content[0]->img, 0777);
+                                @unlink(base_path() . '/public/'.$content[0]->img);
+                            }
+                            
                             $destinationPath = base_path() . '/public/uploads/about/content/'.$contentId;
                             // getting image extension
                             $extension = $request->file('contentlangs.'.$contentValue['langId'].'.img')->getClientOriginalExtension();
@@ -63,6 +67,7 @@ class AboutController extends Controller
                     }else{
                         $contentValue['img'] = $content[0]->img;
                     }
+
                     DB::table('tb_about_content_lang')
                     ->where('cId',$contentId)
                     ->where('langId',$contentValue['langId'])
@@ -264,6 +269,10 @@ class AboutController extends Controller
                   if ($request->hasFile('img')) {
                         
                     if($request->file('img')->isValid()){
+                        if(!empty($content->img)){
+                            @chmod(base_path() . '/public/'.$content->img, 0777);
+                            @unlink(base_path() . '/public/'.$content->img);
+                        }
                         $destinationPath = base_path() . '/public/uploads/about/team/'.$teamId;
                         // getting image extension
                         $extension = $request->file('img')->getClientOriginalExtension();
@@ -356,6 +365,7 @@ class AboutController extends Controller
             //上傳圖檔
             if ($request->hasFile('img')) {
                 if($request->file('img')->isValid()){
+                    
                     $destinationPath = base_path() . '/public/uploads/about/partner/'.$uuid;
                     // getting image extension
                     $extension = $request->file('img')->getClientOriginalExtension();
@@ -401,6 +411,11 @@ class AboutController extends Controller
                 //上傳圖檔
                 if ($request->hasFile('img')) {
                     if($request->file('img')->isValid()){
+                        if(!empty($content->img)){
+                            @chmod(base_path() . '/public/'.$content->img, 0777);
+                            @unlink(base_path() . '/public/'.$content->img);
+                        }
+                        
                         $destinationPath = base_path() . '/public/uploads/about/partner/'.$partnerid;
                         // getting image extension
                         $extension = $request->file('img')->getClientOriginalExtension();
