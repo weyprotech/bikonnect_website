@@ -13,10 +13,8 @@
 <script>
     $('.language_option').on('click',function(event){
         var language = $(this).data('language');
-        Cookies.set('shop_laravel_language',language);
-        // console.log('<?= $_SERVER['REMOTE_HOST'].$_SERVER['REQUEST_URI'] ?>');
+        Cookies.set('shop_laravel_language',language);        
         window.location='{{ URL::route('main.index') }}'+'/'+language;        
-        // location.reload();
     });
     $(function() {
         $("#contact-form").validate({
