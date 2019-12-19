@@ -3,7 +3,7 @@ npm-debug.log
 yarn-error.log
 frontend/
 vendor/
-public/uploads/
+public/uploads/*
 
 # Laravel 4 specific
 bootstrap/compiled.php
