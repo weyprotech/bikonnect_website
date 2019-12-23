@@ -42,9 +42,6 @@ resources/views/backend/term  (整個資料夾)
 
 tb_term.sql
 
-tb_term_lang.sql
-
-
 -前台顯示
 
 app/Http/Controllers/Frontend/MainController.php
