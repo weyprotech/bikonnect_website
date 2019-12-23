@@ -157,6 +157,11 @@ class BlogController extends Controller
     {
         $blog = BlogModel::find($bId);
         $blog->is_enable = 0;
+        if(!empty($blog->img)){
+            @chmod(base_path() . '/public/'.$blog->img, 0777);
+            @unlink(base_path() . '/public/'.$blog->img);
+        }
+
         $blog->save();
 
         return redirect(action('Backend\BlogController@index'));                  

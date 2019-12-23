@@ -206,6 +206,28 @@ class ProductController extends Controller
     {
         $productid = ProductModel::find($productid);
         $productid->is_enable = 0;
+        //刪除圖檔
+        if(!empty($productid->img_1)){
+            @chmod(base_path() . '/public/'.$productid->img_1, 0777);
+            @unlink(base_path() . '/public/'.$productid->img_1);
+        }
+        if(!empty($productid->img_2)){
+            @chmod(base_path() . '/public/'.$productid->img_2, 0777);
+            @unlink(base_path() . '/public/'.$productid->img_2);
+        }
+        if(!empty($productid->img_3)){
+            @chmod(base_path() . '/public/'.$productid->img_3, 0777);
+            @unlink(base_path() . '/public/'.$productid->img_3);
+        }
+        if(!empty($productid->img_4)){
+            @chmod(base_path() . '/public/'.$productid->img_4, 0777);
+            @unlink(base_path() . '/public/'.$productid->img_4);
+        }
+        if(!empty($productid->img_5)){
+            @chmod(base_path() . '/public/'.$productid->img_5, 0777);
+            @unlink(base_path() . '/public/'.$productid->img_5);
+        }
+
         $productid->save();
         return redirect('backend/product/index');   
     }

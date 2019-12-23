@@ -124,6 +124,10 @@ class Content2Controller extends Controller
     {
         $row = BannerModel::find($bannerId);
         $row->is_enable = 0;
+        if(!empty($row->Img)){
+            @chmod(base_path() . '/public/'.$row->Img, 0777);
+            @unlink(base_path() . '/public/'.$row->Img);
+        }
         $row->save();
         return redirect(action('Backend\BannerController@index'));
     }

@@ -183,6 +183,10 @@ class BannerController extends Controller
     {
         $row = BannerModel::find($bannerId);
         $row->is_enable = 0;
+        if(!empty($row->bannerImg)){
+            @chmod(base_path() . '/public/'.$row->bannerImg, 0777);
+            @unlink(base_path() . '/public/'.$row->bannerImg);
+        }
         $row->save();
         return redirect(action('Backend\BannerController@index'));
     }

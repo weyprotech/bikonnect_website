@@ -336,6 +336,10 @@ class AboutController extends Controller
     public function team_delete($teamId){
         $team = AboutTeamModel::find($teamId);
         $team->is_enable = 0;
+        if(!empty($team->img)){
+            @chmod(base_path() . '/public/'.$team->img, 0777);
+            @unlink(base_path() . '/public/'.$team->img);
+        }
         $team->save();
         $teamList = AboutTeamModel::where('is_enable',1)->orderby('order','asc')->get();
         foreach($teamList as $teamKey => $teamValue){
@@ -479,6 +483,10 @@ class AboutController extends Controller
     public function partner_delete($partnerId){
         $team = AboutPartnerModel::find($partnerId);
         $team->is_enable = 0;
+        if(!empty($team->img)){
+            @chmod(base_path() . '/public/'.$team->img, 0777);
+            @unlink(base_path() . '/public/'.$team->img);
+        }
         $team->save();
         $teamList = AboutPartnerModel::where('is_enable',1)->orderby('order','asc')->get();
         foreach($teamList as $teamKey => $teamValue){
