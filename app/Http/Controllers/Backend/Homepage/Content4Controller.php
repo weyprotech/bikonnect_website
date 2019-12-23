@@ -31,7 +31,7 @@ class Content4Controller extends Controller
                 //上傳圖檔
                 if ($request->hasFile('Img')) {                                        
                     if($request->file('Img')->isValid()){
-                        if(!empty($content->Img)){
+                        if(file_exists(base_path() . '/public/'.$content->Img)){
                             @chmod(base_path() . '/public/'.$content->Img, 0777);
                             @unlink(base_path() . '/public/'.$content->Img);
                         }

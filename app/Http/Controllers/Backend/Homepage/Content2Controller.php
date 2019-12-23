@@ -47,7 +47,7 @@ class Content2Controller extends Controller
                 //上傳圖檔
                 if ($request->hasFile('Img')) {                                        
                     if($request->file('Img')->isValid()){
-                        if(!empty($content->Img)){
+                        if(file_exists(base_path() . '/public/'.$content->Img)){
                             @chmod(base_path() . '/public/'.$content->Img, 0777);
                             @unlink(base_path() . '/public/'.$content->Img);
                         }
@@ -124,7 +124,7 @@ class Content2Controller extends Controller
     {
         $row = BannerModel::find($bannerId);
         $row->is_enable = 0;
-        if(!empty($row->Img)){
+        if(file_exists(base_path() . '/public/'.$row->Img)){            
             @chmod(base_path() . '/public/'.$row->Img, 0777);
             @unlink(base_path() . '/public/'.$row->Img);
         }

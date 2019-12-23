@@ -84,7 +84,7 @@ class SolutionController extends Controller
                     if ($request->hasFile('contentlangs.'.$contentValue['langId'].'.img')) {
                         
                         if($request->file('contentlangs.'.$contentValue['langId'].'.img')->isValid()){
-                            if(!empty($content[0]->img)){
+                            if(file_exists(base_path() . '/public/'.$content[0]->img)){
                                 @chmod(base_path() . '/public/'.$content[0]->img, 0777);
                                 @unlink(base_path() . '/public/'.$content[0]->img);
                             }
@@ -315,7 +315,7 @@ class SolutionController extends Controller
                 //上傳圖檔
                 if ($request->hasFile('Img')) {                                        
                     if($request->file('Img')->isValid()){
-                        if(!empty($row->Img)){
+                        if(file_exists(base_path() . '/public/'.$row->Img)){
                             @chmod(base_path() . '/public/'.$row->Img, 0777);
                             @unlink(base_path() . '/public/'.$row->Img);
                         }
@@ -393,7 +393,7 @@ class SolutionController extends Controller
     {
         $row = SolutionKeyfeatureModel::find($Id);
         $row->is_enable = 0;
-        if(!empty($row->Img)){
+        if(file_exists(base_path() . '/public/'.$row->Img)){
             @chmod(base_path() . '/public/'.$row->Img, 0777);
             @unlink(base_path() . '/public/'.$row->Img);
         }

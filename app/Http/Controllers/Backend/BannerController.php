@@ -96,7 +96,7 @@ class BannerController extends Controller
 
         if($request->isMethod('post')){
             if($request->uuid == $banner->uuid){
-                if(!empty($banner->bannerImg)){
+                if(file_exists(base_path() . '/public/'.$banner->bannerImg)){
                     @chmod(base_path() . '/public/'.$banner->bannerImg, 0777);
                     @unlink(base_path() . '/public/'.$banner->bannerImg);
                 }
@@ -105,7 +105,7 @@ class BannerController extends Controller
                 //上傳圖檔
                 if ($request->hasFile('bannerImg')) {
                     if($request->file('bannerImg')->isValid()){
-                        if(!empty($banner->bannerImg)){
+                        if(file_exists(base_path() . '/public/'.$banner->bannerImg)){
                             @chmod(base_path() . '/public/'.$banner->bannerImg, 0777);
                             @unlink(base_path() . '/public/'.$banner->bannerImg);
                         }
@@ -183,7 +183,7 @@ class BannerController extends Controller
     {
         $row = BannerModel::find($bannerId);
         $row->is_enable = 0;
-        if(!empty($row->bannerImg)){
+        if(file_exists(base_path() . '/public/'.$row->bannerImg)){
             @chmod(base_path() . '/public/'.$row->bannerImg, 0777);
             @unlink(base_path() . '/public/'.$row->bannerImg);
         }

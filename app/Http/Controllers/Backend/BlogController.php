@@ -102,7 +102,7 @@ class BlogController extends Controller
         if($request->isMethod('post')){
             if($request->uuid == $blog->uuid){
                 $uuid = Uuid::uuid1();
-                if(!empty($blog->img)){
+                if(file_exists(base_path() . '/public/'.$blog->img)){
                     @chmod(base_path() . '/public/'.$blog->img, 0777);
                     @unlink(base_path() . '/public/'.$blog->img);
                 }
@@ -157,7 +157,7 @@ class BlogController extends Controller
     {
         $blog = BlogModel::find($bId);
         $blog->is_enable = 0;
-        if(!empty($blog->img)){
+        if(file_exists(base_path() . '/public/'.$blog->img)){
             @chmod(base_path() . '/public/'.$blog->img, 0777);
             @unlink(base_path() . '/public/'.$blog->img);
         }

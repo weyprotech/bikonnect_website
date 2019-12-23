@@ -109,26 +109,31 @@ class ProductController extends Controller
                     $content = ProductLangModel::where('langId',$contentValue['langId'])->where('pId',$productId)->get();
 
                     //刪除圖檔
-                    if(!empty($content[0]->img_1)){
+                    if(file_exists(base_path() . '/public/'.$content[0]->img_1)){
                         @chmod(base_path() . '/public/'.$content[0]->img_1, 0777);
                         @unlink(base_path() . '/public/'.$content[0]->img_1);
                     }
-                    if(!empty($content[0]->img_2)){
+                    
+                    if(file_exists(base_path() . '/public/'.$content[0]->img_2)){
                         @chmod(base_path() . '/public/'.$content[0]->img_2, 0777);
                         @unlink(base_path() . '/public/'.$content[0]->img_2);
                     }
-                    if(!empty($content[0]->img_3)){
+
+                    if(file_exists(base_path() . '/public/'.$content[0]->img_3)){
                         @chmod(base_path() . '/public/'.$content[0]->img_3, 0777);
                         @unlink(base_path() . '/public/'.$content[0]->img_3);
                     }
-                    if(!empty($content[0]->img_4)){
+                    
+                    if(file_exists(base_path() . '/public/'.$content[0]->img_4)){
                         @chmod(base_path() . '/public/'.$content[0]->img_4, 0777);
                         @unlink(base_path() . '/public/'.$content[0]->img_4);
                     }
-                    if(!empty($content[0]->img_5)){
+                                        
+                    if(file_exists(base_path() . '/public/'.$content[0]->img_5)){
                         @chmod(base_path() . '/public/'.$content[0]->img_5, 0777);
                         @unlink(base_path() . '/public/'.$content[0]->img_5);
                     }
+                    
                     //上傳圖檔
                     $img_1 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_1',$productId,$content[0],'img_1',1057);
                     $img_2 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_2',$productId,$content[0],'img_2',1040);
@@ -205,47 +210,57 @@ class ProductController extends Controller
     {
         $productid = ProductModel::with('lang')->find($productid);
         $productid->is_enable = 0;
+        
         //刪除圖檔
-        if(!empty($productid->lang[0]->img_1)){
+        if(file_exists(base_path() . '/public/'.$productid->lang[0]->img_1)){
             @chmod(base_path() . '/public/'.$productid->lang[0]->img_1, 0777);
             @unlink(base_path() . '/public/'.$productid->lang[0]->img_1);
         }
-        if(!empty($productid->lang[0]->img_2)){
+
+        if(file_exists(base_path() . '/public/'.$productid->lang[0]->img_2)){
             @chmod(base_path() . '/public/'.$productid->lang[0]->img_2, 0777);
             @unlink(base_path() . '/public/'.$productid->lang[0]->img_2);
         }
-        if(!empty($productid->lang[0]->img_3)){
+    
+        if(file_exists(base_path() . '/public/'.$productid->lang[0]->img_3)){
             @chmod(base_path() . '/public/'.$productid->lang[0]->img_3, 0777);
             @unlink(base_path() . '/public/'.$productid->lang[0]->img_3);
         }
-        if(!empty($productid->lang[0]->img_4)){
+    
+        if(file_exists(base_path() . '/public/'.$productid->lang[0]->img_4)){
             @chmod(base_path() . '/public/'.$productid->lang[0]->img_4, 0777);
             @unlink(base_path() . '/public/'.$productid->lang[0]->img_4);
         }
-        if(!empty($productid->lang[0]->img_5)){
+        
+        if(file_exists(base_path() . '/public/'.$productid->lang[0]->img_5)){
             @chmod(base_path() . '/public/'.$productid->lang[0]->img_5, 0777);
             @unlink(base_path() . '/public/'.$productid->lang[0]->img_5);
         }
-        if(!empty($productid->lang[1]->img_1)){
+        
+        if(file_exists(base_path() . '/public/'.$productid->lang[1]->img_1)){
             @chmod(base_path() . '/public/'.$productid->lang[1]->img_1, 0777);
             @unlink(base_path() . '/public/'.$productid->lang[1]->img_1);
         }
-        if(!empty($productid->lang[1]->img_2)){
+        
+        if(file_exists(base_path() . '/public/'.$productid->lang[1]->img_2)){
             @chmod(base_path() . '/public/'.$productid->lang[1]->img_2, 0777);
             @unlink(base_path() . '/public/'.$productid->lang[1]->img_2);
         }
-        if(!empty($productid->lang[1]->img_3)){
+        
+        if(file_exists($productid->lang[1]->img_3)){
             @chmod(base_path() . '/public/'.$productid->lang[1]->img_3, 0777);
             @unlink(base_path() . '/public/'.$productid->lang[1]->img_3);
         }
-        if(!empty($productid->lang[1]->img_4)){
+
+        if(file_exists($productid->lang[1]->img_4)){
             @chmod(base_path() . '/public/'.$productid->lang[1]->img_4, 0777);
             @unlink(base_path() . '/public/'.$productid->lang[1]->img_4);
         }
-        if(!empty($productid->lang[1]->img_5)){
+
+        if(file_exists($productid->lang[1]->img_5)){
             @chmod(base_path() . '/public/'.$productid->lang[1]->img_5, 0777);
             @unlink(base_path() . '/public/'.$productid->lang[1]->img_5);
-        }
+        }        
 
         $productid->save();
         return redirect('backend/product/index');   

@@ -47,7 +47,7 @@ class AboutController extends Controller
                     if ($request->hasFile('contentlangs.'.$contentValue['langId'].'.img')) {
                         
                         if($request->file('contentlangs.'.$contentValue['langId'].'.img')->isValid()){
-                            if(!empty($content[0]->img)){
+                            if(file_exists(base_path() . '/public/'.$content[0]->img)){
                                 @chmod(base_path() . '/public/'.$content[0]->img, 0777);
                                 @unlink(base_path() . '/public/'.$content[0]->img);
                             }
@@ -269,7 +269,7 @@ class AboutController extends Controller
                   if ($request->hasFile('img')) {
                         
                     if($request->file('img')->isValid()){
-                        if(!empty($content->img)){
+                        if(file_exists(base_path() . '/public/'.$content->img)){
                             @chmod(base_path() . '/public/'.$content->img, 0777);
                             @unlink(base_path() . '/public/'.$content->img);
                         }
@@ -336,7 +336,7 @@ class AboutController extends Controller
     public function team_delete($teamId){
         $team = AboutTeamModel::find($teamId);
         $team->is_enable = 0;
-        if(!empty($team->img)){
+        if(file_exists(base_path() . '/public/'.$team->img)){
             @chmod(base_path() . '/public/'.$team->img, 0777);
             @unlink(base_path() . '/public/'.$team->img);
         }
@@ -415,7 +415,7 @@ class AboutController extends Controller
                 //上傳圖檔
                 if ($request->hasFile('img')) {
                     if($request->file('img')->isValid()){
-                        if(!empty($content->img)){
+                        if(file_exists(base_path() . '/public/'.$content->img)){
                             @chmod(base_path() . '/public/'.$content->img, 0777);
                             @unlink(base_path() . '/public/'.$content->img);
                         }
@@ -483,7 +483,7 @@ class AboutController extends Controller
     public function partner_delete($partnerId){
         $team = AboutPartnerModel::find($partnerId);
         $team->is_enable = 0;
-        if(!empty($team->img)){
+        if(file_exists(base_path() . '/public/'.$team->img)){
             @chmod(base_path() . '/public/'.$team->img, 0777);
             @unlink(base_path() . '/public/'.$team->img);
         }
