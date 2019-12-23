@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
--新增條款後台
+- 新增條款後台
 
 app/Http/Controllers/Backend/TermController.php
 
@@ -16,11 +16,11 @@ app/TermModel.php
 
 resources/views/backend/term  (整個資料夾)
 
--匯入SQL檔
+- 匯入SQL檔
 
 tb_term.sql
 
--前台顯示
+- 前台顯示
 
 app/Http/Controllers/Frontend/MainController.php
 
@@ -28,19 +28,19 @@ resources/views/frontend/term.blade.php
 
 resources/views/frontend/shared/_footer.blade.php
 
--連結修正
+- 連結修正
 
 routes/web.php
 
--修正後台內文4頁面
+- 修正後台內文4頁面
 
 resources/views/backend/homepage/content4/edit.blade.php
 
--修改後台menu連結
+- 修改後台menu連結
 
 resources/views/backend/shared/_nav.blade.php
 
--刪除會刪除圖片
+- 刪除會刪除圖片
 
 app/Http/Controllers/Backend/AboutController.php
 
