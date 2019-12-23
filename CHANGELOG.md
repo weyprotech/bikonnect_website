@@ -30,20 +30,28 @@ All notable changes to this project will be documented in this file.
 
 -新增條款後台
 app/Http/Controllers/Backend/TermController.php
+
 app/TermLangModel.php
+
 app/TermModel.php
+
 resources/views/backend/term  (整個資料夾)
 
 -匯入SQL檔
 tb_term.sql
+
 tb_term_lang.sql
+
 
 -前台顯示
 app/Http/Controllers/Frontend/MainController.php
+
 resources/views/frontend/term.blade.php
+
 resources/views/frontend/shared/_footer.blade.php
 
 -連結修正
+
 routes/web.php
 
 -修正後台內文4頁面
