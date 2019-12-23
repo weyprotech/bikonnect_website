@@ -60,3 +60,21 @@ routes/web.php
 -修正後台內文4頁面
 
 resources/views/backend/homepage/content4/edit.blade.php
+
+-修改後台menu連結
+
+resources/views/backend/shared/_nav.blade.php
+
+-新增刪除會刪除圖片
+
+app/Http/Controllers/Backend/AboutController.php
+
+app/Http/Controllers/Backend/BannerController.php
+
+app/Http/Controllers/Backend/BlogController.php
+
+app/Http/Controllers/Backend/ProductController.php
+
+app/Http/Controllers/Backend/SolutionController.php
+
+app/Http/Controllers/Backend/Content2Controller.php
