@@ -30,6 +30,8 @@ use App\ContactMailModel;
 use App\EmailModel;
 use App\PrivacyModel;
 use App\PrivacyTermModel;
+use App\TermModel;
+use App\TermlangModel;
 
 
 class MainController extends Controller 
@@ -308,6 +310,44 @@ class MainController extends Controller
         );
 
         return view('frontend.privacy',$data);
+    }
+
+    public function term() 
+    {
+        //設定語系
+        $this->set_locale();
+
+        //隱私權
+        $term = TermModel::with(['termlang' => function($query){
+            $query->where('langId','=',$this->langList[0]->langId);
+        }])->find(1);
+    
+        //產品列表
+        $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+            $query->where('langId','=',$this->langList[0]->langId);
+        }])->get();
+
+        //seo
+        $seoList = array(
+            'en' => array(
+                'title' => 'TERMS AND CONDITIONS - Bikonnect',
+                'keyword' => 'TERMS AND CONDITIONS - Bikonnect',
+                'description' => 'TERMS AND CONDITIONS - Bikonnect'
+            ),
+            'zh-TW' => array(
+                'title' => '條款 - Bikonnect',
+                'keyword' => '條款 - Bikonnect',
+                'description' => '條款 - Bikonnect' 
+            )
+        );
+        
+        $data = array(
+            'term' => $term,
+            'seoList' => $seoList,
+            'productList' => $productList            
+        );
+
+        return view('frontend.term',$data);
     }
 
     public function send_email(Request $request){

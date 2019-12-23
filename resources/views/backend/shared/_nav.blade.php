@@ -63,6 +63,10 @@
             </ul>
         </li>
 
+        <li class="{{ Request::is('backend/term/*') ? 'active' : '' }}">
+            <a href="{{ route('term.index') }}"><i class="fa fa-lg fa-fw fa-cog"></i> <span class="menu-item-parent">條款管理</span></a>           
+        </li>
+
         <li class="{{ (Request::is('backend/admin') or Request::is('backend/admin/*')) ? 'active' : '' }}">
             <a href="{{ route('admin.auth') }}"><i class="fa fa-lg fa-fw fa-lock"></i> <span class="menu-item-parent">權限管理</span></a>
         </li>

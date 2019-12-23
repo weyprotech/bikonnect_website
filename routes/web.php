@@ -17,6 +17,7 @@ Route::get('/solution/{locale?}', array('as' => 'main.solution', 'uses' => 'Fron
 Route::get('/about/{locale?}', array('as' => 'main.about', 'uses' => 'Frontend\MainController@about'));
 Route::get('/product/{productid}/{locale?}', array('as' => 'main.product', 'uses' => 'Frontend\MainController@product'));
 Route::get('/privacy/{locale?}', array('as' => 'main.privacy', 'uses' => 'Frontend\MainController@privacy'));
+Route::get('/term/{locale?}', array('as' => 'main.term', 'uses' => 'Frontend\MainController@term'));
 Route::get('/blog/{page}/{locale?}',array('as' => 'blog.index','uses' => 'Frontend\MainController@blog'));
 Route::match(['get','post'],'/blog_detail/{blogid}/{page}/{locale?}',array('as' => 'blog.detail','uses' => 'Frontend\MainController@blog_detail'));
 Route::post('/ajax/get_blog',array('as' => 'ajax.get_blog','uses' => 'Frontend\AjaxController@get_blog'));
@@ -176,6 +177,12 @@ Route::group(['prefix' => 'backend'], function(){
         Route::match(['get', 'post'], '/term/edit/{termid}', array('as' => 'term.edit', 'uses' => 'Backend\PrivacyController@edit_term'));
         Route::post('/term/order_save', array('as' => 'term.order_save', 'uses' => 'Backend\PrivacyController@order_save_term'));
         Route::get('/term/delete/{termid}', array('as' => 'term.delete', 'uses' => 'Backend\PrivacyController@delete_term'));
+    });
+
+    //條款
+    Route::group(['prefix' => 'term'],function(){
+        //大綱
+        Route::match(['get', 'post'], '/index/edit', array('as' => 'term.index', 'uses' => 'Backend\TermController@index'));
     });
     
     //權限管理

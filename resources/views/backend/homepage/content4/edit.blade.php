@@ -110,9 +110,6 @@
                                 <div class="form-actions">
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <a class="btn btn-default" href="{{ route('content2.index') }}">
-                                                Back
-                                            </a>
                                             <button class="btn btn-primary" type="submit" id="save">
                                                 <i class="fa fa-save"></i>
                                                 Submit
