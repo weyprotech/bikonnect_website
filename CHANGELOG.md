@@ -65,7 +65,7 @@ resources/views/backend/homepage/content4/edit.blade.php
 
 resources/views/backend/shared/_nav.blade.php
 
--新增刪除會刪除圖片
+-刪除會刪除圖片
 
 app/Http/Controllers/Backend/AboutController.php
 
