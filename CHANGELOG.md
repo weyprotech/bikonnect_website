@@ -18,10 +18,21 @@ resources/views/backend/shared/_nav.blade.php
 
 app/Http/Controllers/Backend/TermController.php
 
-- 刪除會刪除圖片(產品)
+- 刪除會刪除圖片
+
+app/Http/Controllers/Backend/AboutController.php
+
+app/Http/Controllers/Backend/BannerController.php
+
+app/Http/Controllers/Backend/BlogController.php
 
 app/Http/Controllers/Backend/ProductController.php
 
+app/Http/Controllers/Backend/SolutionController.php
+
+app/Http/Controllers/Backend/Homepage/Content2Controller.php
+
+app/Http/Controllers/Backend/Homepage/Content4Controller.php
 
 ## 2019-12-23 1
 
