@@ -2,7 +2,28 @@
 
 All notable changes to this project will be documented in this file.
 
-## 2019-12-23
+## 2019-12-23 2
+
+### Changed
+
+- 連結修正
+
+routes/web.php
+
+- 修改後台menu連結
+
+resources/views/backend/shared/_nav.blade.php
+
+- 修改條款頁面出錯
+
+app/Http/Controllers/Backend/TermController.php
+
+- 刪除會刪除圖片(產品)
+
+app/Http/Controllers/Backend/ProductController.php
+
+
+## 2019-12-23 1
 
 ### Changed
 
