@@ -182,7 +182,7 @@ Route::group(['prefix' => 'backend'], function(){
     //條款
     Route::group(['prefix' => 'term'],function(){
         //大綱
-        Route::match(['get', 'post'], '/index/edit', array('as' => 'term.index', 'uses' => 'Backend\TermController@index'));
+        Route::match(['get', 'post'], '/index/edit', array('as' => 'term', 'uses' => 'Backend\TermController@index'));
     });
     
     //權限管理

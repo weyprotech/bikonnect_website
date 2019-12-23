@@ -55,6 +55,6 @@ class TermController extends Controller
             'web_langList' => $web_langList
         );
 
-        return $this->set_view('backend.Term.index',$data);
+        return $this->set_view('backend.term.index',$data);
     }
 }

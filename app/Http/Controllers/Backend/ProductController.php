@@ -107,28 +107,27 @@ class ProductController extends Controller
                 $content->save();
                 foreach ($request->productlangs as $contentKey => $contentValue) {
                     $content = ProductLangModel::where('langId',$contentValue['langId'])->where('pId',$productId)->get();
-                    // print_r($content[0]->toArray());exit;
-                    
+
                     //刪除圖檔
-                    if(!empty($content->img_1)){
-                        @chmod(base_path() . '/public/'.$content->img_1, 0777);
-                        @unlink(base_path() . '/public/'.$content->img_1);
+                    if(!empty($content[0]->img_1)){
+                        @chmod(base_path() . '/public/'.$content[0]->img_1, 0777);
+                        @unlink(base_path() . '/public/'.$content[0]->img_1);
                     }
-                    if(!empty($content->img_2)){
-                        @chmod(base_path() . '/public/'.$content->img_2, 0777);
-                        @unlink(base_path() . '/public/'.$content->img_2);
+                    if(!empty($content[0]->img_2)){
+                        @chmod(base_path() . '/public/'.$content[0]->img_2, 0777);
+                        @unlink(base_path() . '/public/'.$content[0]->img_2);
                     }
-                    if(!empty($content->img_3)){
-                        @chmod(base_path() . '/public/'.$content->img_3, 0777);
-                        @unlink(base_path() . '/public/'.$content->img_3);
+                    if(!empty($content[0]->img_3)){
+                        @chmod(base_path() . '/public/'.$content[0]->img_3, 0777);
+                        @unlink(base_path() . '/public/'.$content[0]->img_3);
                     }
-                    if(!empty($content->img_4)){
-                        @chmod(base_path() . '/public/'.$content->img_4, 0777);
-                        @unlink(base_path() . '/public/'.$content->img_4);
+                    if(!empty($content[0]->img_4)){
+                        @chmod(base_path() . '/public/'.$content[0]->img_4, 0777);
+                        @unlink(base_path() . '/public/'.$content[0]->img_4);
                     }
-                    if(!empty($content->img_5)){
-                        @chmod(base_path() . '/public/'.$content->img_5, 0777);
-                        @unlink(base_path() . '/public/'.$content->img_5);
+                    if(!empty($content[0]->img_5)){
+                        @chmod(base_path() . '/public/'.$content[0]->img_5, 0777);
+                        @unlink(base_path() . '/public/'.$content[0]->img_5);
                     }
                     //上傳圖檔
                     $img_1 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_1',$productId,$content[0],'img_1',1057);
@@ -204,28 +203,48 @@ class ProductController extends Controller
      */
     public function delete($productid)
     {
-        $productid = ProductModel::find($productid);
+        $productid = ProductModel::with('lang')->find($productid);
         $productid->is_enable = 0;
         //刪除圖檔
-        if(!empty($productid->img_1)){
-            @chmod(base_path() . '/public/'.$productid->img_1, 0777);
-            @unlink(base_path() . '/public/'.$productid->img_1);
+        if(!empty($productid->lang[0]->img_1)){
+            @chmod(base_path() . '/public/'.$productid->lang[0]->img_1, 0777);
+            @unlink(base_path() . '/public/'.$productid->lang[0]->img_1);
         }
-        if(!empty($productid->img_2)){
-            @chmod(base_path() . '/public/'.$productid->img_2, 0777);
-            @unlink(base_path() . '/public/'.$productid->img_2);
+        if(!empty($productid->lang[0]->img_2)){
+            @chmod(base_path() . '/public/'.$productid->lang[0]->img_2, 0777);
+            @unlink(base_path() . '/public/'.$productid->lang[0]->img_2);
         }
-        if(!empty($productid->img_3)){
-            @chmod(base_path() . '/public/'.$productid->img_3, 0777);
-            @unlink(base_path() . '/public/'.$productid->img_3);
+        if(!empty($productid->lang[0]->img_3)){
+            @chmod(base_path() . '/public/'.$productid->lang[0]->img_3, 0777);
+            @unlink(base_path() . '/public/'.$productid->lang[0]->img_3);
         }
-        if(!empty($productid->img_4)){
-            @chmod(base_path() . '/public/'.$productid->img_4, 0777);
-            @unlink(base_path() . '/public/'.$productid->img_4);
+        if(!empty($productid->lang[0]->img_4)){
+            @chmod(base_path() . '/public/'.$productid->lang[0]->img_4, 0777);
+            @unlink(base_path() . '/public/'.$productid->lang[0]->img_4);
         }
-        if(!empty($productid->img_5)){
-            @chmod(base_path() . '/public/'.$productid->img_5, 0777);
-            @unlink(base_path() . '/public/'.$productid->img_5);
+        if(!empty($productid->lang[0]->img_5)){
+            @chmod(base_path() . '/public/'.$productid->lang[0]->img_5, 0777);
+            @unlink(base_path() . '/public/'.$productid->lang[0]->img_5);
+        }
+        if(!empty($productid->lang[1]->img_1)){
+            @chmod(base_path() . '/public/'.$productid->lang[1]->img_1, 0777);
+            @unlink(base_path() . '/public/'.$productid->lang[1]->img_1);
+        }
+        if(!empty($productid->lang[1]->img_2)){
+            @chmod(base_path() . '/public/'.$productid->lang[1]->img_2, 0777);
+            @unlink(base_path() . '/public/'.$productid->lang[1]->img_2);
+        }
+        if(!empty($productid->lang[1]->img_3)){
+            @chmod(base_path() . '/public/'.$productid->lang[1]->img_3, 0777);
+            @unlink(base_path() . '/public/'.$productid->lang[1]->img_3);
+        }
+        if(!empty($productid->lang[1]->img_4)){
+            @chmod(base_path() . '/public/'.$productid->lang[1]->img_4, 0777);
+            @unlink(base_path() . '/public/'.$productid->lang[1]->img_4);
+        }
+        if(!empty($productid->lang[1]->img_5)){
+            @chmod(base_path() . '/public/'.$productid->lang[1]->img_5, 0777);
+            @unlink(base_path() . '/public/'.$productid->lang[1]->img_5);
         }
 
         $productid->save();
@@ -257,7 +276,7 @@ class ProductController extends Controller
                 })->save($destinationPath.'/thumb_'.$fileName);
 
                 // move file to dest
-                $request->file($name)->move($destinationPath, $fileName);
+                // $request->file($name)->move($destinationPath, $fileName);
                 // save data
                 $img = '/uploads/product/'.$uuid.'/thumb_'.$fileName;                             
             }
