@@ -55,4 +55,5 @@ resources/views/frontend/shared/_footer.blade.php
 routes/web.php
 
 -修正後台內文4頁面
+
 resources/views/backend/homepage/content4/edit.blade.php
