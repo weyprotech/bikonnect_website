@@ -77,4 +77,4 @@ app/Http/Controllers/Backend/ProductController.php
 
 app/Http/Controllers/Backend/SolutionController.php
 
-app/Http/Controllers/Backend/Content2Controller.php
+app/Http/Controllers/Backend/Homepage/Content2Controller.php
