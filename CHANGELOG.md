@@ -24,6 +24,8 @@ All notable changes to this project will be documented in this file.
 
 /resources/views/frontend/privacy.blade.php
 
+/resources/views/backend/term/index.blade.php
+
 ---刪除檔案
 
 /app/PrivacyTermLangModel.php
