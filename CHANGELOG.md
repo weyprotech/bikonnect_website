@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2019-12-26
+
+### Changed
+
+- 更改刪除圖片function
+
+/app/Http/Controllers/Backend/ProductController.php
+
+/app/Http/Controllers/Backend/BlogController.php
+
 ## 2019-12-23 2
 
 ### Changed
