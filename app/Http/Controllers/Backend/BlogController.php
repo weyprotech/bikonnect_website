@@ -102,10 +102,6 @@ class BlogController extends Controller
         if($request->isMethod('post')){
             if($request->uuid == $blog->uuid){
                 $uuid = Uuid::uuid1();
-                if(file_exists(base_path() . '/public/'.$blog->img)){
-                    @chmod(base_path() . '/public/'.$blog->img, 0777);
-                    @unlink(base_path() . '/public/'.$blog->img);
-                }
 
                 $blog->is_enable = 1;
                 $blog->img = $this->upload_img($request,'img',$bId,$blog,'img','1920');
@@ -203,6 +199,10 @@ class BlogController extends Controller
                     $constraint->aspectRatio();
                 })->save($destinationPath.'/'.$fileName);
                 $img = '/uploads/blog/'.$uuid.'/'.$fileName;
+                if(file_exists(base_path() . '/public/'.$content->$file_name)){
+                    @chmod(base_path() . '/public/'.$content->$file_name, 0777);
+                    @unlink(base_path() . '/public/'.$content->$file_name);
+                }
             }
         }else{
             if($content){
