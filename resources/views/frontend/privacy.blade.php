@@ -8,14 +8,7 @@
         <div class="block_inner">
             <h1 class="block_title">{!! nl2br(e($privacy->privacylang[0]->title)) !!}</h1>
             <div class="text">
-                {!! nl2br(e($privacy->privacylang[0]->content)) !!}
-                <br>
-                <br>                
-                @foreach($termList as $termKey => $termValue)
-                    <h2 class="block_subtitle">{!! nl2br(e($termValue->privacyTermlang[0]->title)) !!}</h2>
-                    {!!  html_entity_decode($termValue->privacyTermlang[0]->content) !!}
-                    <br>
-                @endforeach
+                {!! html_entity_decode($privacy->privacylang[0]->content) !!}                
             </div>
         </div>
     </div>

@@ -55,12 +55,8 @@
             </ul>
         </li>
 
-        <li class="{{ Request::is('backend/privacy') ? 'active' : '' }}">
-            <a href="#"><i class="fa fa-lg fa-fw fa-cog"></i> <span class="menu-item-parent">隱私權管理</span></a>
-            <ul>
-                <li class="{{ Request::is('backend/privacy/index/*') ? 'active' : '' }}"><a href="{{ route('privacy.index') }}">隱私權大鋼維護</a></li>
-                <li class="{{ Request::is('backend/privacy/term/*') ? 'active' : '' }}"><a href="{{ route('term.index') }}">隱私權條款維護</a></li>                                
-            </ul>
+        <li class="{{ Request::is('backend/privacy/*') ? 'active' : '' }}">
+            <a href="{{ route('privacy.index') }}"><i class="fa fa-lg fa-fw fa-cog"></i> <span class="menu-item-parent">隱私權管理</span></a>
         </li>
 
         <li class="{{ Request::is('backend/term/*') ? 'active' : '' }}">

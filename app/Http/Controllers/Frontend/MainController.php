@@ -29,7 +29,6 @@ use App\ContactModel;
 use App\ContactMailModel;
 use App\EmailModel;
 use App\PrivacyModel;
-use App\PrivacyTermModel;
 use App\TermModel;
 use App\TermlangModel;
 
@@ -279,10 +278,6 @@ class MainController extends Controller
             $query->where('langId','=',$this->langList[0]->langId);
         }])->find(1);
 
-        $termList = PrivacyTermModel::with(['privacyTermlang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->where('is_enable',1)->orderby('order','asc')->get();
-
         //產品列表
         $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
             $query->where('langId','=',$this->langList[0]->langId);
@@ -304,7 +299,6 @@ class MainController extends Controller
         
         $data = array(
             'privacy' => $privacy,
-            'termList' => $termList,
             'seoList' => $seoList,
             'productList' => $productList            
         );
