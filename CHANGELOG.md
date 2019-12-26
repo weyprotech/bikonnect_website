@@ -12,6 +12,36 @@ All notable changes to this project will be documented in this file.
 
 /app/Http/Controllers/Backend/BlogController.php
 
+- 更改條款後台
+
+/app/Http/Controllers/Backend/PrivacyController.php
+
+/app/Http/Controllers/Frontend/MainController.php
+
+/resources/views/backend/privacy/index.blade.php
+
+/resources/views/backend/shared/_nav.blade.php
+
+/resources/views/frontend/privacy.blade.php
+
+---刪除檔案
+
+/app/PrivacyTermLangModel.php
+
+/app/PrivacyTermModel.php
+
+/resources/views/backend/privacy/term/add.blade.php
+
+/resources/views/backend/privacy/term/edit.blade.php
+
+/resources/views/backend/privacy/term/index.blade.php
+
+--資料庫刪除
+
+tb_privacy_term
+
+tb_privacy_term_lang
+
 ## 2019-12-23 2
 
 ### Changed
