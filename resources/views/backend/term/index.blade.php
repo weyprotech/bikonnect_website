@@ -123,7 +123,7 @@
                         ['para', ['ul']],
                         ['font', ['fontname', 'fontsize', 'color', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subsript', 'clear']],
                         ['para', ['style', 'ol', 'ul', 'paragraph', 'height']],
-                        ['insert', ['picture']],
+                        // ['insert', ['picture']],
                         ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
                     ],
                     callbacks: {
