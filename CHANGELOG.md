@@ -2,6 +2,46 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2019-12-27
+
+### Changed
+
+- 編輯器功能全開
+
+/resources/views/backend/about/addhistory.blade.php
+
+/resources/views/backend/about/edithistory.blade.php
+
+/resources/views/backend/banner/edit.blade.php
+
+/resources/views/backend/blog/add.blade.php
+
+/resources/views/backend/blog/edit.blade.php
+
+/resources/views/backend/contact/edit.blade.php
+
+/resources/views/backend/contact/email/edit.blade.php
+
+/resources/views/backend/contact/mail/edit.blade.php
+
+/resources/views/backend/homepage/content1/edit.blade.php
+
+/resources/views/backend/homepage/content2/edit.blade.php
+
+/resources/views/backend/homepage/content3/edit.blade.php
+
+/resources/views/backend/homepage/content4/edit.blade.php
+
+/resources/views/backend/privacy/index.blade.php
+
+/resources/views/backend/product/add.blade.php
+
+/resources/views/backend/product/edit.blade.php
+
+/resources/views/backend/solution/editcontent.blade.php
+
+/resources/views/backend/term/index.blade.php
+
 ## 2019-12-26
 
 ### Changed
