@@ -121,10 +121,10 @@
                     toolbar: [
                         ['misc', ['codeview']],
                         ['para', ['ul']],
-                        //['font', ['fontname', 'fontsize', 'color', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subsript', 'clear']],
-                        //['para', ['style', 'ol', 'ul', 'paragraph', 'height']],
-                        // ['insert', ['picture']]
-                        //['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
+                        ['font', ['fontname', 'fontsize', 'color', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subsript', 'clear']],
+                        ['para', ['style', 'ol', 'ul', 'paragraph', 'height']],
+                        ['insert', ['picture']],
+                        ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
                     ],
                     callbacks: {
                         onImageUpload: function (files) {
