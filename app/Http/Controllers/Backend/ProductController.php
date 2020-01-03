@@ -221,21 +221,21 @@ class ProductController extends Controller
             @unlink(base_path() . '/public/'.$productid->lang[1]->img_2);
         }
         
-        if(file_exists($productid->lang[1]->img_3)){
+        if(file_exists(base_path() . '/public/'.$productid->lang[1]->img_3)){
             @chmod(base_path() . '/public/'.$productid->lang[1]->img_3, 0777);
             @unlink(base_path() . '/public/'.$productid->lang[1]->img_3);
         }
 
-        if(file_exists($productid->lang[1]->img_4)){
+        if(file_exists(base_path() . '/public/'.$productid->lang[1]->img_4)){
             @chmod(base_path() . '/public/'.$productid->lang[1]->img_4, 0777);
             @unlink(base_path() . '/public/'.$productid->lang[1]->img_4);
         }
 
-        if(file_exists($productid->lang[1]->img_5)){
+        if(file_exists(base_path() . '/public/'.$productid->lang[1]->img_5)){
             @chmod(base_path() . '/public/'.$productid->lang[1]->img_5, 0777);
             @unlink(base_path() . '/public/'.$productid->lang[1]->img_5);
         }        
-
+        @rmdir(base_path() . '/public/uploads/product/'.$productid->Id);
         $productid->save();
         return redirect('backend/product/index');   
     }
@@ -268,7 +268,7 @@ class ProductController extends Controller
                 // $request->file($name)->move($destinationPath, $fileName);
                 // save data
                 $img = '/uploads/product/'.$uuid.'/thumb_'.$fileName;
-                if(file_exists(base_path() . '/public/'.$content->$file_name)){
+                if(file_exists(base_path() . '/public/'.@$content->$file_name)){
                     @chmod(base_path() . '/public/'.$content->$file_name, 0777);
                     @unlink(base_path() . '/public/'.$content->$file_name);
                 }

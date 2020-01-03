@@ -397,6 +397,7 @@ class SolutionController extends Controller
             @chmod(base_path() . '/public/'.$row->Img, 0777);
             @unlink(base_path() . '/public/'.$row->Img);
         }
+        @rmdir(base_path() . '/public/uploads/key_feature/'.$bannerId);
         $row->save();
         return redirect(action('Backend\SolutionController@key_feature'));
     }

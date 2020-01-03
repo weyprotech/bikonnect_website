@@ -340,6 +340,7 @@ class AboutController extends Controller
             @chmod(base_path() . '/public/'.$team->img, 0777);
             @unlink(base_path() . '/public/'.$team->img);
         }
+        @rmdir(base_path() . '/public/uploads/about/team/'.$teamId);
         $team->save();
         $teamList = AboutTeamModel::where('is_enable',1)->orderby('order','asc')->get();
         foreach($teamList as $teamKey => $teamValue){
@@ -486,7 +487,8 @@ class AboutController extends Controller
         if(file_exists(base_path() . '/public/'.$team->img)){
             @chmod(base_path() . '/public/'.$team->img, 0777);
             @unlink(base_path() . '/public/'.$team->img);
-        }
+        }        
+        @rmdir(base_path() . '/public/uploads/about/partner/'.$partnerId);
         $team->save();
         $teamList = AboutPartnerModel::where('is_enable',1)->orderby('order','asc')->get();
         foreach($teamList as $teamKey => $teamValue){

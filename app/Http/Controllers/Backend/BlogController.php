@@ -157,6 +157,7 @@ class BlogController extends Controller
             @chmod(base_path() . '/public/'.$blog->img, 0777);
             @unlink(base_path() . '/public/'.$blog->img);
         }
+        @rmdir(base_path() . '/public/uploads/blog/'.$bId);                
 
         $blog->save();
 

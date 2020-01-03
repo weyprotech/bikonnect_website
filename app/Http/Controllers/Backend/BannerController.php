@@ -187,6 +187,8 @@ class BannerController extends Controller
             @chmod(base_path() . '/public/'.$row->bannerImg, 0777);
             @unlink(base_path() . '/public/'.$row->bannerImg);
         }
+        @rmdir(base_path() . '/public/uploads/banner/'.$bannerId);                
+
         $row->save();
         return redirect(action('Backend\BannerController@index'));
     }
