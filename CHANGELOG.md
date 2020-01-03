@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2020-01-03
+
+### Changed
+
+- 刪除資料時會刪除上傳的檔案夾
+
+/app/Http/Controllers/Backend/AboutController.php
+
+/app/Http/Controllers/Backend/BannerController.php
+
+/app/Http/Controllers/Backend/BlogController.php
+
+/app/Http/Controllers/Backend/ProductController.php
+
+/app/Http/Controllers/Backend/SolutionController.php
+
+/app/Http/Controllers/Backend/Homepage/Content2Controller.php
+
 ## 2019-12-27
 
 ### Changed
