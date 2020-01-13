@@ -1,0 +1,610 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$arrow-down-name: 'arrow_down';
+$arrow-down-x: 118px;
+$arrow-down-y: 90px;
+$arrow-down-offset-x: -118px;
+$arrow-down-offset-y: -90px;
+$arrow-down-width: 20px;
+$arrow-down-height: 10px;
+$arrow-down-total-width: 148px;
+$arrow-down-total-height: 148px;
+$arrow-down-image: '../images/sprite.png';
+$arrow-down: (118px, 90px, -118px, -90px, 20px, 10px, 148px, 148px, '../images/sprite.png', 'arrow_down', );
+$arrow-pager-next-name: 'arrow_pager_next';
+$arrow-pager-next-x: 92px;
+$arrow-pager-next-y: 46px;
+$arrow-pager-next-offset-x: -92px;
+$arrow-pager-next-offset-y: -46px;
+$arrow-pager-next-width: 19px;
+$arrow-pager-next-height: 32px;
+$arrow-pager-next-total-width: 148px;
+$arrow-pager-next-total-height: 148px;
+$arrow-pager-next-image: '../images/sprite.png';
+$arrow-pager-next: (92px, 46px, -92px, -46px, 19px, 32px, 148px, 148px, '../images/sprite.png', 'arrow_pager_next', );
+$arrow-pager-prev-name: 'arrow_pager_prev';
+$arrow-pager-prev-x: 66px;
+$arrow-pager-prev-y: 46px;
+$arrow-pager-prev-offset-x: -66px;
+$arrow-pager-prev-offset-y: -46px;
+$arrow-pager-prev-width: 19px;
+$arrow-pager-prev-height: 32px;
+$arrow-pager-prev-total-width: 148px;
+$arrow-pager-prev-total-height: 148px;
+$arrow-pager-prev-image: '../images/sprite.png';
+$arrow-pager-prev: (66px, 46px, -66px, -46px, 19px, 32px, 148px, 148px, '../images/sprite.png', 'arrow_pager_prev', );
+$arrow-slider-next-name: 'arrow_slider_next';
+$arrow-slider-next-x: 0px;
+$arrow-slider-next-y: 40px;
+$arrow-slider-next-offset-x: 0px;
+$arrow-slider-next-offset-y: -40px;
+$arrow-slider-next-width: 26px;
+$arrow-slider-next-height: 46px;
+$arrow-slider-next-total-width: 148px;
+$arrow-slider-next-total-height: 148px;
+$arrow-slider-next-image: '../images/sprite.png';
+$arrow-slider-next: (0px, 40px, 0px, -40px, 26px, 46px, 148px, 148px, '../images/sprite.png', 'arrow_slider_next', );
+$arrow-slider-next-blue-name: 'arrow_slider_next_blue';
+$arrow-slider-next-blue-x: 40px;
+$arrow-slider-next-blue-y: 0px;
+$arrow-slider-next-blue-offset-x: -40px;
+$arrow-slider-next-blue-offset-y: 0px;
+$arrow-slider-next-blue-width: 26px;
+$arrow-slider-next-blue-height: 46px;
+$arrow-slider-next-blue-total-width: 148px;
+$arrow-slider-next-blue-total-height: 148px;
+$arrow-slider-next-blue-image: '../images/sprite.png';
+$arrow-slider-next-blue: (40px, 0px, -40px, 0px, 26px, 46px, 148px, 148px, '../images/sprite.png', 'arrow_slider_next_blue', );
+$arrow-slider-prev-name: 'arrow_slider_prev';
+$arrow-slider-prev-x: 66px;
+$arrow-slider-prev-y: 0px;
+$arrow-slider-prev-offset-x: -66px;
+$arrow-slider-prev-offset-y: 0px;
+$arrow-slider-prev-width: 26px;
+$arrow-slider-prev-height: 46px;
+$arrow-slider-prev-total-width: 148px;
+$arrow-slider-prev-total-height: 148px;
+$arrow-slider-prev-image: '../images/sprite.png';
+$arrow-slider-prev: (66px, 0px, -66px, 0px, 26px, 46px, 148px, 148px, '../images/sprite.png', 'arrow_slider_prev', );
+$arrow-slider-prev-blue-name: 'arrow_slider_prev_blue';
+$arrow-slider-prev-blue-x: 92px;
+$arrow-slider-prev-blue-y: 0px;
+$arrow-slider-prev-blue-offset-x: -92px;
+$arrow-slider-prev-blue-offset-y: 0px;
+$arrow-slider-prev-blue-width: 26px;
+$arrow-slider-prev-blue-height: 46px;
+$arrow-slider-prev-blue-total-width: 148px;
+$arrow-slider-prev-blue-total-height: 148px;
+$arrow-slider-prev-blue-image: '../images/sprite.png';
+$arrow-slider-prev-blue: (92px, 0px, -92px, 0px, 26px, 46px, 148px, 148px, '../images/sprite.png', 'arrow_slider_prev_blue', );
+$icon-close-name: 'icon_close';
+$icon-close-x: 0px;
+$icon-close-y: 0px;
+$icon-close-offset-x: 0px;
+$icon-close-offset-y: 0px;
+$icon-close-width: 40px;
+$icon-close-height: 40px;
+$icon-close-total-width: 148px;
+$icon-close-total-height: 148px;
+$icon-close-image: '../images/sprite.png';
+$icon-close: (0px, 0px, 0px, 0px, 40px, 40px, 148px, 148px, '../images/sprite.png', 'icon_close', );
+$icon-download-name: 'icon_download';
+$icon-download-x: 118px;
+$icon-download-y: 0px;
+$icon-download-offset-x: -118px;
+$icon-download-offset-y: 0px;
+$icon-download-width: 30px;
+$icon-download-height: 30px;
+$icon-download-total-width: 148px;
+$icon-download-total-height: 148px;
+$icon-download-image: '../images/sprite.png';
+$icon-download: (118px, 0px, -118px, 0px, 30px, 30px, 148px, 148px, '../images/sprite.png', 'icon_download', );
+$icon-facebook-name: 'icon_facebook';
+$icon-facebook-x: 0px;
+$icon-facebook-y: 118px;
+$icon-facebook-offset-x: 0px;
+$icon-facebook-offset-y: -118px;
+$icon-facebook-width: 30px;
+$icon-facebook-height: 30px;
+$icon-facebook-total-width: 148px;
+$icon-facebook-total-height: 148px;
+$icon-facebook-image: '../images/sprite.png';
+$icon-facebook: (0px, 118px, 0px, -118px, 30px, 30px, 148px, 148px, '../images/sprite.png', 'icon_facebook', );
+$icon-fax-name: 'icon_fax';
+$icon-fax-x: 138px;
+$icon-fax-y: 100px;
+$icon-fax-offset-x: -138px;
+$icon-fax-offset-y: -100px;
+$icon-fax-width: 10px;
+$icon-fax-height: 10px;
+$icon-fax-total-width: 148px;
+$icon-fax-total-height: 148px;
+$icon-fax-image: '../images/sprite.png';
+$icon-fax: (138px, 100px, -138px, -100px, 10px, 10px, 148px, 148px, '../images/sprite.png', 'icon_fax', );
+$icon-instagram-name: 'icon_instagram';
+$icon-instagram-x: 118px;
+$icon-instagram-y: 60px;
+$icon-instagram-offset-x: -118px;
+$icon-instagram-offset-y: -60px;
+$icon-instagram-width: 30px;
+$icon-instagram-height: 30px;
+$icon-instagram-total-width: 148px;
+$icon-instagram-total-height: 148px;
+$icon-instagram-image: '../images/sprite.png';
+$icon-instagram: (118px, 60px, -118px, -60px, 30px, 30px, 148px, 148px, '../images/sprite.png', 'icon_instagram', );
+$icon-location-name: 'icon_location';
+$icon-location-x: 118px;
+$icon-location-y: 100px;
+$icon-location-offset-x: -118px;
+$icon-location-offset-y: -100px;
+$icon-location-width: 10px;
+$icon-location-height: 10px;
+$icon-location-total-width: 148px;
+$icon-location-total-height: 148px;
+$icon-location-image: '../images/sprite.png';
+$icon-location: (118px, 100px, -118px, -100px, 10px, 10px, 148px, 148px, '../images/sprite.png', 'icon_location', );
+$icon-mail-name: 'icon_mail';
+$icon-mail-x: 138px;
+$icon-mail-y: 90px;
+$icon-mail-offset-x: -138px;
+$icon-mail-offset-y: -90px;
+$icon-mail-width: 10px;
+$icon-mail-height: 10px;
+$icon-mail-total-width: 148px;
+$icon-mail-total-height: 148px;
+$icon-mail-image: '../images/sprite.png';
+$icon-mail: (138px, 90px, -138px, -90px, 10px, 10px, 148px, 148px, '../images/sprite.png', 'icon_mail', );
+$icon-message-name: 'icon_message';
+$icon-message-x: 0px;
+$icon-message-y: 86px;
+$icon-message-offset-x: 0px;
+$icon-message-offset-y: -86px;
+$icon-message-width: 32px;
+$icon-message-height: 32px;
+$icon-message-total-width: 148px;
+$icon-message-total-height: 148px;
+$icon-message-image: '../images/sprite.png';
+$icon-message: (0px, 86px, 0px, -86px, 32px, 32px, 148px, 148px, '../images/sprite.png', 'icon_message', );
+$icon-search-name: 'icon_search';
+$icon-search-x: 30px;
+$icon-search-y: 118px;
+$icon-search-offset-x: -30px;
+$icon-search-offset-y: -118px;
+$icon-search-width: 30px;
+$icon-search-height: 30px;
+$icon-search-total-width: 148px;
+$icon-search-total-height: 148px;
+$icon-search-image: '../images/sprite.png';
+$icon-search: (30px, 118px, -30px, -118px, 30px, 30px, 148px, 148px, '../images/sprite.png', 'icon_search', );
+$icon-share-facebook-name: 'icon_share_facebook';
+$icon-share-facebook-x: 32px;
+$icon-share-facebook-y: 86px;
+$icon-share-facebook-offset-x: -32px;
+$icon-share-facebook-offset-y: -86px;
+$icon-share-facebook-width: 32px;
+$icon-share-facebook-height: 32px;
+$icon-share-facebook-total-width: 148px;
+$icon-share-facebook-total-height: 148px;
+$icon-share-facebook-image: '../images/sprite.png';
+$icon-share-facebook: (32px, 86px, -32px, -86px, 32px, 32px, 148px, 148px, '../images/sprite.png', 'icon_share_facebook', );
+$icon-share-line-name: 'icon_share_line';
+$icon-share-line-x: 64px;
+$icon-share-line-y: 86px;
+$icon-share-line-offset-x: -64px;
+$icon-share-line-offset-y: -86px;
+$icon-share-line-width: 32px;
+$icon-share-line-height: 32px;
+$icon-share-line-total-width: 148px;
+$icon-share-line-total-height: 148px;
+$icon-share-line-image: '../images/sprite.png';
+$icon-share-line: (64px, 86px, -64px, -86px, 32px, 32px, 148px, 148px, '../images/sprite.png', 'icon_share_line', );
+$icon-tel-name: 'icon_tel';
+$icon-tel-x: 128px;
+$icon-tel-y: 100px;
+$icon-tel-offset-x: -128px;
+$icon-tel-offset-y: -100px;
+$icon-tel-width: 10px;
+$icon-tel-height: 10px;
+$icon-tel-total-width: 148px;
+$icon-tel-total-height: 148px;
+$icon-tel-image: '../images/sprite.png';
+$icon-tel: (128px, 100px, -128px, -100px, 10px, 10px, 148px, 148px, '../images/sprite.png', 'icon_tel', );
+$icon-twitter-name: 'icon_twitter';
+$icon-twitter-x: 118px;
+$icon-twitter-y: 30px;
+$icon-twitter-offset-x: -118px;
+$icon-twitter-offset-y: -30px;
+$icon-twitter-width: 30px;
+$icon-twitter-height: 30px;
+$icon-twitter-total-width: 148px;
+$icon-twitter-total-height: 148px;
+$icon-twitter-image: '../images/sprite.png';
+$icon-twitter: (118px, 30px, -118px, -30px, 30px, 30px, 148px, 148px, '../images/sprite.png', 'icon_twitter', );
+$arrow-down-2x-name: 'arrow_down-2x';
+$arrow-down-2x-x: 236px;
+$arrow-down-2x-y: 180px;
+$arrow-down-2x-offset-x: -236px;
+$arrow-down-2x-offset-y: -180px;
+$arrow-down-2x-width: 40px;
+$arrow-down-2x-height: 20px;
+$arrow-down-2x-total-width: 296px;
+$arrow-down-2x-total-height: 296px;
+$arrow-down-2x-image: '../images/sprite-2x.png';
+$arrow-down-2x: (236px, 180px, -236px, -180px, 40px, 20px, 296px, 296px, '../images/sprite-2x.png', 'arrow_down-2x', );
+$arrow-pager-next-2x-name: 'arrow_pager_next-2x';
+$arrow-pager-next-2x-x: 184px;
+$arrow-pager-next-2x-y: 92px;
+$arrow-pager-next-2x-offset-x: -184px;
+$arrow-pager-next-2x-offset-y: -92px;
+$arrow-pager-next-2x-width: 38px;
+$arrow-pager-next-2x-height: 64px;
+$arrow-pager-next-2x-total-width: 296px;
+$arrow-pager-next-2x-total-height: 296px;
+$arrow-pager-next-2x-image: '../images/sprite-2x.png';
+$arrow-pager-next-2x: (184px, 92px, -184px, -92px, 38px, 64px, 296px, 296px, '../images/sprite-2x.png', 'arrow_pager_next-2x', );
+$arrow-pager-prev-2x-name: 'arrow_pager_prev-2x';
+$arrow-pager-prev-2x-x: 132px;
+$arrow-pager-prev-2x-y: 92px;
+$arrow-pager-prev-2x-offset-x: -132px;
+$arrow-pager-prev-2x-offset-y: -92px;
+$arrow-pager-prev-2x-width: 38px;
+$arrow-pager-prev-2x-height: 64px;
+$arrow-pager-prev-2x-total-width: 296px;
+$arrow-pager-prev-2x-total-height: 296px;
+$arrow-pager-prev-2x-image: '../images/sprite-2x.png';
+$arrow-pager-prev-2x: (132px, 92px, -132px, -92px, 38px, 64px, 296px, 296px, '../images/sprite-2x.png', 'arrow_pager_prev-2x', );
+$arrow-slider-next-2x-name: 'arrow_slider_next-2x';
+$arrow-slider-next-2x-x: 0px;
+$arrow-slider-next-2x-y: 80px;
+$arrow-slider-next-2x-offset-x: 0px;
+$arrow-slider-next-2x-offset-y: -80px;
+$arrow-slider-next-2x-width: 52px;
+$arrow-slider-next-2x-height: 92px;
+$arrow-slider-next-2x-total-width: 296px;
+$arrow-slider-next-2x-total-height: 296px;
+$arrow-slider-next-2x-image: '../images/sprite-2x.png';
+$arrow-slider-next-2x: (0px, 80px, 0px, -80px, 52px, 92px, 296px, 296px, '../images/sprite-2x.png', 'arrow_slider_next-2x', );
+$arrow-slider-next-blue-2x-name: 'arrow_slider_next_blue-2x';
+$arrow-slider-next-blue-2x-x: 80px;
+$arrow-slider-next-blue-2x-y: 0px;
+$arrow-slider-next-blue-2x-offset-x: -80px;
+$arrow-slider-next-blue-2x-offset-y: 0px;
+$arrow-slider-next-blue-2x-width: 52px;
+$arrow-slider-next-blue-2x-height: 92px;
+$arrow-slider-next-blue-2x-total-width: 296px;
+$arrow-slider-next-blue-2x-total-height: 296px;
+$arrow-slider-next-blue-2x-image: '../images/sprite-2x.png';
+$arrow-slider-next-blue-2x: (80px, 0px, -80px, 0px, 52px, 92px, 296px, 296px, '../images/sprite-2x.png', 'arrow_slider_next_blue-2x', );
+$arrow-slider-prev-2x-name: 'arrow_slider_prev-2x';
+$arrow-slider-prev-2x-x: 132px;
+$arrow-slider-prev-2x-y: 0px;
+$arrow-slider-prev-2x-offset-x: -132px;
+$arrow-slider-prev-2x-offset-y: 0px;
+$arrow-slider-prev-2x-width: 52px;
+$arrow-slider-prev-2x-height: 92px;
+$arrow-slider-prev-2x-total-width: 296px;
+$arrow-slider-prev-2x-total-height: 296px;
+$arrow-slider-prev-2x-image: '../images/sprite-2x.png';
+$arrow-slider-prev-2x: (132px, 0px, -132px, 0px, 52px, 92px, 296px, 296px, '../images/sprite-2x.png', 'arrow_slider_prev-2x', );
+$arrow-slider-prev-blue-2x-name: 'arrow_slider_prev_blue-2x';
+$arrow-slider-prev-blue-2x-x: 184px;
+$arrow-slider-prev-blue-2x-y: 0px;
+$arrow-slider-prev-blue-2x-offset-x: -184px;
+$arrow-slider-prev-blue-2x-offset-y: 0px;
+$arrow-slider-prev-blue-2x-width: 52px;
+$arrow-slider-prev-blue-2x-height: 92px;
+$arrow-slider-prev-blue-2x-total-width: 296px;
+$arrow-slider-prev-blue-2x-total-height: 296px;
+$arrow-slider-prev-blue-2x-image: '../images/sprite-2x.png';
+$arrow-slider-prev-blue-2x: (184px, 0px, -184px, 0px, 52px, 92px, 296px, 296px, '../images/sprite-2x.png', 'arrow_slider_prev_blue-2x', );
+$icon-close-2x-name: 'icon_close-2x';
+$icon-close-2x-x: 0px;
+$icon-close-2x-y: 0px;
+$icon-close-2x-offset-x: 0px;
+$icon-close-2x-offset-y: 0px;
+$icon-close-2x-width: 80px;
+$icon-close-2x-height: 80px;
+$icon-close-2x-total-width: 296px;
+$icon-close-2x-total-height: 296px;
+$icon-close-2x-image: '../images/sprite-2x.png';
+$icon-close-2x: (0px, 0px, 0px, 0px, 80px, 80px, 296px, 296px, '../images/sprite-2x.png', 'icon_close-2x', );
+$icon-download-2x-name: 'icon_download-2x';
+$icon-download-2x-x: 236px;
+$icon-download-2x-y: 0px;
+$icon-download-2x-offset-x: -236px;
+$icon-download-2x-offset-y: 0px;
+$icon-download-2x-width: 60px;
+$icon-download-2x-height: 60px;
+$icon-download-2x-total-width: 296px;
+$icon-download-2x-total-height: 296px;
+$icon-download-2x-image: '../images/sprite-2x.png';
+$icon-download-2x: (236px, 0px, -236px, 0px, 60px, 60px, 296px, 296px, '../images/sprite-2x.png', 'icon_download-2x', );
+$icon-facebook-2x-name: 'icon_facebook-2x';
+$icon-facebook-2x-x: 0px;
+$icon-facebook-2x-y: 236px;
+$icon-facebook-2x-offset-x: 0px;
+$icon-facebook-2x-offset-y: -236px;
+$icon-facebook-2x-width: 60px;
+$icon-facebook-2x-height: 60px;
+$icon-facebook-2x-total-width: 296px;
+$icon-facebook-2x-total-height: 296px;
+$icon-facebook-2x-image: '../images/sprite-2x.png';
+$icon-facebook-2x: (0px, 236px, 0px, -236px, 60px, 60px, 296px, 296px, '../images/sprite-2x.png', 'icon_facebook-2x', );
+$icon-fax-2x-name: 'icon_fax-2x';
+$icon-fax-2x-x: 276px;
+$icon-fax-2x-y: 200px;
+$icon-fax-2x-offset-x: -276px;
+$icon-fax-2x-offset-y: -200px;
+$icon-fax-2x-width: 20px;
+$icon-fax-2x-height: 20px;
+$icon-fax-2x-total-width: 296px;
+$icon-fax-2x-total-height: 296px;
+$icon-fax-2x-image: '../images/sprite-2x.png';
+$icon-fax-2x: (276px, 200px, -276px, -200px, 20px, 20px, 296px, 296px, '../images/sprite-2x.png', 'icon_fax-2x', );
+$icon-instagram-2x-name: 'icon_instagram-2x';
+$icon-instagram-2x-x: 236px;
+$icon-instagram-2x-y: 120px;
+$icon-instagram-2x-offset-x: -236px;
+$icon-instagram-2x-offset-y: -120px;
+$icon-instagram-2x-width: 60px;
+$icon-instagram-2x-height: 60px;
+$icon-instagram-2x-total-width: 296px;
+$icon-instagram-2x-total-height: 296px;
+$icon-instagram-2x-image: '../images/sprite-2x.png';
+$icon-instagram-2x: (236px, 120px, -236px, -120px, 60px, 60px, 296px, 296px, '../images/sprite-2x.png', 'icon_instagram-2x', );
+$icon-location-2x-name: 'icon_location-2x';
+$icon-location-2x-x: 236px;
+$icon-location-2x-y: 200px;
+$icon-location-2x-offset-x: -236px;
+$icon-location-2x-offset-y: -200px;
+$icon-location-2x-width: 20px;
+$icon-location-2x-height: 20px;
+$icon-location-2x-total-width: 296px;
+$icon-location-2x-total-height: 296px;
+$icon-location-2x-image: '../images/sprite-2x.png';
+$icon-location-2x: (236px, 200px, -236px, -200px, 20px, 20px, 296px, 296px, '../images/sprite-2x.png', 'icon_location-2x', );
+$icon-mail-2x-name: 'icon_mail-2x';
+$icon-mail-2x-x: 276px;
+$icon-mail-2x-y: 180px;
+$icon-mail-2x-offset-x: -276px;
+$icon-mail-2x-offset-y: -180px;
+$icon-mail-2x-width: 20px;
+$icon-mail-2x-height: 20px;
+$icon-mail-2x-total-width: 296px;
+$icon-mail-2x-total-height: 296px;
+$icon-mail-2x-image: '../images/sprite-2x.png';
+$icon-mail-2x: (276px, 180px, -276px, -180px, 20px, 20px, 296px, 296px, '../images/sprite-2x.png', 'icon_mail-2x', );
+$icon-message-2x-name: 'icon_message-2x';
+$icon-message-2x-x: 0px;
+$icon-message-2x-y: 172px;
+$icon-message-2x-offset-x: 0px;
+$icon-message-2x-offset-y: -172px;
+$icon-message-2x-width: 64px;
+$icon-message-2x-height: 64px;
+$icon-message-2x-total-width: 296px;
+$icon-message-2x-total-height: 296px;
+$icon-message-2x-image: '../images/sprite-2x.png';
+$icon-message-2x: (0px, 172px, 0px, -172px, 64px, 64px, 296px, 296px, '../images/sprite-2x.png', 'icon_message-2x', );
+$icon-search-2x-name: 'icon_search-2x';
+$icon-search-2x-x: 60px;
+$icon-search-2x-y: 236px;
+$icon-search-2x-offset-x: -60px;
+$icon-search-2x-offset-y: -236px;
+$icon-search-2x-width: 60px;
+$icon-search-2x-height: 60px;
+$icon-search-2x-total-width: 296px;
+$icon-search-2x-total-height: 296px;
+$icon-search-2x-image: '../images/sprite-2x.png';
+$icon-search-2x: (60px, 236px, -60px, -236px, 60px, 60px, 296px, 296px, '../images/sprite-2x.png', 'icon_search-2x', );
+$icon-share-facebook-2x-name: 'icon_share_facebook-2x';
+$icon-share-facebook-2x-x: 64px;
+$icon-share-facebook-2x-y: 172px;
+$icon-share-facebook-2x-offset-x: -64px;
+$icon-share-facebook-2x-offset-y: -172px;
+$icon-share-facebook-2x-width: 64px;
+$icon-share-facebook-2x-height: 64px;
+$icon-share-facebook-2x-total-width: 296px;
+$icon-share-facebook-2x-total-height: 296px;
+$icon-share-facebook-2x-image: '../images/sprite-2x.png';
+$icon-share-facebook-2x: (64px, 172px, -64px, -172px, 64px, 64px, 296px, 296px, '../images/sprite-2x.png', 'icon_share_facebook-2x', );
+$icon-share-line-2x-name: 'icon_share_line-2x';
+$icon-share-line-2x-x: 128px;
+$icon-share-line-2x-y: 172px;
+$icon-share-line-2x-offset-x: -128px;
+$icon-share-line-2x-offset-y: -172px;
+$icon-share-line-2x-width: 64px;
+$icon-share-line-2x-height: 64px;
+$icon-share-line-2x-total-width: 296px;
+$icon-share-line-2x-total-height: 296px;
+$icon-share-line-2x-image: '../images/sprite-2x.png';
+$icon-share-line-2x: (128px, 172px, -128px, -172px, 64px, 64px, 296px, 296px, '../images/sprite-2x.png', 'icon_share_line-2x', );
+$icon-tel-2x-name: 'icon_tel-2x';
+$icon-tel-2x-x: 256px;
+$icon-tel-2x-y: 200px;
+$icon-tel-2x-offset-x: -256px;
+$icon-tel-2x-offset-y: -200px;
+$icon-tel-2x-width: 20px;
+$icon-tel-2x-height: 20px;
+$icon-tel-2x-total-width: 296px;
+$icon-tel-2x-total-height: 296px;
+$icon-tel-2x-image: '../images/sprite-2x.png';
+$icon-tel-2x: (256px, 200px, -256px, -200px, 20px, 20px, 296px, 296px, '../images/sprite-2x.png', 'icon_tel-2x', );
+$icon-twitter-2x-name: 'icon_twitter-2x';
+$icon-twitter-2x-x: 236px;
+$icon-twitter-2x-y: 60px;
+$icon-twitter-2x-offset-x: -236px;
+$icon-twitter-2x-offset-y: -60px;
+$icon-twitter-2x-width: 60px;
+$icon-twitter-2x-height: 60px;
+$icon-twitter-2x-total-width: 296px;
+$icon-twitter-2x-total-height: 296px;
+$icon-twitter-2x-image: '../images/sprite-2x.png';
+$icon-twitter-2x: (236px, 60px, -236px, -60px, 60px, 60px, 296px, 296px, '../images/sprite-2x.png', 'icon_twitter-2x', );
+$spritesheet-width: 148px;
+$spritesheet-height: 148px;
+$spritesheet-image: '../images/sprite.png';
+$spritesheet-sprites: ($arrow-down, $arrow-pager-next, $arrow-pager-prev, $arrow-slider-next, $arrow-slider-next-blue, $arrow-slider-prev, $arrow-slider-prev-blue, $icon-close, $icon-download, $icon-facebook, $icon-fax, $icon-instagram, $icon-location, $icon-mail, $icon-message, $icon-search, $icon-share-facebook, $icon-share-line, $icon-tel, $icon-twitter, );
+$spritesheet: (148px, 148px, '../images/sprite.png', $spritesheet-sprites, );
+$retina-spritesheet-width: 296px;
+$retina-spritesheet-height: 296px;
+$retina-spritesheet-image: '../images/sprite-2x.png';
+$retina-spritesheet-sprites: ($arrow-down-2x, $arrow-pager-next-2x, $arrow-pager-prev-2x, $arrow-slider-next-2x, $arrow-slider-next-blue-2x, $arrow-slider-prev-2x, $arrow-slider-prev-blue-2x, $icon-close-2x, $icon-download-2x, $icon-facebook-2x, $icon-fax-2x, $icon-instagram-2x, $icon-location-2x, $icon-mail-2x, $icon-message-2x, $icon-search-2x, $icon-share-facebook-2x, $icon-share-line-2x, $icon-tel-2x, $icon-twitter-2x, );
+$retina-spritesheet: (296px, 296px, '../images/sprite-2x.png', $retina-spritesheet-sprites, );
+
+// These "retina group" variables are mappings for the naming and pairing of normal and retina sprites.
+//
+// The list formatted variables are intended for mixins like `retina-sprite` and `retina-sprites`.
+$arrow-down-group-name: 'arrow_down';
+$arrow-down-group: ('arrow_down', $arrow-down, $arrow-down-2x, );
+$arrow-pager-next-group-name: 'arrow_pager_next';
+$arrow-pager-next-group: ('arrow_pager_next', $arrow-pager-next, $arrow-pager-next-2x, );
+$arrow-pager-prev-group-name: 'arrow_pager_prev';
+$arrow-pager-prev-group: ('arrow_pager_prev', $arrow-pager-prev, $arrow-pager-prev-2x, );
+$arrow-slider-next-group-name: 'arrow_slider_next';
+$arrow-slider-next-group: ('arrow_slider_next', $arrow-slider-next, $arrow-slider-next-2x, );
+$arrow-slider-next-blue-group-name: 'arrow_slider_next_blue';
+$arrow-slider-next-blue-group: ('arrow_slider_next_blue', $arrow-slider-next-blue, $arrow-slider-next-blue-2x, );
+$arrow-slider-prev-group-name: 'arrow_slider_prev';
+$arrow-slider-prev-group: ('arrow_slider_prev', $arrow-slider-prev, $arrow-slider-prev-2x, );
+$arrow-slider-prev-blue-group-name: 'arrow_slider_prev_blue';
+$arrow-slider-prev-blue-group: ('arrow_slider_prev_blue', $arrow-slider-prev-blue, $arrow-slider-prev-blue-2x, );
+$icon-close-group-name: 'icon_close';
+$icon-close-group: ('icon_close', $icon-close, $icon-close-2x, );
+$icon-download-group-name: 'icon_download';
+$icon-download-group: ('icon_download', $icon-download, $icon-download-2x, );
+$icon-facebook-group-name: 'icon_facebook';
+$icon-facebook-group: ('icon_facebook', $icon-facebook, $icon-facebook-2x, );
+$icon-fax-group-name: 'icon_fax';
+$icon-fax-group: ('icon_fax', $icon-fax, $icon-fax-2x, );
+$icon-instagram-group-name: 'icon_instagram';
+$icon-instagram-group: ('icon_instagram', $icon-instagram, $icon-instagram-2x, );
+$icon-location-group-name: 'icon_location';
+$icon-location-group: ('icon_location', $icon-location, $icon-location-2x, );
+$icon-mail-group-name: 'icon_mail';
+$icon-mail-group: ('icon_mail', $icon-mail, $icon-mail-2x, );
+$icon-message-group-name: 'icon_message';
+$icon-message-group: ('icon_message', $icon-message, $icon-message-2x, );
+$icon-search-group-name: 'icon_search';
+$icon-search-group: ('icon_search', $icon-search, $icon-search-2x, );
+$icon-share-facebook-group-name: 'icon_share_facebook';
+$icon-share-facebook-group: ('icon_share_facebook', $icon-share-facebook, $icon-share-facebook-2x, );
+$icon-share-line-group-name: 'icon_share_line';
+$icon-share-line-group: ('icon_share_line', $icon-share-line, $icon-share-line-2x, );
+$icon-tel-group-name: 'icon_tel';
+$icon-tel-group: ('icon_tel', $icon-tel, $icon-tel-2x, );
+$icon-twitter-group-name: 'icon_twitter';
+$icon-twitter-group: ('icon_twitter', $icon-twitter, $icon-twitter-2x, );
+$retina-groups: ($arrow-down-group, $arrow-pager-next-group, $arrow-pager-prev-group, $arrow-slider-next-group, $arrow-slider-next-blue-group, $arrow-slider-prev-group, $arrow-slider-prev-blue-group, $icon-close-group, $icon-download-group, $icon-facebook-group, $icon-fax-group, $icon-instagram-group, $icon-location-group, $icon-mail-group, $icon-message-group, $icon-search-group, $icon-share-facebook-group, $icon-share-line-group, $icon-tel-group, $icon-twitter-group, );
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+// The `retina-sprite` mixin sets up rules and a media query for a sprite/retina sprite.
+//   It should be used with a "retina group" variable.
+//
+// The media query is from CSS Tricks: https://css-tricks.com/snippets/css/retina-display-media-query/
+//
+// $icon-home-group: ('icon-home', $icon-home, $icon-home-2x, );
+//
+// .icon-home {
+//   @include retina-sprite($icon-home-group);
+// }
+@mixin sprite-background-size($sprite) {
+  $sprite-total-width: nth($sprite, 7);
+  $sprite-total-height: nth($sprite, 8);
+  background-size: $sprite-total-width $sprite-total-height;
+}
+
+@mixin retina-sprite($retina-group) {
+  $normal-sprite: nth($retina-group, 2);
+  $retina-sprite: nth($retina-group, 3);
+  @include sprite($normal-sprite);
+
+  @media (-webkit-min-device-pixel-ratio: 2),
+         (min-resolution: 192dpi) {
+    @include sprite-image($retina-sprite);
+    @include sprite-background-size($normal-sprite);
+  }
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}
+
+// The `retina-sprites` mixin generates a CSS rule and media query for retina groups
+//   This yields the same output as CSS retina template but can be overridden in SCSS
+//
+// @include retina-sprites($retina-groups);
+@mixin retina-sprites($retina-groups) {
+  @each $retina-group in $retina-groups {
+    $sprite-name: nth($retina-group, 1);
+    .#{$sprite-name} {
+      @include retina-sprite($retina-group);
+    }
+  }
+}

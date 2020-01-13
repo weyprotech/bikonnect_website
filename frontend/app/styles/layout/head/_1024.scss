@@ -1,0 +1,15 @@
+@include susy-breakpoint(1024px, 12 ) {
+	#header {
+    .header_inner {
+      height: 70px;
+    }
+  }
+}
+
+@include susy-breakpoint(1440px, 12) {
+  #header {
+    .header_inner {
+      max-width: 78%;
+    }
+  }
+}

@@ -1,0 +1,53 @@
+.clear {
+  &:before,
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+  }
+}
+
+.transition {
+  transition: all 0.2s ease-in-out;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  color: $gray-darken;
+  font-family: 'Roboto',$sans-serif;
+  line-height: 1.4;
+}
+
+main {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  @extend .transition;
+  &:focus {
+    outline: none;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+#wrapper {
+  overflow: hidden;
+}
+
+
+.rwd_table_wrapper {
+  min-width: 100%;
+  overflow-x: auto;
+  table {
+    min-width: 100%;
+  }
+}

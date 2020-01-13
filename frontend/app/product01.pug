@@ -1,0 +1,66 @@
+extends layouts/default.pug
+
+block value
+  - var currentUrl = 'products'
+  - var subCurrent = 'product01'
+
+block main
+  .product_introduction.page_block
+    .block_inner.proportion
+      .block_content
+        h1.block_title Cyling Data Platform
+        .text
+          p The E-Bike cycling data platform provides easy-to-use data services for regular bike and E-bike brands or component manufacturers, allowing operators to know the real-time cycling data, bikes or components repair status of members, and even texting marketing notifications and events management to members.
+        a.btn_download(href="javascript:;")
+          i.icon_download
+          | Download
+      .block_img
+        img.size(src="images/size_porduct_intro.png", alt="")
+        img.pic(src="images/products/porduct01/intro.png", alt="")
+  .product_characteristic.page_block
+    .wave.top
+      img(src="images/product_char_wave_top.png", alt="")
+    .block_inner.proportion
+      .block_content
+        h2.block_subtitle Integrate Store#[br]Management System
+        .text
+          p Meanwhile, it could integrate with store management system to quickly know the service data of dealers and members, with technology connecting cyclists, dealers and owners; therefore, it drives business strategy to create brand value and enhance market competitiveness.
+      .block_img
+        img.size(src="images/size_porduct_characteristic.png", alt="")
+        img.pic(src="images/products/porduct01/characteristic.png", alt="")
+    .wave.bottom
+      img(src="images/product_char_wave_bottom.png", alt="")
+    .bike
+      img(src="images/product_char_bike.png", alt="")
+  .product_keyAdvantages.page_block
+    .block_inner
+      .block_content
+        h2.block_subtitle Key Advantages
+        ul.key_list
+          li Visualized members’cycling data statistics
+          li Member's relevant data is easy to query
+          li Easily send marketing messages to members
+          li E-Bike system equipments management for members’E-Bike
+          li Assign easily to administrative authorizations of members’data 
+          li Integrated store management system
+      .block_img
+        img.size(src="images/size_porduct_key.png", alt="")
+        img.pic(src="images/products/porduct01/key.png", alt="")
+  .product_future.page_block
+    .block_inner
+      h2.block_subtitle Connect your bike#[br]Ride the future
+      .image_video
+        img(src="images/products/porduct01/future.jpg", alt="")
+  .product_application.page_block
+    .block_inner
+      h2.block_subtitle Application Range
+      .aplication_items
+        .item
+          .icon_img
+            img(src="images/products/porduct01/icon_img01.png", alt="")
+          span E-Bike brand operators
+        .item
+          .icon_img
+            img(src="images/products/porduct01/icon_img02.png", alt="")
+          span Bike brands operators
+  include layouts/partials/contact.pug

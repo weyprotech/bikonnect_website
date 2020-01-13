@@ -1,0 +1,21 @@
+#footer {
+  padding: 1.25em 1em;
+  box-sizing: border-box;
+	background-color: $main;
+	color: $white;
+	.footer_inner {
+		max-width: 1110px;
+		margin: 0 auto;
+	}
+	.copyright {
+    font-family: 'Ubuntu',$sans-serif;
+    font-size: 0.875em;
+    text-align: center;
+		a {
+      color: $white;
+			&:hover {
+				color: $blue;
+			}
+		}
+	}
+}

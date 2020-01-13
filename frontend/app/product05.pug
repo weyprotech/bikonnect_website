@@ -1,0 +1,63 @@
+extends layouts/default.pug
+
+block value
+  - var currentUrl = 'products'
+  - var subCurrent = 'product05'
+
+block main
+  .product_introduction.page_block
+    .block_inner.proportion
+      .block_content
+        h1.block_title E-Bike computer
+        .text
+          p The E-Bike computer provides easy-to-use smart bike devices for cyclists, which displays cycling time, real-time speed, battery power, power-assistant mode and other cycling data as well as being connected via Bluetooth (BLE) and mobile phone app to diagnose E-Bike system health automatically by one-click .
+        a.btn_download(href="javascript:;")
+          i.icon_download
+          | Download
+      .block_img
+        img.size(src="images/size_porduct_intro.png", alt="")
+        img.pic(src="images/products/product05/intro.png", alt="")
+  .product_characteristic.page_block
+    .wave.top
+      img(src="images/product_char_wave_top.png", alt="")
+    .block_inner.proportion
+      .block_content
+        h2.block_subtitle Improve Services
+        .text
+          p Additionally, through the E-Bike computer, the cycling data could be synchronized to APP and uploaded to cloud storage which provides a perfect and convenient E-bike experience no matter whether for casual or commuter cyclists. 
+      .block_img
+        img.size(src="images/size_porduct_characteristic.png", alt="")
+        img.pic(src="images/products/product05/characteristic.png", alt="")
+    .wave.bottom
+      img(src="images/product_char_wave_bottom.png", alt="")
+    .bike
+      img(src="images/product_char_bike.png", alt="")
+  .product_keyAdvantages.page_block
+    .block_inner
+      .block_content
+        h2.block_subtitle Key Advantages
+        ul.key_list
+          li E-bike computer designed for E-Bike commuter and leisure users
+          li Battery status/Assist mode/Speed/Real-time Display
+          li Update the firmware with Bluetooth and APP
+          li Connected to E-Bike APP
+          li USB device recharging
+          li CAN BUS communication interface
+      .block_img
+        img.size(src="images/size_porduct_key.png", alt="")
+        img.pic(src="images/products/product05/key.png", alt="")
+  .product_future.page_block
+    .block_inner
+      h2.block_subtitle Connect your bike#[br]Ride the future
+      .image_video
+        img(src="images/products/product05/future.jpg", alt="")
+  .product_application.page_block
+    .block_inner
+      h2.block_subtitle Application Range
+      .aplication_items
+        .item
+          .icon_img
+            img(src="images/products/product05/icon_img01.png", alt="")
+          span E-Bike
+ 
+  include layouts/partials/contact.pug
