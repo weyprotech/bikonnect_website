@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2020-01-14
+
+### Changed
+
+- slide fix https
+
+/resources/views/frontend/index.blade.php
+
+/resources/views/frontend/solution.blade.php
+
 ## 2020-01-03
 
 ### Changed
