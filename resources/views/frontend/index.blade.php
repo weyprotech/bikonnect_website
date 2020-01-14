@@ -6,7 +6,7 @@
         <div class="slider">
         @foreach($bannerList as $bannerKey => $bannerValue)
             <div class="slide">
-                <div class="bg" style="background-image: url({{ URL::asset($bannerValue->bannerImg) }});"></div>
+                <div class="bg" style="background-image: url({{ secure_asset($bannerValue->bannerImg) }});"></div>
                 <div class="slide_content">
                 <h2>{!! nl2br(e($bannerValue->bannerlang[0]->title)) !!}</h2>
                 <a class="btn_more big" href="{{ route('main.solution',app()->getLocale()) }}">{{ trans('lang.learnmore') }}</a>
@@ -26,7 +26,7 @@
         <div class="experience_items">
             @foreach($content2List as $content2Key => $content2Value)
                 <div class="item">
-                    <a href="{{ route('main.product',[$content2Value->Id,app()->getLocale()]) }}"><img class="thumb" src="{{ URL::asset($content2Value->Img) }}" alt="{{ $content2Value->content2lang[0]->title }}">
+                    <a href="{{ route('main.product',[$content2Value->Id,app()->getLocale()]) }}"><img class="thumb" src="{{ secure_asset($content2Value->Img) }}" alt="{{ $content2Value->content2lang[0]->title }}">
                         <h3>{{ $content2Value->content2lang[0]->title }}</h3>
                     </a>
                 </div>
@@ -40,7 +40,7 @@
         <div class="strength_content">
             <div class="strength_sliders">
             <div class="item">
-                <div class="mobile_img"><img src="{{ URL::asset('frontend/images/img_index_strength_m01.png') }}" alt="Strangth Mobile Picture 01"></div>
+                <div class="mobile_img"><img src="{{ secure_asset('frontend/images/img_index_strength_m01.png') }}" alt="Strangth Mobile Picture 01"></div>
                 <div class="slider">
                 @foreach($content3List as $content3Key => $content3Value)
                     <div class="slide">

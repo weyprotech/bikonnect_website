@@ -20,7 +20,7 @@
         </div>
     </div>
 
-    <div class="divide_line"><img src="{{ URL::asset('frontend/images/bg_line.png') }}" alt=""></div>
+    <div class="divide_line"><img src="{{ secure_asset('frontend/images/bg_line.png') }}" alt=""></div>
 
     <?php
     $k = 1;
@@ -95,7 +95,7 @@
                     <div class="slide">
                         <div class="pic_text">
                         <div class="pic">
-                            <div class="img" style="background-image: url({{ URL::asset($productValue->lang[0]->img_5) }});" alt="{{ $productValue->lang[0]->title }}"></div>
+                            <div class="img" style="background-image: url({{ secure_asset($productValue->lang[0]->img_5) }});" alt="{{ $productValue->lang[0]->title }}"></div>
                         </div>
                         <div class="text">
                             <h3>{{ $productValue->lang[0]->title }}</h3>
