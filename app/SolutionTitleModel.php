@@ -8,7 +8,7 @@ class SolutionTitleModel extends Model
 {
     protected $table = 'tb_solution_title';
     protected $primaryKey = 'Id';
-    protected $fillable = ['Id','uuid'];
+    protected $fillable = ['Id','uuid','account','password','name','auth','LLT','uuid'];
 
     public $rules = array(
         'uuid' => 'required'

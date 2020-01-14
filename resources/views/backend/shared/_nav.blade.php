@@ -20,15 +20,18 @@
         <li class="{{ Request::is('backend/solution') ? 'active' : '' }}">
             <a href="#"><i class="fa fa-lg fa-fw fa-cog"></i> <span class="menu-item-parent">解決方案管理</span></a>
             <ul>
+                <li class="{{ Request::is('backend/solution/title') ? 'active' : '' }}"><a href="{{ route('solution.title') }}">主題維護</a></li>
                 <li class="{{ Request::is('backend/solution/video') ? 'active' : '' }}"><a href="{{ route('solution.video') }}">影片區維護</a></li>
                 <li class="{{ (Request::is('backend/solution/content') or Request::is('backend/solution/content/*')) ? 'active' : '' }}"><a href="{{ route('solution.content') }}">圖文區維護</a></li>
                 <li class="{{ (Request::is('backend/solution/aspect') or Request::is('backend/solution/aspect/*')) ? 'active' : '' }}"><a href="{{ route('solution.aspect') }}">特點維護</a></li>            
+                <li class="{{ (Request::is('backend/solution/application') or Request::is('backend/solution/application/*')) ? 'active' : '' }}"><a href="{{ route('solution.application') }}">Application Range維護</a></li>            
             </ul>
         </li>
         <li class="{{ Request::is('backend/about') ? 'active' : '' }}">
             <a href="#"><i class="fa fa-lg fa-fw fa-cog"></i> <span class="menu-item-parent">關於我們管理</span></a>
             <ul>
                 <li class="{{ (Request::is('backend/about/content') or Request::is('backend/about/content/*')) ? 'active' : '' }}"><a href="{{ route('about.content') }}">圖文區維護</a></li>
+                <li class="{{ (Request::is('backend/about/history_title')) ? 'active' : '' }}"><a href="{{ route('about.history_title') }}">沿革標題維護</a></li>
                 <li class="{{ (Request::is('backend/about/history') or Request::is('backend/about/history/*')) ? 'active' : '' }}"><a href="{{ route('about.history') }}">沿革維護</a></li>
                 <li class="{{ (Request::is('backend/about/team') or Request::is('backend/about/team/*')) ? 'active' : '' }}"><a href="{{ route('about.team') }}">團隊維護</a></li>
                 <li class="{{ (Request::is('backend/about/partner') or Request::is('backend/about/partner/*')) ? 'active' : '' }}"><a href="{{ route('about.partner') }}">廠商維護</a></li>

@@ -15,7 +15,7 @@ Route::get('/{locale?}', array('as' => 'main.index', 'uses' => 'Frontend\MainCon
 Route::get('{locale?}/', array('as' => 'main.index', 'uses' => 'Frontend\MainController@index'));
 Route::get('/solution/{locale?}', array('as' => 'main.solution', 'uses' => 'Frontend\MainController@solution'));
 Route::get('/about/{locale?}', array('as' => 'main.about', 'uses' => 'Frontend\MainController@about'));
-Route::get('/product/{productid}/{locale?}', array('as' => 'main.product', 'uses' => 'Frontend\MainController@product'));
+Route::get('/product/{url}/{locale?}', array('as' => 'main.product', 'uses' => 'Frontend\MainController@product'));
 Route::get('/privacy/{locale?}', array('as' => 'main.privacy', 'uses' => 'Frontend\MainController@privacy'));
 Route::get('/term/{locale?}', array('as' => 'main.term', 'uses' => 'Frontend\MainController@term'));
 Route::get('/blog/{page}/{locale?}',array('as' => 'blog.index','uses' => 'Frontend\MainController@blog'));
@@ -32,8 +32,16 @@ Route::group(['prefix' => 'backend'], function(){
 
     //解決方案
     Route::group(['prefix' => 'solution'], function(){
+        //主題
+        Route::match(['get', 'post'], '/title', array('as' => 'solution.title', 'uses' => 'Backend\SolutionController@title'));
+
         //影片區
         Route::match(['get', 'post'], '/video', array('as' => 'solution.video', 'uses' => 'Backend\SolutionController@video'));
+
+        //Application Range區
+        Route::match(['get', 'post'], '/application', array('as' => 'solution.application', 'uses' => 'Backend\SolutionController@application'));
+        Route::match(['get', 'post'], '/application/edit/{applicationid}', array('as' => 'solution.application.edit', 'uses' => 'Backend\SolutionController@editapplication'));
+        Route::post('/application/order_save', array('as' => 'solution.application.order_save', 'uses' => 'Backend\SolutionController@application_order_save'));
 
         //圖文區
         Route::match(['get', 'post'], '/content', array('as' => 'solution.content', 'uses' => 'Backend\SolutionController@content'));
@@ -62,6 +70,9 @@ Route::group(['prefix' => 'backend'], function(){
         Route::match(['get', 'post'], '/content/edit/{aboutid}', array('as' => 'about.content.edit', 'uses' => 'Backend\AboutController@editcontent'));
         Route::post('/content/order_save', array('as' => 'about.content.order_save', 'uses' => 'Backend\AboutController@content_order_save'));
         
+        //沿革標題
+        Route::match(['get', 'post'], '/history_title', array('as' => 'about.history_title', 'uses' => 'Backend\AboutController@history_title'));
+
         //沿革維護
         Route::match(['get', 'post'], '/history', array('as' => 'about.history', 'uses' => 'Backend\AboutController@history'));
         Route::match(['get', 'post'], '/history/add', array('as' => 'about.history.add', 'uses' => 'Backend\AboutController@addhistory'));
@@ -86,6 +97,9 @@ Route::group(['prefix' => 'backend'], function(){
 
     //產品管理
     Route::group(['prefix' => 'product'],function(){
+        //產品網址驗證
+        Route::get('url/validation',array('as' => 'product.url_validation','uses' => 'Backend\ProductController@url_validation'));
+        //產品頁
         Route::match(['get', 'post'], '/index', array('as' => 'product.index', 'uses' => 'Backend\ProductController@index'));
         Route::match(['get', 'post'], '/add', array('as' => 'product.add', 'uses' => 'Backend\ProductController@add'));
         Route::match(['get', 'post'], '/edit/{productid}', array('as' => 'product.edit', 'uses' => 'Backend\ProductController@edit'));

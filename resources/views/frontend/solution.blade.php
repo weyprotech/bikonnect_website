@@ -6,7 +6,8 @@
 <main id="main">
     <div class="page_banner page_block in_solution">
         <div class="block_inner">
-        <h1 class="block_title">{{ trans('lang.solutiontitle') }}</h1>
+            <h1 class="block_title">{{ $title->lang[0]->title }}</h1>
+            <a class="btn_download" href="{{ $title->lang[0]->dm_file }}"  download="{{ $title->lang[0]->dm_file }}"><i class="icon_download"></i>Download</a>
         </div>
     </div>
     <div class="solution_introduction page_block">
@@ -26,17 +27,17 @@
     $k = 1;
     ?>
     @foreach($contentList as $contentKey => $contentValue)
-    <div class="<?=($k%2==0)?"solution_keyAdvantages":"solution_help"?> page_block">
-        <div class="block_inner">
-        <h2 class="block_subtitle">{{ $contentValue->lang[0]->title }}</h2>
-        <div class="pic_text">
-            <div class="pic"><img src="{{ $contentValue->lang[0]->img }}" alt="{{ $contentValue->lang[0]->title }}"></div>
-            <div class="text">
-            {!!  html_entity_decode($contentValue->lang[0]->content) !!}
+        <div class="<?=($k%2==0)?"solution_keyAdvantages":"solution_help"?> page_block">
+            <div class="block_inner">
+            <h2 class="block_subtitle">{{ $contentValue->lang[0]->title }}</h2>
+            <div class="pic_text">
+                <div class="pic"><img src="{{ $contentValue->lang[0]->img }}" alt="{{ $contentValue->lang[0]->title }}"></div>
+                <div class="text">
+                {!!  html_entity_decode($contentValue->lang[0]->content) !!}
+                </div>
+            </div>
             </div>
         </div>
-        </div>
-    </div>
         <?php
         $k++;
         ?>
@@ -46,11 +47,9 @@
         <div class="block_inner">
             <h2 class="block_subtitle">{{ trans('lang.applicationrange') }}</h2>
             <div class="application_items">
-                <div class="item"><img src="{{ URL::asset('frontend/images/icon_app01.png') }}" alt="Application Range 01"><span>{!! trans('lang.ar1') !!}</span></div>
-                <div class="item"><img src="{{ URL::asset('frontend/images/icon_app02.png') }}" alt="Application Range 02"><span>{!! trans('lang.ar2') !!}</span></div>
-                <div class="item"><img src="{{ URL::asset('frontend/images/icon_app03.png') }}" alt="Application Range 03"><span>{!! trans('lang.ar3') !!}</span></div>
-                <div class="item"><img src="{{ URL::asset('frontend/images/icon_app04.png') }}" alt="Application Range 04"><span>{!! trans('lang.ar4') !!}</span></div>
-                <div class="item"><img src="{{ URL::asset('frontend/images/icon_app05.png') }}" alt="Application Range 05"><span>{!! trans('lang.ar5') !!}</span></div>
+                @foreach ($applicationList as $applicationKey => $applicationValue)
+                    <div class="item"><img src="{{ URL::asset($applicationValue->lang[0]->img) }}" alt="{{ $applicationValue->lang[0]->content }}"><span>{!! nl2br(e($applicationValue->lang[0]->content))  !!}</span></div>                    
+                @endforeach
             </div>
         </div>
     </div>

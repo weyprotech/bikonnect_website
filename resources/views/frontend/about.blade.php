@@ -35,7 +35,7 @@
     <div class="about_timeline page_block">
         <div class="block_inner">
             <div class="timeline_header">
-                <h2 class="block_subtitle">{{ trans('lang.businesstimeline') }}</h2>
+                <h2 class="block_subtitle">{{ $historyTitle->lang[0]->title }}</h2>
                 <div id="timeline_years"><img class="bg" src="{{ URL::asset('frontend/images/bg_timeline_years.png') }}" alt="Years Background"><span>2016 - 2020</span></div>
                 <div id="timeline_arrows"></div>
             </div>

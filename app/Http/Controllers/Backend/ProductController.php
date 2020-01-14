@@ -103,6 +103,7 @@ class ProductController extends Controller
         if($request->isMethod('post')){
             
             if($request->uuid == $content->uuid){
+                $content->url = $request->url;
                 $content->uuid = $uuid;
                 $content->save();
                 foreach ($request->productlangs as $contentKey => $contentValue) {
@@ -114,6 +115,7 @@ class ProductController extends Controller
                     $img_3 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_3',$productId,$content[0],'img_3',748);
                     $img_4 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_4',$productId,$content[0],'img_4',752);
                     $img_5 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_5',$productId,$content[0],'img_5',230);
+                    $dm_file = $this->upload_dm($request,'productlangs.'.$contentValue['langId'].'.dm_file',$productId,$content[0],'dm_file');
 
                     DB::table('tb_product_lang')
                     ->where('pId',$productId)
@@ -132,7 +134,8 @@ class ProductController extends Controller
                         'img_2' => $img_2,
                         'img_3' => $img_3,
                         'img_4' => $img_4,
-                        'img_5' => $img_5,                                                                        
+                        'img_5' => $img_5,
+                        'dm_file' => $dm_file,
                         'content_1'=> $contentValue['content_1'],
                         'content_2'=> $contentValue['content_2'],
                         'content_3'=> html_entity_decode($contentValue['content_3']),
@@ -150,7 +153,6 @@ class ProductController extends Controller
                 }
             }
         }
-
         $data = array(
             'content' => $content,
             'langdata' => $langdata
@@ -241,6 +243,20 @@ class ProductController extends Controller
     }
 
     /**
+     * 驗證連結是否重複
+     * @param string $url
+     */
+    public function url_validation(Request $request){
+        $url_value = $request->input('url_value');
+        $product = ProductModel::where('url',$url_value)->get();
+        if(!isset($product[0])){
+            echo json_encode(array('status' => 1));
+        }else{
+            echo json_encode(array('status' => 0));
+        }
+    }
+
+    /**
      * 上傳圖片
      * 
      */
@@ -271,6 +287,52 @@ class ProductController extends Controller
                 if(file_exists(base_path() . '/public/'.@$content->$file_name)){
                     @chmod(base_path() . '/public/'.$content->$file_name, 0777);
                     @unlink(base_path() . '/public/'.$content->$file_name);
+                }
+            }
+        }else{
+            if($content){
+                $img = $content->$file_name;
+            }else{
+                $img = '';
+            }
+        }
+        return $img;
+    }
+
+    /**
+     * 上傳DM檔案
+     */
+    public function upload_dm($request,$name,$uuid,$content = false,$file_name = ''){        
+        if($request->hasFile($name)){
+            if($request->file($name)->isValid()){
+                $destinationPath = base_path() . '/public/uploads/product/'.$uuid;
+                // getting image extension
+                $extension = $request->file($name)->getClientOriginalExtension();
+                $filename = $request->file($name)->getClientOriginalName();
+                if (!file_exists($destinationPath)) { //Verify if the directory exists
+                    mkdir($destinationPath, 0777, true); //create it if do not exists
+                }
+
+                // uuid renameing image
+                $fileName = $filename;
+            
+                // Image::make($request->file($name))->resize($width,null,function($constraint){
+                //     $constraint->aspectRatio();
+                // })->save($destinationPath.'/thumb_'.$fileName);
+
+                // move file to dest
+                $request->file($name)->move($destinationPath, $fileName);
+                // save data
+                $img = '/uploads/product/'.$uuid.'/'.$fileName;
+                if(file_exists(base_path() . '/public/'.@$content->$file_name)){
+                    @chmod(base_path() . '/public/'.$content->$file_name, 0777);
+                    @unlink(base_path() . '/public/'.$content->$file_name);
+                }
+            }else{
+                if($content){
+                    $img = $content->$file_name;
+                }else{
+                    $img = '';
                 }
             }
         }else{

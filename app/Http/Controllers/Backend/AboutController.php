@@ -16,7 +16,8 @@ use App\AboutTeamModel;
 use App\AboutTeamLangModel;
 use App\AboutPartnerModel;
 use App\AboutPartnerLangModel;
-
+use App\AboutHistoryTitleLangModel;
+use App\AboutHistoryTitleModel;
 
 
 class AboutController extends Controller 
@@ -41,7 +42,7 @@ class AboutController extends Controller
                 $content->uuid = Uuid::uuid1();
                 $content->save();
 
-                foreach ($request->contentlangs as $contentKey => $contentValue) {                         
+                foreach ($request->contentlangs as $contentKey => $contentValue) {
                     $content = AboutContentLangModel::where('langId',$contentValue['langId'])->where('cId',$contentId)->get();
                     //上傳圖檔
                     if ($request->hasFile('contentlangs.'.$contentValue['langId'].'.img')) {
@@ -102,6 +103,43 @@ class AboutController extends Controller
             }
         }
         return redirect('backend/about/content');
+    }
+
+    /***沿革標題維護***/
+    public function history_title(Request $request) 
+    {
+        $title = AboutHistoryTitleModel::with('lang')->find(1);
+        $web_langList = WebsiteLangModel::where('is_enable',1)->get();
+        if($request->isMethod('post')){       
+            if($request->uuid == $title->uuid){
+                $title->uuid = Uuid::uuid1();
+                $title->save();
+                foreach ($request->titlelangs as $titleKey => $titleValue) {
+                    $title = AboutHistoryTitleLangModel::where('langId',$titleValue['langId'])->where('tId',1)->get();                                   
+                    DB::table('tb_about_history_title_lang')
+                    ->where('langId',$titleValue['langId'])
+                    ->update(array('langId' => $titleValue['langId'], 'title' => $titleValue['title']));
+                }
+                
+                return redirect('backend/about/history_title');                  
+            }
+        }
+
+        //讀出主題的語系資料
+        foreach ($title->lang as $titleKey => $titleValue) {
+            foreach ($web_langList as $langKey => $langValue) {
+                if($titleValue->langId == $langValue->langId){
+                    $langdata[$langValue->langId] = $titleValue;
+                }
+            }
+        }
+
+        $data = array(
+            'title' => $title,
+            'langdata' => $langdata
+        );
+
+        return $this->set_view('backend.about.history_title',$data);
     }
 
     /*** 沿革維護 ***/

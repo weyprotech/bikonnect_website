@@ -8,5 +8,5 @@ class SolutionTitleLangModel extends Model
 {
     protected $table = 'tb_solution_title_lang';
     protected $primaryKey = 'id';
-    protected $fillable = ['Id','uuid','langId','title'];
+    protected $fillable = ['Id','uuid','tId','langId','title'];
 }

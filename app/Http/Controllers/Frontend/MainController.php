@@ -9,9 +9,15 @@ use App\WebsiteLangModel;
 use App\AboutContentModel;
 use App\AboutHistoryModel;
 use App\AboutTeamModel;
+use App\AboutHistoryTitleLangModel;
+use App\AboutHistoryTitleModel;
 use App\SolutionVideoModel;
 use App\SolutionContentModel;
 use App\SolutionAspectModel;
+use App\SolutionTitleModel;
+use App\SolutionTitleLangModel;
+use App\SolutionApplicationModel;
+use App\SolutionApplicationLangModel;
 use App\ProductModel;
 use App\Mail\contactEmail;
 use Illuminate\Support\Facades\Mail;
@@ -125,6 +131,11 @@ class MainController extends Controller
             $query->where('langId','=',$this->langList[0]->langId);
         }])->get();
 
+        //沿革標題
+        $historyTitle = AboutHistoryTitleModel::with(['lang' => function($query){
+            $query->where('langId','=',$this->langList[0]->langId);
+        }])->find(1);
+
         //沿革列表
         $historyList = AboutHistoryModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
             $query->where('langId','=',$this->langList[0]->langId);
@@ -166,6 +177,7 @@ class MainController extends Controller
             'historyList' => $historyList,
             'productList' => $productList,            
             'teamList' => $teamList,
+            'historyTitle' => $historyTitle,
             'contact' => $contact            
         );
         return view('frontend.about',$data);
@@ -186,11 +198,20 @@ class MainController extends Controller
             $query->where('langId','=',$this->langList[0]->langId);
         }])->get();
 
+        //標題
+        $title = SolutionTitleModel::with(['lang' => function($query){
+            $query->where('langId','=',$this->langList[0]->langId);
+        }])->find(1);
+
+        //Application Range
+        $applicationList = SolutionApplicationModel::with(['lang' => function($query){
+            $query->where('langId','=',$this->langList[0]->langId);
+        }])->get();
+
         //特點列表
         $aspectList = SolutionAspectModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
             $query->where('langId','=',$this->langList[0]->langId);
         }])->get();
-        // print_r($aspectList->toArray());exit;
 
         //產品列表
         $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
@@ -222,12 +243,14 @@ class MainController extends Controller
             'contentList' => $contentList,
             'aspectList' => $aspectList,
             'productList' => $productList,
-            'contact' => $contact            
+            'contact' => $contact,
+            'title' => $title,
+            'applicationList' => $applicationList
         );
         return view('frontend.solution',$data);
     }
 
-    public function product($productId,$locale){
+    public function product($url,$locale){
         //設定語系
         $this->set_locale();        
         //產品列表
@@ -237,7 +260,7 @@ class MainController extends Controller
 
         $product = ProductModel::with(['lang' => function($query){
             $query->where('langId','=',$this->langList[0]->langId);
-        }])->find($productId);
+        }])->where('url',$url)->get();
 
         //聯絡我們
         $contact = ContactModel::with(['contactlang' => function($query){
@@ -247,22 +270,22 @@ class MainController extends Controller
         //seo
         $seoList = array(
             'en' => array(
-                'title' => $product->lang[0]->meta_title.' - Bikonnect',
-                'keyword' => $product->lang[0]->meta_keywords.' - Bikonnect',
-                'description' => $product->lang[0]->meta_description.' - Bikonnect'
+                'title' => $product[0]->lang[0]->meta_title.' - Bikonnect',
+                'keyword' => $product[0]->lang[0]->meta_keywords.' - Bikonnect',
+                'description' => $product[0]->lang[0]->meta_description.' - Bikonnect'
             ),
             'zh-TW' => array(
-                'title' => $product->lang[0]->meta_title.' - Bikonnect',
-                'keyword' => $product->lang[0]->meta_keywords.' - Bikonnect',
-                'description' => $product->lang[0]->meta_description.' - Bikonnect' 
+                'title' => $product[0]->lang[0]->meta_title.' - Bikonnect',
+                'keyword' => $product[0]->lang[0]->meta_keywords.' - Bikonnect',
+                'description' => $product[0]->lang[0]->meta_description.' - Bikonnect' 
             )
         );
 
         $data = array(
             'seoList' => $seoList,            
             'productList' => $productList,
-            'product' => $product,
-            'productId' => $productId,
+            'product' => $product[0],
+            'productId' => $product[0]->Id,
             'contact' => $contact            
         );
         return view('frontend.product',$data);

@@ -21,7 +21,9 @@
                         <h2>新增產品</h2>
                         
                         <ul class="nav nav-tabs pull-right in">
-                        
+                            <li class='active'>
+                                <a data-toggle="tab" href="#hb_0"> <span class="hidden-mobile hidden-tablet">連結設定</span> </a>
+                            </li>
                             @foreach($web_langList as $langKey => $langValue)
                                 <li {{ $langKey == 0 ? 'class=active' : '' }}>
                                     <a data-toggle="tab" href="#hb_{{ $langValue->langId }}"> <span class="hidden-mobile hidden-tablet"> {{ $langValue->name }} </span> </a>
@@ -50,6 +52,22 @@
 							data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
                                 
                                 <div class="tab-content">
+                                    <div class="tab-pane active" id="hb_0">
+                                        <fieldset>
+                                            <legend>產品連結</legend>
+                                            @csrf                                            
+                                            <div class="form-group">
+                                                <label class="col-lg-2 control-label">產品連結</label>
+                                                <div class="col-lg-5">
+                                                    <input type="text" id="url" class="form-control" name="url" value=""
+                                                    data-bv-notempty="true"
+                                                    data-bv-notempty-message="請輸入產品連結"
+                                                    pattern="[A-Za-z0-9_]+"
+                                                    data-bv-regexp-message="只能輸入英文、數字、底線" />                                                    
+                                                </div>
+                                            </div>                                           
+                                        </fieldset>
+                                    </div>
                                     @foreach($web_langList as $langKey => $langValue)
                                         <div class="tab-pane {{ $langKey == 0 ? 'active' : '' }}" id="hb_{{ $langValue->langId }}">
                                             <fieldset>
@@ -243,6 +261,16 @@
                                                         </p>
                                                     </div>
                                                 </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-2 control-label">DM</label>
+                                                    <div class="col-lg-5">
+                                                        <input type="file" class="btn btn-default imageupload" name="productlangs[{{ $langValue->langId }}][dm_file]"
+                                                            data-bv-file="true"
+                                                            data-bv-file-extension="png,gif,jpg,jpeg,pdf"
+                                                            data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif,application/pdf"
+                                                            data-bv-file-message="DM格式不符">
+                                                    </div>
+                                                </div>
                                             </fieldset>
                                         </div>
                                     @endforeach
@@ -311,5 +339,22 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     });
 });    
+$('#url').on('change',function(){
+    var url_value = $(this).val();
+    $.ajax({
+        url:"{{ URL::route('product.url_validation') }}?url_value="+url_value,
+        data:{url_value : url_value},
+        dataType:'json',
+        success:function(response){
+            if(response['status']==0){
+                $('#url').val('');
+                swal({
+                    type:'error',
+                    title:'產品網址已重複'
+                });
+            }
+        }
+    })
+});
 </script>
 @endsection

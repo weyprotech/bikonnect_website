@@ -16,11 +16,54 @@ use App\SolutionAspectModel;
 use App\SolutionAspectLangModel;
 use App\SolutionKeyfeatureModel;
 use App\SolutionKeyfeatureLangModel;
+use App\SolutionTitleModel;
+use App\SolutionTitleLangModel;
+use App\SolutionApplicationModel;
+use App\SolutionApplicationLangModel;
 use Intervention\Image\ImageManagerStatic as Image;
 
 
 class SolutionController extends Controller 
 {
+    /***主題維護***/
+    public function title(Request $request) 
+    {
+        $title = SolutionTitleModel::with('lang')->find(1);
+        $web_langList = WebsiteLangModel::where('is_enable',1)->get();
+        if($request->isMethod('post')){       
+            if($request->uuid == $title->uuid){
+                $title->uuid = Uuid::uuid1();
+                $title->save();
+                foreach ($request->titlelangs as $titleKey => $titleValue) {
+                    $title = SolutionTitleLangModel::where('langId',$titleValue['langId'])->where('tId',1)->get();
+                    $dm_file = $this->upload_dm($request,'titlelangs.'.$titleValue['langId'].'.dm_file',1,$title,'dm_file');
+
+                    DB::table('tb_solution_title_lang')
+                    ->where('langId',$titleValue['langId'])
+                    ->update(array('langId' => $titleValue['langId'], 'title' => $titleValue['title'],'dm_file' => $dm_file));
+                }
+                
+                return redirect('backend/solution/title');                  
+            }
+        }
+
+        //讀出主題的語系資料
+        foreach ($title->lang as $titleKey => $titleValue) {
+            foreach ($web_langList as $langKey => $langValue) {
+                if($titleValue->langId == $langValue->langId){
+                    $langdata[$langValue->langId] = $titleValue;
+                }
+            }
+        }
+
+        $data = array(
+            'title' => $title,
+            'langdata' => $langdata
+        );
+
+        return $this->set_view('backend.solution.title',$data);
+    }
+
     /***影片區維護***/
     public function video(Request $request) 
     {
@@ -55,6 +98,95 @@ class SolutionController extends Controller
         );
 
         return $this->set_view('backend.solution.video',$data);
+    }
+
+    /***Application Range***/
+    public function application() 
+    {
+        $contentList = SolutionApplicationModel::with('lang')->where('is_enable',1)->orderby('order','asc')->get();
+        $data = array(
+            'contentList' => $contentList
+        );
+        return view('backend.solution.application',$data);
+    }
+
+    public function editapplication($applicationId,Request $request) 
+    {
+        $content = SolutionApplicationModel::with('lang')->find($applicationId);
+        $web_langList = WebsiteLangModel::where('is_enable',1)->get();
+
+        if($request->isMethod('post')){
+            if($request->uuid == $content->uuid){
+                $content->uuid = Uuid::uuid1();
+                $content->save();
+
+                foreach ($request->contentlangs as $contentKey => $contentValue) {                    
+                    $content = SolutionApplicationLangModel::where('langId',$contentValue['langId'])->where('aId',$applicationId)->get();
+                    
+                    // //上傳圖檔
+                    if ($request->hasFile('contentlangs.'.$contentValue['langId'].'.img')) {
+                        
+                        if($request->file('contentlangs.'.$contentValue['langId'].'.img')->isValid()){
+                            if(file_exists(base_path() . '/public/'.$content[0]->img)){
+                                @chmod(base_path() . '/public/'.$content[0]->img, 0777);
+                                @unlink(base_path() . '/public/'.$content[0]->img);
+                            }
+                            $destinationPath = base_path() . '/public/uploads/solution/'.$applicationId;
+
+                            if (!file_exists($destinationPath)) { //Verify if the directory exists
+                                mkdir($destinationPath, 0777, true); //create it if do not exists
+                            }
+
+                            // getting image extension
+                            $extension = $request->file('contentlangs.'.$contentValue['langId'].'.img')->getClientOriginalExtension();
+                            
+                            // uuid renameing image
+                            $fileName = Str::uuid() . '_group_.' . $extension;
+
+                            Image::make($request->file('contentlangs.'.$contentValue['langId'].'.img'))->resize(185,null,function($constraint){
+                                $constraint->aspectRatio();
+                            })->save($destinationPath.'/thumb_'.$fileName);
+                            // move file to dest
+                            // $request->file('contentlangs.'.$contentValue['langId'].'.img')->move($destinationPath, $fileName);
+                            // save data
+                            $contentValue['img'] = '/uploads/solution/'.$applicationId.'/thumb_'.$fileName; 
+                        }
+                    }else{
+                        $contentValue['img'] = $content[0]->img;
+                    }
+                    DB::table('tb_solution_application_lang')
+                    ->where('aId',$applicationId)
+                    ->where('langId',$contentValue['langId'])
+                    ->update(array('langId' => $contentValue['langId'], 'content'=> html_entity_decode($contentValue['content']),'img' => $contentValue['img']));
+                }
+                return redirect('backend/solution/application');                  
+            }
+        }
+        //讀出圖文的語系資料
+        foreach ($content->lang as $contentKey => $contentValue) {
+            foreach ($web_langList as $langKey => $langValue) {
+                if($contentValue->langId == $langValue->langId){
+                    $langdata[$langValue->langId] = $contentValue;
+                }
+            }
+        }
+
+        $data = array(
+            'content' => $content,
+            'langdata' => $langdata
+        );
+        return $this->set_view('backend.solution.editApplication',$data);
+    }
+
+    public function application_order_save(Request $request){
+        if($order = $request->order){
+            foreach ($order as $orderKey => $orderValue) {
+                $content = SolutionApplicationModel::find($orderValue['cId']);
+                $content->order = $orderValue['order'];
+                $content->save();
+            }
+        }
+        return redirect('backend/solution/application');
     }
 
     /***圖文區維護***/
@@ -400,5 +532,55 @@ class SolutionController extends Controller
         @rmdir(base_path() . '/public/uploads/key_feature/'.$bannerId);
         $row->save();
         return redirect(action('Backend\SolutionController@key_feature'));
+    }
+
+    /**
+     * 上傳DM檔案
+     */
+    public function upload_dm($request,$name,$uuid,$content = false,$file_name = ''){      
+        if($request->hasFile($name)){
+            if($request->file($name)->isValid()){
+
+                $destinationPath = base_path() . '/public/uploads/solution/title';
+                // getting image extension
+                $extension = $request->file($name)->getClientOriginalExtension();
+                $filename = $request->file($name)->getClientOriginalName();
+                if (!file_exists($destinationPath)) { //Verify if the directory exists
+                    mkdir($destinationPath, 0777, true); //create it if do not exists
+                }
+
+                // uuid renameing image
+                $fileName = $filename;
+            
+                // Image::make($request->file($name))->resize($width,null,function($constraint){
+                //     $constraint->aspectRatio();
+                // })->save($destinationPath.'/thumb_'.$fileName);
+
+                // move file to dest
+                $request->file($name)->move($destinationPath, $fileName);
+                // save data
+
+                $img = '/uploads/solution/title/'.$fileName;
+                if(isset($content[0]->$file_name)){
+                    if(file_exists(base_path() . '/public/'.@$content[0]->$file_name)){
+                        @chmod(base_path() . '/public/'.$content[0]->$file_name, 0777);
+                        @unlink(base_path() . '/public/'.$content[0]->$file_name);
+                    }
+                }
+            }else{
+                if($content){
+                    $img = $content[0]->$file_name;
+                }else{
+                    $img = '';
+                }
+            }
+        }else{
+            if($content){
+                $img = $content[0]->$file_name;
+            }else{
+                $img = '';
+            }
+        }
+        return $img;
     }
 }
