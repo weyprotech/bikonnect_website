@@ -2,7 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
-## 2020-01-15
+## 2020-01-15 - 2
+
+### Changed
+-  application 後台大小寫問題
+
+app/Http/Controllers/Backend/SolutionController.php
+
+## 2020-01-15 - 1
 
 ### Changed
 -  Solution頁上面橫幅標題 > E-Bike Data Service Solution
