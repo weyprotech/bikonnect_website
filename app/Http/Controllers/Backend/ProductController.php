@@ -212,6 +212,11 @@ class ProductController extends Controller
             @chmod(base_path() . '/public/'.$productid->lang[0]->img_5, 0777);
             @unlink(base_path() . '/public/'.$productid->lang[0]->img_5);
         }
+
+        if(file_exists(base_path() . '/public/'.$productid->lang[0]->dm_file)){
+            @chmod(base_path() . '/public/'.$productid->lang[0]->dm_file, 0777);
+            @unlink(base_path() . '/public/'.$productid->lang[0]->dm_file);
+        }
         
         if(file_exists(base_path() . '/public/'.$productid->lang[1]->img_1)){
             @chmod(base_path() . '/public/'.$productid->lang[1]->img_1, 0777);
@@ -236,7 +241,12 @@ class ProductController extends Controller
         if(file_exists(base_path() . '/public/'.$productid->lang[1]->img_5)){
             @chmod(base_path() . '/public/'.$productid->lang[1]->img_5, 0777);
             @unlink(base_path() . '/public/'.$productid->lang[1]->img_5);
-        }        
+        }   
+        
+        if(file_exists(base_path() . '/public/'.$productid->lang[1]->dm_file)){
+            @chmod(base_path() . '/public/'.$productid->lang[1]->dm_file, 0777);
+            @unlink(base_path() . '/public/'.$productid->lang[1]->dm_file);
+        }
         @rmdir(base_path() . '/public/uploads/product/'.$productid->Id);
         $productid->save();
         return redirect('backend/product/index');   
