@@ -20,7 +20,10 @@ use App\SolutionTitleModel;
 use App\SolutionTitleLangModel;
 use App\SolutionApplicationModel;
 use App\SolutionApplicationLangModel;
+use App\SolutionServiceModel;
+use App\SolutionServiceLangModel;
 use Intervention\Image\ImageManagerStatic as Image;
+
 
 
 class SolutionController extends Controller 
@@ -268,6 +271,71 @@ class SolutionController extends Controller
             }
         }
         return redirect('backend/solution/content');
+    }
+
+    /***服務架構維護***/
+    public function service(Request $request) 
+    {
+        $service = SolutionServiceModel::with('lang')->find(1);
+        $web_langList = WebsiteLangModel::where('is_enable',1)->get();
+        if($request->isMethod('post')){       
+            if($request->uuid == $service->uuid){
+                $service->uuid = Uuid::uuid1();
+                $service->save();
+                foreach ($request->servicelangs as $serviceKey => $serviceValue) {
+                    $service = SolutionServiceLangModel::where('langId',$serviceValue['langId'])->where('sId',1)->get();
+                    $img = $service[0]->img;
+                    //上傳圖檔
+                    if ($request->hasFile('servicelangs.'.$serviceValue['langId'].'.img')) {                                        
+                        if($request->file('servicelangs.'.$serviceValue['langId'].'.img')->isValid()){
+                            if(@file_exists(base_path() . '/public/'.@$service[0]->img)){
+                                @chmod(base_path() . '/public/'.@$service[0]->img, 0777);
+                                @unlink(base_path() . '/public/'.@$service[0]->img);
+                            }
+
+                            $destinationPath = base_path() . '/public/uploads/service';
+
+                            // getting image extension
+                            $extension = $request->file('servicelangs.'.$serviceValue['langId'].'.img')->getClientOriginalExtension();
+                            
+                            if (!file_exists($destinationPath)) { //Verify if the directory exists
+                                mkdir($destinationPath, 0777, true); //create it if do not exists
+                            }
+                            
+                            // uuid renameing image
+                            $fileName = Str::uuid() . '.' .$extension;
+            
+                            Image::make($request->file('servicelangs.'.$serviceValue['langId'].'.img'))->resize('1110',null,function($constraint){
+                                $constraint->aspectRatio();
+                            })->save($destinationPath.'/thumb_'.$fileName);
+                            $img = '/uploads/service/thumb_'.$fileName;
+                        }
+                    }
+
+                    DB::table('tb_solution_service_lang')
+                    ->where('langId',$serviceValue['langId'])
+                    ->update(array('langId' => $serviceValue['langId'], 'title' => $serviceValue['title'],'img' => $img));
+                }
+                
+                return redirect('backend/solution/service');                  
+            }
+        }
+
+        //讀出主題的語系資料
+        foreach ($service->lang as $serviceKey => $serviceValue) {
+            foreach ($web_langList as $langKey => $langValue) {
+                if($serviceValue->langId == $langValue->langId){
+                    $langdata[$langValue->langId] = $serviceValue;
+                }
+            }
+        }
+
+        $data = array(
+            'service' => $service,
+            'langdata' => $langdata
+        );
+
+        return $this->set_view('backend.solution.service',$data);
     }
 
     /**** 特點維護 ****/
@@ -537,7 +605,7 @@ class SolutionController extends Controller
     /**
      * 上傳DM檔案
      */
-    public function upload_dm($request,$name,$uuid,$content = false,$file_name = ''){      
+    public function upload_dm($request,$name,$uuid,$content = false,$file_name = ''){
         if($request->hasFile($name)){
             if($request->file($name)->isValid()){
 

@@ -53,7 +53,12 @@
             </div>
         </div>
     </div>
-
+    <div class="solution_service page_block">
+        <div class="block_inner">
+            <h2 class="block_subtitle">{{ $service->lang[0]->title }}</h2>
+            <div class="solution_service_content"><img src="{{ secure_asset($service->lang[0]->img) }}" alt="{{ $service->lang[0]->title }}"></div>
+        </div>
+      </div>
     <div class="solution_cyclists_operators page_block">
         <div class="block_inner">
         <div class="content_block cyclists">

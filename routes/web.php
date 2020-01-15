@@ -37,6 +37,9 @@ Route::group(['prefix' => 'backend'], function(){
 
         //影片區
         Route::match(['get', 'post'], '/video', array('as' => 'solution.video', 'uses' => 'Backend\SolutionController@video'));
+        
+        //架構
+        Route::match(['get', 'post'], '/service', array('as' => 'solution.service', 'uses' => 'Backend\SolutionController@service'));
 
         //Application Range區
         Route::match(['get', 'post'], '/application', array('as' => 'solution.application', 'uses' => 'Backend\SolutionController@application'));
