@@ -2,6 +2,94 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2020-01-15
+
+### Changed
+-  Solution頁上面橫幅標題 > E-Bike Data Service Solution
+-  Solution頁 > Application Range > 標題、圖片、文字
+-  Solution頁 > 再切一個圖文區域出來(放Bikonnect架構圖)
+-  Product頁 > 每頁產品 > 前台顯示DM下載/後台DM上傳維護。每頁產品獨立DM上傳，中英文分開。
+-  About us > 歷史沿革 > Business Timeline 標題文字更改
+-  Solution頁 > DM下載/後台DM上傳
+-  產品連結有意義的字--唯一值、欄位去key
+
+--model
+
+/app/SolutionTitleModel.php
+
+/app/SolutionTitleLangModel.php
+
+/app/SolutionApplicationModel.php
+
+/app/SolutionApplicationLangModel.php
+
+/app/SolutionServiceModel.php
+
+/app/SolutionServiceLangModel.php
+
+/app/ProductLangModel.php
+
+/app/AboutHistoryTitleModel.php
+
+/app/AboutHistoryTitleLangModel.php
+
+--controller
+
+/app/Http/Controllers/Backend/ProductController.php
+
+/app/Http/Controllers/Backend/SolutionController.php
+
+/app/Http/Controllers/Backend/AboutController.php
+
+/app/Http/Controllers/Frontend/MainController.php
+
+--view
+/resources/views/backend/product/edit.blade.php
+
+/resources/views/backend/product/add.blade.php
+
+/resources/views/backend/shared/_nav.blade.php
+
+/resources/views/backend/solution/title.blade.php
+
+/resources/views/backend/about/history_title.blade.php
+
+/resources/views/backend/solution/editapplication.blade.php
+
+/resources/views/backend/solution/service.blade.php
+
+/resources/views/backend/solution/application.blade.php
+
+/resources/views/frontend/solution.blade.php
+
+/resources/views/frontend/index.blade.php
+
+/resources/views/frontend/product.blade.php
+
+/resources/views/frontend/about.blade.php
+
+/resources/views/frontend/shared/_header.blade.php
+
+/resources/views/frontend/shared/_css.blade.php
+
+--public
+
+/public/frontend/images/sprite-2x.png
+
+/public/frontend/images/sprite.png
+
+/public/frontend/images/sprite/icon_download-2x.png
+
+/public/frontend/images/sprite/icon_download.png
+
+--style
+
+/public/frontend/styles/main.css
+
+--route
+
+/routes/web.php
+
 ## 2020-01-14
 
 ### Changed
