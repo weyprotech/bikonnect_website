@@ -44,6 +44,7 @@ All notable changes to this project will be documented in this file.
 /app/Http/Controllers/Frontend/MainController.php
 
 --view
+
 /resources/views/backend/product/edit.blade.php
 
 /resources/views/backend/product/add.blade.php
