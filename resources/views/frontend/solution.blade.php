@@ -7,7 +7,7 @@
     <div class="page_banner page_block in_solution">
         <div class="block_inner">
             <h1 class="block_title">{{ $title->lang[0]->title }}</h1>
-            <a class="btn_download" href="{{ $title->lang[0]->dm_file }}"  download="{{ $title->lang[0]->dm_file }}"><i class="icon_download"></i>Download</a>
+            <a class="btn_download" href="{{ $title->lang[0]->dm_file }}"  download="{{ $title->lang[0]->title }}"><i class="icon_download"></i>Download</a>
         </div>
     </div>
     <div class="solution_introduction page_block">

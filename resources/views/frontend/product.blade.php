@@ -12,7 +12,7 @@
                 <p>{!! nl2br(e($product->lang[0]->content_1)) !!}</p>
             </div>
             @if(!empty($product->lang[0]->dm_file))
-                <a class="btn_download" href="{{ $product->lang[0]->dm_file }}" download="{{ $product->lang[0]->dm_file }}"><i class="icon_download"></i>Download</a>
+                <a class="btn_download" href="{{ $product->lang[0]->dm_file }}" download="{{ $product->lang[0]->title_1 }}"><i class="icon_download"></i>Download</a>
             @endif
         </div>
         <div class="block_img">

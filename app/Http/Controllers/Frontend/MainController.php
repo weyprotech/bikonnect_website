@@ -31,6 +31,8 @@ use App\HomepageContent3Model;
 use App\HomepageContent4Model;
 use App\BannerModel;
 use App\SolutionKeyfeatureModel;
+use App\SolutionServiceModel;
+use App\SolutionServiceLangModel;
 use App\ContactModel;
 use App\ContactMailModel;
 use App\EmailModel;
@@ -223,6 +225,11 @@ class MainController extends Controller
             $query->where('langId','=',$this->langList[0]->langId);
         }])->find(1);
 
+        //服務架構
+        $service = SolutionServiceModel::with(['lang' => function($query){
+            $query->where('langId','=',$this->langList[0]->langId);
+        }])->find(1);
+
         //seo
         $seoList = array(
             'en' => array(
@@ -245,6 +252,7 @@ class MainController extends Controller
             'productList' => $productList,
             'contact' => $contact,
             'title' => $title,
+            'service' => $service,
             'applicationList' => $applicationList
         );
         return view('frontend.solution',$data);
