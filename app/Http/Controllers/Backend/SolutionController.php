@@ -178,7 +178,7 @@ class SolutionController extends Controller
             'content' => $content,
             'langdata' => $langdata
         );
-        return $this->set_view('backend.solution.editApplication',$data);
+        return $this->set_view('backend.solution.editapplication',$data);
     }
 
     public function application_order_save(Request $request){
