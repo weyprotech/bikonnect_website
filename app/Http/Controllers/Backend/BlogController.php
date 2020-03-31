@@ -200,10 +200,13 @@ class BlogController extends Controller
                     $constraint->aspectRatio();
                 })->save($destinationPath.'/'.$fileName);
                 $img = '/uploads/blog/'.$uuid.'/'.$fileName;
-                if(file_exists(base_path() . '/public/'.$content->$file_name)){
-                    @chmod(base_path() . '/public/'.$content->$file_name, 0777);
-                    @unlink(base_path() . '/public/'.$content->$file_name);
+                if($content){
+                    if(file_exists(base_path() . '/public/'.$content->$file_name)){
+                        @chmod(base_path() . '/public/'.$content->$file_name, 0777);
+                        @unlink(base_path() . '/public/'.$content->$file_name);
+                    }
                 }
+
             }
         }else{
             if($content){
