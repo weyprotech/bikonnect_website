@@ -13,6 +13,10 @@ All notable changes to this project will be documented in this file.
 
 /resources/views/backend/blog/add.blade.php
 
+2.後台blog 編輯器上傳圖片修正
+
+/Controllers/Backend/BlogController.php
+
 ## 2020-01-15 - 2
 
 ### Changed
