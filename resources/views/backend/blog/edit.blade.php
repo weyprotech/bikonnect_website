@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function(){
             data.append("file", file);
             data.append('_token','{{ csrf_token() }}');
             return $.ajax({
-                url: "{{ URL::route('blog.content.upload_summernote') }}",
+                url: "{{ secure_url(URL::route('blog.content.upload_summernote')) }}",
                 type: "POST",
                 data: data,
                 cache: false,
@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function(){
             });
 
             return $.ajax({
-                url: '{{ URL::route('blog.content.upload_summernote') }}',
+                url: '{{ secure_url(URL::route('blog.content.upload_summernote')) }}',
                 type: 'POST',
                 data: data,
                 cache: false,

@@ -88,7 +88,7 @@
         category = $('#category_select').val();
         search = $('#search').val();
         $.ajax({
-            url:"{{ URL::route('ajax.get_blog') }}",
+            url:"{{ secure_url(URL::route('ajax.get_blog')) }}",
             data:{search : search,category : category,langId : langId,_token : '{{ csrf_token() }}'},
             type:'post',
             dataType:'json',
