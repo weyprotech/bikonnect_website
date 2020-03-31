@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2020-03-31
+
+### Changed
+1.ajax的url改成secure_url來加上https
+
+/resources/views/backend/blog/edit.blade.php
+
+/resources/views/frontend/blog.blade.php
+
+/resources/views/backend/blog/add.blade.php
+
 ## 2020-01-15 - 2
 
 ### Changed
