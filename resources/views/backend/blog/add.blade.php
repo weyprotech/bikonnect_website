@@ -126,6 +126,14 @@
                                                     </p>
                                                 </div>
                                             </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="url">部落格連結</label>
+
+                                                <div class="col-lg-5">
+                                                    <input type="text" class="form-control" id="url" name="url" placeholder="填寫連結" required>
+                                                </div>
+                                            </div>
                                         </fieldset>
                                     </div>
                                     @foreach($web_langList as $langKey => $langValue)
@@ -282,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function(){
             });
 
             return $.ajax({
-                url: '{{ secure_url(URL::route('blog.content.upload_summernote')) }}',
+                url: '{{ URL::route('blog.content.upload_summernote') }}',
                 type: 'POST',
                 data: data,
                 cache: false,

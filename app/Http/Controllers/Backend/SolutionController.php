@@ -39,14 +39,15 @@ class SolutionController extends Controller
                 $title->save();
                 foreach ($request->titlelangs as $titleKey => $titleValue) {
                     $title = SolutionTitleLangModel::where('langId',$titleValue['langId'])->where('tId',1)->get();
+                    
                     $dm_file = $this->upload_dm($request,'titlelangs.'.$titleValue['langId'].'.dm_file',1,$title,'dm_file');
 
                     DB::table('tb_solution_title_lang')
                     ->where('langId',$titleValue['langId'])
-                    ->update(array('langId' => $titleValue['langId'], 'title' => $titleValue['title'],'dm_file' => $dm_file));
+                    ->update(array('langId' => $titleValue['langId'], 'title' => $titleValue['title'],'down_title' => $titleValue['down_title'],'dm_file' => $dm_file));
                 }
                 
-                return redirect('backend/solution/title');                  
+                return redirect('backend/solution/title');
             }
         }
 
@@ -178,7 +179,7 @@ class SolutionController extends Controller
             'content' => $content,
             'langdata' => $langdata
         );
-        return $this->set_view('backend.solution.editapplication',$data);
+        return $this->set_view('backend.solution.editApplication',$data);
     }
 
     public function application_order_save(Request $request){

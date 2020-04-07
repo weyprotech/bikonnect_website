@@ -470,16 +470,23 @@ class MainController extends Controller
         return view('frontend.blog',$data);
     }
 
-    public function blog_detail($blogId,$page,Request $request){
+    public function blog_detail($url,$page,Request $request){
         //設定語系
         $this->set_locale();
+
+        //找尋部落格
+        $blog = BlogModel::with(['blogcategory','blogcategory.blogcategorylang' => function($query){
+            $query->where('langId',$this->langList[0]->langId);
+        }])->with(['bloglang' => function($query){
+            $query->where('langId',$this->langList[0]->langId);
+        }])->with(['blogcomment'])->where('is_enable',1)->orderby('order','asc')->where('url','=',$url)->get();
 
         //全部文章(不包含自己)
         $blogList = BlogModel::with(['blogcategory','blogcategory.blogcategorylang' => function($query){
             $query->where('langId',$this->langList[0]->langId);
         }])->with(['bloglang' => function($query){
             $query->where('langId',$this->langList[0]->langId);
-        }])->where('is_enable',1)->where('Id','!=',$blogId)->get();
+        }])->where('is_enable',1)->where('Id','!=',$blog[0]->Id)->get();
         
         if($blogList->count() > 2){
             $related_blog = $blogList->random(2);
@@ -490,23 +497,16 @@ class MainController extends Controller
         //如果回傳的類別是post
         if($request->isMethod('post')){
             $comment = new BlogCommentModel();
-            $comment->bId = $blogId;
+            $comment->bId = $blog[0]->Id;
             $comment->date = date('Y-m-d');
             $comment->uuid = Str::uuid();
             $comment->name = $request->name;
             $comment->message = $request->message;
             $comment->save();
-            return redirect(action('Frontend\MainController@blog_detail',[$blogId,$page]));
+            return redirect(action('Frontend\MainController@blog_detail',[$blog[0]->Id,$page]));
         }
 
-        //找尋部落格
-        $blog = BlogModel::with(['blogcategory','blogcategory.blogcategorylang' => function($query){
-            $query->where('langId',$this->langList[0]->langId);
-        }])->with(['bloglang' => function($query){
-            $query->where('langId',$this->langList[0]->langId);
-        }])->with(['blogcomment'])->where('is_enable',1)->orderby('order','asc')->find($blogId);
-
-        $commentCount = BlogCommentModel::where('bId',$blogId)->count();
+        $commentCount = BlogCommentModel::where('bId',$blog[0]->Id)->count();
 
         //產品列表
         $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
@@ -521,20 +521,20 @@ class MainController extends Controller
         //seo
         $seoList = array(
             'en' => array(
-                'title' => $blog->bloglang[0]->title.' - Bikonnect',
-                'keyword' => $blog->bloglang[0]->title.' - Bikonnect',
-                'description' => $blog->bloglang[0]->title.' - Bikonnect'
+                'title' => $blog[0]->bloglang[0]->title.' - Bikonnect',
+                'keyword' => $blog[0]->bloglang[0]->title.' - Bikonnect',
+                'description' => $blog[0]->bloglang[0]->title.' - Bikonnect'
             ),
             'zh-TW' => array(
-                'title' => $blog->bloglang[0]->title.' - Bikonnect',
-                'keyword' => $blog->bloglang[0]->title.' - Bikonnect',
-                'description' => $blog->bloglang[0]->title.' - Bikonnect' 
+                'title' => $blog[0]->bloglang[0]->title.' - Bikonnect',
+                'keyword' => $blog[0]->bloglang[0]->title.' - Bikonnect',
+                'description' => $blog[0]->bloglang[0]->title.' - Bikonnect' 
             )
         );
 
         $data = array(
             'seoList' => $seoList,            
-            'blog' => $blog,
+            'blog' => $blog[0],
             'page' => $page,
             'productList' => $productList,
             'related_blog' => $related_blog,

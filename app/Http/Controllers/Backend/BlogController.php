@@ -59,7 +59,8 @@ class BlogController extends Controller
             $blog->date = $request->date;
             $blog->order = isset($lastblog[0]->order) ? $lastblog[0]->order+1 : 1;
             $blog->img = $this->upload_img($request,'img',$id,$blog,'img','1920');
-            $blog->is_visible = $request->is_visible;            
+            $blog->is_visible = $request->is_visible;   
+            $blog->url = $request->url;         
             $blog->uuid = $uuid;
             $blog->save();
             foreach ($request->contentlangs as $langKey => $langValue) {
@@ -109,8 +110,9 @@ class BlogController extends Controller
                 $blog->uuid = $uuid;
                 $blog->is_visible = $request->is_visible;
                 $blog->is_top = $request->is_top;
-                $blog->date = $request->date;                
-                $blog->categoryId = $request->categoryId;                
+                $blog->date = $request->date;
+                $blog->categoryId = $request->categoryId;
+                $blog->url = $request->url;
                 $blog->save();
                 foreach ($request->bloglangs as $blogKey => $blogValue) {
                     $lang = BlogLangModel::where('langId',$blogValue['langId'])->where('bId',$blogValue['bId'])->first();                    
@@ -200,13 +202,10 @@ class BlogController extends Controller
                     $constraint->aspectRatio();
                 })->save($destinationPath.'/'.$fileName);
                 $img = '/uploads/blog/'.$uuid.'/'.$fileName;
-                if($content){
-                    if(file_exists(base_path() . '/public/'.$content->$file_name)){
-                        @chmod(base_path() . '/public/'.$content->$file_name, 0777);
-                        @unlink(base_path() . '/public/'.$content->$file_name);
-                    }
+                if(file_exists(base_path() . '/public/'.$content->$file_name)){
+                    @chmod(base_path() . '/public/'.$content->$file_name, 0777);
+                    @unlink(base_path() . '/public/'.$content->$file_name);
                 }
-
             }
         }else{
             if($content){

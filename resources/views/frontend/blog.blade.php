@@ -7,7 +7,7 @@
     <div class="blog_slider">
         @foreach($topList as $topKey => $topValue)
             <div class="slide">
-                <a href="{{ URL::route('blog.detail',[$topValue->Id,$page,app()->getLocale()]) }}">
+                <a href="{{ URL::route('blog.detail',[$topValue->url,$page,app()->getLocale()]) }}">
                     <div class="pic" style="background-image: url({{ $topValue->img }})"></div>
                     <div class="slide_content">
                         <div class="content_inner">
@@ -50,7 +50,7 @@
                 @for($i=0;$i<12;$i++)
                     @if(isset($blogList[$i]))
                         <div class="item">
-                            <a href="{{ URL::route('blog.detail',[$blogList[$i]->Id,$page,app()->getLocale()]) }}">
+                            <a href="{{ URL::route('blog.detail',[$blogList[$i]->url,$page,app()->getLocale()]) }}">
                                 <div class="thumb" style="background-image: url({{ $blogList[$i]->img }})">
                                     <img src="{{ URL::asset('frontend/images/size_3x2.png') }}">
                                 </div>
@@ -88,7 +88,7 @@
         category = $('#category_select').val();
         search = $('#search').val();
         $.ajax({
-            url:"{{ secure_url(URL::route('ajax.get_blog')) }}",
+            url:"{{ URL::route('ajax.get_blog') }}",
             data:{search : search,category : category,langId : langId,_token : '{{ csrf_token() }}'},
             type:'post',
             dataType:'json',

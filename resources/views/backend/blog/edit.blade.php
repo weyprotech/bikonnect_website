@@ -27,10 +27,8 @@
                                 <li>
                                     <a data-toggle="tab" href="#hb_<?= $i++ ?>"> <span class="hidden-mobile hidden-tablet"> {{ $langValue->name }} </span> </a>
                                 </li>
-                            @endforeach
-                            
+                            @endforeach                        
                         </ul>
-
                     </header>
 
                     <!-- widget div-->
@@ -39,7 +37,6 @@
                         <!-- widget edit box -->
                         <div class="jarviswidget-editbox">
                             <!-- This area used as dropdown edit box -->
-
                         </div>
                         <!-- end widget edit box -->
                         <!-- widget content -->
@@ -128,6 +125,13 @@
                                                 </div>
                                             </div>
 
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label" for="url">部落格連結</label>
+
+                                                <div class="col-lg-5">
+                                                    <input type="text" class="form-control" id="url" name="url" placeholder="填寫連結" value="{{$blog->url}}" required>
+                                                </div>
+                                            </div>
                                         </fieldset>
                                     </div>
                                     @foreach($web_langList as $langKey => $langValue)
@@ -266,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function(){
             data.append("file", file);
             data.append('_token','{{ csrf_token() }}');
             return $.ajax({
-                url: "{{ secure_url(URL::route('blog.content.upload_summernote')) }}",
+                url: "{{ URL::route('blog.content.upload_summernote') }}",
                 type: "POST",
                 data: data,
                 cache: false,
@@ -286,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function(){
             });
 
             return $.ajax({
-                url: '{{ secure_url(URL::route('blog.content.upload_summernote')) }}',
+                url: '{{ URL::route('blog.content.upload_summernote') }}',
                 type: 'POST',
                 data: data,
                 cache: false,

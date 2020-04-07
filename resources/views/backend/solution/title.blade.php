@@ -62,6 +62,14 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
+                                                    <label class="col-lg-2 control-label">下方標題</label>
+                                                    <div class="col-lg-5">
+                                                        <input type="text" class="form-control" name="titlelangs[{{ $langValue->langId }}][down_title]" value="{{ $langdata[$langValue->langId]->down_title }}"
+                                                        data-bv-notempty="true"
+                                                        data-bv-notempty-message="請輸入下方標題">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
                                                     <label class="col-lg-2 control-label">DM</label>
                                                     <div class="col-lg-5">
                                                         <input type="file" class="btn btn-default imageupload" name="titlelangs[{{ $langValue->langId }}][dm_file]"
