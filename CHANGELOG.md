@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2020-04-07
+
+### Changed
+
+1.大標題 " Application Range " 要能維護 
+
+/resources/views/backend/solution/title.blade.php
+
+/app/SolutionTitleLangModel.php
+
+/app/Http/Controllers/Backend/SolutionController.php
+
+2.部落格網址中間亂碼處，改成有意義的英文字
+
+/app/Http/Controllers/Frontend/MainController.php
+
+/resources/views/backend/blog/edit.blade.php
+
+/app/Http/Controllers/Backend/BlogController.php
+
+/resources/views/frontend/blog.blade.php
+
+/resources/views/backend/blog/add.blade.php
+
 ## 2020-03-31
 
 ### Changed
