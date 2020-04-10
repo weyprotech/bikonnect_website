@@ -37,7 +37,7 @@
                             <h2>Write a resonse...</h2>
                         </a>                   
                         <div class="form_main">
-                            <form method="post" action="{{ URL::route('blog.detail',[$blog->Id,$page]) }}">
+                            <form method="post" action="{{ URL::route('blog.detail',[$blog->url,$page]) }}">
                                 @csrf
                                 <div class="controls_wrapper">
                                     <div class="controls_group">

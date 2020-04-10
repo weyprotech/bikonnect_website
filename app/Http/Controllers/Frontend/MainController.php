@@ -43,336 +43,351 @@ use App\TermlangModel;
 
 class MainController extends Controller 
 {
-    public function index() 
+    public function index($locale = '') 
     {
-        //設定語系
-        $this->set_locale(); 
+        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+            //設定語系
+            $this->set_locale(); 
 
-        //輪播圖列表
-        $bannerList = BannerModel::where('is_enable',1)->where('is_visible',1)->orderby('order','asc')->with(['bannerlang' => function($query){
-            $query->where('langId', '=', $this->langList[0]->langId);
-        }])->get();
+            //輪播圖列表
+            $bannerList = BannerModel::where('is_enable',1)->where('is_visible',1)->orderby('order','asc')->with(['bannerlang' => function($query){
+                $query->where('langId', '=', $this->langList[0]->langId);
+            }])->get();
 
-        //廠商列表
-        $partnerList = AboutPartnerModel::where('is_enable',1)->with(['lang' => function ($query) {
-            $query->where('langId', '=', $this->langList[0]->langId);
-        }])->get();
+            //廠商列表
+            $partnerList = AboutPartnerModel::where('is_enable',1)->with(['lang' => function ($query) {
+                $query->where('langId', '=', $this->langList[0]->langId);
+            }])->get();
+
+            //產品列表
+            $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
+
+            //內文1
+            $content1 = HomepageContent1Model::where('Id',1)->with(['content1lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->first();
+
+            //內文2
+            $content2List = HomepageContent2Model::orderby('order','asc')->with(['content2lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);            
+            }])->get();
+
+            //內文3
+            $content3List = HomepageContent3Model::where('is_enable',1)->orderby('order','asc')->with(['content3lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
+
+            //內文4
+            $content4 = HomepageContent4Model::where('Id',1)->with(['content4lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);            
+            }])->first();
+
+            //聯絡我們
+            $contact = ContactModel::with(['contactlang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->find(1);
+
+            //seo
+            $seoList = array(
+                'en' => array(
+                    'title' => 'Bikonnect',
+                    'keyword' => 'Bikonnect',
+                    'description' => 'Bikonnect'
+                ),
+                'zh-TW' => array(
+                    'title' => 'Bikonnect',
+                    'keyword' => 'Bikonnect',
+                    'description' => 'Bikonnect' 
+                )
+            );
+
+            // print_r($partnerList->toArray());exit;
+            $data = array(
+                'seoList' => $seoList,
+                'bannerList' => $bannerList,
+                'partnerList' => $partnerList,
+                'productList' => $productList,
+                'content1' => $content1,
+                'content2List' => $content2List,
+                'content3List' => $content3List,
+                'content4' => $content4,
+                'contact' => $contact
+            );
+
+            return view('frontend.index',$data);
+        }else{
+            return redirect(action('Frontend\ErrorController@index'));
+        }
         
-        //產品列表
-        $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
-
-        //內文1
-        $content1 = HomepageContent1Model::where('Id',1)->with(['content1lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->first();
-
-        //內文2
-        $content2List = HomepageContent2Model::orderby('order','asc')->with(['content2lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);            
-        }])->get();
-
-        //內文3
-        $content3List = HomepageContent3Model::where('is_enable',1)->orderby('order','asc')->with(['content3lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
-
-        //內文4
-        $content4 = HomepageContent4Model::where('Id',1)->with(['content4lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);            
-        }])->first();
-
-        //聯絡我們
-        $contact = ContactModel::with(['contactlang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->find(1);
-
-        //seo
-        $seoList = array(
-            'en' => array(
-                'title' => 'Bikonnect',
-                'keyword' => 'Bikonnect',
-                'description' => 'Bikonnect'
-            ),
-            'zh-TW' => array(
-                'title' => 'Bikonnect',
-                'keyword' => 'Bikonnect',
-                'description' => 'Bikonnect' 
-            )
-        );
-
-        // print_r($partnerList->toArray());exit;
-        $data = array(
-            'seoList' => $seoList,
-            'bannerList' => $bannerList,
-            'partnerList' => $partnerList,
-            'productList' => $productList,
-            'content1' => $content1,
-            'content2List' => $content2List,
-            'content3List' => $content3List,
-            'content4' => $content4,
-            'contact' => $contact
-        );
-        
-        return view('frontend.index',$data);
     }
 
-    public function about() 
+    public function about($locale = '') 
     {
-        //設定語系
-        $this->set_locale();        
-        
-        //圖文列表
-        $contentList = AboutContentModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
-        
-        //夥伴列表
-        $partnerList = AboutPartnerModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
+        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+            //設定語系
+            $this->set_locale();        
+            
+            //圖文列表
+            $contentList = AboutContentModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
+            
+            //夥伴列表
+            $partnerList = AboutPartnerModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
 
-        //沿革標題
-        $historyTitle = AboutHistoryTitleModel::with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->find(1);
+            //沿革標題
+            $historyTitle = AboutHistoryTitleModel::with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->find(1);
 
-        //沿革列表
-        $historyList = AboutHistoryModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
+            //沿革列表
+            $historyList = AboutHistoryModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
 
-        //團隊列表
-        $teamList = AboutTeamModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
+            //團隊列表
+            $teamList = AboutTeamModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
 
-        //產品列表
-        $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
+            //產品列表
+            $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
 
-        //聯絡我們
-        $contact = ContactModel::with(['contactlang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->find(1);
+            //聯絡我們
+            $contact = ContactModel::with(['contactlang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->find(1);
 
-        //seo
-        $seoList = array(
-            'en' => array(
-                'title' => 'About - Bikonnect',
-                'keyword' => 'About - Bikonnect',
-                'description' => 'About - Bikonnect'
-            ),
-            'zh-TW' => array(
-                'title' => '關於我們 - Bikonnect',
-                'keyword' => '關於我們 - Bikonnect',
-                'description' => '關於我們 - Bikonnect' 
-            )
-        );
+            //seo
+            $seoList = array(
+                'en' => array(
+                    'title' => 'About - Bikonnect',
+                    'keyword' => 'About - Bikonnect',
+                    'description' => 'About - Bikonnect'
+                ),
+                'zh-TW' => array(
+                    'title' => '關於我們 - Bikonnect',
+                    'keyword' => '關於我們 - Bikonnect',
+                    'description' => '關於我們 - Bikonnect' 
+                )
+            );
 
-        $data = array(
-            'seoList' => $seoList,            
-            'contentList' => $contentList,
-            'partnerList' => $partnerList,
-            'historyList' => $historyList,
-            'productList' => $productList,            
-            'teamList' => $teamList,
-            'historyTitle' => $historyTitle,
-            'contact' => $contact            
-        );
-        return view('frontend.about',$data);
+            $data = array(
+                'seoList' => $seoList,            
+                'contentList' => $contentList,
+                'partnerList' => $partnerList,
+                'historyList' => $historyList,
+                'productList' => $productList,            
+                'teamList' => $teamList,
+                'historyTitle' => $historyTitle,
+                'contact' => $contact            
+            );
+            return view('frontend.about',$data);
+        }
     }
 
-    public function solution() 
+    public function solution($locale = '') 
     {
-        //設定語系
-        $this->set_locale();        
-        
-        //影片列表
-        $videoList = SolutionVideoModel::with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
+        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+            //設定語系
+            $this->set_locale();        
+            
+            //影片列表
+            $videoList = SolutionVideoModel::with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
 
-        //圖文列表
-        $contentList = SolutionContentModel::orderby('order','asc')->with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
+            //圖文列表
+            $contentList = SolutionContentModel::orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
 
-        //標題
-        $title = SolutionTitleModel::with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->find(1);
+            //標題
+            $title = SolutionTitleModel::with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->find(1);
 
-        //Application Range
-        $applicationList = SolutionApplicationModel::with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
+            //Application Range
+            $applicationList = SolutionApplicationModel::with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
 
-        //特點列表
-        $aspectList = SolutionAspectModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
+            //特點列表
+            $aspectList = SolutionAspectModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
 
-        //產品列表
-        $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
+            //產品列表
+            $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
 
-        //聯絡我們
-        $contact = ContactModel::with(['contactlang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->find(1);
+            //聯絡我們
+            $contact = ContactModel::with(['contactlang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->find(1);
 
-        //服務架構
-        $service = SolutionServiceModel::with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->find(1);
+            //服務架構
+            $service = SolutionServiceModel::with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->find(1);
 
-        //seo
-        $seoList = array(
-            'en' => array(
-                'title' => 'E-Bike data service solution, Big Data Analytics, Cycling Data Platform - Microprogram',
-                'keyword' => 'E-Bike data service solution,bike solution,bicycle solution,smart e-bike solution,cycling data solution,bike data solution,bicycle data solution,cycling data sensor,bike data sensor,bicycle data sensor,smart cycling platform,bike platform,bicycle platform,smart cycling system,bike system,bicycle system,cycling digital service,bike digital service,bicycle digital service,cycling data service,bike data service,bicycle data service,cycling data integration,bike data integration,bicycle data integration,cycling IoT,bike IoT,bicycle IoT,connected cycling solution,connected bike solution,connected bicycle solution,cycling IoT solution,bike IoT solution,bicycle IoT solution,e-bike IoT,smart mobility solution,the future of cycling,connected cycling service,connected bike service,connected bicycle service,connected cycling platform,connected bike platform,connected bicycle platform,cycling connectivity,bike connectivity,e-bike connectivity,bicycle connectivity',
-                'description' => 'The E-Bike data service solution combines E-Bike computer, Apps, Dealer Management System and Cycling Data Platform to enhance the value of the E-Bike rider experience and bicycle brand service.'
-            ),
-            'zh-TW' => array(
-                'title' => 'E-Bike數據服務解決方案，電動自行車物聯網、騎乘數據平台-微程式',
-                'keyword' => '自行車數據,自行車物聯網,自行車系統,自行車IoT,自行車數據騎乘,自行車數據平台,自行車系統商,自行車系統商推薦,自行車數位升級,自行車科技升級,自行車數據服務,電動自行車數據,電動自行車物聯網,電動自行車系統,電動自行車IoT,電動自行車數據騎乘,電動自行車數據平台,電動自行車系統商,電動自行車系統商推薦,電動自行車數位升級,電動自行車科技升級,電動自行車數據服務,E-Bike 數據服務解決方案',
-                'description' => '微程式提供的E-Bike 數據服務解決方案，結合電動自行車車錶、App、門店管理系統及騎乘數據平台，提升 E-Bike 車友體驗與自行車品牌服務價值。'
-            )
-        );
+            //seo
+            $seoList = array(
+                'en' => array(
+                    'title' => 'E-Bike data service solution, Big Data Analytics, Cycling Data Platform - Microprogram',
+                    'keyword' => 'E-Bike data service solution,bike solution,bicycle solution,smart e-bike solution,cycling data solution,bike data solution,bicycle data solution,cycling data sensor,bike data sensor,bicycle data sensor,smart cycling platform,bike platform,bicycle platform,smart cycling system,bike system,bicycle system,cycling digital service,bike digital service,bicycle digital service,cycling data service,bike data service,bicycle data service,cycling data integration,bike data integration,bicycle data integration,cycling IoT,bike IoT,bicycle IoT,connected cycling solution,connected bike solution,connected bicycle solution,cycling IoT solution,bike IoT solution,bicycle IoT solution,e-bike IoT,smart mobility solution,the future of cycling,connected cycling service,connected bike service,connected bicycle service,connected cycling platform,connected bike platform,connected bicycle platform,cycling connectivity,bike connectivity,e-bike connectivity,bicycle connectivity',
+                    'description' => 'The E-Bike data service solution combines E-Bike computer, Apps, Dealer Management System and Cycling Data Platform to enhance the value of the E-Bike rider experience and bicycle brand service.'
+                ),
+                'zh-TW' => array(
+                    'title' => 'E-Bike數據服務解決方案，電動自行車物聯網、騎乘數據平台-微程式',
+                    'keyword' => '自行車數據,自行車物聯網,自行車系統,自行車IoT,自行車數據騎乘,自行車數據平台,自行車系統商,自行車系統商推薦,自行車數位升級,自行車科技升級,自行車數據服務,電動自行車數據,電動自行車物聯網,電動自行車系統,電動自行車IoT,電動自行車數據騎乘,電動自行車數據平台,電動自行車系統商,電動自行車系統商推薦,電動自行車數位升級,電動自行車科技升級,電動自行車數據服務,E-Bike 數據服務解決方案',
+                    'description' => '微程式提供的E-Bike 數據服務解決方案，結合電動自行車車錶、App、門店管理系統及騎乘數據平台，提升 E-Bike 車友體驗與自行車品牌服務價值。'
+                )
+            );
 
-        $data = array(
-            'seoList' => $seoList,
-            'videoList' => $videoList,
-            'contentList' => $contentList,
-            'aspectList' => $aspectList,
-            'productList' => $productList,
-            'contact' => $contact,
-            'title' => $title,
-            'service' => $service,
-            'applicationList' => $applicationList
-        );
-        return view('frontend.solution',$data);
+            $data = array(
+                'seoList' => $seoList,
+                'videoList' => $videoList,
+                'contentList' => $contentList,
+                'aspectList' => $aspectList,
+                'productList' => $productList,
+                'contact' => $contact,
+                'title' => $title,
+                'service' => $service,
+                'applicationList' => $applicationList
+            );
+            return view('frontend.solution',$data);
+        }
     }
 
     public function product($url,$locale){
-        //設定語系
-        $this->set_locale();        
-        //產品列表
-        $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
+        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+            //設定語系
+            $this->set_locale();        
+            //產品列表
+            $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
 
-        $product = ProductModel::with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->where('url',$url)->get();
+            $product = ProductModel::with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->where('url',$url)->get();
 
-        //聯絡我們
-        $contact = ContactModel::with(['contactlang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->find(1);
-        
-        //seo
-        $seoList = array(
-            'en' => array(
-                'title' => $product[0]->lang[0]->meta_title.' - Bikonnect',
-                'keyword' => $product[0]->lang[0]->meta_keywords.' - Bikonnect',
-                'description' => $product[0]->lang[0]->meta_description.' - Bikonnect'
-            ),
-            'zh-TW' => array(
-                'title' => $product[0]->lang[0]->meta_title.' - Bikonnect',
-                'keyword' => $product[0]->lang[0]->meta_keywords.' - Bikonnect',
-                'description' => $product[0]->lang[0]->meta_description.' - Bikonnect' 
-            )
-        );
+            //聯絡我們
+            $contact = ContactModel::with(['contactlang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->find(1);
+            
+            //seo
+            $seoList = array(
+                'en' => array(
+                    'title' => $product[0]->lang[0]->meta_title.' - Bikonnect',
+                    'keyword' => $product[0]->lang[0]->meta_keywords.' - Bikonnect',
+                    'description' => $product[0]->lang[0]->meta_description.' - Bikonnect'
+                ),
+                'zh-TW' => array(
+                    'title' => $product[0]->lang[0]->meta_title.' - Bikonnect',
+                    'keyword' => $product[0]->lang[0]->meta_keywords.' - Bikonnect',
+                    'description' => $product[0]->lang[0]->meta_description.' - Bikonnect' 
+                )
+            );
 
-        $data = array(
-            'seoList' => $seoList,            
-            'productList' => $productList,
-            'product' => $product[0],
-            'productId' => $product[0]->Id,
-            'contact' => $contact            
-        );
-        return view('frontend.product',$data);
+            $data = array(
+                'seoList' => $seoList,            
+                'productList' => $productList,
+                'product' => $product[0],
+                'productId' => $product[0]->Id,
+                'contact' => $contact            
+            );
+            return view('frontend.product',$data);
+        }
     }
 
-    public function privacy() 
+    public function privacy($locale = '') 
     {
-        //設定語系
-        $this->set_locale();
+        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+            //設定語系
+            $this->set_locale();
 
-        //隱私權
-        $privacy = PrivacyModel::with(['privacylang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->find(1);
+            //隱私權
+            $privacy = PrivacyModel::with(['privacylang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->find(1);
 
-        //產品列表
-        $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
+            //產品列表
+            $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
 
-        //seo
-        $seoList = array(
-            'en' => array(
-                'title' => 'Privacy - Bikonnect',
-                'keyword' => 'Privacy - Bikonnect',
-                'description' => 'Privacy - Bikonnect'
-            ),
-            'zh-TW' => array(
-                'title' => '隱私權 - Bikonnect',
-                'keyword' => '隱私權 - Bikonnect',
-                'description' => '隱私權 - Bikonnect' 
-            )
-        );
-        
-        $data = array(
-            'privacy' => $privacy,
-            'seoList' => $seoList,
-            'productList' => $productList            
-        );
+            //seo
+            $seoList = array(
+                'en' => array(
+                    'title' => 'Privacy - Bikonnect',
+                    'keyword' => 'Privacy - Bikonnect',
+                    'description' => 'Privacy - Bikonnect'
+                ),
+                'zh-TW' => array(
+                    'title' => '隱私權 - Bikonnect',
+                    'keyword' => '隱私權 - Bikonnect',
+                    'description' => '隱私權 - Bikonnect' 
+                )
+            );
+            
+            $data = array(
+                'privacy' => $privacy,
+                'seoList' => $seoList,
+                'productList' => $productList            
+            );
 
-        return view('frontend.privacy',$data);
+            return view('frontend.privacy',$data);
+        }
     }
 
-    public function term() 
+    public function term($locale = '') 
     {
-        //設定語系
-        $this->set_locale();
+        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+            //設定語系
+            $this->set_locale();
 
-        //隱私權
-        $term = TermModel::with(['termlang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->find(1);
-    
-        //產品列表
-        $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
-
-        //seo
-        $seoList = array(
-            'en' => array(
-                'title' => 'TERMS AND CONDITIONS - Bikonnect',
-                'keyword' => 'TERMS AND CONDITIONS - Bikonnect',
-                'description' => 'TERMS AND CONDITIONS - Bikonnect'
-            ),
-            'zh-TW' => array(
-                'title' => '條款 - Bikonnect',
-                'keyword' => '條款 - Bikonnect',
-                'description' => '條款 - Bikonnect' 
-            )
-        );
+            //隱私權
+            $term = TermModel::with(['termlang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->find(1);
         
-        $data = array(
-            'term' => $term,
-            'seoList' => $seoList,
-            'productList' => $productList            
-        );
+            //產品列表
+            $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
 
-        return view('frontend.term',$data);
+            //seo
+            $seoList = array(
+                'en' => array(
+                    'title' => 'TERMS AND CONDITIONS - Bikonnect',
+                    'keyword' => 'TERMS AND CONDITIONS - Bikonnect',
+                    'description' => 'TERMS AND CONDITIONS - Bikonnect'
+                ),
+                'zh-TW' => array(
+                    'title' => '條款 - Bikonnect',
+                    'keyword' => '條款 - Bikonnect',
+                    'description' => '條款 - Bikonnect' 
+                )
+            );
+            
+            $data = array(
+                'term' => $term,
+                'seoList' => $seoList,
+                'productList' => $productList            
+            );
+
+            return view('frontend.term',$data);
+        }
     }
 
     public function send_email(Request $request){
@@ -405,142 +420,145 @@ class MainController extends Controller
         return redirect('main.index');
     }
 
-    public function blog($page){
-        //設定語系
-        $this->set_locale();
+    public function blog($page,$locale = ''){
+        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+            //設定語系
+            $this->set_locale();
 
-        //全部文章
-        $blogList = BlogModel::with(['blogcategory','blogcategory.blogcategorylang' => function($query){
-            $query->where('langId',$this->langList[0]->langId);
-        }])->with(['bloglang' => function($query){
-            $query->where('langId',$this->langList[0]->langId);
-        }])->where('is_enable',1)->skip(($page-1)*12)->take(12)->orderby('order','asc')->get();
+            //全部文章
+            $blogList = BlogModel::with(['blogcategory','blogcategory.blogcategorylang' => function($query){
+                $query->where('langId',$this->langList[0]->langId);
+            }])->with(['bloglang' => function($query){
+                $query->where('langId',$this->langList[0]->langId);
+            }])->where('is_enable',1)->skip(($page-1)*12)->take(12)->orderby('order','asc')->get();
 
-        //抓總頁數
-        $totalpage = ceil(BlogModel::where('is_enable',1)->count()/12);
+            //抓總頁數
+            $totalpage = ceil(BlogModel::where('is_enable',1)->count()/12);
 
-        //文章類別
-        $blogCategoryList = BlogCategoryModel::with(['blogcategorylang' => function($query){
-            $query->where('langId',$this->langList[0]->langId);
-        }])->where('is_enable',1)->get();
+            //文章類別
+            $blogCategoryList = BlogCategoryModel::with(['blogcategorylang' => function($query){
+                $query->where('langId',$this->langList[0]->langId);
+            }])->where('is_enable',1)->get();
 
-        //置頂文章
-        $topList = BlogModel::with(['blogcategory','blogcategory.blogcategorylang' => function($query){
-            $query->where('langId',$this->langList[0]->langId);
-        }])->with(['bloglang' => function($query){
-            $query->where('langId',$this->langList[0]->langId);
-        }])->where('is_enable',1)->where('is_top',1)->orderby('order','asc')->get();
+            //置頂文章
+            $topList = BlogModel::with(['blogcategory','blogcategory.blogcategorylang' => function($query){
+                $query->where('langId',$this->langList[0]->langId);
+            }])->with(['bloglang' => function($query){
+                $query->where('langId',$this->langList[0]->langId);
+            }])->where('is_enable',1)->where('is_top',1)->orderby('order','asc')->get();
 
-        //產品列表
-        $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
+            //產品列表
+            $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
 
-        //聯絡我們
-        $contact = ContactModel::with(['contactlang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->find(1);
+            //聯絡我們
+            $contact = ContactModel::with(['contactlang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->find(1);
 
-        //seo
-        $seoList = array(
-            'en' => array(
-                'title' => 'Blog - Bikonnect',
-                'keyword' => 'Blog - Bikonnect',
-                'description' => 'Blog - Bikonnect'
-            ),
-            'zh-TW' => array(
-                'title' => '部落格 - Bikonnect',
-                'keyword' => '部落格 - Bikonnect',
-                'description' => '部落格 - Bikonnect' 
-            )
-        );
+            //seo
+            $seoList = array(
+                'en' => array(
+                    'title' => 'Blog - Bikonnect',
+                    'keyword' => 'Blog - Bikonnect',
+                    'description' => 'Blog - Bikonnect'
+                ),
+                'zh-TW' => array(
+                    'title' => '部落格 - Bikonnect',
+                    'keyword' => '部落格 - Bikonnect',
+                    'description' => '部落格 - Bikonnect' 
+                )
+            );
 
-        $data = array(
-            'seoList' => $seoList,            
-            'blogCategoryList' => $blogCategoryList,
-            'blogList' => $blogList,
-            'topList' => $topList,
-            'productList' => $productList,
-            'page' => $page,
-            'totalpage' => $totalpage,
-            'langId' => $this->langList[0]->langId,
-            'contact' => $contact
-            
-        );
-        return view('frontend.blog',$data);
+            $data = array(
+                'seoList' => $seoList,            
+                'blogCategoryList' => $blogCategoryList,
+                'blogList' => $blogList,
+                'topList' => $topList,
+                'productList' => $productList,
+                'page' => $page,
+                'totalpage' => $totalpage,
+                'langId' => $this->langList[0]->langId,
+                'contact' => $contact
+                
+            );
+            return view('frontend.blog',$data);
+        }
     }
 
-    public function blog_detail($url,$page,Request $request){
-        //設定語系
-        $this->set_locale();
+    public function blog_detail($url,$page,$locale = '',Request $request){
+        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+            //設定語系
+            $this->set_locale();
 
-        //找尋部落格
-        $blog = BlogModel::with(['blogcategory','blogcategory.blogcategorylang' => function($query){
-            $query->where('langId',$this->langList[0]->langId);
-        }])->with(['bloglang' => function($query){
-            $query->where('langId',$this->langList[0]->langId);
-        }])->with(['blogcomment'])->where('is_enable',1)->orderby('order','asc')->where('url','=',$url)->get();
+            //找尋部落格
+            $blog = BlogModel::with(['blogcategory','blogcategory.blogcategorylang' => function($query){
+                $query->where('langId',$this->langList[0]->langId);
+            }])->with(['bloglang' => function($query){
+                $query->where('langId',$this->langList[0]->langId);
+            }])->with(['blogcomment'])->where('is_enable',1)->orderby('order','asc')->where('url','=',$url)->get();
+            //全部文章(不包含自己)
+            $blogList = BlogModel::with(['blogcategory','blogcategory.blogcategorylang' => function($query){
+                $query->where('langId',$this->langList[0]->langId);
+            }])->with(['bloglang' => function($query){
+                $query->where('langId',$this->langList[0]->langId);
+            }])->where('is_enable',1)->where('Id','!=',$blog[0]->Id)->get();
+            
+            if($blogList->count() > 2){
+                $related_blog = $blogList->random(2);
+            }else{
+                $related_blog = $blogList;
+            }
 
-        //全部文章(不包含自己)
-        $blogList = BlogModel::with(['blogcategory','blogcategory.blogcategorylang' => function($query){
-            $query->where('langId',$this->langList[0]->langId);
-        }])->with(['bloglang' => function($query){
-            $query->where('langId',$this->langList[0]->langId);
-        }])->where('is_enable',1)->where('Id','!=',$blog[0]->Id)->get();
-        
-        if($blogList->count() > 2){
-            $related_blog = $blogList->random(2);
-        }else{
-            $related_blog = $blogList;
+            //如果回傳的類別是post
+            if($request->isMethod('post')){
+                $comment = new BlogCommentModel();
+                $comment->bId = $blog[0]->Id;
+                $comment->date = date('Y-m-d');
+                $comment->uuid = Str::uuid();
+                $comment->name = $request->name;
+                $comment->message = $request->message;
+                $comment->save();
+                return redirect(action('Frontend\MainController@blog_detail',[$blog[0]->url,$page]));
+            }
+
+            $commentCount = BlogCommentModel::where('bId',$blog[0]->Id)->count();
+
+            //產品列表
+            $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
+
+            //聯絡我們
+            $contact = ContactModel::with(['contactlang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->find(1);
+
+            //seo
+            $seoList = array(
+                'en' => array(
+                    'title' => $blog[0]->bloglang[0]->title.' - Bikonnect',
+                    'keyword' => $blog[0]->bloglang[0]->title.' - Bikonnect',
+                    'description' => $blog[0]->bloglang[0]->title.' - Bikonnect'
+                ),
+                'zh-TW' => array(
+                    'title' => $blog[0]->bloglang[0]->title.' - Bikonnect',
+                    'keyword' => $blog[0]->bloglang[0]->title.' - Bikonnect',
+                    'description' => $blog[0]->bloglang[0]->title.' - Bikonnect' 
+                )
+            );
+
+            $data = array(
+                'seoList' => $seoList,            
+                'blog' => $blog[0],
+                'page' => $page,
+                'productList' => $productList,
+                'related_blog' => $related_blog,
+                'commentCount' => $commentCount,
+                'contact' => $contact            
+            );
+            return view('frontend.blog_detail',$data);
         }
-
-        //如果回傳的類別是post
-        if($request->isMethod('post')){
-            $comment = new BlogCommentModel();
-            $comment->bId = $blog[0]->Id;
-            $comment->date = date('Y-m-d');
-            $comment->uuid = Str::uuid();
-            $comment->name = $request->name;
-            $comment->message = $request->message;
-            $comment->save();
-            return redirect(action('Frontend\MainController@blog_detail',[$blog[0]->Id,$page]));
-        }
-
-        $commentCount = BlogCommentModel::where('bId',$blog[0]->Id)->count();
-
-        //產品列表
-        $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->get();
-
-        //聯絡我們
-        $contact = ContactModel::with(['contactlang' => function($query){
-            $query->where('langId','=',$this->langList[0]->langId);
-        }])->find(1);
-
-        //seo
-        $seoList = array(
-            'en' => array(
-                'title' => $blog[0]->bloglang[0]->title.' - Bikonnect',
-                'keyword' => $blog[0]->bloglang[0]->title.' - Bikonnect',
-                'description' => $blog[0]->bloglang[0]->title.' - Bikonnect'
-            ),
-            'zh-TW' => array(
-                'title' => $blog[0]->bloglang[0]->title.' - Bikonnect',
-                'keyword' => $blog[0]->bloglang[0]->title.' - Bikonnect',
-                'description' => $blog[0]->bloglang[0]->title.' - Bikonnect' 
-            )
-        );
-
-        $data = array(
-            'seoList' => $seoList,            
-            'blog' => $blog[0],
-            'page' => $page,
-            'productList' => $productList,
-            'related_blog' => $related_blog,
-            'commentCount' => $commentCount,
-            'contact' => $contact            
-        );
-        return view('frontend.blog_detail',$data);
     }
 }

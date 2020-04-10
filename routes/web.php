@@ -23,7 +23,7 @@ Route::match(['get','post'],'/blog_detail/{blogid}/{page}/{locale?}',array('as' 
 Route::post('/ajax/get_blog',array('as' => 'ajax.get_blog','uses' => 'Frontend\AjaxController@get_blog'));
 Route::post('/send_email',array('as' => 'main.send_email','uses' => 'Frontend\MainController@send_email'));
 
-
+Route::get('/error/index',array('as' => 'main.error','uses' => 'Frontend\ErrorController@index'));
 
 Route::group(['prefix' => 'backend'], function(){
     Route::get('/index', array('as' => 'panel.index', 'uses' => 'Backend\PanelController@index'));

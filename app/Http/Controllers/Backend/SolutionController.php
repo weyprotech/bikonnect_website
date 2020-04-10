@@ -33,7 +33,7 @@ class SolutionController extends Controller
     {
         $title = SolutionTitleModel::with('lang')->find(1);
         $web_langList = WebsiteLangModel::where('is_enable',1)->get();
-        if($request->isMethod('post')){       
+        if($request->isMethod('post')){    
             if($request->uuid == $title->uuid){
                 $title->uuid = Uuid::uuid1();
                 $title->save();

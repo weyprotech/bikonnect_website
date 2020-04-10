@@ -25,6 +25,9 @@ class DetectLanguageMiddleware
             case 'zh-TW':
                 app()->setLocale('zh-TW');
                 break;
+            case '':
+                app()->setLocale('en');
+                break;
         }
 
         return $next($request);

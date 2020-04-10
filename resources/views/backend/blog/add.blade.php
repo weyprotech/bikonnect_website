@@ -311,5 +311,10 @@ document.addEventListener('DOMContentLoaded', function(){
             });
         }        
     }
+    $(document).ready(function () {
+        $('form').bootstrapValidator({
+            excluded: ""
+        });
+    });
 </script>
 @endsection
