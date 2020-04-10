@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2020-04-10
+
+### Changed
+
+1.製作錯誤頁面，語系錯誤會倒到錯誤頁面
+
+/routes/web.php
+
+/app/Http/Controllers/Backend/SolutionController.php
+
+/app/Http/Controllers/Frontend/MainController.php
+
+/app/Http/Controllers/Frontend/ErrorController.php
+
+/resources/views/frontend/error.blade.php
+
+/app/Http/Middleware/DetectLanguageMiddleware.php
+
+2.修正部落格改成url回復錯誤
+
+/resources/views/frontend/blog_detail.blade.php
+
+/resources/views/backend/blog/add.blade.php
+
 ## 2020-04-07
 
 ### Changed
