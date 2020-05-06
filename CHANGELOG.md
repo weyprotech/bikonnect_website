@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2020-05-06
+
+### Changed
+
+1.加入GA
+
+/resources/views/frontend/shared/_layout.blade.php
+
 ## 2020-04-10
 
 ### Changed
