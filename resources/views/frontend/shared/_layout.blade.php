@@ -1,15 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>{{ $seoList[app()->getLocale()]['title'] }}</title>
-    <meta name="KeyWords" content="{{ $seoList[app()->getLocale()]['keyword'] }}">
-    <meta name="Description" content="{{ $seoList[app()->getLocale()]['description'] }}">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    @include('frontend.shared._css')
-  </head>
-  <body><!--[if lt IE 10]>
+<head>
+  <meta charset="utf-8">
+  <title>{{ $seoList[app()->getLocale()]['title'] }}</title>
+  <meta name="KeyWords" content="{{ $seoList[app()->getLocale()]['keyword'] }}">
+  <meta name="Description" content="{{ $seoList[app()->getLocale()]['description'] }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  @include('frontend.shared._css')
+  <!-- Google Tag Manager -->
+  <script>
+    (function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-KH99CNK');
+  </script>
+  <!-- End Google Tag Manager -->
+</head>
+
+<body>
+  <!--[if lt IE 10]>
     <div class="old_browser">
       <div class="old_browser_inner">
         <div class="oops">OOPS!</div>
@@ -27,15 +48,19 @@
         <p>2019 ALL RIGHTS RESERVED. <a href="javascript:;">Privacy &nbsp;| &nbsp;Polity</a>.</p>
       </div>
     </div><![endif]-->
-    <div id="wrapper">
-      @include('frontend.shared._header',['productList' => $productList])
-      
-      @yield('content')
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KH99CNK" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div id="wrapper">
+    @include('frontend.shared._header',['productList' => $productList])
 
-      @include('frontend.shared._footer')
-    </div>   
-    @include('frontend.shared._sidebar')
-    @include('frontend.shared._script')
-    @yield('script')
-  </body>
+    @yield('content')
+
+    @include('frontend.shared._footer')
+  </div>
+  @include('frontend.shared._sidebar')
+  @include('frontend.shared._script')
+  @yield('script')
+</body>
+
 </html>
