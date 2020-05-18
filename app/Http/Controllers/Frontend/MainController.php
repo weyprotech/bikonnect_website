@@ -420,7 +420,7 @@ class MainController extends Controller
         return redirect('main.index');
     }
 
-    public function blog($page,$locale = ''){
+    public function blog($page, $locale = ''){
         if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
             //設定語系
             $this->set_locale();
