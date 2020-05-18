@@ -3,7 +3,7 @@
         <nav class="header_nav">
             <ul>
                 <li><a {{ stripos($_SERVER['REQUEST_URI'], 'solution') ? 'class=current' : ''}} href="{{ route('main.solution',app()->getLocale()) }}">{{ trans('lang.solution') }}</a></li>
-                <li><a {{ stripos($_SERVER['REQUEST_URI"], 'product') ? 'class=current' : ''}} href="javascript:;">{{ trans('lang.products') }}</a>
+                <li><a {{ stripos($_SERVER['REQUEST_URI'], 'product') ? 'class=current' : ''}} href="javascript:;">{{ trans('lang.products') }}</a>
                     <ul>
                         @foreach($productList as $productKey => $productValue)
                         <li><a {{ stripos($_SERVER['REQUEST_URI'], $productValue->url) ? 'class=current' : ''}} href="{{ route('main.product', [$productValue->url, app()->getLocale()]) }}">{{ $productValue->lang[0]->title }}</a></li>

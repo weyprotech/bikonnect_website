@@ -6,6 +6,14 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+header錯誤修正
+
+/resources/views/frontend/shared/_header.blade.php
+
+## 2020-05-18
+
+### Changed
+
 產品新增頁錯誤修正
 
 /resources/views/backend/product/add.blade.php
