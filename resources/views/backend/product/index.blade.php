@@ -35,9 +35,9 @@
 
                         <!-- widget content -->
                         <div class="widget-body">
-                            
+
                             <form id="form" method="post" action="{{ route('product.order_save') }}">
-                                @csrf                            
+                                @csrf
                                 <div class="widget-body-toolbar">
 
                                     <div class="row">
@@ -50,46 +50,46 @@
                                             </div>
 
                                         </div>
-                                        
+
                                     </div>
 
                                 </div>
 
                                 <div class="table-responsive">
                                     <table id="dt_basic" class="table table-striped table-bordered table-hover">
-                                        <thead>			                
+                                        <thead>
                                             <tr>
-                                                <th class="text-center" width="15%">圖片_1</th> 
+                                                <th class="text-center" width="15%">圖片_1</th>
                                                 <th class="text-center" width="15%">圖片_2</th>
-                                                <th class="text-center" width="15%">圖片_3</th>                                               
+                                                <th class="text-center" width="15%">圖片_3</th>
                                                 <th>標題</th>
                                                 <th class="text-center" width="6%">排序</th>
                                                 <th width="5%" class="text-center">編輯</th>
-                                                <th width="5%" class="text-center">刪除</th>                                                
+                                                <th width="5%" class="text-center">刪除</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($productList as $contentKey => $contentValue)                                            
-                                                <tr>
-                                                    <td class="text-center">{!! (!empty($contentValue->lang[0]->img_1) ? '<img src="'.$contentValue->lang[0]->img_1.'" width="150px">' : '') !!}</td>
-                                                    <td class="text-center">{!! (!empty($contentValue->lang[0]->img_2) ? '<img src="'.$contentValue->lang[0]->img_2.'" width="150px">' : '') !!}</td>
-                                                    <td class="text-center">{!! (!empty($contentValue->lang[0]->img_3) ? '<img src="'.$contentValue->lang[0]->img_3.'" width="150px">' : '') !!}</td>               
-                                                    <td>{{$contentValue->lang[0]->title}}</td>
-                                                    <td>
-                                                        <label class="input">
-                                                            <input type="textbox" class="text-center form-control" name="order[{{ $contentValue->Id }}][order]" value="{{ $contentValue->order }}">
-                                                            <input type="hidden" name="order[{{ $contentValue->Id }}][pId]" value="<?= $contentValue->Id ?>">
-                                                        </label>
-                                                    </td>
-                                                    <td class="text-center"><a href="{{ route('product.edit', $contentValue->Id) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>
-                                                    <td class="text-center"><a href="{{ route('product.delete',$contentValue->Id) }}" class="btn btn-danger btn-xs del" onclick="return confirm('確定要刪除?');"><i class="fa fa-trash-o"></i></a></td>                                                    
-                                                </tr>
+                                            @foreach($productList as $contentKey => $contentValue)
+                                            <tr>
+                                                <td class="text-center">{!! (!empty($contentValue->lang[3]->img_1) ? '<img src="'.$contentValue->lang[3]->img_1.'" width="150px">' : '') !!}</td>
+                                                <td class="text-center">{!! (!empty($contentValue->lang[3]->img_2) ? '<img src="'.$contentValue->lang[3]->img_2.'" width="150px">' : '') !!}</td>
+                                                <td class="text-center">{!! (!empty($contentValue->lang[3]->img_3) ? '<img src="'.$contentValue->lang[3]->img_3.'" width="150px">' : '') !!}</td>
+                                                <td>{{$contentValue->lang[0]->title}}</td>
+                                                <td>
+                                                    <label class="input">
+                                                        <input type="textbox" class="text-center form-control" name="order[{{ $contentValue->Id }}][order]" value="{{ $contentValue->order }}">
+                                                        <input type="hidden" name="order[{{ $contentValue->Id }}][pId]" value="<?= $contentValue->Id ?>">
+                                                    </label>
+                                                </td>
+                                                <td class="text-center"><a href="{{ route('product.edit', $contentValue->Id) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>
+                                                <td class="text-center"><a href="{{ route('product.delete',$contentValue->Id) }}" class="btn btn-danger btn-xs del" onclick="return confirm('確定要刪除?');"><i class="fa fa-trash-o"></i></a></td>
+                                            </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
 
                                 </div>
-                                
+
                             </form>
 
                         </div>

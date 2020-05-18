@@ -6,6 +6,14 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+後台產品清單顯示英文語系的圖
+
+/resources/views/backend/product/index.blade.php
+
+## 2020-05-18
+
+### Changed
+
 header錯誤修正
 
 /resources/views/frontend/shared/_header.blade.php
