@@ -20,6 +20,10 @@ class ProductModel extends Model
     );
 
     public function lang(){
-        return $this->hasMany(ProductLangModel::class,'pId','Id')->orderby('langId','asc');
+        return $this->hasMany(ProductLangModel::class, 'pId', 'Id')->orderby('langId','asc');
+    }
+
+    public function content2(){
+        $this->belongsTo(HomepageContent2Model::class);
     }
 }

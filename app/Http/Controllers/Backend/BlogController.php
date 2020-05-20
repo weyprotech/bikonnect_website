@@ -60,7 +60,7 @@ class BlogController extends Controller
             $blog->order = isset($lastblog[0]->order) ? $lastblog[0]->order+1 : 1;
             $blog->img = $this->upload_img($request,'img',$id,$blog,'img','1920');
             $blog->is_visible = $request->is_visible;   
-            $blog->url = $request->url;         
+            $blog->Url = $request->Url;         
             $blog->uuid = $uuid;
             $blog->save();
             foreach ($request->contentlangs as $langKey => $langValue) {
@@ -112,7 +112,7 @@ class BlogController extends Controller
                 $blog->is_top = $request->is_top;
                 $blog->date = $request->date;
                 $blog->categoryId = $request->categoryId;
-                $blog->url = $request->url;
+                $blog->Url = $request->Url;
                 $blog->save();
                 foreach ($request->bloglangs as $blogKey => $blogValue) {
                     $lang = BlogLangModel::where('langId',$blogValue['langId'])->where('bId',$blogValue['bId'])->first();                    

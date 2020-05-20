@@ -20,6 +20,10 @@ class HomepageContent2Model extends Model
     );
 
     public function content2lang(){
-        return $this->hasMany(HomepageContent2LangModel::class,'cId','Id');
+        return $this->hasMany(HomepageContent2LangModel::class, 'cId', 'Id');
+    }
+
+    public function product() {
+        return $this->hasOne(ProductModel::class, 'Id');
     }
 }

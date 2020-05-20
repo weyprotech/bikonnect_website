@@ -26,7 +26,7 @@
         <div class="experience_items">
             @foreach($content2List as $content2Key => $content2Value)
                 <div class="item">
-                    <a href="{{ route('main.product',[$content2Value->Id,app()->getLocale()]) }}"><img class="thumb" src="{{ secure_asset($content2Value->Img) }}" alt="{{ $content2Value->content2lang[0]->title }}">
+                    <a href="{{ route('main.product', [$content2Value->product->url, app()->getLocale()]) }}"><img class="thumb" src="{{ secure_asset($content2Value->Img) }}" alt="{{ $content2Value->content2lang[0]->title }}">
                         <h3>{{ $content2Value->content2lang[0]->title }}</h3>
                     </a>
                 </div>
@@ -115,7 +115,7 @@
             <h3 class="block_subtitle">{!! nl2br(e($content4->content4lang[0]->description)) !!}</h3>
             <div class="text">
             <p>{!! nl2br(e($content4->content4lang[0]->content)) !!}</p>
-            </div><a class="btn_more green" href="{{ route('main.solution',app()->getLocale()) }}">{{ trans('lang.learnmore') }}</a>
+            </div><a class="btn_more green" href="{{ route('main.solution', app()->getLocale()) }}">{{ trans('lang.learnmore') }}</a>
         </div>
         <div class="block_img"><img src="{{ URL::asset('frontend/images/img_index_solutions.png') }}" alt="Smart Solutions Picture"></div>
         </div>

@@ -70,7 +70,7 @@ class MainController extends Controller
             }])->first();
 
             //內文2
-            $content2List = HomepageContent2Model::orderby('order','asc')->with(['content2lang' => function($query){
+            $content2List = HomepageContent2Model::orderby('order','asc')->with('product')->with(['content2lang' => function($query){
                 $query->where('langId','=',$this->langList[0]->langId);            
             }])->get();
 

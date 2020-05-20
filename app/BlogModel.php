@@ -19,7 +19,7 @@ class BlogModel extends Model
 
         // return $this->hasManyThrough('App\BlogCategoryModel','App\BlogCategoryLangModel','cId','Id','categoryId');
         
-        return $this->hasone(BlogCategoryModel::class,'Id','categoryId');
+        return $this->hasOne(BlogCategoryModel::class,'Id','categoryId');
     }
 
     public function blogcomment(){
