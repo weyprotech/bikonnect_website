@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2020-05-20
+
+### Changed
+
+1.前台Blog參數大小寫錯誤
+2.SSL本地端判斷
+
+/resources/views/frontend/blog.blade.php
+/Http/Middleware/UseSSL.php
+/Http/Kernel.php
+/routes/web.php
+
 ## 2020-05-18
 
 ### Changed
