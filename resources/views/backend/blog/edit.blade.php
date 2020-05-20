@@ -86,9 +86,9 @@
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label" for="date">日期</label>
 
-                                                <div class="col-sm-9 col-lg-3">
+                                                <div class="col-sm-2">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control datepicker" id="date" name="date" value="<?= $blog->date ?>" data-dateformat="yy-mm-dd" placeholder="選擇日期" required>
+                                                        <input type="text" class="form-control datepicker" id="date" name="date" value="<?= $blog->date ?>" data-dateformat="yy-mm-dd" placeholder="選擇日期" data-bv-notempty="true" data-bv-notempty-message="請輸入日期">
                                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                     </div>
                                                 </div>
@@ -96,7 +96,7 @@
 
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label">部落格類別</label>
-                                                <div class="col-lg-5">
+                                                <div class="col-lg-2">
                                                     <select class="form-control" name="categoryId">
                                                     @if(isset($blogCategoryList))
                                                         @foreach($blogCategoryList as $blogCategoryKey => $blogCategoryValue)
@@ -109,7 +109,7 @@
 
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label">圖片</label>
-                                                <div class="col-lg-5">
+                                                <div class="col-lg-2">
                                                     <p>
                                                         <img id="preview" src="{{$blog->img}}" width="auto" style="max-width:250px" />
                                                     </p>
@@ -128,8 +128,8 @@
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label" for="url">部落格連結</label>
 
-                                                <div class="col-lg-5">
-                                                    <input type="text" class="form-control" id="url" name="url" placeholder="填寫連結" value="{{$blog->url}}" required>
+                                                <div class="col-lg-2">
+                                                    <input type="text" class="form-control" id="Url" name="Url" placeholder="填寫連結" value="{{$blog->Url}}" data-bv-notempty="true" data-bv-notempty-message="請輸入連結">
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -145,10 +145,7 @@
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">標題</label>
                                                     <div class="col-lg-5">
-                                                        <input type="text" class="form-control" name="bloglangs[{{ $langValue->langId }}][title]" value="{{ $langdata[$langValue->langId]->title }}"
-                                                        data-bv-notempty="true"
-                                                        data-bv-notempty-message="請輸入標題"
-                                                        >
+                                                        <input type="text" class="form-control" name="bloglangs[{{ $langValue->langId }}][title]" value="{{ $langdata[$langValue->langId]->title }}" data-bv-notempty="true" data-bv-notempty-message="請輸入標題">
                                                     </div>
                                                 </div>
                                                 

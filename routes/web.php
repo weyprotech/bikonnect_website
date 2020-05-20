@@ -20,7 +20,7 @@ Route::group(['middleware' => 'use.ssl'], function () {
     Route::get('/privacy/{locale?}', array('as' => 'main.privacy', 'uses' => 'Frontend\MainController@privacy'));
     Route::get('/term/{locale?}', array('as' => 'main.term', 'uses' => 'Frontend\MainController@term'));
     Route::get('/blog/{page}/{locale?}', array('as' => 'blog.index', 'uses' => 'Frontend\MainController@blog'));
-    Route::match(['get', 'post'], '/blog_detail/{blogid}/{page}/{locale?}', array('as' => 'blog.detail', 'uses' => 'Frontend\MainController@blog_detail'));
+    Route::match(['get', 'post'], '/blog_detail/{url}/{page}/{locale?}', array('as' => 'blog.detail', 'uses' => 'Frontend\MainController@blog_detail'));
     Route::post('/ajax/get_blog', array('as' => 'ajax.get_blog', 'uses' => 'Frontend\AjaxController@get_blog'));
     Route::post('/send_email', array('as' => 'main.send_email', 'uses' => 'Frontend\MainController@send_email'));
 

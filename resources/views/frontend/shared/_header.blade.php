@@ -12,7 +12,7 @@
                 </li>
                 <li><a {{ stripos($_SERVER['REQUEST_URI'], 'about') ? 'class=current' : ''}} href="{{ route('main.about', app()->getLocale()) }}">{{ trans('lang.aboutus') }}</a></li>
                 <li><a href="#contact">{{ trans('lang.contact') }}</a></li>
-                <li><a href="{{ URL::route('blog.index',[1, app()->getLocale()]) }}">{{ trans('lang.blog') }}</a></li>
+                <li><a href="{{ URL::route('blog.index', [1, app()->getLocale()]) }}">{{ trans('lang.blog') }}</a></li>
             </ul>
             <div class="dropdown language">
                 <div class="dropdown_head">{{app()->getLocale() == 'en' ? 'ENGLISH' : '中文'}}</div>

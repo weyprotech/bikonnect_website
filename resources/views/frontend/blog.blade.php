@@ -7,7 +7,7 @@
     <div class="blog_slider">
         @foreach($topList as $topKey => $topValue)
             <div class="slide">
-                <a href="{{ URL::route('blog.detail',[$topValue->url,$page,app()->getLocale()]) }}">
+                <a href="{{ URL::route('blog.detail', [$topValue->Url, $page, app()->getLocale()]) }}">
                     <div class="pic" style="background-image: url({{ $topValue->img }})"></div>
                     <div class="slide_content">
                         <div class="content_inner">
@@ -50,7 +50,7 @@
                 @for($i=0;$i<12;$i++)
                     @if(isset($blogList[$i]))
                         <div class="item">
-                            <a href="{{ URL::route('blog.detail',[$blogList[$i]->url,$page,app()->getLocale()]) }}">
+                            <a href="{{ URL::route('blog.detail', [$blogList[$i]->Url, $page, app()->getLocale()]) }}">
                                 <div class="thumb" style="background-image: url({{ $blogList[$i]->img }})">
                                     <img src="{{ URL::asset('frontend/images/size_3x2.png') }}">
                                 </div>
@@ -68,11 +68,11 @@
     </div>
     <div class="pager_navigation">
         <div class="pager_nav_inner">
-            <a class="arrow prev" href="{{ URL::route('blog.index',[$page>1 ? $page-1 : 1,app()->getLocale()]) }}"><i class="arrow_prev"></i></a>
+            <a class="arrow prev" href="{{ URL::route('blog.index', [$page>1 ? $page-1 : 1, app()->getLocale()]) }}"><i class="arrow_prev"></i></a>
                 @for($i=1;$i<=$totalpage;$i++)
-                    <a {{$i == $page ? 'class=current' : '' }} href="{{ URL::route('blog.index',[$i,app()->getLocale()]) }}">{{ $i }}</a>
+                    <a {{$i == $page ? 'class=current' : '' }} href="{{ URL::route('blog.index', [$i,app()->getLocale()]) }}">{{ $i }}</a>
                 @endfor
-            <a class="arrow next" href="{{ URL::route('blog.index',[$page+1 >= $totalpage ? $totalpage : $page+1,app()->getLocale()]) }}"><i class="arrow_next"></i></a>
+            <a class="arrow next" href="{{ URL::route('blog.index', [$page+1 >= $totalpage ? $totalpage : $page+1, app()->getLocale()]) }}"><i class="arrow_next"></i></a>
         </div>
     </div>
     @include('frontend.shared._contact')
@@ -98,7 +98,7 @@
                     if(value.bloglang.length !== 0){
                         $('.blog_list').append(
                             '<div class="item">'+
-                                '<a href="https://bikonnect.azurewebsites.net/blog_detail/'+value.Id+'/{{ $page }}">'+
+                                '<a href="https://www.bikonnect.com/blog_detail/' + value.Url + '/{{ $page }}/{{ app()->getLocale() }}">'+
                                     '<div class="thumb" style="background-image: url('+value.img+')">'+
                                         '<img src="{{ URL::asset('frontend/images/size_3x2.png') }}">'+
                                     '</div>'+

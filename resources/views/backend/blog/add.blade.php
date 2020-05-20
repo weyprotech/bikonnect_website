@@ -45,7 +45,7 @@
                         <!-- widget content -->
                         <div class="widget-body">
                             
-                            <form id="data-form" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('blog.content.add') }}"
+                            <form id="form" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('blog.content.add') }}"
                             data-bv-message="This value is not valid"
 							data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
 							data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -88,9 +88,9 @@
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label" for="date">日期</label>
 
-                                                <div class="col-sm-9 col-lg-3">
+                                                <div class="col-sm-2">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control datepicker" id="date" name="date" value="<?= date('Y-m-d') ?>" data-dateformat="yy-mm-dd" placeholder="選擇日期" required>
+                                                        <input type="text" class="form-control datepicker" id="date" name="date" value="<?= date('Y-m-d') ?>" data-dateformat="yy-mm-dd" placeholder="選擇日期" data-bv-notempty="true" data-bv-notempty-message="請輸入日期">
                                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                     </div>
                                                 </div>
@@ -98,7 +98,7 @@
 
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label">部落格類別</label>
-                                                <div class="col-lg-5">
+                                                <div class="col-lg-2">
                                                     <select class="form-control" name="categoryId">
                                                     @if(isset($blogCategoryList))
                                                         @foreach($blogCategoryList as $blogCategoryKey => $blogCategoryValue)
@@ -111,7 +111,7 @@
 
                                             <div class="form-group">
                                                 <label class="col-lg-2 control-label">圖片</label>
-                                                <div class="col-lg-5">
+                                                <div class="col-lg-2">
                                                     <p>
                                                         <img id="preview" src="" width="auto" style="max-width:250px" />
                                                     </p>
@@ -130,8 +130,8 @@
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label" for="url">部落格連結</label>
 
-                                                <div class="col-lg-5">
-                                                    <input type="text" class="form-control" id="url" name="url" placeholder="填寫連結" required>
+                                                <div class="col-lg-2">
+                                                    <input type="text" class="form-control" id="Url" name="Url" placeholder="填寫連結" data-bv-notempty="true" data-bv-notempty-message="請輸入連結">
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -147,10 +147,7 @@
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">標題</label>
                                                     <div class="col-lg-5">
-                                                        <input type="text" class="form-control" name="contentlangs[{{ $langValue->langId }}][title]"
-                                                        data-bv-notempty="true"
-                                                        data-bv-notempty-message="請輸入標題"
-                                                        >
+                                                        <input type="text" class="form-control" name="contentlangs[{{ $langValue->langId }}][title]" data-bv-notempty="true" data-bv-notempty-message="請輸入標題">
                                                     </div>
                                                 </div>     
                                                 
@@ -216,51 +213,10 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function(){ 
-    $('div.content-edit').each(function (index, element) {
-        $(element).summernote({
-            height: 500,
-            lang: 'zh-TW',
-            toolbar: [
-                ['misc', ['codeview']],
-                ['para', ['ul']],
-                ['font', ['fontname', 'fontsize', 'color', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subsript', 'clear']],
-                ['para', ['style', 'ol', 'ul', 'paragraph', 'height']],
-                ['insert', ['picture']],
-                ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
-            ],
-            callbacks: {
-                onImageUpload: function (files) {
-                    for (var i = 0; i < files.length; i++) {
-                        sendFile(files[i], $(this));
-                    }
-                }
-            }
-        });
-    });
+    
 });
 
-    $('#save').on('click',function(){
-        $('div.content-edit').each(function () {
-            var content = $(this).summernote('code').replace(/[\u00A0-\u9999<>\&]/gim, function (i) {
-                return '&#' + i.charCodeAt(0) + ';';
-            });
-
-            $(this).siblings(':hidden').val(content);
-        });
-        
-        if($("[name='is_top']:checked").val() == 1){
-            if({{$topCount}} >= 2){
-                swal({
-                    type:'warning',
-                    title:'置頂數量已達2則'
-                });
-            }else{
-                $('#data-form').submit();
-            }
-        }else{
-            $('#data-form').submit();            
-        }
-    });
+    
 
     function sendFile(file,editor){
         var data = new FormData();
@@ -311,9 +267,55 @@ document.addEventListener('DOMContentLoaded', function(){
             });
         }        
     }
-    $(document).ready(function () {
+
+    $(function () {
         $('form').bootstrapValidator({
             excluded: ""
+        });
+
+        $('div.content-edit').each(function (index, element) {
+            $(element).summernote({
+                height: 500,
+                lang: 'zh-TW',
+                toolbar: [
+                    ['misc', ['codeview']],
+                    ['para', ['ul']],
+                    ['font', ['fontname', 'fontsize', 'color', 'bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subsript', 'clear']],
+                    ['para', ['style', 'ol', 'ul', 'paragraph', 'height']],
+                    ['insert', ['picture']],
+                    ['misc', ['fullscreen', 'codeview', 'undo', 'redo', 'help']]
+                ],
+                callbacks: {
+                    onImageUpload: function (files) {
+                        for (var i = 0; i < files.length; i++) {
+                            sendFile(files[i], $(this));
+                        }
+                    }
+                }
+            });
+        });
+        
+        $('#save').on('click',function(){
+            $('div.content-edit').each(function () {
+                var content = $(this).summernote('code').replace(/[\u00A0-\u9999<>\&]/gim, function (i) {
+                    return '&#' + i.charCodeAt(0) + ';';
+                });
+
+                $(this).siblings(':hidden').val(content);
+            });
+
+            if($("[name='is_top']:checked").val() == 1){
+                if({{$topCount}} >= 2){
+                    swal({
+                        type:'warning',
+                        title:'置頂數量已達2則'
+                    });
+                }else{
+                    $('#form').submit();
+                }
+            }else{
+                $('#form').submit();            
+            }
         });
     });
 </script>
