@@ -42,7 +42,7 @@
                         <!-- widget content -->
                         <div class="widget-body">
                             
-                            <form id="data-form" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('blog.content.edit',$blog->Id ) }}"
+                            <form id="form" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('blog.content.edit',$blog->Id ) }}"
                             data-bv-message="This value is not valid"
 							data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
 							data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -88,7 +88,7 @@
 
                                                 <div class="col-sm-2">
                                                     <div class="input-group">
-                                                        <input type="text" class="form-control datepicker" id="date" name="date" value="<?= $blog->date ?>" data-dateformat="yy-mm-dd" placeholder="選擇日期" data-bv-notempty="true" data-bv-notempty-message="請輸入日期">
+                                                        <input type="text" class="form-control datepicker" id="date" name="date" value="{{ $blog->date }}" data-dateformat="yy-mm-dd" data-bv-notempty="true" data-bv-notempty-message="請輸入日期">
                                                         <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                                     </div>
                                                 </div>
@@ -129,7 +129,7 @@
                                                 <label class="col-sm-2 control-label" for="url">部落格連結</label>
 
                                                 <div class="col-lg-2">
-                                                    <input type="text" class="form-control" id="Url" name="Url" placeholder="填寫連結" value="{{$blog->Url}}" data-bv-notempty="true" data-bv-notempty-message="請輸入連結">
+                                                    <input type="text" class="form-control" id="Url" name="Url" value="{{ $blog->Url }}" data-bv-notempty="true" data-bv-notempty-message="請輸入連結">
                                                 </div>
                                             </div>
                                         </fieldset>
@@ -233,7 +233,7 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     });
 });
-
+    
     $('#save').on('click',function(){
         var check = '';
 
@@ -252,10 +252,10 @@ document.addEventListener('DOMContentLoaded', function(){
                     title:'置頂數量已達2則'
                 });
             }else{
-                $('#data-form').submit();
+                $('#dform').submit();
             }
         }else{
-            $('#data-form').submit();            
+            $('#dform').submit();            
         }
     });
 
