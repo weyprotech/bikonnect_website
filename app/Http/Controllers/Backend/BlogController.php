@@ -105,7 +105,7 @@ class BlogController extends Controller
                 $uuid = Uuid::uuid1();
 
                 $blog->is_enable = 1;
-                $blog->img = $this->upload_img($request,'img',$bId,$blog,'img','1920');
+                $blog->img = $this->upload_img($request, 'img', $bId, $blog, 'img', '1920');
                 $blog->is_visible = $request->is_visible;
                 $blog->uuid = $uuid;
                 $blog->is_visible = $request->is_visible;
@@ -182,7 +182,7 @@ class BlogController extends Controller
      * 上傳圖片
      * 
      */
-    public function upload_img($request,$name,$uuid,$content = false,$file_name = '',$width){
+    public function upload_img($request, $name, $uuid, $content = false, $file_name = '', $width){
         //上傳圖檔
         if ($request->hasFile($name)) {
             if($request->file($name)->isValid()){

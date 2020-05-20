@@ -11,6 +11,6 @@ class HomepageContent2LangModel extends Model
     protected $fillable = ['bId','langId','title','uuid','updated_at','created_at'];
 
     public function content2(){
-        $this->belongsTo(HomepageContent2Model::class);
+        return $this->belongsTo(HomepageContent2Model::class);
     }
 }

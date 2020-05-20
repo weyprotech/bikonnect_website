@@ -8,9 +8,9 @@ class BlogLangModel extends Model
 {
     protected $table = 'tb_blog_lang';
     protected $primaryKey = 'Id';
-    protected $fillable = ['bId','langId','title','img','content','updated_at','created_at'];
+    protected $fillable = ['bId', 'langId', 'title' , 'description', 'content', 'updated_at', 'created_at'];
 
     public function blog(){
-        $this->belongsTo(BlogModel::class);
+        return $this->belongsTo(BlogModel::class);
     }
 }

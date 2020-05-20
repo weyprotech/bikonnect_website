@@ -23,12 +23,13 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->get();
+        $productList = ProductModel::where('is_enable', 1)->with('lang')->orderby('order', 'asc')->get();
+
         $data = array(
             'productList' => $productList
         );
         
-        return $this->set_view('backend.product.index',$data);
+        return $this->set_view('backend.product.index', $data);
     }
 
     /**

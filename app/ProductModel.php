@@ -8,7 +8,7 @@ class ProductModel extends Model
 {
     protected $table = 'tb_product';
     protected $primaryKey = 'Id';
-    protected $fillable = ['uuid','order','updated_at','created_at'];
+    protected $fillable = ['uuid', 'order', 'updated_at', 'created_at'];
     public $incrementing = false;
 
     public $rules = array(
@@ -20,10 +20,10 @@ class ProductModel extends Model
     );
 
     public function lang(){
-        return $this->hasMany(ProductLangModel::class, 'pId', 'Id')->orderby('langId','asc');
+        return $this->hasMany(ProductLangModel::class, 'pId', 'Id')->orderby('langId', 'asc');
     }
 
     public function content2(){
-        $this->belongsTo(HomepageContent2Model::class);
+        return $this->belongsTo(HomepageContent2Model::class);
     }
 }

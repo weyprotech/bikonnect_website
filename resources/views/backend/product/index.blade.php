@@ -71,10 +71,10 @@
                                         <tbody>
                                             @foreach($productList as $contentKey => $contentValue)
                                             <tr>
-                                                <td class="text-center">{!! (!empty($contentValue->lang[3]->img_1) ? '<img src="'.$contentValue->lang[3]->img_1.'" width="150px">' : '') !!}</td>
-                                                <td class="text-center">{!! (!empty($contentValue->lang[3]->img_2) ? '<img src="'.$contentValue->lang[3]->img_2.'" width="150px">' : '') !!}</td>
-                                                <td class="text-center">{!! (!empty($contentValue->lang[3]->img_3) ? '<img src="'.$contentValue->lang[3]->img_3.'" width="150px">' : '') !!}</td>
-                                                <td>{{$contentValue->lang[0]->title}}</td>
+                                                <td class="text-center">{!! (!empty($contentValue->lang[1]->img_1) ? '<img src="'.$contentValue->lang[1]->img_1.'" width="150px">' : '') !!}</td>
+                                                <td class="text-center">{!! (!empty($contentValue->lang[1]->img_2) ? '<img src="'.$contentValue->lang[1]->img_2.'" width="150px">' : '') !!}</td>
+                                                <td class="text-center">{!! (!empty($contentValue->lang[1]->img_3) ? '<img src="'.$contentValue->lang[1]->img_3.'" width="150px">' : '') !!}</td>
+                                                <td>{{$contentValue->lang[1]->title}}</td>
                                                 <td>
                                                     <label class="input">
                                                         <input type="textbox" class="text-center form-control" name="order[{{ $contentValue->Id }}][order]" value="{{ $contentValue->order }}">
@@ -82,7 +82,7 @@
                                                     </label>
                                                 </td>
                                                 <td class="text-center"><a href="{{ route('product.edit', $contentValue->Id) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>
-                                                <td class="text-center"><a href="{{ route('product.delete',$contentValue->Id) }}" class="btn btn-danger btn-xs del" onclick="return confirm('確定要刪除?');"><i class="fa fa-trash-o"></i></a></td>
+                                                <td class="text-center"><a href="{{ route('product.delete', $contentValue->Id) }}" class="btn btn-danger btn-xs del" onclick="return confirm('確定要刪除?');"><i class="fa fa-trash-o"></i></a></td>
                                             </tr>
                                             @endforeach
                                         </tbody>

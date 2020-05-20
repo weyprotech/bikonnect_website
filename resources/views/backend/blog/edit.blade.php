@@ -111,7 +111,7 @@
                                                 <label class="col-lg-2 control-label">圖片</label>
                                                 <div class="col-lg-2">
                                                     <p>
-                                                        <img id="preview" src="{{$blog->img}}" width="auto" style="max-width:250px" />
+                                                        <img id="preview" src="{{ $blog->img }}" width="auto" style="max-width:250px" />
                                                     </p>
                                                     <input type="file" class="btn btn-default imageupload" name="img"
                                                         data-prev="preview"
