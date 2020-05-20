@@ -42,7 +42,7 @@
                         <!-- widget content -->
                         <div class="widget-body">
                             
-                            <form id="form" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('blog.content.edit',$blog->Id ) }}"
+                            <form id="dform" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('blog.content.edit', $blog->Id ) }}"
                             data-bv-message="This value is not valid"
 							data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
 							data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
