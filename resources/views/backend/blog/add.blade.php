@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
     
 
-    function sendFile(file,editor){
+    function sendFile(file, editor){
         var data = new FormData();
         data.append('bId', '<?= $id ?>');
 

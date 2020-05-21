@@ -38,17 +38,17 @@ class BlogController extends Controller
      */
     public function add(Request $request)
     {
-        $id = preg_replace('/\./', '', uniqid('blog',true));
+        $id = preg_replace('/\./', '', uniqid('blog', true));
         //取類別
         $blogCategoryList = BlogCategoryModel::with(['blogcategorylang' => function($query){
-            $query->where('langId',1);
-        }])->where('is_enable',1)->get();
+            $query->where('langId', 1);
+        }])->where('is_enable', 1)->get();
 
         //取置頂文章
-        $topCount = BlogModel::where('is_top',1)->where('is_enable',1)->count();
+        $topCount = BlogModel::where('is_top', 1)->where('is_enable', 1)->count();
 
         if($request->isMethod('post')){
-            $lastblog = BlogModel::limit(1)->orderby('order','desc')->get();
+            $lastblog = BlogModel::limit(1)->orderby('order', 'desc')->get();
             
             $uuid = Uuid::uuid1();
             $blog = new BlogModel();
@@ -57,12 +57,13 @@ class BlogController extends Controller
             $blog->is_top = $request->is_top;
             $blog->categoryId = $request->categoryId;
             $blog->date = $request->date;
-            $blog->order = isset($lastblog[0]->order) ? $lastblog[0]->order+1 : 1;
-            $blog->img = $this->upload_img($request,'img',$id,$blog,'img','1920');
+            $blog->order = isset($lastblog[0]->order) ? $lastblog[0]->order + 1 : 1;
+            $blog->img = $this->upload_img($request, 'img', $id, $blog, 'img', '1920');
             $blog->is_visible = $request->is_visible;   
             $blog->Url = $request->Url;         
             $blog->uuid = $uuid;
             $blog->save();
+
             foreach ($request->contentlangs as $langKey => $langValue) {
                 $lang = new BlogLangModel();
                 $lang->langId = $langValue['langId'];
@@ -72,14 +73,17 @@ class BlogController extends Controller
                 $lang->content = html_entity_decode($langValue['content']);
                 $lang->save();
             }
-            return redirect(action('Backend\BlogController@edit',[$id]));
+
+            return redirect(action('Backend\BlogController@edit', [$id]));
         }
+        
         $data = array(
             'id' => $id,
             'blogCategoryList' => $blogCategoryList,
             'topCount' => $topCount            
         );
-        return $this->set_view('backend.blog.add',$data);
+
+        return $this->set_view('backend.blog.add', $data);
     }
 
     /**
@@ -88,19 +92,21 @@ class BlogController extends Controller
      * @param  int  $bId
      * @return \Illuminate\Http\Response
      */
-    public function edit($bId,Request $request)
+    public function edit($bId, Request $request)
     {
         $blog = BlogModel::with('bloglang')->find($bId);
+        
         //取類別
         $blogCategoryList = BlogCategoryModel::with(['blogcategorylang' => function($query){
-            $query->where('langId',1);
-        }])->where('is_enable',1)->get();
+            $query->where('langId', 1);
+        }])->where('is_enable', 1)->get();
 
         //取置頂文章
-        $topCount = BlogModel::where('is_top',1)->where('is_enable',1)->where('Id','!=',$bId)->count();
+        $topCount = BlogModel::where('is_top', 1)->where('is_enable', 1)->where('Id' , '!=' , $bId)->count();
 
-        $web_langList = WebsiteLangModel::where('is_enable',1)->get();
-        if($request->isMethod('post')){
+        $web_langList = WebsiteLangModel::where('is_enable', 1)->get();
+        if($request->isMethod('post')) {
+
             if($request->uuid == $blog->uuid){
                 $uuid = Uuid::uuid1();
 
@@ -114,14 +120,16 @@ class BlogController extends Controller
                 $blog->categoryId = $request->categoryId;
                 $blog->Url = $request->Url;
                 $blog->save();
+
                 foreach ($request->bloglangs as $blogKey => $blogValue) {
-                    $lang = BlogLangModel::where('langId',$blogValue['langId'])->where('bId',$blogValue['bId'])->first();                    
+                    $lang = BlogLangModel::where('langId', $blogValue['langId'])->where('bId', $blogValue['bId'])->first();                    
                     $lang->title = $blogValue['title'];
                     $lang->description = $blogValue['description'];
                     $lang->content = html_entity_decode($blogValue['content']);                                        
                     $lang->save();
                 }
             }
+
             return redirect(action('Backend\BlogController@index'));                  
             
         }
@@ -182,12 +190,14 @@ class BlogController extends Controller
      * 上傳圖片
      * 
      */
-    public function upload_img($request, $name, $uuid, $content = false, $file_name = '', $width){
+    public function upload_img($request, $name, $uuid, $content = false, $file_name = '', $width) {
+        //dd($request->all());
+
         //上傳圖檔
         if ($request->hasFile($name)) {
-            if($request->file($name)->isValid()){
+            if($request->file($name)->isValid()) {
 
-                $destinationPath = base_path() . '/public/uploads/blog/'.$uuid;
+                $destinationPath = base_path() . '/public/uploads/blog/' . $uuid;
 
                 // getting image extension
                 $extension = $request->file($name)->getClientOriginalExtension();
@@ -195,25 +205,28 @@ class BlogController extends Controller
                 if (!file_exists($destinationPath)) { //Verify if the directory exists
                     mkdir($destinationPath, 0777, true); //create it if do not exists
                 }
+
                 // uuid renameing image
                 $fileName = Str::uuid() . '_blog_.' . $extension;
-
-                Image::make($request->file($name))->resize($width,null,function($constraint){
+                
+                Image::make($request->file($name))->resize($width, null, function($constraint) {
                     $constraint->aspectRatio();
-                })->save($destinationPath.'/'.$fileName);
-                $img = '/uploads/blog/'.$uuid.'/'.$fileName;
-                if(file_exists(base_path() . '/public/'.$content->$file_name)){
-                    @chmod(base_path() . '/public/'.$content->$file_name, 0777);
-                    @unlink(base_path() . '/public/'.$content->$file_name);
+                })->save($destinationPath . '/' . $fileName);
+
+                $img = '/uploads/blog/' . $uuid . '/' . $fileName;
+                if(file_exists(base_path() . '/public/' . $content->$file_name)){
+                    @chmod(base_path() . '/public/' . $content->$file_name, 0777);
+                    @unlink(base_path() . '/public/' . $content->$file_name);
                 }
             }
-        }else{
-            if($content){
+        } else {
+            if ($content) {
                 $img = $content->$file_name;
-            }else{
+            } else {
                 $img = '';
             }
         }
+
         return $img;
     }
 
@@ -223,7 +236,7 @@ class BlogController extends Controller
     public function upload_summernote(Request $request)
     {
         if (isset($request->bId) && isset($request->file)){
-            $img = $this->upload_img($request,'file',$request->bId,false,'img','800');
+            $img = $this->upload_img($request, 'file', $request->bId, false, 'img', '800');
             echo $img;
         }
     }

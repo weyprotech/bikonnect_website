@@ -32,11 +32,11 @@ class AjaxController extends Controller
         //     $query->where('langId',$this->langList[0]->langId);
         // }])->where('is_enable',1)->skip(($page-1)*12)->take(12)->orderby('order','asc')->get();
 
-        $temp = BlogModel::with(['blogcategory','blogcategory.blogcategorylang' => function($query) use($use_key){
-            $query->where('langId',$use_key['langId']);
+        $temp = BlogModel::with(['blogcategory', 'blogcategory.blogcategorylang' => function($query) use($use_key){
+            $query->where('langId', $use_key['langId']);
         }])->with(['bloglang' => function($query) use($use_key){
-            $query->where('langId',$use_key['langId'])->where('title','like',"%".$use_key['search']."%");
-        }])->where('is_enable',1)->orderby('order','asc');
+            $query->where('langId', $use_key['langId'])->where('title', 'like', "%".$use_key['search']."%");
+        }])->where('is_enable', 1)->where('Url', '!=', '')->orderby('order', 'asc');
 
         if(!empty($category)){
             $blogList = $temp->where('categoryId',$category)->get();

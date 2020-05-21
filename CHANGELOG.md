@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2020-05-21
+
+### Changed
+
+1.前台Blog可以正常顯示
+2.後台產品預覽
+3.後台Blog插入圖片
+
+/app/Http/Controllers/Backend/BlogController.php
+/resources/views/backend/index.blade.php
+
 ## 2020-05-20
 
 ### Changed

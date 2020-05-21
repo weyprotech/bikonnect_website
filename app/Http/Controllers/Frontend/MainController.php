@@ -426,35 +426,35 @@ class MainController extends Controller
             $this->set_locale();
 
             //全部文章
-            $blogList = BlogModel::with(['blogcategory','blogcategory.blogcategorylang' => function($query){
+            $blogList = BlogModel::with(['blogcategory', 'blogcategory.blogcategorylang' => function($query){
                 $query->where('langId',$this->langList[0]->langId);
             }])->with(['bloglang' => function($query){
                 $query->where('langId',$this->langList[0]->langId);
-            }])->where('is_enable',1)->skip(($page-1)*12)->take(12)->orderby('order','asc')->get();
+            }])->where('is_enable', 1)->where('Url', '!=', '')->skip(($page-1)*12)->take(12)->orderby('order', 'asc')->get();
 
             //抓總頁數
-            $totalpage = ceil(BlogModel::where('is_enable',1)->count()/12);
+            $totalpage = ceil(BlogModel::where('is_enable', 1)->where('Url', '!=', '')->count()/12);
 
             //文章類別
             $blogCategoryList = BlogCategoryModel::with(['blogcategorylang' => function($query){
-                $query->where('langId',$this->langList[0]->langId);
-            }])->where('is_enable',1)->get();
+                $query->where('langId', $this->langList[0]->langId);
+            }])->where('is_enable', 1)->get();
 
             //置頂文章
-            $topList = BlogModel::with(['blogcategory','blogcategory.blogcategorylang' => function($query){
-                $query->where('langId',$this->langList[0]->langId);
+            $topList = BlogModel::with(['blogcategory', 'blogcategory.blogcategorylang' => function($query){
+                $query->where('langId', $this->langList[0]->langId);
             }])->with(['bloglang' => function($query){
-                $query->where('langId',$this->langList[0]->langId);
-            }])->where('is_enable',1)->where('is_top',1)->orderby('order','asc')->get();
+                $query->where('langId', $this->langList[0]->langId);
+            }])->where('is_enable', 1)->where('is_top', 1)->where('Url', '!=', '')->orderby('order', 'asc')->get();
 
             //產品列表
-            $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
-                $query->where('langId','=',$this->langList[0]->langId);
+            $productList = ProductModel::where('is_enable', 1)->orderby('order', 'asc')->with(['lang' => function($query){
+                $query->where('langId', '=', $this->langList[0]->langId);
             }])->get();
 
             //聯絡我們
             $contact = ContactModel::with(['contactlang' => function($query){
-                $query->where('langId','=',$this->langList[0]->langId);
+                $query->where('langId', '=', $this->langList[0]->langId);
             }])->find(1);
 
             //seo

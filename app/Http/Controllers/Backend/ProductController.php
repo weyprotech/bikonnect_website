@@ -44,22 +44,22 @@ class ProductController extends Controller
        
         $productList = ProductModel::limit(1)->orderby('order','desc')->get();
         
-        if($request->isMethod('post')){
+        if($request->isMethod('post')) {
 
             $productList = ProductModel::limit(1)->orderby('order','desc')->get();
             $product = new ProductModel();
             $product->is_enable = 1;
             $product->Id = $uuid;
             $product->uuid = $uuid;
-            $product->order = $productList[0]->order+1;
+            $product->order = $productList[0]->order + 1;
             $product->save();
             
             foreach ($request->productlangs as $langKey => $langValue) {
-                $img_1 = $this->upload_img($request,'productlangs.'.$langValue['langId'].'.img_1',$uuid,false,'img_1',1057);
-                $img_2 = $this->upload_img($request,'productlangs.'.$langValue['langId'].'.img_2',$uuid,false,'img_2',1040);
-                $img_3 = $this->upload_img($request,'productlangs.'.$langValue['langId'].'.img_3',$uuid,false,'img_3',748);
-                $img_4 = $this->upload_img($request,'productlangs.'.$langValue['langId'].'.img_4',$uuid,false,'img_4',752);
-                $img_5 = $this->upload_img($request,'productlangs.'.$langValue['langId'].'.img_5',$uuid,false,'img_5',230);                
+                $img_1 = $this->upload_img($request, 'productlangs.' . $langValue['langId'] . '.img_1', $uuid, false, 'img_1', 1057);
+                $img_2 = $this->upload_img($request, 'productlangs.' . $langValue['langId'] . '.img_2', $uuid, false, 'img_2', 1040);
+                $img_3 = $this->upload_img($request, 'productlangs.' . $langValue['langId'] . '.img_3', $uuid, false, 'img_3', 748);
+                $img_4 = $this->upload_img($request, 'productlangs.' . $langValue['langId'] . '.img_4', $uuid, false, 'img_4', 752);
+                $img_5 = $this->upload_img($request, 'productlangs.' . $langValue['langId'] . '.img_5', $uuid, false, 'img_5', 230);                
 
                 $lang = new ProductLangModel();
                 $lang->pId = $uuid;                
@@ -101,26 +101,26 @@ class ProductController extends Controller
         $content = ProductModel::with('lang')->find($productId);
         $web_langList = WebsiteLangModel::where('is_enable',1)->get();
         $uuid = Uuid::uuid1();
-        if($request->isMethod('post')){
+        if($request->isMethod('post')) {
             
             if($request->uuid == $content->uuid){
                 $content->url = $request->url;
                 $content->uuid = $uuid;
                 $content->save();
                 foreach ($request->productlangs as $contentKey => $contentValue) {
-                    $content = ProductLangModel::where('langId',$contentValue['langId'])->where('pId',$productId)->get();
+                    $content = ProductLangModel::where('langId', $contentValue['langId'])->where('pId', $productId)->get();
 
                     //上傳圖檔
-                    $img_1 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_1',$productId,$content[0],'img_1',1057);
-                    $img_2 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_2',$productId,$content[0],'img_2',1040);
-                    $img_3 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_3',$productId,$content[0],'img_3',748);
-                    $img_4 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_4',$productId,$content[0],'img_4',752);
-                    $img_5 = $this->upload_img($request,'productlangs.'.$contentValue['langId'].'.img_5',$productId,$content[0],'img_5',230);
-                    $dm_file = $this->upload_dm($request,'productlangs.'.$contentValue['langId'].'.dm_file',$productId,$content[0],'dm_file');
+                    $img_1 = $this->upload_img($request, 'productlangs.' . $contentValue['langId'] . '.img_1', $productId, $content[0], 'img_1', 1057);
+                    $img_2 = $this->upload_img($request, 'productlangs.' . $contentValue['langId'] . '.img_2', $productId, $content[0], 'img_2', 1040);
+                    $img_3 = $this->upload_img($request, 'productlangs.' . $contentValue['langId'] . '.img_3', $productId, $content[0], 'img_3', 748);
+                    $img_4 = $this->upload_img($request, 'productlangs.' . $contentValue['langId'] . '.img_4', $productId, $content[0], 'img_4', 752);
+                    $img_5 = $this->upload_img($request, 'productlangs.' . $contentValue['langId'] . '.img_5', $productId, $content[0], 'img_5', 230);
+                    $dm_file = $this->upload_dm($request, 'productlangs.' . $contentValue['langId'] . '.dm_file', $productId, $content[0], 'dm_file');
 
                     DB::table('tb_product_lang')
-                    ->where('pId',$productId)
-                    ->where('langId',$contentValue['langId'])
+                    ->where('pId', $productId)
+                    ->where('langId', $contentValue['langId'])
                     ->update(
                         array('langId' => $contentValue['langId'],
                         'title' => $contentValue['title'], 
@@ -271,7 +271,7 @@ class ProductController extends Controller
      * 上傳圖片
      * 
      */
-    public function upload_img($request,$name,$uuid,$content = false,$file_name = '',$width){
+    public function upload_img($request, $name, $uuid, $content = false, $file_name = '', $width){
         //上傳圖檔
         if ($request->hasFile($name)) {
             if($request->file($name)->isValid()){
@@ -287,17 +287,17 @@ class ProductController extends Controller
                 // uuid renameing image
                 $fileName = Str::uuid() . '_product_.' . $extension;
             
-                Image::make($request->file($name))->resize($width,null,function($constraint){
+                Image::make($request->file($name))->resize($width, null, function($constraint) {
                     $constraint->aspectRatio();
-                })->save($destinationPath.'/thumb_'.$fileName);
+                })->save($destinationPath . '/thumb_' . $fileName);
 
                 // move file to dest
                 // $request->file($name)->move($destinationPath, $fileName);
                 // save data
-                $img = '/uploads/product/'.$uuid.'/thumb_'.$fileName;
-                if(file_exists(base_path() . '/public/'.@$content->$file_name)){
-                    @chmod(base_path() . '/public/'.$content->$file_name, 0777);
-                    @unlink(base_path() . '/public/'.$content->$file_name);
+                $img = '/uploads/product/' . $uuid . '/thumb_' . $fileName;
+                if(file_exists(base_path() . '/public/' . @$content->$file_name)){
+                    @chmod(base_path() . '/public/' . $content->$file_name, 0777);
+                    @unlink(base_path() . '/public/' . $content->$file_name);
                 }
             }
         }else{
