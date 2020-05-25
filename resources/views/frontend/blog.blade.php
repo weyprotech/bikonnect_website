@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div class="blog_list">
-                @for($i=0;$i<12;$i++)
+                @for($i=0; $i < 12; $i++)
                     @if(isset($blogList[$i]))
                         <div class="item">
                             <a href="{{ URL::route('blog.detail', [$blogList[$i]->Url, $page, app()->getLocale()]) }}">
@@ -70,7 +70,7 @@
         <div class="pager_nav_inner">
             <a class="arrow prev" href="{{ URL::route('blog.index', [$page>1 ? $page-1 : 1, app()->getLocale()]) }}"><i class="arrow_prev"></i></a>
                 @for($i=1;$i<=$totalpage;$i++)
-                    <a {{$i == $page ? 'class=current' : '' }} href="{{ URL::route('blog.index', [$i,app()->getLocale()]) }}">{{ $i }}</a>
+                    <a {{ $i == $page ? 'class="current"' : '' }} href="{{ URL::route('blog.index', [$i,app()->getLocale()]) }}">{{ $i }}</a>
                 @endfor
             <a class="arrow next" href="{{ URL::route('blog.index', [$page+1 >= $totalpage ? $totalpage : $page+1, app()->getLocale()]) }}"><i class="arrow_next"></i></a>
         </div>
