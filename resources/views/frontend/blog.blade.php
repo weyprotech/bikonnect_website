@@ -55,7 +55,7 @@
                                     <img src="{{ URL::asset('frontend/images/size_3x2.png') }}">
                                 </div>
                                 <div class="text">
-                                    <div class="date">{{ str_replace('-','.',$blogList[$i]->date) }}</div>
+                                    <div class="date">{{ str_replace('-', '.', $blogList[$i]->date) }}</div>
                                     <h3>{{ $blogList[$i]->bloglang[0]->title }}</h3>
                                     <div class="sort">{{ $blogList[$i]->blogcategory->blogcategorylang[0]->title }}</div>
                                 </div>
@@ -70,7 +70,7 @@
         <div class="pager_nav_inner">
             <a class="arrow prev" href="{{ URL::route('blog.index', [$page>1 ? $page-1 : 1, app()->getLocale()]) }}"><i class="arrow_prev"></i></a>
                 @for($i=1;$i<=$totalpage;$i++)
-                    <a {{ $i == $page ? 'class="current"' : '' }} href="{{ URL::route('blog.index', [$i,app()->getLocale()]) }}">{{ $i }}</a>
+                    <a {{ $i == $page ? 'class="current"' : '' }} href="{{ URL::route('blog.index', [$i, app()->getLocale()]) }}">{{ $i }}</a>
                 @endfor
             <a class="arrow next" href="{{ URL::route('blog.index', [$page+1 >= $totalpage ? $totalpage : $page+1, app()->getLocale()]) }}"><i class="arrow_next"></i></a>
         </div>
@@ -89,25 +89,26 @@
         search = $('#search').val();
         $.ajax({
             url:"{{ URL::route('ajax.get_blog') }}",
-            data:{search : search,category : category,langId : langId,_token : '{{ csrf_token() }}'},
+            data:{search : search, category : category, langId : langId, _token : '{{ csrf_token() }}'},
             type:'post',
             dataType:'json',
-            success:function(response){
+            success:function(response) {
                 $('.blog_list').html('');
-                $.each(response['blogList'],function(key,value){
-                    if(value.bloglang.length !== 0){
+
+                $.each(response['blogList'],function(key,value) {
+                    if(value.bloglang.length !== 0) {
                         $('.blog_list').append(
-                            '<div class="item">'+
-                                '<a href="https://www.bikonnect.com/blog_detail/' + value.url + '/{{ $page }}/{{ app()->getLocale() }}">'+
-                                    '<div class="thumb" style="background-image: url('+value.img+')">'+
-                                        '<img src="{{ URL::asset('frontend/images/size_3x2.png') }}">'+
-                                    '</div>'+
-                                    '<div class="text">'+
-                                        '<div class="date">'+value.date.replace('-','.')+'</div>'+
-                                        '<h3>'+value.bloglang[0].title+'</h3>'+
-                                        '<div class="sort">'+value.blogcategory.blogcategorylang[0].title+'</div>'+
-                                    '</div>'+
-                                '</a>'+
+                            '<div class="item">' +
+                                '<a href="https://www.bikonnect.com/blog_detail/' + value.url + '/{{ $page }}/{{ app()->getLocale() }}">' +
+                                    '<div class="thumb" style="background-image: url(' + value.img + ')">' +
+                                        '<img src="{{ URL::asset('frontend/images/size_3x2.png') }}">' +
+                                    '</div>' +
+                                    '<div class="text">' +
+                                        '<div class="date">' + value.date.replace('-', '.') + '</div>' +
+                                        '<h3>' + value.bloglang[0].title + '</h3>' +
+                                        '<div class="sort">' + value.blogcategory.blogcategorylang[0].title + '</div>' +
+                                    '</div>' +
+                                '</a>' +
                             '</div>'
                         );
                     }
