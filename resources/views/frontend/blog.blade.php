@@ -7,12 +7,12 @@
     <div class="blog_slider">
         @foreach($topList as $topKey => $topValue)
             <div class="slide">
-                <a href="{{ URL::route('blog.detail', [$topValue->Url, $page, app()->getLocale()]) }}">
+                <a href="{{ URL::route('blog.detail', [$topValue->url, $page, app()->getLocale()]) }}">
                     <div class="pic" style="background-image: url({{ $topValue->img }})"></div>
                     <div class="slide_content">
                         <div class="content_inner">
                             <div class="date_sort">
-                                <div class="date">{{ str_replace('-','.',$topValue->date) }}</div>
+                                <div class="date">{{ str_replace('-', '.', $topValue->date) }}</div>
                                 <div class="line"></div>
                                 <div class="sort">{{ $topValue->blogcategory->blogcategorylang[0]->title }}</div>
                             </div>
@@ -50,7 +50,7 @@
                 @for($i=0; $i < 12; $i++)
                     @if(isset($blogList[$i]))
                         <div class="item">
-                            <a href="{{ URL::route('blog.detail', [$blogList[$i]->Url, $page, app()->getLocale()]) }}">
+                            <a href="{{ URL::route('blog.detail', [$blogList[$i]->url, $page, app()->getLocale()]) }}">
                                 <div class="thumb" style="background-image: url({{ $blogList[$i]->img }})">
                                     <img src="{{ URL::asset('frontend/images/size_3x2.png') }}">
                                 </div>
@@ -98,7 +98,7 @@
                     if(value.bloglang.length !== 0){
                         $('.blog_list').append(
                             '<div class="item">'+
-                                '<a href="https://www.bikonnect.com/blog_detail/' + value.Url + '/{{ $page }}/{{ app()->getLocale() }}">'+
+                                '<a href="https://www.bikonnect.com/blog_detail/' + value.url + '/{{ $page }}/{{ app()->getLocale() }}">'+
                                     '<div class="thumb" style="background-image: url('+value.img+')">'+
                                         '<img src="{{ URL::asset('frontend/images/size_3x2.png') }}">'+
                                     '</div>'+

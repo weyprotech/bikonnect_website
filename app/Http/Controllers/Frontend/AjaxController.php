@@ -36,7 +36,7 @@ class AjaxController extends Controller
             $query->where('langId', $use_key['langId']);
         }])->with(['bloglang' => function($query) use($use_key){
             $query->where('langId', $use_key['langId'])->where('title', 'like', "%".$use_key['search']."%");
-        }])->where('is_enable', 1)->where('Url', '!=', '')->orderby('order', 'asc');
+        }])->where('is_enable', 1)->where('url', '!=', '')->orderby('order', 'asc');
 
         if(!empty($category)){
             $blogList = $temp->where('categoryId',$category)->get();

@@ -129,7 +129,7 @@
                                                 <label class="col-sm-2 control-label" for="url">部落格連結</label>
 
                                                 <div class="col-lg-2">
-                                                    <input type="text" class="form-control" id="Url" name="Url" value="{{ $blog->Url }}" data-bv-notempty="true" data-bv-notempty-message="請輸入連結">
+                                                    <input type="text" class="form-control" id="url" name="url" value="{{ $blog->url }}" data-bv-notempty="true" data-bv-notempty-message="請輸入連結">
                                                 </div>
                                             </div>
                                         </fieldset>

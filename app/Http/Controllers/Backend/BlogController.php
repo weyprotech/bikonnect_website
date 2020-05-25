@@ -118,7 +118,7 @@ class BlogController extends Controller
                 $blog->is_top = $request->is_top;
                 $blog->date = $request->date;
                 $blog->categoryId = $request->categoryId;
-                $blog->Url = $request->Url;
+                $blog->url = $request->url;
                 $blog->save();
 
                 foreach ($request->bloglangs as $blogKey => $blogValue) {

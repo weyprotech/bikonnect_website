@@ -430,10 +430,10 @@ class MainController extends Controller
                 $query->where('langId',$this->langList[0]->langId);
             }])->with(['bloglang' => function($query){
                 $query->where('langId',$this->langList[0]->langId);
-            }])->where('is_enable', 1)->where('Url', '!=', '')->skip(($page-1)*12)->take(12)->orderby('order', 'asc')->get();
+            }])->where('is_enable', 1)->where('url', '!=', '')->skip(($page-1)*12)->take(12)->orderby('order', 'asc')->get();
 
             //抓總頁數
-            $totalpage = ceil(BlogModel::where('is_enable', 1)->where('Url', '!=', '')->count()/12);
+            $totalpage = ceil(BlogModel::where('is_enable', 1)->where('url', '!=', '')->count()/12);
 
             //文章類別
             $blogCategoryList = BlogCategoryModel::with(['blogcategorylang' => function($query){
@@ -445,7 +445,7 @@ class MainController extends Controller
                 $query->where('langId', $this->langList[0]->langId);
             }])->with(['bloglang' => function($query){
                 $query->where('langId', $this->langList[0]->langId);
-            }])->where('is_enable', 1)->where('is_top', 1)->where('Url', '!=', '')->orderby('order', 'asc')->get();
+            }])->where('is_enable', 1)->where('is_top', 1)->where('url', '!=', '')->orderby('order', 'asc')->get();
 
             //產品列表
             $productList = ProductModel::where('is_enable', 1)->orderby('order', 'asc')->with(['lang' => function($query){
