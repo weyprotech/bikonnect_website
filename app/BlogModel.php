@@ -8,7 +8,7 @@ class BlogModel extends Model
 {
     protected $table = 'tb_blog';
     protected $primaryKey = 'Id';
-    protected $fillable = ['uuid', 'order', 'date', 'img', 'Url', 'updated_at', 'created_at'];
+    protected $fillable = ['uuid', 'order', 'date', 'img', 'url', 'updated_at', 'created_at'];
     public $incrementing = false;
 
     public function bloglang(){
