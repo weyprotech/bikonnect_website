@@ -447,9 +447,6 @@ class MainController extends Controller
                 $query->where('langId', $this->langList[0]->langId);
             }])->where('is_enable', 1)->where('is_top', 1)->orderby('order', 'asc')->get();
 
-            $arr = array($blogList, $topList);
-            dd($arr);
-
             //產品列表
             $productList = ProductModel::where('is_enable', 1)->orderby('order', 'asc')->with(['lang' => function($query){
                 $query->where('langId', '=', $this->langList[0]->langId);
