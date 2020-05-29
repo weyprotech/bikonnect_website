@@ -204,6 +204,8 @@ class BlogController extends Controller
 
                 if (!file_exists($destinationPath)) { //Verify if the directory exists
                     mkdir($destinationPath, 0777, true); //create it if do not exists
+                } else {
+                    @chmod($destinationPath, 0777);
                 }
 
                 // uuid renameing image
@@ -214,9 +216,12 @@ class BlogController extends Controller
                 })->save($destinationPath . '/' . $fileName);
 
                 $img = '/uploads/blog/' . $uuid . '/' . $fileName;
-                if(file_exists(base_path() . '/public/' . $content->$file_name)){
-                    @chmod(base_path() . '/public/' . $content->$file_name, 0777);
-                    @unlink(base_path() . '/public/' . $content->$file_name);
+
+                if($file_name != '') {
+                    if(file_exists(base_path() . '/public/' . $content->$file_name)){
+                        @chmod(base_path() . '/public/' . $content->$file_name, 0777);
+                        @unlink(base_path() . '/public/' . $content->$file_name);
+                    }
                 }
             }
         } else {
@@ -236,7 +241,7 @@ class BlogController extends Controller
     public function upload_summernote(Request $request)
     {
         if (isset($request->bId) && isset($request->file)){
-            $img = $this->upload_img($request, 'file', $request->bId, false, 'img', '800');
+            $img = $this->upload_img($request, 'file', $request->bId, false, '', '800');
             echo $img;
         }
     }
