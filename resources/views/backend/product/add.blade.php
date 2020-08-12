@@ -18,7 +18,7 @@
                 <div class="jarviswidget" id="wid-id-4" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-collapsed="false" data-widget-sortable="false">
                     <header>
                         <span class="widget-icon"> <i class="fa fa-pencil-square-o"></i> </span>
-                        <h2>新增產品</h2>
+                        <h2>新增解決方案</h2>
 
                         <ul class="nav nav-tabs pull-right in">
                             <li class='active'>

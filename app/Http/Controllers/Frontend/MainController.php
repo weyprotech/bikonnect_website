@@ -14,6 +14,7 @@ use App\AboutHistoryTitleModel;
 use App\SolutionVideoModel;
 use App\SolutionContentModel;
 use App\SolutionAspectModel;
+use App\SolutionAspectLangModel;
 use App\SolutionTitleModel;
 use App\SolutionTitleLangModel;
 use App\SolutionApplicationModel;
@@ -37,6 +38,7 @@ use App\ContactModel;
 use App\ContactMailModel;
 use App\EmailModel;
 use App\PrivacyModel;
+use App\SolutionModel;
 use App\TermModel;
 use App\TermlangModel;
 
@@ -57,6 +59,11 @@ class MainController extends Controller
             //廠商列表
             $partnerList = AboutPartnerModel::where('is_enable',1)->with(['lang' => function ($query) {
                 $query->where('langId', '=', $this->langList[0]->langId);
+            }])->get();
+
+            //解決方案列表
+            $solutionList = SolutionModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
             }])->get();
 
             //產品列表
@@ -108,6 +115,7 @@ class MainController extends Controller
                 'seoList' => $seoList,
                 'bannerList' => $bannerList,
                 'partnerList' => $partnerList,
+                'solutionList' => $solutionList,
                 'productList' => $productList,
                 'content1' => $content1,
                 'content2List' => $content2List,
@@ -154,6 +162,11 @@ class MainController extends Controller
                 $query->where('langId','=',$this->langList[0]->langId);
             }])->get();
 
+            //解決方案列表
+            $solutionList = SolutionModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
+
             //產品列表
             $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
                 $query->where('langId','=',$this->langList[0]->langId);
@@ -183,6 +196,7 @@ class MainController extends Controller
                 'contentList' => $contentList,
                 'partnerList' => $partnerList,
                 'historyList' => $historyList,
+                'solutionList' => $solutionList,
                 'productList' => $productList,            
                 'teamList' => $teamList,
                 'historyTitle' => $historyTitle,
@@ -192,36 +206,38 @@ class MainController extends Controller
         }
     }
 
-    public function solution($locale = '') 
+    public function solution($url,$locale = '') 
     {
         if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
             //設定語系
             $this->set_locale();        
             
-            //影片列表
-            $videoList = SolutionVideoModel::with(['lang' => function($query){
+            //解決方案列表
+            $solutionList = SolutionModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
                 $query->where('langId','=',$this->langList[0]->langId);
             }])->get();
 
-            //圖文列表
-            $contentList = SolutionContentModel::orderby('order','asc')->with(['lang' => function($query){
+            $solution = SolutionModel::where('is_enable',1)->with(['lang' => function($query){
                 $query->where('langId','=',$this->langList[0]->langId);
-            }])->get();
-
-            //標題
-            $title = SolutionTitleModel::with(['lang' => function($query){
-                $query->where('langId','=',$this->langList[0]->langId);
-            }])->find(1);
-
+            }])->where('url',$url)->get();
+            
             //Application Range
-            $applicationList = SolutionApplicationModel::with(['lang' => function($query){
+            $applicationList = SolutionApplicationModel::where('is_enable',1)->where('sId',$solution[0]->Id)->with(['lang' => function($query){
                 $query->where('langId','=',$this->langList[0]->langId);
-            }])->get();
+            }])->orderBy('order','asc')->get();
+
+            foreach($applicationList as $applicationKey => $applicationValue){
+                $applicationValue->lang = SolutionApplicationLangModel::where('aId',$applicationValue->Id)->where('langId',$this->langList[0]->langId)->get();
+            }
+            
 
             //特點列表
-            $aspectList = SolutionAspectModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+            $aspectList = SolutionAspectModel::where('is_enable',1)->where('sId',$solution[0]->Id)->orderby('order','asc')->with(['lang' => function($query){
                 $query->where('langId','=',$this->langList[0]->langId);
             }])->get();
+            foreach ($aspectList as $contentKey => $contentValue){
+                $contentValue->lang = SolutionAspectLangModel::where('aId',$contentValue->Id)->get();
+            }
 
             //產品列表
             $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
@@ -233,34 +249,34 @@ class MainController extends Controller
                 $query->where('langId','=',$this->langList[0]->langId);
             }])->find(1);
 
-            //服務架構
-            $service = SolutionServiceModel::with(['lang' => function($query){
-                $query->where('langId','=',$this->langList[0]->langId);
-            }])->find(1);
 
             //seo
             $seoList = array(
                 'en' => array(
-                    'title' => 'E-Bike data service solution, Big Data Analytics, Cycling Data Platform - Microprogram',
-                    'keyword' => 'E-Bike data service solution,bike solution,bicycle solution,smart e-bike solution,cycling data solution,bike data solution,bicycle data solution,cycling data sensor,bike data sensor,bicycle data sensor,smart cycling platform,bike platform,bicycle platform,smart cycling system,bike system,bicycle system,cycling digital service,bike digital service,bicycle digital service,cycling data service,bike data service,bicycle data service,cycling data integration,bike data integration,bicycle data integration,cycling IoT,bike IoT,bicycle IoT,connected cycling solution,connected bike solution,connected bicycle solution,cycling IoT solution,bike IoT solution,bicycle IoT solution,e-bike IoT,smart mobility solution,the future of cycling,connected cycling service,connected bike service,connected bicycle service,connected cycling platform,connected bike platform,connected bicycle platform,cycling connectivity,bike connectivity,e-bike connectivity,bicycle connectivity',
-                    'description' => 'The E-Bike data service solution combines E-Bike computer, Apps, Dealer Management System and Cycling Data Platform to enhance the value of the E-Bike rider experience and bicycle brand service.'
+                    'title' => $solution[0]->lang[0]->meta_title.' - Bikonnect',
+                    'keyword' => $solution[0]->lang[0]->meta_keywords.' - Bikonnect',
+                    'description' => $solution[0]->lang[0]->meta_description.' - Bikonnect'
+                    // 'title' => 'E-Bike data service solution, Big Data Analytics, Cycling Data Platform - Microprogram',
+                    // 'keyword' => 'E-Bike data service solution,bike solution,bicycle solution,smart e-bike solution,cycling data solution,bike data solution,bicycle data solution,cycling data sensor,bike data sensor,bicycle data sensor,smart cycling platform,bike platform,bicycle platform,smart cycling system,bike system,bicycle system,cycling digital service,bike digital service,bicycle digital service,cycling data service,bike data service,bicycle data service,cycling data integration,bike data integration,bicycle data integration,cycling IoT,bike IoT,bicycle IoT,connected cycling solution,connected bike solution,connected bicycle solution,cycling IoT solution,bike IoT solution,bicycle IoT solution,e-bike IoT,smart mobility solution,the future of cycling,connected cycling service,connected bike service,connected bicycle service,connected cycling platform,connected bike platform,connected bicycle platform,cycling connectivity,bike connectivity,e-bike connectivity,bicycle connectivity',
+                    // 'description' => 'The E-Bike data service solution combines E-Bike computer, Apps, Dealer Management System and Cycling Data Platform to enhance the value of the E-Bike rider experience and bicycle brand service.'
                 ),
                 'zh-TW' => array(
-                    'title' => 'E-Bike數據服務解決方案，電動自行車物聯網、騎乘數據平台-微程式',
-                    'keyword' => '自行車數據,自行車物聯網,自行車系統,自行車IoT,自行車數據騎乘,自行車數據平台,自行車系統商,自行車系統商推薦,自行車數位升級,自行車科技升級,自行車數據服務,電動自行車數據,電動自行車物聯網,電動自行車系統,電動自行車IoT,電動自行車數據騎乘,電動自行車數據平台,電動自行車系統商,電動自行車系統商推薦,電動自行車數位升級,電動自行車科技升級,電動自行車數據服務,E-Bike 數據服務解決方案',
-                    'description' => '微程式提供的E-Bike 數據服務解決方案，結合電動自行車車錶、App、門店管理系統及騎乘數據平台，提升 E-Bike 車友體驗與自行車品牌服務價值。'
+                    'title' => $solution[0]->lang[0]->meta_title.' - Bikonnect',
+                    'keyword' => $solution[0]->lang[0]->meta_keywords.' - Bikonnect',
+                    'description' => $solution[0]->lang[0]->meta_description.' - Bikonnect'
+                    // 'title' => 'E-Bike數據服務解決方案，電動自行車物聯網、騎乘數據平台-微程式',
+                    // 'keyword' => '自行車數據,自行車物聯網,自行車系統,自行車IoT,自行車數據騎乘,自行車數據平台,自行車系統商,自行車系統商推薦,自行車數位升級,自行車科技升級,自行車數據服務,電動自行車數據,電動自行車物聯網,電動自行車系統,電動自行車IoT,電動自行車數據騎乘,電動自行車數據平台,電動自行車系統商,電動自行車系統商推薦,電動自行車數位升級,電動自行車科技升級,電動自行車數據服務,E-Bike 數據服務解決方案',
+                    // 'description' => '微程式提供的E-Bike 數據服務解決方案，結合電動自行車車錶、App、門店管理系統及騎乘數據平台，提升 E-Bike 車友體驗與自行車品牌服務價值。'
                 )
             );
 
             $data = array(
                 'seoList' => $seoList,
-                'videoList' => $videoList,
-                'contentList' => $contentList,
+                'solution' => $solution[0],
                 'aspectList' => $aspectList,
                 'productList' => $productList,
+                'solutionList' => $solutionList,
                 'contact' => $contact,
-                'title' => $title,
-                'service' => $service,
                 'applicationList' => $applicationList
             );
             return view('frontend.solution',$data);
@@ -279,6 +295,11 @@ class MainController extends Controller
             $product = ProductModel::with(['lang' => function($query){
                 $query->where('langId','=',$this->langList[0]->langId);
             }])->where('url',$url)->get();
+
+            //解決方案列表
+            $solutionList = SolutionModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
 
             //聯絡我們
             $contact = ContactModel::with(['contactlang' => function($query){
@@ -302,6 +323,7 @@ class MainController extends Controller
             $data = array(
                 'seoList' => $seoList,            
                 'productList' => $productList,
+                'solutionList' => $solutionList,
                 'product' => $product[0],
                 'productId' => $product[0]->Id,
                 'contact' => $contact            
@@ -320,6 +342,11 @@ class MainController extends Controller
             $privacy = PrivacyModel::with(['privacylang' => function($query){
                 $query->where('langId','=',$this->langList[0]->langId);
             }])->find(1);
+
+            //解決方案列表
+            $solutionList = SolutionModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
 
             //產品列表
             $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
@@ -343,7 +370,8 @@ class MainController extends Controller
             $data = array(
                 'privacy' => $privacy,
                 'seoList' => $seoList,
-                'productList' => $productList            
+                'productList' => $productList,
+                'solutionList' => $solutionList
             );
 
             return view('frontend.privacy',$data);
@@ -361,6 +389,11 @@ class MainController extends Controller
                 $query->where('langId','=',$this->langList[0]->langId);
             }])->find(1);
         
+            //解決方案列表
+            $solutionList = SolutionModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
+
             //產品列表
             $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
                 $query->where('langId','=',$this->langList[0]->langId);
@@ -383,6 +416,7 @@ class MainController extends Controller
             $data = array(
                 'term' => $term,
                 'seoList' => $seoList,
+                'solutionList' => $solutionList,
                 'productList' => $productList            
             );
 
@@ -447,6 +481,11 @@ class MainController extends Controller
                 $query->where('langId', $this->langList[0]->langId);
             }])->where('is_enable', 1)->where('is_top', 1)->orderby('order', 'asc')->get();
 
+            //解決方案列表
+            $solutionList = SolutionModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
+
             //產品列表
             $productList = ProductModel::where('is_enable', 1)->orderby('order', 'asc')->with(['lang' => function($query){
                 $query->where('langId', '=', $this->langList[0]->langId);
@@ -476,6 +515,7 @@ class MainController extends Controller
                 'blogCategoryList' => $blogCategoryList,
                 'blogList' => $blogList,
                 'topList' => $topList,
+                'solutionList' => $solutionList,
                 'productList' => $productList,
                 'page' => $page,
                 'totalpage' => $totalpage,
@@ -504,6 +544,11 @@ class MainController extends Controller
             }])->with(['bloglang' => function($query){
                 $query->where('langId',$this->langList[0]->langId);
             }])->where('is_enable',1)->where('Id','!=',$blog[0]->Id)->get();
+
+            //解決方案列表
+            $solutionList = SolutionModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
             
             if($blogList->count() > 2){
                 $related_blog = $blogList->random(2);
@@ -552,6 +597,7 @@ class MainController extends Controller
             $data = array(
                 'seoList' => $seoList,            
                 'blog' => $blog[0],
+                'solutionList' => $solutionList,
                 'page' => $page,
                 'productList' => $productList,
                 'related_blog' => $related_blog,

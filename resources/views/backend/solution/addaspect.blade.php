@@ -45,7 +45,7 @@
                         <!-- widget content -->
                         <div class="widget-body">
                             
-                            <form id="form" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('solution.aspect.add') }}"
+                            <form id="form" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('solution.aspect.add',$solutionId) }}"
                             data-bv-message="This value is not valid"
 							data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
 							data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
@@ -62,12 +62,12 @@
                                                 <div class="col-sm-9">
                                                     <label class="radio radio-inline">
                                                         <input type="radio" class="radiobox" name="category" value="0" checked>
-                                                        <span>Cyclists</span>
+                                                        <span>{{ $solution->lang[1]->aspect_title_1 }}</span>
                                                     </label>
 
                                                     <label class="radio radio-inline">
                                                         <input type="radio" class="radiobox" name="category" value="1">
-                                                        <span>Operators</span>
+                                                        <span>{{ $solution->lang[1]->aspect_title_2 }}</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -105,7 +105,7 @@
                                 <div class="form-actions">                                    
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <a class="btn btn-default" href="{{ route('solution.aspect') }}">
+                                            <a class="btn btn-default" href="{{ route('solution.aspect',$solutionId) }}">
                                                 Back
                                             </a>
                                             <button class="btn btn-primary" type="submit">

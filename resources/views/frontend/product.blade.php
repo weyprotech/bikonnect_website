@@ -7,12 +7,26 @@
     <div class="product_introduction page_block">
         <div class="block_inner proportion">
         <div class="block_content">
-            <h1 class="block_title">{{ $product->lang[0]->title_1 }}</h1>
-            <div class="text">
+            <div class="wow fadeInDown">
+                <h1 class="block_title">{{ $product->lang[0]->title_1 }}</h1>
+            </div>            
+            <div class="text wow fadeInUp">
                 <p>{!! nl2br(e($product->lang[0]->content_1)) !!}</p>
             </div>
-            @if(!empty($product->lang[0]->dm_file))
-                <a class="btn_download" href="{{ $product->lang[0]->dm_file }}" download="{{ $product->lang[0]->title_1 }}"><i class="icon_download"></i>Download</a>
+            @if($product->Id != "dcebd914-a2fc-42c6-867e-17ec4138c4c9")
+                @if(!empty($product->lang[0]->dm_file))
+                    <a class="btn_download" href="{{ $product->lang[0]->dm_file }}" download="{{ $product->lang[0]->title_1 }}"><i class="icon_download"></i>Download</a>
+                @endif
+            @else
+                <div class="btn_mobile wow fadeInUp">
+                    <a href="https://play.google.com/store/apps/details?id=tw.com.program.bikonnect" target="_blank">
+                        <img src="{{ URL::asset('frontend/images/products/product02/icon_android.png') }}">
+                    </a>
+
+                    <a href="https://apps.apple.com/tw/app/bikonnect-connect-your-bike/id1489892558" target="_blank">
+                        <img src="{{ URL::asset('frontend/images/products/product02/icon_ios.png') }}">
+                    </a>
+                </div>
             @endif
         </div>
         <div class="block_img">
@@ -25,8 +39,10 @@
         <div class="wave top"><img src="{{ URL::asset('frontend/images/product_char_wave_top.png') }}" alt=""></div>
         <div class="block_inner proportion">
         <div class="block_content">
-            <h2 class="block_subtitle">{!! nl2br(e($product->lang[0]->title_2)) !!}</h2>
-            <div class="text">
+            <div class="wow fadeInDown">
+                <h2 class="block_subtitle">{!! nl2br(e($product->lang[0]->title_2)) !!}</h2>
+            </div>
+            <div class="text wow fadeInUp">
             <p>{!! nl2br(e($product->lang[0]->content_2)) !!}</p>
             </div>
         </div>
@@ -41,8 +57,12 @@
     <div class="product_keyAdvantages page_block">
         <div class="block_inner">
         <div class="block_content">
-            <h2 class="block_subtitle">{{ $product->lang[0]->title_3 }}</h2>
-            {!!  html_entity_decode($product->lang[0]->content_3) !!}
+            <div class="wow fadeInDown">
+                <h2 class="block_subtitle">{{ $product->lang[0]->title_3 }}</h2>
+            </div>            
+            <ul class="key_list wow fadeInUp">
+                {!!  html_entity_decode($product->lang[0]->content_3) !!}
+            </ul>
         </div>
         <div class="block_img">
           <img class="size" src="{{ URL::asset('frontend/images/size_porduct_key.png') }}" alt="">

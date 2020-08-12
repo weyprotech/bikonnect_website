@@ -25,6 +25,9 @@
                         <div class="share_links">
                             <a class="facebook" href="javascript:;" target="_blank"><i class="icon_share_facebook"></i></a>
                             <a class="line" href="javascript:;" target="_blank"><i class="icon_share_line"></i></a>
+                            <a class="ig" href="javascript:;" target="_blank"><i class="icon_share_ig"></i></a>
+                            <a class="twitter" href="javascript:;" target="_blank"><i class="icon_share_twitter"></i></a>
+                            <a class="wechat" href="javascript:;" target="_blank"><i class="icon_share_wechat"></i></a>
                         </div>
                     </div>
                     <div class="detail_content">

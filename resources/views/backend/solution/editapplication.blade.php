@@ -58,7 +58,7 @@
                                                 <legend>{{ $langValue->name }}</legend>
                                                 @csrf
                                                 <input type="hidden" name="contentlangs[{{ $langValue->langId }}][langId]" value="{{ $langValue->langId }}">
-                                                <input type="hidden" name="contentlangs[{{ $langValue->langId }}][cId]" value="{{ $langValue->cId }}">
+                                                <input type="hidden" name="contentlangs[{{ $langValue->langId }}][aId]" value="{{ $langValue->aId }}">
 
                                                 <div class="form-group">
                                                     <label class="col-lg-2 control-label">圖片</label>
@@ -97,7 +97,7 @@
                                     
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <a class="btn btn-default" href="{{ route('solution.content') }}">
+                                            <a class="btn btn-default" href="{{ route('solution.application',$content->sId) }}">
                                                 Back
                                             </a>
                                             <button class="btn btn-primary" type="submit" id="save">

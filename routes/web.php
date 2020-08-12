@@ -13,7 +13,7 @@
 
 Route::get('/{locale?}', array('as' => 'main.index', 'uses' => 'Frontend\MainController@index'));
 Route::get('{locale?}/', array('as' => 'main.index', 'uses' => 'Frontend\MainController@index'));
-Route::get('/solution/{locale?}', array('as' => 'main.solution', 'uses' => 'Frontend\MainController@solution'));
+Route::get('/solution/{url}/{locale?}', array('as' => 'main.solution', 'uses' => 'Frontend\MainController@solution'));
 Route::get('/about/{locale?}', array('as' => 'main.about', 'uses' => 'Frontend\MainController@about'));
 Route::get('/product/{url}/{locale?}', array('as' => 'main.product', 'uses' => 'Frontend\MainController@product'));
 Route::get('/privacy/{locale?}', array('as' => 'main.privacy', 'uses' => 'Frontend\MainController@privacy'));
@@ -32,28 +32,21 @@ Route::group(['prefix' => 'backend'], function () {
 
     //解決方案
     Route::group(['prefix' => 'solution'], function () {
-        //主題
-        Route::match(['get', 'post'], '/title', array('as' => 'solution.title', 'uses' => 'Backend\SolutionController@title'));
-
-        //影片區
-        Route::match(['get', 'post'], '/video', array('as' => 'solution.video', 'uses' => 'Backend\SolutionController@video'));
-
-        //架構
-        Route::match(['get', 'post'], '/service', array('as' => 'solution.service', 'uses' => 'Backend\SolutionController@service'));
-
+        //新solution
+        Route::match(['get', 'post'],'/index',array('as' => 'solution.index', 'uses' => 'Backend\SolutionController@index'));
+        Route::post('/order_save',array('as' => 'solution.order_save','uses' => 'Backend\SolutionController@order_save'));
+        Route::match(['get', 'post'], '/add',array('as' => 'solution.add', 'uses' => 'Backend\SolutionController@add'));
+        Route::match(['get', 'post'], '/edit/{solutionid}',array('as' => 'solution.edit', 'uses' => 'Backend\SolutionController@edit'));
+        Route::get('/solution/delete/{solutionid}',array('as' => 'solution.delete','uses' => 'Backend\SolutionController@delete'));
+        
         //Application Range區
-        Route::match(['get', 'post'], '/application', array('as' => 'solution.application', 'uses' => 'Backend\SolutionController@application'));
+        Route::match(['get', 'post'], '/application/{solutionid}', array('as' => 'solution.application', 'uses' => 'Backend\SolutionController@application'));
         Route::match(['get', 'post'], '/application/edit/{applicationid}', array('as' => 'solution.application.edit', 'uses' => 'Backend\SolutionController@editapplication'));
         Route::post('/application/order_save', array('as' => 'solution.application.order_save', 'uses' => 'Backend\SolutionController@application_order_save'));
-
-        //圖文區
-        Route::match(['get', 'post'], '/content', array('as' => 'solution.content', 'uses' => 'Backend\SolutionController@content'));
-        Route::match(['get', 'post'], '/content/edit/{solutionid}', array('as' => 'solution.content.edit', 'uses' => 'Backend\SolutionController@editcontent'));
-        Route::post('/content/order_save', array('as' => 'solution.content.order_save', 'uses' => 'Backend\SolutionController@content_order_save'));
-
+        
         //特點維護
-        Route::match(['get', 'post'], '/aspect', array('as' => 'solution.aspect', 'uses' => 'Backend\SolutionController@aspect'));
-        Route::match(['get', 'post'], '/aspect/add', array('as' => 'solution.aspect.add', 'uses' => 'Backend\SolutionController@addaspect'));
+        Route::match(['get'], '/aspect/{solutionid}', array('as' => 'solution.aspect', 'uses' => 'Backend\SolutionController@aspect'));
+        Route::match(['get', 'post'], '/aspect/add/{solutionid}', array('as' => 'solution.aspect.add', 'uses' => 'Backend\SolutionController@addaspect'));
         Route::match(['get', 'post'], '/aspect/edit/{aspectid}', array('as' => 'solution.aspect.edit', 'uses' => 'Backend\SolutionController@editaspect'));
         Route::post('/aspect/order_save', array('as' => 'solution.aspect.order_save', 'uses' => 'Backend\SolutionController@aspect_order_save'));
         Route::get('/aspect/delete/{aId}', array('as' => 'solution.aspect.delete', 'uses' => 'Backend\SolutionController@aspect_delete'));

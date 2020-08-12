@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class SolutionApplicationModel extends Model
+class SolutionModel extends Model
 {
-    protected $table = 'tb_solution_application';
+    protected $table = 'tb_solution';
     protected $primaryKey = 'Id';
-    protected $fillable = ['is_enable','Id','sId','uuid','updated_at','created_at'];
+    protected $fillable = ['uuid','url', 'order', 'updated_at', 'created_at'];
     public $incrementing = false;
 
     public $rules = array(
@@ -20,6 +20,6 @@ class SolutionApplicationModel extends Model
     );
 
     public function lang(){
-        return $this->hasMany(SolutionApplicationLangModel::class,'aId','Id')->orderby('langId','asc');
+        return $this->hasMany(SolutionLangModel::class, 'solutionId', 'Id')->orderby('langId', 'asc');
     }
 }

@@ -7,6 +7,9 @@
   <meta name="KeyWords" content="{{ $seoList[app()->getLocale()]['keyword'] }}">
   <meta name="Description" content="{{ $seoList[app()->getLocale()]['description'] }}">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--wow.js-->
+  <link rel="stylesheet" href="{{ URL::asset('frontend/styles/animate.css') }}">
+  <script src="{{ URL::asset('frontend/scripts/wow.min.js') }}"></script>
 
   @include('frontend.shared._css')
   <!-- Google Tag Manager -->

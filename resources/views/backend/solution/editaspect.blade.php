@@ -63,12 +63,12 @@
                                                 <div class="col-sm-9">
                                                     <label class="radio radio-inline">
                                                         <input type="radio" class="radiobox" name="category" value="0" {{$content->category == 0 ? 'checked' : '' }}>
-                                                        <span>Cyclists</span>
+                                                        <span>{{ $solution->lang[1]->aspect_title_1 }}</span>
                                                     </label>
 
                                                     <label class="radio radio-inline">
                                                         <input type="radio" class="radiobox" name="category" value="1" {{$content->category == 1 ? 'checked' : '' }}>
-                                                        <span>Operators</span>
+                                                        <span>{{ $solution->lang[1]->aspect_title_2 }}</span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -107,7 +107,7 @@
                                     
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <a class="btn btn-default" href="{{ route('solution.aspect') }}">
+                                            <a class="btn btn-default" href="{{ route('solution.aspect',$content->sId) }}">
                                                 Back
                                             </a>
                                             <button class="btn btn-primary" type="submit">

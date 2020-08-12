@@ -9,9 +9,11 @@ use App\WebsiteLangModel;
 use App\SolutionVideoLangModel;
 use Ramsey\Uuid\Uuid;
 use DB;
+use App\SolutionModel;
+use App\SolutionLangModel;
+use Illuminate\Support\Str;
 use App\SolutionContentModel;
 use App\SolutionContentLangModel;
-use Illuminate\Support\Str;
 use App\SolutionAspectModel;
 use App\SolutionAspectLangModel;
 use App\SolutionKeyfeatureModel;
@@ -28,86 +30,330 @@ use Intervention\Image\ImageManagerStatic as Image;
 
 class SolutionController extends Controller 
 {
-    /***主題維護***/
-    public function title(Request $request) 
-    {
-        $title = SolutionTitleModel::with('lang')->find(1);
-        $web_langList = WebsiteLangModel::where('is_enable',1)->get();
-        if($request->isMethod('post')){    
-            if($request->uuid == $title->uuid){
-                $title->uuid = Uuid::uuid1();
-                $title->save();
-                foreach ($request->titlelangs as $titleKey => $titleValue) {
-                    $title = SolutionTitleLangModel::where('langId',$titleValue['langId'])->where('tId',1)->get();
+    /*** solution ***/
+    public function index(){
+        $solutionList = SolutionModel::where('is_enable', 1)->with('lang')->orderby('order', 'asc')->get();
+        $data = array(
+            'solutionList' => $solutionList
+        );
+        return $this->set_view('backend.solution.index', $data);
+    }
+
+    /*** 新增解決方案 ****/
+    public function add(Request $request){
+        $uuid = Str::uuid();
+       
+        $solutionList = SolutionModel::limit(1)->orderby('order','desc')->get();
+        
+        if($request->isMethod('post')) {
+
+            $solution = new SolutionModel();
+            $solution->is_enable = 1;
+            $solution->Id = $uuid;
+            $solution->uuid = $uuid;
+            $solution->url = $request->url;
+            $solution->order = isset($solutionList[0]->order) ?  ($solutionList[0]->order + 1) : 1;
+
+            $solution->save();
+            
+            //application 設定
+            for($i = 1;$i < 6; $i++){
+                $applicationId = Str::uuid();
+                $application = new SolutionApplicationModel();
+                $application->is_enable = 1;
+                $application->Id = $applicationId;
+                $application->sId = $uuid;
+                $application->uuid = $uuid;
+                $application->order = $i;
+                $application->save();
+
+                $applicationlang = new SolutionApplicationLangModel();
+                $applicationlang->Id = Str::uuid();
+                $applicationlang->aId = $applicationId;
+                $applicationlang->langId = 1;
+                $applicationlang->save();
+
+                $applicationlang = new SolutionApplicationLangModel();
+                $applicationlang->Id = Str::uuid();
+                $applicationlang->aId = $applicationId;
+                $applicationlang->langId = 3;
+                $applicationlang->save();
+            }
+            
+
+            foreach ($request->contentlangs as $langKey => $langValue) {
+                $lang = new solutionLangModel();
+                $lang->Id = Str::uuid();
+                $lang->solutionId = $uuid;                
+                $lang->langId = $langValue['langId'];
+                $lang->title = $langValue['title'];
+                $lang->meta_title = $langValue['meta_title'];
+                $lang->meta_description = $langValue['meta_description'];
+                $lang->meta_keywords = $langValue['meta_keywords'];
+
+                $langValue['dm_file'] = $this->upload_dm($request,'contentlangs.'.$langValue['langId'].'.dm_file',1,false,'dm_file');
+                //圖文區圖片-1
+                if ($request->hasFile('contentlangs.'.$langValue['langId'].'.content_img_1')) {
+                    if($request->file('contentlangs.'.$langValue['langId'].'.content_img_1')->isValid()){
+                        $destinationPath = base_path() . '/public/uploads/solution/'.$uuid;
+                        // getting image extension
+                        $extension = $request->file('contentlangs.'.$langValue['langId'].'.content_img_1')->getClientOriginalExtension();
+                        
+                        // uuid renameing image
+                        $fileName = Str::uuid() . '_solution_.' . $extension;
                     
-                    $dm_file = $this->upload_dm($request,'titlelangs.'.$titleValue['langId'].'.dm_file',1,$title,'dm_file');
-
-                    DB::table('tb_solution_title_lang')
-                    ->where('langId',$titleValue['langId'])
-                    ->update(array('langId' => $titleValue['langId'], 'title' => $titleValue['title'],'down_title' => $titleValue['down_title'],'dm_file' => $dm_file));
+                        // move file to dest
+                        $request->file('contentlangs.'.$langValue['langId'].'.content_img_1')->move($destinationPath, $fileName);
+                        // save data
+                        $langValue['content_img_1'] = '/uploads/solution/'.$uuid.'/'.$fileName;                             
+                    }
+                }else{
+                    $langValue['content_img_1'] = "";
                 }
+
+                //圖文區圖片-2
+                if ($request->hasFile('contentlangs.'.$langValue['langId'].'.content_img_2')) {
+                    if($request->file('contentlangs.'.$langValue['langId'].'.content_img_2')->isValid()){
+                        $destinationPath = base_path() . '/public/uploads/solution/'.$uuid;
+                        // getting image extension
+                        $extension = $request->file('contentlangs.'.$langValue['langId'].'.content_img_2')->getClientOriginalExtension();
+                        
+                        // uuid renameing image
+                        $fileName = Str::uuid() . '_solution_.' . $extension;
+                    
+                        // move file to dest
+                        $request->file('contentlangs.'.$langValue['langId'].'.content_img_2')->move($destinationPath, $fileName);
+                        // save data
+                        $langValue['content_img_2'] = '/uploads/solution/'.$uuid.'/'.$fileName;                             
+                    }
+                }else{
+                    $langValue['content_img_2'] = "";
+                }
+
+                //架構圖
+                if ($request->hasFile('contentlangs.'.$langValue['langId'].'.service_img')) {
+                    if($request->file('contentlangs.'.$langValue['langId'].'.service_img')->isValid()){
+                        $destinationPath = base_path() . '/public/uploads/solution/'.$uuid;
+                        // getting image extension
+                        $extension = $request->file('contentlangs.'.$langValue['langId'].'.service_img')->getClientOriginalExtension();
+                        
+                        // uuid renameing image
+                        $fileName = Str::uuid() . '_solution_.' . $extension;
+                    
+                        // move file to dest
+                        $request->file('contentlangs.'.$langValue['langId'].'.service_img')->move($destinationPath, $fileName);
+                        // save data
+                        $langValue['service_img'] = '/uploads/solution/'.$uuid.'/'.$fileName;                             
+                    }
+                }else{
+                    $langValue['service_img'] = "";
+                }
+                $lang->dm_file = $langValue['dm_file'];
+                $lang->video_youtube = $langValue['video_youtube'];
+                $lang->video_content = $langValue['video_content'];
+                $lang->content_title_1 = $langValue['content_title_1'];
+                $lang->content_img_1 = $langValue['content_img_1'];
+                $lang->content_content_1 = html_entity_decode($langValue['content_content_1']);
+                $lang->content_title_2 = $langValue['content_title_2'];
+                $lang->content_img_2 = $langValue['content_img_2'];
+                $lang->content_content_2 = html_entity_decode($langValue['content_content_2']);
+                $lang->service_title = $langValue['service_title'];
+                $lang->service_img = $langValue['service_img'];
+                $lang->aspect_title_1 = $langValue['aspect_title_1'];
+                $lang->aspect_title_2 = $langValue['aspect_title_2'];
                 
-                return redirect('backend/solution/title');
+                $lang->save();
+            }
+            return redirect('backend/solution/index');
+        }
+        return $this->set_view('backend.solution.add');
+    }
+
+    //更新解決方案
+    public function edit($solutionId,Request $request){
+        $solution = SolutionModel::with('lang')->find($solutionId);
+        $web_langList = websiteLangModel::where('is_enable',1)->get();
+        if($request->isMethod('post')){
+            if($request->uuid == $request->uuid){
+                $solution->uuid = Uuid::uuid1();
+                $solution->url = $request->url;
+                $solution->save();
+
+                foreach ($request->contentlangs as $contentKey => $contentValue) {       
+                    $content = SolutionLangModel::where('langId',$contentValue['langId'])->where('solutionId',$solutionId)->get();
+                    //dm
+                    $contentValue['dm_file'] = $this->upload_dm($request,'contentlangs.'.$contentValue['langId'].'.dm_file',1,$content,'dm_file');
+                    //圖文區圖片-1
+                    if ($request->hasFile('contentlangs.'.$contentValue['langId'].'.content_img_1')) {
+                        if($request->file('contentlangs.'.$contentValue['langId'].'.content_img_1')->isValid()){
+                            $destinationPath = base_path() . '/public/uploads/solution/'.$solutionId;
+                            // getting image extension
+                            $extension = $request->file('contentlangs.'.$contentValue['langId'].'.content_img_1')->getClientOriginalExtension();
+                            
+                            // uuid renameing image
+                            $fileName = Str::uuid() . '_solution_.' . $extension;
+                        
+                            // move file to dest
+                            $request->file('contentlangs.'.$contentValue['langId'].'.content_img_1')->move($destinationPath, $fileName);
+                            // save data
+                            $contentValue['content_img_1'] = '/uploads/solution/'.$solutionId.'/'.$fileName;                             
+                        }
+                    }else{
+                        $contentValue['content_img_1'] = $content[0]->content_img_1;
+                    }
+    
+                    //圖文區圖片-2
+                    if ($request->hasFile('contentlangs.'.$contentValue['langId'].'.content_img_2')) {
+                        if($request->file('contentlangs.'.$contentValue['langId'].'.content_img_2')->isValid()){
+                            $destinationPath = base_path() . '/public/uploads/solution/'.$solutionId;
+                            // getting image extension
+                            $extension = $request->file('contentlangs.'.$contentValue['langId'].'.content_img_2')->getClientOriginalExtension();
+                            
+                            // uuid renameing image
+                            $fileName = Str::uuid() . '_solution_.' . $extension;
+                        
+                            // move file to dest
+                            $request->file('contentlangs.'.$contentValue['langId'].'.content_img_2')->move($destinationPath, $fileName);
+                            // save data
+                            $contentValue['content_img_2'] = '/uploads/solution/'.$solutionId.'/'.$fileName;                             
+                        }
+                    }else{
+                        $contentValue['content_img_2'] = $content[0]->content_img_2;
+                    }
+
+                    //架構圖
+                    if ($request->hasFile('contentlangs.'.$contentValue['langId'].'.service_img')) {
+                        if($request->file('contentlangs.'.$contentValue['langId'].'.service_img')->isValid()){
+                            $destinationPath = base_path() . '/public/uploads/solution/'.$solutionId;
+                            // getting image extension
+                            $extension = $request->file('contentlangs.'.$contentValue['langId'].'.service_img')->getClientOriginalExtension();
+                            
+                            // uuid renameing image
+                            $fileName = Str::uuid() . '_solution_.' . $extension;
+                        
+                            // move file to dest
+                            $request->file('contentlangs.'.$contentValue['langId'].'.service_img')->move($destinationPath, $fileName);
+                            // save data
+                            $contentValue['service_img'] = '/uploads/solution/'.$solutionId.'/'.$fileName;                             
+                        }
+                    }else{
+                        $contentValue['service_img'] = $content[0]->service_img;
+                    }
+
+                    DB::table('tb_solution_lang')
+                    ->where('solutionId',$solutionId)
+                    ->where('langId',$contentValue['langId'])
+                    ->update(
+                        array('langId' => $contentValue['langId'],
+                            'title' => $contentValue['title'],
+                            'dm_file' => $contentValue['dm_file'],
+                            'meta_title' => $contentValue['meta_title'],
+                            'meta_description' => $contentValue['meta_description'],
+                            'meta_keywords' => $contentValue['meta_keywords'],
+                            'video_youtube'=> html_entity_decode($contentValue['video_youtube']),
+                            'video_content' => $contentValue['video_content'],
+                            'content_title_1' => $contentValue['content_title_1'],
+                            'content_img_1' => $contentValue['content_img_1'],
+                            'content_content_1' => html_entity_decode($contentValue['content_content_1']),
+                            'content_title_2' => $contentValue['content_title_2'],
+                            'content_img_2' => $contentValue['content_img_2'],
+                            'content_content_2' => html_entity_decode($contentValue['content_content_2']),
+                            'service_title' => $contentValue['service_title'],
+                            'service_img' => $contentValue['service_img'],
+                            'aspect_title_1' => $contentValue['aspect_title_1'],
+                            'aspect_title_2' => $contentValue['aspect_title_2']
+                        ));
+                }
+                return redirect('backend/solution/index');
             }
         }
-
-        //讀出主題的語系資料
-        foreach ($title->lang as $titleKey => $titleValue) {
+        
+        //讀出圖文的語系資料
+        foreach ($solution->lang as $contentKey => $contentValue) {
             foreach ($web_langList as $langKey => $langValue) {
-                if($titleValue->langId == $langValue->langId){
-                    $langdata[$langValue->langId] = $titleValue;
+                if($contentValue->langId == $langValue->langId){
+                    $langdata[$langValue->langId] = $contentValue;
                 }
             }
         }
 
         $data = array(
-            'title' => $title,
+            'solution' => $solution,
             'langdata' => $langdata
         );
-
-        return $this->set_view('backend.solution.title',$data);
+        return $this->set_view('backend.solution.edit',$data);
     }
 
-    /***影片區維護***/
-    public function video(Request $request) 
-    {
-        $video = SolutionVideoModel::with('lang')->find(1);
-        $web_langList = WebsiteLangModel::where('is_enable',1)->get();
-        if($request->isMethod('post')){       
-            if($request->uuid == $video->uuid){
-                $video->uuid = Uuid::uuid1();
-                $video->save();
-                foreach ($request->videolangs as $videoKey => $videoValue) {
-                    $video = SolutionVideoLangModel::where('langId',$videoValue['langId'])->where('vId',1)->get();                                   
-                    DB::table('tb_solution_video_lang')
-                    ->where('langId',$videoValue['langId'])
-                    ->update(array('langId' => $videoValue['langId'], 'youtube' => $videoValue['youtube'], 'content'=> $videoValue['content']));
-                }
-               
-                return redirect('backend/solution/video');                  
-            }
+    //刪除解決方案
+    public function delete($solutionId){
+        $solution = SolutionModel::with('lang')->find($solutionId);
+        $solution->is_enable = 0;
+        
+        //刪除圖檔
+        if(file_exists(base_path() . '/public/'.$solution->lang[0]->dm_file)){
+            @chmod(base_path() . '/public/'.$solution->lang[0]->dm_file, 0777);
+            @unlink(base_path() . '/public/'.$solution->lang[0]->dm_file);
         }
 
-        //讀出影音的語系資料
-        foreach ($video->lang as $videoKey => $videoValue) {
-            foreach ($web_langList as $langKey => $langValue) {
-                if($videoValue->langId == $langValue->langId){
-                    $langdata[$langValue->langId] = $videoValue;
-                }
-            }
+        if(file_exists(base_path() . '/public/'.$solution->lang[0]->content_img_1)){
+            @chmod(base_path() . '/public/'.$solution->lang[0]->content_img_1, 0777);
+            @unlink(base_path() . '/public/'.$solution->lang[0]->content_img_1);
         }
-        $data = array(
-            'video' => $video,
-            'langdata' => $langdata
-        );
+    
+        if(file_exists(base_path() . '/public/'.$solution->lang[0]->content_img_2)){
+            @chmod(base_path() . '/public/'.$solution->lang[0]->content_img_2, 0777);
+            @unlink(base_path() . '/public/'.$solution->lang[0]->content_img_2);
+        }
 
-        return $this->set_view('backend.solution.video',$data);
+        if(file_exists(base_path() . '/public/'.$solution->lang[0]->service_img)){
+            @chmod(base_path() . '/public/'.$solution->lang[0]->service_img, 0777);
+            @unlink(base_path() . '/public/'.$solution->lang[0]->service_img);
+        }
+
+        if(file_exists(base_path() . '/public/'.$solution->lang[1]->dm_file)){
+            @chmod(base_path() . '/public/'.$solution->lang[1]->dm_file, 0777);
+            @unlink(base_path() . '/public/'.$solution->lang[1]->dm_file);
+        }
+
+        if(file_exists(base_path() . '/public/'.$solution->lang[1]->content_img_1)){
+            @chmod(base_path() . '/public/'.$solution->lang[1]->content_img_1, 0777);
+            @unlink(base_path() . '/public/'.$solution->lang[1]->content_img_1);
+        }
+    
+        if(file_exists(base_path() . '/public/'.$solution->lang[1]->content_img_2)){
+            @chmod(base_path() . '/public/'.$solution->lang[1]->content_img_2, 0777);
+            @unlink(base_path() . '/public/'.$solution->lang[1]->content_img_2);
+        }
+
+        if(file_exists(base_path() . '/public/'.$solution->lang[1]->service_img)){
+            @chmod(base_path() . '/public/'.$solution->lang[1]->service_img, 0777);
+            @unlink(base_path() . '/public/'.$solution->lang[1]->service_img);
+        }
+        @rmdir(base_path() . '/public/uploads/solution/'.$solution->Id);
+        $solution->save();
+        return redirect('backend/solution/index');   
     }
+
+
+    public function order_save(Request $request){
+        if($order = $request->order){
+            foreach ($order as $orderKey => $orderValue) {
+                $content = SolutionModel::find($orderValue['sId']);
+                $content->order = $orderValue['order'];
+                $content->save();
+            }
+        }
+        return redirect('backend/solution/index');
+    }
+
 
     /***Application Range***/
-    public function application() 
+    public function application($solutionId) 
     {
-        $contentList = SolutionApplicationModel::with('lang')->where('is_enable',1)->orderby('order','asc')->get();
+        $contentList = SolutionApplicationModel::with('lang')->where('is_enable',1)->where('sId',$solutionId)->orderby('order','asc')->get();
+        foreach ($contentList as $contentKey => $contentValue){
+            $contentValue->lang = SolutionApplicationLangModel::where('aId',$contentValue->Id)->get();
+        }
         $data = array(
             'contentList' => $contentList
         );
@@ -117,17 +363,20 @@ class SolutionController extends Controller
     public function editapplication($applicationId,Request $request) 
     {
         $content = SolutionApplicationModel::with('lang')->find($applicationId);
+        $content->lang = SolutionApplicationLangModel::where('aId',$applicationId)->get();
+        $solutionId = $content->sId;
         $web_langList = WebsiteLangModel::where('is_enable',1)->get();
 
         if($request->isMethod('post')){
             if($request->uuid == $content->uuid){
                 $content->uuid = Uuid::uuid1();
+                unset($content->lang);
                 $content->save();
 
                 foreach ($request->contentlangs as $contentKey => $contentValue) {                    
                     $content = SolutionApplicationLangModel::where('langId',$contentValue['langId'])->where('aId',$applicationId)->get();
                     
-                    // //上傳圖檔
+                    //上傳圖檔
                     if ($request->hasFile('contentlangs.'.$contentValue['langId'].'.img')) {
                         
                         if($request->file('contentlangs.'.$contentValue['langId'].'.img')->isValid()){
@@ -163,7 +412,7 @@ class SolutionController extends Controller
                     ->where('langId',$contentValue['langId'])
                     ->update(array('langId' => $contentValue['langId'], 'content'=> html_entity_decode($contentValue['content']),'img' => $contentValue['img']));
                 }
-                return redirect('backend/solution/application');                  
+                return redirect()->route("solution.application",['solutionid' => $solutionId]);            
             }
         }
         //讀出圖文的語系資料
@@ -173,7 +422,9 @@ class SolutionController extends Controller
                     $langdata[$langValue->langId] = $contentValue;
                 }
             }
-        }
+        }            
+    
+        
 
         $data = array(
             'content' => $content,
@@ -190,174 +441,45 @@ class SolutionController extends Controller
                 $content->save();
             }
         }
-        return redirect('backend/solution/application');
+        dd(123);
+        return redirect()->route("solution.application",['solutionid' => $content->sId]);        
     }
 
-    /***圖文區維護***/
-    public function content() 
-    {
-        $contentList = SolutionContentModel::with('lang')->where('is_enable',1)->orderby('order','asc')->get();
-        $data = array(
-            'contentList' => $contentList
-        );
-        return view('backend.solution.content',$data);
-    }
-
-    public function editcontent($contentId,Request $request) 
-    {
-        $content = SolutionContentModel::with('lang')->find($contentId);
-        $web_langList = WebsiteLangModel::where('is_enable',1)->get();
-
-        if($request->isMethod('post')){
-            if($request->uuid == $content->uuid){
-                $content->uuid = Uuid::uuid1();
-                $content->save();
-
-                foreach ($request->contentlangs as $contentKey => $contentValue) {                    
-                    $content = SolutionContentLangModel::where('langId',$contentValue['langId'])->where('cId',$contentId)->get();
-                    
-                    // //上傳圖檔
-                    if ($request->hasFile('contentlangs.'.$contentValue['langId'].'.img')) {
-                        
-                        if($request->file('contentlangs.'.$contentValue['langId'].'.img')->isValid()){
-                            if(file_exists(base_path() . '/public/'.$content[0]->img)){
-                                @chmod(base_path() . '/public/'.$content[0]->img, 0777);
-                                @unlink(base_path() . '/public/'.$content[0]->img);
-                            }
-                            $destinationPath = base_path() . '/public/uploads/solution/'.$contentId;
-                            // getting image extension
-                            $extension = $request->file('contentlangs.'.$contentValue['langId'].'.img')->getClientOriginalExtension();
-                            
-                            // uuid renameing image
-                            $fileName = Str::uuid() . '_group_.' . $extension;
-                        
-                            // move file to dest
-                            $request->file('contentlangs.'.$contentValue['langId'].'.img')->move($destinationPath, $fileName);
-                            // save data
-                            $contentValue['img'] = '/uploads/solution/'.$contentId.'/'.$fileName;                             
-                        }
-                    }else{
-                        $contentValue['img'] = $content[0]->img;
-                    }
-                    DB::table('tb_solution_content_lang')
-                    ->where('cId',$contentId)
-                    ->where('langId',$contentValue['langId'])
-                    ->update(array('langId' => $contentValue['langId'], 'title' => $contentValue['title'], 'content'=> html_entity_decode($contentValue['content']),'img' => $contentValue['img']));
-                }
-                return redirect('backend/solution/content');                  
-            }
-        }
-        //讀出圖文的語系資料
-        foreach ($content->lang as $contentKey => $contentValue) {
-            foreach ($web_langList as $langKey => $langValue) {
-                if($contentValue->langId == $langValue->langId){
-                    $langdata[$langValue->langId] = $contentValue;
-                }
-            }
-        }
-
-        $data = array(
-            'content' => $content,
-            'langdata' => $langdata
-        );
-        return $this->set_view('backend.solution.editcontent',$data);
-    }
-
-    public function content_order_save(Request $request){
-        if($order = $request->order){
-            foreach ($order as $orderKey => $orderValue) {
-                $content = SolutionContentModel::find($orderValue['cId']);
-                $content->order = $orderValue['order'];
-                $content->save();
-            }
-        }
-        return redirect('backend/solution/content');
-    }
-
-    /***服務架構維護***/
-    public function service(Request $request) 
-    {
-        $service = SolutionServiceModel::with('lang')->find(1);
-        $web_langList = WebsiteLangModel::where('is_enable',1)->get();
-        if($request->isMethod('post')){       
-            if($request->uuid == $service->uuid){
-                $service->uuid = Uuid::uuid1();
-                $service->save();
-                foreach ($request->servicelangs as $serviceKey => $serviceValue) {
-                    $service = SolutionServiceLangModel::where('langId',$serviceValue['langId'])->where('sId',1)->get();
-                    $img = $service[0]->img;
-                    //上傳圖檔
-                    if ($request->hasFile('servicelangs.'.$serviceValue['langId'].'.img')) {                                        
-                        if($request->file('servicelangs.'.$serviceValue['langId'].'.img')->isValid()){
-                            if(@file_exists(base_path() . '/public/'.@$service[0]->img)){
-                                @chmod(base_path() . '/public/'.@$service[0]->img, 0777);
-                                @unlink(base_path() . '/public/'.@$service[0]->img);
-                            }
-
-                            $destinationPath = base_path() . '/public/uploads/service';
-
-                            // getting image extension
-                            $extension = $request->file('servicelangs.'.$serviceValue['langId'].'.img')->getClientOriginalExtension();
-                            
-                            if (!file_exists($destinationPath)) { //Verify if the directory exists
-                                mkdir($destinationPath, 0777, true); //create it if do not exists
-                            }
-                            
-                            // uuid renameing image
-                            $fileName = Str::uuid() . '.' .$extension;
-            
-                            Image::make($request->file('servicelangs.'.$serviceValue['langId'].'.img'))->resize('1110',null,function($constraint){
-                                $constraint->aspectRatio();
-                            })->save($destinationPath.'/thumb_'.$fileName);
-                            $img = '/uploads/service/thumb_'.$fileName;
-                        }
-                    }
-
-                    DB::table('tb_solution_service_lang')
-                    ->where('langId',$serviceValue['langId'])
-                    ->update(array('langId' => $serviceValue['langId'], 'title' => $serviceValue['title'],'img' => $img));
-                }
-                
-                return redirect('backend/solution/service');                  
-            }
-        }
-
-        //讀出主題的語系資料
-        foreach ($service->lang as $serviceKey => $serviceValue) {
-            foreach ($web_langList as $langKey => $langValue) {
-                if($serviceValue->langId == $langValue->langId){
-                    $langdata[$langValue->langId] = $serviceValue;
-                }
-            }
-        }
-
-        $data = array(
-            'service' => $service,
-            'langdata' => $langdata
-        );
-
-        return $this->set_view('backend.solution.service',$data);
-    }
 
     /**** 特點維護 ****/
-    public function aspect() 
+    public function aspect($solutionId) 
     {
-        $aspectList = SolutionAspectModel::where('is_enable',1)->with('lang')->orderby('order','asc')->get();
-        // $lang = SolutionAspectLangModel::where('aId',$aspectList[0]->Id)->get();
+        $solution = SolutionModel::with('lang')->find($solutionId);
+        $aspectList = SolutionAspectModel::where('is_enable',1)->where('sId',$solutionId)->with('lang')->orderby('order','asc')->get();
+        foreach ($aspectList as $contentKey => $contentValue){
+            $contentValue->lang = SolutionAspectLangModel::where('aId',$contentValue->Id)->get();
+        }
+        $solutionlang = solutionLangModel::where('solutionId',$solutionId)->where('langId',3)->get();
+
+        $aspect_title = array(
+            '0' => $solutionlang[0]->aspect_title_1,
+            '1' => $solutionlang[0]->aspect_title_2
+        );
+
         $data = array(
-            'aspectList' => $aspectList
+            'aspectList' => $aspectList,
+            'solutionId' => $solutionId,
+            'aspect_title' => $aspect_title
         );
         return view('backend.solution.aspect',$data);
     }
 
-    public function addaspect(Request $request)
+
+    public function addaspect($solutionId,Request $request)
     {
+        $solution = SolutionModel::with('lang')->find($solutionId);
         $aspectList = SolutionAspectModel::limit(1)->orderby('order','desc')->get();
         if($request->isMethod('post')){
             $uuid = Uuid::uuid1();
             $aspect = new SolutionAspectModel();
             $aspect->is_enable = 1;
             $aspect->id = $uuid;
+            $aspect->sId = $solutionId;
             $aspect->uuid = $uuid;
             $aspect->category = $request->category;
             $aspect->order = $aspectList[0]->order+1;
@@ -370,19 +492,27 @@ class SolutionController extends Controller
                 $lang->content = $langValue['content'];
                 $lang->save();
             }
-            return redirect('backend/solution/aspect');            
+            return redirect()->route("solution.aspect",['solutionid' => $solutionId]);
         }
-
-        return $this->set_view('backend.solution.addaspect');
+        $data = array(
+            'solution' => $solution,
+            'solutionId' => $solutionId
+        );
+        return $this->set_view('backend.solution.addaspect',$data);
     }
 
     public function editaspect($aspectid,Request $request) 
     {
         $content = SolutionAspectModel::with('lang')->find($aspectid);
+        $content->lang = SolutionAspectLangModel::where('aId',$aspectid)->get();
+
+        $solution = SolutionModel::with('lang')->find($content->sId);
+        $solutionId = $content->sId;
         $web_langList = WebsiteLangModel::where('is_enable',1)->get();
 
         if($request->isMethod('post')){
             if($request->uuid == $content->uuid){
+                unset($content->lang);
                 $content->uuid = Uuid::uuid1();
                 $content->category = $request->category;
                 $content->save();
@@ -394,7 +524,7 @@ class SolutionController extends Controller
                     ->where('langId',$contentValue['langId'])
                     ->update(array('langId' => $contentValue['langId'], 'title' => $contentValue['title'], 'content'=> $contentValue['content']));
                 }
-                return redirect('backend/solution/aspect');                  
+                return redirect()->route("solution.aspect",['solutionid' => $solutionId]);
             }
         }
         //讀出特點的語系資料
@@ -407,6 +537,7 @@ class SolutionController extends Controller
         }
 
         $data = array(
+            'solution' => $solution,
             'content' => $content,
             'langdata' => $langdata
         );
@@ -421,7 +552,7 @@ class SolutionController extends Controller
                 $aspect->save();
             }
         }
-        return redirect('backend/solution/aspect');
+        return redirect()->route("solution.aspect",['solutionid' => $aspect->sId]);       
     }
 
 
@@ -429,7 +560,7 @@ class SolutionController extends Controller
         $aspect = SolutionAspectModel::find($aId);
         $aspect->is_enable = 0;
         $aspect->save();
-        return redirect('backend/solution/aspect');        
+        return redirect()->route("solution.aspect",['solutionid' => $aspect->sId]);       
     }
 
 

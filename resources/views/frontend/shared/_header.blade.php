@@ -2,7 +2,13 @@
     <div class="header_inner"><a class="header_logo" href="{{ route('main.index',app()->getLocale()) }}"><img class="retina" src="{{ URL::asset('frontend/images/logo.png') }}" alt="Bikonnect"></a>
         <nav class="header_nav">
             <ul>
-                <li><a {{ stripos($_SERVER['REQUEST_URI'], 'solution') ? 'class=current' : ''}} href="{{ route('main.solution', app()->getLocale()) }}">{{ trans('lang.solution') }}</a></li>
+                <li><a {{ stripos($_SERVER['REQUEST_URI'], 'solution') ? 'class=current' : ''}} href="javascript:;">{{ trans('lang.solution') }}</a>
+                  <ul>
+                      @foreach($solutionList as $solutionKey => $solutionValue)
+                        <li><a {{ stripos($_SERVER['REQUEST_URI'], $solutionValue->url) ? 'class=current' : ''}} href="{{ route('main.solution', [$solutionValue->url,app()->getLocale()]) }}">{{ $solutionValue->lang[0]->title }}</a></li>
+                      @endforeach
+                  </ul>
+                </li>
                 <li><a {{ stripos($_SERVER['REQUEST_URI'], 'product') ? 'class=current' : ''}} href="javascript:;">{{ trans('lang.products') }}</a>
                     <ul>
                         @foreach($productList as $productKey => $productValue)
@@ -21,6 +27,20 @@
                     <!-- <div class="item"><a class="language_option {{app()->getLocale() == 'zh-TW' ? 'active' : ''}}" href="javascript:;" data-language="zh-TW">中文</a></div> -->
                 </div>
             </div>
-        </nav><a id="btn_menu" href="javascript:;"><span></span></a>
+            <button><i class="icon_search" data-featherlight="#fl2" data-featherlight-variant="fixwidth"></i></button>
+        </nav>        
+        <!--lightbox search-->
+        <div class="lightbox" id="fl2">
+          <div class="blog_search_form">
+            <div class="row">
+              <div class="">
+                <div class="controls search_controls">
+                  <input type="search" placeholder="Search">
+                  <button><i class="icon_search"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><a id="btn_menu" href="javascript:;"><span></span></a>
     </div>
 </header>
