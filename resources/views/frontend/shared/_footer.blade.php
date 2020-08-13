@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="contact_map"><a href="{{ route('main.about', app()->getLocale()) }}">{{ trans('lang.aboutus') }}</a></div>
-          <div class="contact_map"><a href="#contact">{{ trans('lang.contact') }</a></div>
+          <div class="contact_map"><a href="#contact">{{ trans('lang.contact') }}</a></div>
           <div class="contact_map"><a href="{{ URL::route('blog.index', [1, app()->getLocale()]) }}">{{ trans('lang.blog') }}</a></div>
         </div>
       </div>
