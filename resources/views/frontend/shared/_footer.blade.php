@@ -7,10 +7,7 @@
             alt="Bikonnect"
           >
           <div class="info_list">
-            <div class="copyright">2019 ALL RIGHTS RESERVED. &nbsp;<a href="privacy_polity.html">Privacy
-                &nbsp;|
-                &nbsp;Polity</a>.
-            </div>
+            <div class="copyright">2020 ALL RIGHTS RESERVED. &nbsp;<a href="{{ route('main.privacy',app()->getLocale()) }}">Privacy Policy</a>&nbsp;| &nbsp; <a href="{{ route('main.term',app()->getLocale()) }}">TERMS AND CONDITIONS.</a></div>
           </div>
         </div>
         <div class="contact_map_right">
