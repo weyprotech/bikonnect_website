@@ -24,7 +24,7 @@
                 <div class="dropdown_head">{{app()->getLocale() == 'en' ? 'ENGLISH' : '中文'}}</div>
                 <div class="dropdown_list">
                     <div class="item"><a class="language_option {{app()->getLocale() == 'en' ? 'active' : ''}}" href="javascript:;" data-language="en">English</a></div>
-                    <!-- <div class="item"><a class="language_option {{app()->getLocale() == 'zh-TW' ? 'active' : ''}}" href="javascript:;" data-language="zh-TW">中文</a></div> -->
+                    <div class="item"><a class="language_option {{app()->getLocale() == 'zh-Tw' ? 'active' : ''}}" href="javascript:;" data-language="zh-Tw">中文</a></div>
                 </div>
             </div>
             <button><i class="icon_search" data-featherlight="#fl2" data-featherlight-variant="fixwidth"></i></button>
