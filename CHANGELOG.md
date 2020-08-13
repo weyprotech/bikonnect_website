@@ -22,9 +22,6 @@ All notable changes to this project will be documented in this file.
 
 /Controllers/Frontend/ErrorController.php
 
-3.更新語系
-
-/resources/views/frontend/shared/_header.blade.php
 
 ## 2020-08-12
 
