@@ -22,7 +22,8 @@ class ErrorController extends Controller
             $query->where('langId','=',$this->langList[0]->langId);
         }])->get();
         $data = array(
-            'productList' => $productList
+            'productList' => $productList,
+            'solutionList' => $solutionList
         );
         return view('frontend.error',$data);
     }
