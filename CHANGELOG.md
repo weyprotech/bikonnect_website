@@ -9,8 +9,11 @@ All notable changes to this project will be documented in this file.
 1.前台更新
 
 /resources/views/frontend/shared/_css.blade.php
+
 /public/frontend/images/logo_w.png
+
 /public/frontend/images/products/product02/icon_android.png
+
 /public/frontend/images/products/product02/icon_ios.png
 
 ## 2020-08-12
