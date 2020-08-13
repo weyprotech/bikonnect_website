@@ -6,8 +6,11 @@
             src="{{ URL::asset('frontend/images/logo_w.png') }}"
             alt="Bikonnect"
           >
-          <div class="info_list">
-            <div class="copyright">2020 ALL RIGHTS RESERVED. &nbsp;<a href="{{ route('main.privacy',app()->getLocale()) }}">Privacy Policy</a>&nbsp;| &nbsp; <a href="{{ route('main.term',app()->getLocale()) }}">TERMS AND CONDITIONS.</a></div>
+          <div class="info_list">           
+            <div class="copyright">2019 ALL RIGHTS RESERVED. &nbsp;<a href="{{ route('main.privacy',app()->getLocale()) }}">Privacy
+                &nbsp;|
+                &nbsp;Polity</a>.
+            </div>
           </div>
         </div>
         <div class="contact_map_right">
@@ -31,9 +34,9 @@
               </ul>
             </div>
           </div>
-          <div class="contact_map"><a href="about.html">About US</a></div>
-          <div class="contact_map"><a href="#contact">Contact</a></div>
-          <div class="contact_map"><a href="blog.html">Blog</a></div>
+          <div class="contact_map"><a href="{{ route('main.about', app()->getLocale()) }}">{{ trans('lang.aboutus') }}</a></div>
+          <div class="contact_map"><a href="#contact">{{ trans('lang.contact') }</a></div>
+          <div class="contact_map"><a href="{{ URL::route('blog.index', [1, app()->getLocale()]) }}">{{ trans('lang.blog') }}</a></div>
         </div>
       </div>
 </footer>
