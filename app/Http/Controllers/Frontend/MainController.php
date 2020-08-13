@@ -47,7 +47,7 @@ class MainController extends Controller
 {
     public function index($locale = '') 
     {
-        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
             //設定語系
             $this->set_locale(); 
 
@@ -133,7 +133,7 @@ class MainController extends Controller
 
     public function about($locale = '') 
     {
-        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
             //設定語系
             $this->set_locale();        
             
@@ -208,7 +208,7 @@ class MainController extends Controller
 
     public function solution($url,$locale = '') 
     {
-        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
             //設定語系
             $this->set_locale();        
             
@@ -284,7 +284,7 @@ class MainController extends Controller
     }
 
     public function product($url,$locale){
-        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
             //設定語系
             $this->set_locale();        
             //產品列表
@@ -334,7 +334,7 @@ class MainController extends Controller
 
     public function privacy($locale = '') 
     {
-        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
             //設定語系
             $this->set_locale();
 
@@ -380,7 +380,7 @@ class MainController extends Controller
 
     public function term($locale = '') 
     {
-        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
             //設定語系
             $this->set_locale();
 
@@ -455,7 +455,7 @@ class MainController extends Controller
     }
 
     public function blog($page, $locale = ''){
-        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
             //設定語系
             $this->set_locale();
 
@@ -528,7 +528,7 @@ class MainController extends Controller
     }
 
     public function blog_detail($url,$page,$locale = '',Request $request){
-        if($locale == 'en' || $locale == 'zh-Tw' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
             //設定語系
             $this->set_locale();
 

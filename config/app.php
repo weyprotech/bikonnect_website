@@ -86,7 +86,7 @@ return [
         'en' => [
             'name' => 'English',
         ],
-        'zh-tw' => [
+        'zh-TW' => [
             'name' => '正體中文',
         ],
         'zh-cn' => [
