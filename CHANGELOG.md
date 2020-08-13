@@ -16,12 +16,21 @@ All notable changes to this project will be documented in this file.
 
 /public/frontend/images/products/product02/icon_ios.png
 
-2更新隱私權跟錯誤畫面
+2.更新隱私權跟錯誤畫面
 
 /resources/views/frontend/shared/_footer.blade.php
 
 /Controllers/Frontend/ErrorController.php
 
+3.語系更新
+
+/Controllers/Frontend/MainController.php
+
+/config/app.php
+
+/resources/views/frontend/shared/_header.blade.php
+
+/resources/views/frontend/shared/_layout.blade.php
 
 ## 2020-08-12
 
