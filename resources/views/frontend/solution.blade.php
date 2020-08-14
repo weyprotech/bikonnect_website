@@ -72,38 +72,42 @@
         </div>
       </div>
     <div class="solution_cyclists_operators page_block">
-        <div class="block_inner">
-        <div class="content_block cyclists">
-            <h2 class="block_subtitle">{{ $solution->lang[0]->aspect_title_1 }}</h2>
-            <div class="table">
-                @if(!empty($aspectList))
-                    @foreach($aspectList as $aspectValue)  
-                        @if($aspectValue->category == 0)              
-                            <div class="tr">
-                                <div class="th">{{ $aspectValue->lang[0]->title }}</div>
-                                <div class="td">{{ $aspectValue->lang[0]->content }}</div>
-                            </div>
+        @foreach($aspeccategorytList as aspeccategorytKey => aspeccategorytValue)
+        @$i = 1;
+            <div class="block_inner">
+                <div class="content_block {{ $i % 2 == 0 ? 'operators' : 'cyclists' }}">
+                    <h2 class="block_subtitle">{{ $aspeccategorytValue->lang[0]->title }}</h2>
+                    <div class="table">
+                        @if(!empty($aspectList))
+                            @foreach($aspectList as $aspectValue)  
+                                @if($aspectValue->category == 0)              
+                                    <div class="tr">
+                                        <div class="th">{{ $aspectValue->lang[0]->title }}</div>
+                                        <div class="td">{{ $aspectValue->lang[0]->content }}</div>
+                                    </div>
+                                @endif
+                            @endforeach
                         @endif
-                    @endforeach
-                @endif
-            </div>
-        </div>
-        <div class="content_block operators">
-            <h2 class="block_subtitle">{{ $solution->lang[0]->aspect_title_2 }}</h2>
-            <div class="table">
-                @if(!empty($aspectList))
-                    @foreach($aspectList as $aspectValue)
-                        @if($aspectValue->category == 1)
-                            <div class="tr">
-                                <div class="th">{{ $aspectValue->lang[0]->title }}</div>
-                                <div class="td">{{ $aspectValue->lang[0]->content }}</div>
-                            </div>
+                    </div>
+                </div>
+                <div class="content_block ">
+                    <h2 class="block_subtitle">{{ $solution->lang[0]->aspect_title_2 }}</h2>
+                    <div class="table">
+                        @if(!empty($aspectList))
+                            @foreach($aspectList as $aspectValue)
+                                @if($aspectValue->category == 1)
+                                    <div class="tr">
+                                        <div class="th">{{ $aspectValue->lang[0]->title }}</div>
+                                        <div class="td">{{ $aspectValue->lang[0]->content }}</div>
+                                    </div>
+                                @endif
+                            @endforeach
                         @endif
-                    @endforeach
-                @endif
+                    </div>
+                </div>
             </div>
-        </div>
-        </div>
+        @$i++;
+        @endforeach
     </div>
 
     <div class="solution_keyFeatures page_block">

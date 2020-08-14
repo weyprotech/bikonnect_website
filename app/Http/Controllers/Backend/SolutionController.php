@@ -621,7 +621,6 @@ class SolutionController extends Controller
 
     public function editaspect($aspectid,Request $request) 
     {
-        dd($request);
         $content = SolutionAspectModel::with('lang')->find($aspectid);
         $content->lang = SolutionAspectLangModel::where('aId',$aspectid)->get();
 

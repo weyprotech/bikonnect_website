@@ -15,6 +15,8 @@ use App\SolutionVideoModel;
 use App\SolutionContentModel;
 use App\SolutionAspectModel;
 use App\SolutionAspectLangModel;
+use App\SolutionAspectCategoryModel;
+use App\SolutionAspectCategoryLangModel;
 use App\SolutionTitleModel;
 use App\SolutionTitleLangModel;
 use App\SolutionApplicationModel;
@@ -232,11 +234,13 @@ class MainController extends Controller
             
 
             //特點列表
+            $aspeccategorytList = SolutionAspectCategoryModel::where('sId',$solution->Id)->where('langId',$this->langList[0]->langId)->get();
             $aspectList = SolutionAspectModel::where('is_enable',1)->where('sId',$solution[0]->Id)->orderby('order','asc')->with(['lang' => function($query){
                 $query->where('langId','=',$this->langList[0]->langId);
             }])->get();
             foreach ($aspectList as $contentKey => $contentValue){
                 $contentValue->lang = SolutionAspectLangModel::where('aId',$contentValue->Id)->get();
+                $contentValue->category = SolutionAspectCategoryModel::find($contentValue->category);
             }
 
             //產品列表
@@ -277,7 +281,8 @@ class MainController extends Controller
                 'productList' => $productList,
                 'solutionList' => $solutionList,
                 'contact' => $contact,
-                'applicationList' => $applicationList
+                'applicationList' => $applicationList,
+                'aspeccategorytList' => $aspeccategorytList
             );
             return view('frontend.solution',$data);
         }
