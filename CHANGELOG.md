@@ -14,6 +14,26 @@ All notable changes to this project will be documented in this file.
 
 /Http/Controllers/Backend/SolutionController.php
 
+3.特點類別新增
+
+/resources/views/backend/solution/editaspectcategory.blade.php
+
+/resources/views/backend/solution/aspectcategory.blade.php
+
+/resources/views/backend/solution/addaspectcategory.blade.php
+
+/resources/views/backend/solution/index.blade.php
+
+/resources/views/backend/solution/editaspect.blade.php
+
+/resources/views/backend/solution/addaspect.blade.php
+
+/app/SolutionAspectCategoryModel.php
+
+/app/SolutionAspectCategoryLangModel.php
+
+/Controllers/Backend/SolutionController.php
+
 ## 2020-08-13
 
 ### Changed
