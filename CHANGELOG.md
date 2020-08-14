@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2020-08-14
+
+### Changed
+
+1.新增備註
+
+/resources/views/backend/solution/edit.blade.php
+
+2.application後台更新
+
+/Http/Controllers/Backend/SolutionController.php
+
 ## 2020-08-13
 
 ### Changed
