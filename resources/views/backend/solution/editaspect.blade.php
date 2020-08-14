@@ -63,7 +63,7 @@
                                                 <div class="col-sm-9">
                                                     @foreach($categoryList as $categoryKey => $categoryValue)
                                                         <label class="radio radio-inline">
-                                                            <input type="radio" class="radiobox" name="category" value="0" {{$categoryValue->Id == $content->category ? 'checked' : '' }}>
+                                                            <input type="radio" class="radiobox" name="category" value="{{ $categoryValue->Id }}" {{$categoryValue->Id == $content->category ? 'checked' : '' }}>
                                                             <span>{{ $categoryValue->lang[1]->title }}</span>
                                                         </label>
                                                     @endforeach                                                   

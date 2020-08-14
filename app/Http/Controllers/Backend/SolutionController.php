@@ -621,13 +621,14 @@ class SolutionController extends Controller
 
     public function editaspect($aspectid,Request $request) 
     {
+        dd($request);
         $content = SolutionAspectModel::with('lang')->find($aspectid);
         $content->lang = SolutionAspectLangModel::where('aId',$aspectid)->get();
 
         $solution = SolutionModel::with('lang')->find($content->sId);
         $solutionId = $content->sId;
         $web_langList = WebsiteLangModel::where('is_enable',1)->get();
-        $categoryList = SolutionAspectCategoryModel::where('is_enable',1)->get();
+        $categoryList = SolutionAspectCategoryModel::where('is_enable',1)->where('sId',$solutionId)->get();
         foreach ($categoryList as $categoryKey => $categoryValue){
             $categoryValue->lang = SolutionAspectCategoryLangModel::where('cId',$categoryValue->Id)->get();
         }
