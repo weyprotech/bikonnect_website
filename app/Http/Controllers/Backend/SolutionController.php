@@ -12,10 +12,10 @@ use DB;
 use App\SolutionModel;
 use App\SolutionLangModel;
 use Illuminate\Support\Str;
-use App\SolutionContentModel;
-use App\SolutionContentLangModel;
 use App\SolutionAspectModel;
 use App\SolutionAspectLangModel;
+use App\SolutionAspectCategoryModel;
+use App\SolutionAspectCategoryLangModel;
 use App\SolutionKeyfeatureModel;
 use App\SolutionKeyfeatureLangModel;
 use App\SolutionTitleModel;
@@ -364,9 +364,9 @@ class SolutionController extends Controller
     {
         $content = SolutionApplicationModel::with('lang')->find($applicationId);
         $content->lang = SolutionApplicationLangModel::where('aId',$applicationId)->get();
+
         $solutionId = $content->sId;
         $web_langList = WebsiteLangModel::where('is_enable',1)->get();
-
         if($request->isMethod('post')){
             if($request->uuid == $content->uuid){
                 $content->uuid = Uuid::uuid1();
@@ -441,9 +441,116 @@ class SolutionController extends Controller
                 $content->save();
             }
         }
-        dd(123);
         return redirect()->route("solution.application",['solutionid' => $content->sId]);        
     }
+
+    /**** 特點類別 ****/
+    public function aspect_category($solutionId) 
+    {
+        $solution = SolutionModel::with('lang')->find($solutionId);
+        $categoryList = SolutionAspectCategoryModel::where('is_enable',1)->where('sId',$solutionId)->with('lang')->orderby('order','asc')->get();
+        foreach ($categoryList as $contentKey => $contentValue){
+            $contentValue->lang = SolutionAspectCategoryLangModel::where('cId',$contentValue->Id)->get();
+        }
+
+
+        $data = array(
+            'categoryList' => $categoryList,
+            'solutionId' => $solutionId
+        );
+        return view('backend.solution.aspectcategory',$data);
+    }
+
+
+    public function addaspect_category($solutionId,Request $request)
+    {
+        $solution = SolutionModel::with('lang')->find($solutionId);
+        $categoryList = SolutionAspectCategoryModel::limit(1)->orderby('order','desc')->get();
+        if($request->isMethod('post')){
+            $uuid = Uuid::uuid1();
+            $category = new SolutionAspectCategoryModel();
+            $category->is_enable = 1;            
+            $category->sId = $solutionId;
+            $category->Id = $uuid;
+            $category->uuid = $uuid;            
+            $category->order = isset($categoryList[0]->order) ? $categoryList[0]->order+1 : 1;
+            $category->save();
+            foreach ($request->category as $langKey => $langValue) {
+                $lang = new SolutionAspectCategoryLangModel();
+                $lang->langId = $langValue['langId'];
+                $lang->cId = $uuid;
+                $lang->title = $langValue['title'];
+                $lang->save();
+            }
+            return redirect()->route("solution.aspect_category",['solutionid' => $solutionId]);
+        }
+        $data = array(
+            'solution' => $solution,
+            'solutionId' => $solutionId
+        );
+        return $this->set_view('backend.solution.addaspectcategory',$data);
+    }
+
+    public function editaspect_category($categoryid,Request $request) 
+    {
+        $content = SolutionAspectCategoryModel::with('lang')->find($categoryid);
+        $content->lang = SolutionAspectCategoryLangModel::where('cId',$categoryid)->get();
+
+        $solution = SolutionModel::with('lang')->find($content->sId);
+        $solutionId = $content->sId;
+        $web_langList = WebsiteLangModel::where('is_enable',1)->get();
+
+        if($request->isMethod('post')){
+            if($request->uuid == $content->uuid){
+                unset($content->lang);
+                $content->uuid = Uuid::uuid1();
+                $content->save();
+
+                foreach ($request->categorylangs as $contentKey => $contentValue) {
+                    $content = SolutionAspectCategoryLangModel::where('langId',$contentValue['langId'])->where('cId',$categoryid)->get();
+                    DB::table('tb_solution_aspect_category_lang')
+                    ->where('cId',$categoryid)
+                    ->where('langId',$contentValue['langId'])
+                    ->update(array('langId' => $contentValue['langId'], 'title' => $contentValue['title']));
+                }
+                return redirect()->route("solution.aspect_category",['solutionid' => $solutionId]);
+            }
+        }
+        //讀出特點的語系資料
+        foreach ($content->lang as $contentKey => $contentValue) {
+            foreach ($web_langList as $langKey => $langValue) {
+                if($contentValue->langId == $langValue->langId){
+                    $langdata[$langValue->langId] = $contentValue;
+                }
+            }
+        }
+
+        $data = array(
+            'solution' => $solution,
+            'content' => $content,
+            'langdata' => $langdata
+        );
+        return $this->set_view('backend.solution.editaspectcategory',$data);
+    }
+
+    public function aspect_category_delete($cId){
+        $category = SolutionAspectCategoryModel::find($cId);
+        $category->is_enable = 0;
+        $category->save();
+        return redirect()->route("solution.aspect_category",['solutionid' => $category->sId]);       
+    }
+
+    public function aspect_category_order_save(Request $request){
+        if($order = $request->order){
+            foreach ($order as $orderKey => $orderValue) {
+                $content = SolutionAspectCategoryModel::find($orderValue['cId']);
+                $content->order = $orderValue['order'];
+                $content->save();
+            }
+        }
+        return redirect()->route("solution.aspect_category",['solutionid' => $content->sId]);
+    }
+
 
 
     /**** 特點維護 ****/
@@ -455,11 +562,15 @@ class SolutionController extends Controller
             $contentValue->lang = SolutionAspectLangModel::where('aId',$contentValue->Id)->get();
         }
         $solutionlang = solutionLangModel::where('solutionId',$solutionId)->where('langId',3)->get();
-
-        $aspect_title = array(
-            '0' => $solutionlang[0]->aspect_title_1,
-            '1' => $solutionlang[0]->aspect_title_2
-        );
+        $categoryList = SolutionAspectCategoryModel::where('is_enable',1)->where('sId',$solutionId)->get();
+        foreach ($categoryList as $categoryKey => $categoryValue){
+            $categoryValue->lang = SolutionAspectCategoryLangModel::where('cId',$categoryValue->Id)->get();
+        }
+        $aspect_title = array();
+        foreach ($categoryList as $categoryKey => $categoryValue){
+            $aspect_title[$categoryValue->Id] = $categoryValue->lang[0]->title;
+        }
+        
 
         $data = array(
             'aspectList' => $aspectList,
@@ -474,6 +585,12 @@ class SolutionController extends Controller
     {
         $solution = SolutionModel::with('lang')->find($solutionId);
         $aspectList = SolutionAspectModel::limit(1)->orderby('order','desc')->get();
+
+        $categoryList = SolutionAspectCategoryModel::where('is_enable',1)->where('sId',$solutionId)->get();
+        foreach ($categoryList as $categoryKey => $categoryValue){
+            $categoryValue->lang = SolutionAspectCategoryLangModel::where('cId',$categoryValue->Id)->get();
+        }
+
         if($request->isMethod('post')){
             $uuid = Uuid::uuid1();
             $aspect = new SolutionAspectModel();
@@ -482,7 +599,7 @@ class SolutionController extends Controller
             $aspect->sId = $solutionId;
             $aspect->uuid = $uuid;
             $aspect->category = $request->category;
-            $aspect->order = $aspectList[0]->order+1;
+            $aspect->order = isset($aspectList[0]->order) ? $aspectList[0]->order+1 : 1;
             $aspect->save();
             foreach ($request->aspect as $langKey => $langValue) {
                 $lang = new SolutionAspectLangModel();
@@ -496,7 +613,8 @@ class SolutionController extends Controller
         }
         $data = array(
             'solution' => $solution,
-            'solutionId' => $solutionId
+            'solutionId' => $solutionId,
+            'categoryList' => $categoryList
         );
         return $this->set_view('backend.solution.addaspect',$data);
     }
@@ -509,7 +627,10 @@ class SolutionController extends Controller
         $solution = SolutionModel::with('lang')->find($content->sId);
         $solutionId = $content->sId;
         $web_langList = WebsiteLangModel::where('is_enable',1)->get();
-
+        $categoryList = SolutionAspectCategoryModel::where('is_enable',1)->get();
+        foreach ($categoryList as $categoryKey => $categoryValue){
+            $categoryValue->lang = SolutionAspectCategoryLangModel::where('cId',$categoryValue->Id);
+        }
         if($request->isMethod('post')){
             if($request->uuid == $content->uuid){
                 unset($content->lang);
@@ -539,7 +660,8 @@ class SolutionController extends Controller
         $data = array(
             'solution' => $solution,
             'content' => $content,
-            'langdata' => $langdata
+            'langdata' => $langdata,
+            'categoryList' => $categoryList
         );
         return $this->set_view('backend.solution.editaspect',$data);
     }

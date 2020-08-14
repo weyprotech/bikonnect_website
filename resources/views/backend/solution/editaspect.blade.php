@@ -61,15 +61,12 @@
                                             <div class="form-group">
                                                 <label class="col-sm-2 control-label">分類</label>
                                                 <div class="col-sm-9">
-                                                    <label class="radio radio-inline">
-                                                        <input type="radio" class="radiobox" name="category" value="0" {{$content->category == 0 ? 'checked' : '' }}>
-                                                        <span>{{ $solution->lang[1]->aspect_title_1 }}</span>
-                                                    </label>
-
-                                                    <label class="radio radio-inline">
-                                                        <input type="radio" class="radiobox" name="category" value="1" {{$content->category == 1 ? 'checked' : '' }}>
-                                                        <span>{{ $solution->lang[1]->aspect_title_2 }}</span>
-                                                    </label>
+                                                    @foreach($categoryList as $categoryKey => $categoryValue)
+                                                        <label class="radio radio-inline">
+                                                            <input type="radio" class="radiobox" name="category" value="0" {{$categoryValue->Id == $content->category ? 'checked' : '' }}>
+                                                            <span>{{ $categoryValue->lang[1]->title }}</span>
+                                                        </label>
+                                                    @endforeach                                                   
                                                 </div>
                                             </div>
                                         </fieldset>
