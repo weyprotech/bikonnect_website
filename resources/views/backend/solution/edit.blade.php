@@ -164,7 +164,7 @@
                                                             data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif"
                                                             data-bv-file-message="圖檔格式不符">
                                                         <p class="help-block">
-                                                            圖片大小：638 x 425
+                                                            圖片大小：638 x 425，檔案大小:200 KB 以內
                                                         </p>
                                                     </div>
                                                 </div>
@@ -200,7 +200,7 @@
                                                             data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif"
                                                             data-bv-file-message="圖檔格式不符">
                                                         <p class="help-block">
-                                                            圖片大小：638 x 425
+                                                            圖片大小：638 x 425，檔案大小:200 KB 以內
                                                         </p>
                                                     </div>
                                                 </div>
@@ -234,7 +234,7 @@
                                                             data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif"
                                                             data-bv-file-message="圖檔格式不符">
                                                         <p class="help-block">
-                                                            圖片大小：230 x 230
+                                                            圖片大小：230 x 230，檔案大小:200 KB 以內
                                                         </p>
                                                     </div>                                                   
                                                 </div>
