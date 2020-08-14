@@ -363,7 +363,8 @@ class SolutionController extends Controller
     public function editapplication($applicationId,Request $request) 
     {
         $content = SolutionApplicationModel::with('lang')->find($applicationId);
-        $content->lang = SolutionApplicationLangModel::where('aId',$applicationId)->get();
+        $content->lang = SolutionApplicationLangModel::get();
+        dd($content);
         $solutionId = $content->sId;
         $web_langList = WebsiteLangModel::where('is_enable',1)->get();
 
