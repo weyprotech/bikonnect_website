@@ -629,7 +629,7 @@ class SolutionController extends Controller
         $web_langList = WebsiteLangModel::where('is_enable',1)->get();
         $categoryList = SolutionAspectCategoryModel::where('is_enable',1)->get();
         foreach ($categoryList as $categoryKey => $categoryValue){
-            $categoryValue->lang = SolutionAspectCategoryLangModel::where('cId',$categoryValue->Id);
+            $categoryValue->lang = SolutionAspectCategoryLangModel::where('cId',$categoryValue->Id)->get();
         }
         if($request->isMethod('post')){
             if($request->uuid == $content->uuid){
