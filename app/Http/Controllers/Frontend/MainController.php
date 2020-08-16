@@ -234,14 +234,15 @@ class MainController extends Controller
             
 
             //特點列表
-            $aspeccategorytList = SolutionAspectCategoryModel::where('sId',$solution->Id)->where('langId',$this->langList[0]->langId)->get();
+            $aspeccategorytList = SolutionAspectCategoryModel::where('sId',$solution[0]->Id)->get();
             $aspectList = SolutionAspectModel::where('is_enable',1)->where('sId',$solution[0]->Id)->orderby('order','asc')->with(['lang' => function($query){
                 $query->where('langId','=',$this->langList[0]->langId);
             }])->get();
             foreach ($aspectList as $contentKey => $contentValue){
-                $contentValue->lang = SolutionAspectLangModel::where('aId',$contentValue->Id)->get();
+                $contentValue->lang = SolutionAspectLangModel::where('aId',$contentValue->Id)->where('langId',$this->langList[0]->langId)->get();
                 $contentValue->category = SolutionAspectCategoryModel::find($contentValue->category);
             }
+            $aaspeccategoryCount = SolutionAspectCategoryModel::where('sId',$solution[0]->Id)->count();
 
             //產品列表
             $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
@@ -282,7 +283,8 @@ class MainController extends Controller
                 'solutionList' => $solutionList,
                 'contact' => $contact,
                 'applicationList' => $applicationList,
-                'aspeccategorytList' => $aspeccategorytList
+                'aspeccategorytList' => $aspeccategorytList,
+                'aaspeccategoryCount' => $aaspeccategoryCount
             );
             return view('frontend.solution',$data);
         }
@@ -611,5 +613,34 @@ class MainController extends Controller
             );
             return view('frontend.blog_detail',$data);
         }
+    }
+
+    public function search($locale,Request $request){
+        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
+            //設定語系
+            $this->set_locale();
+            
+            //解決方案列表
+            $solutionList = SolutionModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
+
+            //產品列表
+            $productList = ProductModel::where('is_enable',1)->orderby('order','asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
+
+            //聯絡我們
+            $contact = ContactModel::with(['contactlang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->find(1);
+        }
+        $data = array(
+            'q' => $request['q'],
+            'solutionList' => $solutionList,
+            'productList' => $productList,
+            'contact' => $contact
+        );
+        return view('frontend.search',$data);
     }
 }
