@@ -6,6 +6,40 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 
+1.前台更新
+
+/Http/Controllers/Frontend/MainController.php
+
+/routes/web.php
+
+/resources/views/frontend/solution.blade.php
+
+/resources/views/frontend/shared/_header.blade.php
+
+/resources/views/frontend/search.blade.php
+
+2.後台更新
+
+/Controllers/Backend/SolutionController.php
+
+3.learn more可編輯
+
+/Http/Controllers/Backend/Homepage/LearnmoreController.php
+
+/resources/views/backend/homepage/learnmore/edit.blade.php
+
+/app/LearnmoreLangModel.php
+
+/app/LearnmoreModel.php
+
+/resources/views/backend/shared/_nav.blade.php
+
+/resources/views/frontend/index.blade.php
+
+## 2020-08-14
+
+### Changed
+
 1.新增備註
 
 /resources/views/backend/solution/edit.blade.php
