@@ -109,44 +109,73 @@ All notable changes to this project will be documented in this file.
 3.前台更新
 
 /app/SolutionApplicationLangModel.php
+
 /app/SolutionApplicationModel.php
+
 /app/SolutionAspectModel.php
+
 /app/SolutionLangModel.php
+
 /app/SolutionModel.php
 
 /app/Http/Controllers/Backend/SolutionController.php
+
 /app/Http/Controllers/Frontend/MainController.php
 
 /resources/views/backend/product/add.blade.php
+
 /resources/views/backend/shared/_nav.blade.php
+
 /resources/views/backend/solution/addaspect.blade.php
+
 /resources/views/backend/solution/application.blade.php
+
 /resources/views/backend/solution/aspect.blade.php
+
 /resources/views/backend/solution/editapplication.blade.php
+
 /resources/views/backend/solution/editaspect.blade.php
+
 /resources/views/backend/solution/add.blade.php
+
 /resources/views/backend/solution/edit.blade.php
+
 /resources/views/backend/solution/index.blade.php
 
 /resources/views/frontend/blog_detail.blade.php
+
 /resources/views/frontend/index.blade.php
+
 /resources/views/frontend/product.blade.php
+
 /resources/views/frontend/solution.blade.php
+
 /resources/views/frontend/shared/_footer.blade.php
+
 /resources/views/frontend/shared/_header.blade.php
+
 /resources/views/frontend/shared/_layout.blade.php
+
 /resources/views/frontend/shared/_script.blade.php
+
 /resources/views/frontend/shared/_sidebar.blade.php
 
 /routes/web.php
 
 /public/frontend/images/sprite.png
+
 /public/frontend/images/sprite-2x.png
+
 /public/frontend/styles/main.css
+
 /public/frontend/scripts/featherlight.js
+
 /public/frontend/scripts/jquery-1.7.0.min.js
+
 /public/frontend/scripts/wow.min.js
+
 /public/frontend/styles/animate.css
+
 /public/frontend/styles/featherlight.css
 
 ## 2020-05-21
