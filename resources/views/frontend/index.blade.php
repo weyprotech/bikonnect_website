@@ -124,7 +124,7 @@
                 <div class="text wow fadeInUp">
                 <p>{!! nl2br(e($content4->content4lang[0]->content)) !!}</p>
                 </div>
-                <a class="btn_more green wow fadeInUp" href="{{ $learnmore->learnmorelang[0]->solution_href }}">{{ $learnmore->learnmorelang[0]->solution_solution_title }}</a>
+                <a class="btn_more green wow fadeInUp" href="{{ $learnmore->learnmorelang[0]->solution_href }}">{{ $learnmore->learnmorelang[0]->solution_title }}</a>
             </div>
             <div class="block_img"><img src="{{ URL::asset('frontend/images/img_index_solutions.png') }}" alt="Smart Solutions Picture"></div>
         </div>

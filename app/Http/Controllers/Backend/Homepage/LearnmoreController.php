@@ -42,7 +42,7 @@ class LearnmoreController extends Controller
                     $lang->vision_href = $langValue['vision_href'];                   
                     $lang->save();
                 }
-                return redirect(action('Backend\Homepage\learnmoreController@edit',[$Id]));                  
+                return redirect(action('Backend\Homepage\LearnmoreController@edit',[$Id]));                  
             }
         }
 
