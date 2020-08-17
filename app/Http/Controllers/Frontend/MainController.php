@@ -32,6 +32,8 @@ use App\HomepageContent1Model;
 use App\HomepageContent2Model;
 use App\HomepageContent3Model;
 use App\HomepageContent4Model;
+use App\LearnmoreModel;
+use App\LearnmoreLangModel;
 use App\BannerModel;
 use App\SolutionKeyfeatureModel;
 use App\SolutionServiceModel;
@@ -93,6 +95,11 @@ class MainController extends Controller
                 $query->where('langId','=',$this->langList[0]->langId);            
             }])->first();
 
+            //learn more按鈕
+            $learnmore = LearnmoreModel::where('Id',1)->with(['learnmorelang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->first();
+
             //聯絡我們
             $contact = ContactModel::with(['contactlang' => function($query){
                 $query->where('langId','=',$this->langList[0]->langId);
@@ -123,6 +130,7 @@ class MainController extends Controller
                 'content2List' => $content2List,
                 'content3List' => $content3List,
                 'content4' => $content4,
+                'learnmore' => $learnmore,
                 'contact' => $contact
             );
 

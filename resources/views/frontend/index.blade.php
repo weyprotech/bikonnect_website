@@ -13,7 +13,7 @@
                     <h2>{!! nl2br(e($bannerValue->bannerlang[0]->title)) !!}</h2>
                 </div>
                 <div class="slide_content_btn">
-                    <a class="btn_more big" href="{{ route('main.solution',app()->getLocale()) }}">{{ trans('lang.learnmore') }}</a>
+                    <a class="btn_more big" href="{{ $learnmore->learnmorelang[0]->main_href }}">{{ $learnmore->learnmorelang[0]->main_title }}</a>
                 </div>            
             </div>
         @endforeach        
@@ -124,7 +124,7 @@
                 <div class="text wow fadeInUp">
                 <p>{!! nl2br(e($content4->content4lang[0]->content)) !!}</p>
                 </div>
-                <a class="btn_more green wow fadeInUp" href="{{ route('main.solution', app()->getLocale()) }}">{{ trans('lang.learnmore') }}</a>
+                <a class="btn_more green wow fadeInUp" href="{{ $learnmore->learnmorelang[0]->solution_href }}">{{ $learnmore->learnmorelang[0]->solution_solution_title }}</a>
             </div>
             <div class="block_img"><img src="{{ URL::asset('frontend/images/img_index_solutions.png') }}" alt="Smart Solutions Picture"></div>
         </div>
@@ -149,7 +149,7 @@
             <h3 class="block_subtitle wow fadeInUp">{{ trans('lang.ourvisioncontent') }}</h3>
             <div class="text">
             <!-- p Nam porttitor blandit accumsan. Ut vel dictum sem, a pretium dui.-->
-            </div><a class="btn_more wow fadeInUp" href="{{ route('main.solution',app()->getLocale()) }}">{{ trans('lang.readmore') }}</a>
+            </div><a class="btn_more wow fadeInUp" href="{{ $learnmore->learnmorelang[0]->vision_href }}">{{ $learnmore->learnmorelang[0]->vision_title }}</a>
         </div>
         </div>
     </div>

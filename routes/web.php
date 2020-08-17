@@ -162,6 +162,9 @@ Route::group(['prefix' => 'backend'], function () {
 
         //內文4
         Route::match(['get', 'post'], '/content4/edit/{content4id}', array('as' => 'content4.edit', 'uses' => 'Backend\Homepage\Content4Controller@edit'));
+
+        //Learn more
+        Route::match(['get', 'post'], '/learnmore/edit/{learnmoreid}', array('as' => 'learnmore.edit', 'uses' => 'Backend\Homepage\learnmoreController@edit'));
     });
 
     //聯絡我們

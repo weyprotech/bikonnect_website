@@ -14,6 +14,7 @@
                 <li class="{{ Request::is('backend/homepage/content2/*') ? 'active' : '' }}"><a href="{{ route('content2.index') }}">內文(2)維護</a></li>
                 <li class="{{ Request::is('backend/homepage/content3/*') ? 'active' : '' }}"><a href="{{ route('content3.index') }}">內文(3)維護</a></li>
                 <li class="{{ Request::is('backend/homepage/content4/*') ? 'active' : '' }}"><a href="{{ route('content4.edit',[1]) }}">內文(4)維護</a></li>
+                <li class="{{ Request::is('backend/homepage/learnmore/*') ? 'active' : '' }}"><a href="{{ route('learnmore.edit',[1]) }}">Learn more維護</a></li>
             </ul>
         </li>
 
