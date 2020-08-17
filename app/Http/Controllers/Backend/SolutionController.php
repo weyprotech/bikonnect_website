@@ -586,7 +586,7 @@ class SolutionController extends Controller
         $solution = SolutionModel::with('lang')->find($solutionId);
         $aspectList = SolutionAspectModel::limit(1)->orderby('order','desc')->get();
 
-        $categoryList = SolutionAspectCategoryModel::where('is_enable',1)->where('sId',$solutionId)->get();
+        $categoryList = SolutionAspectCategoryModel::where('is_enable',1)->where('sId',$solutionId)->orderby('order','asc')->get();
         foreach ($categoryList as $categoryKey => $categoryValue){
             $categoryValue->lang = SolutionAspectCategoryLangModel::where('cId',$categoryValue->Id)->get();
         }

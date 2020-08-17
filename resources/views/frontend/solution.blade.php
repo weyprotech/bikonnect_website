@@ -79,11 +79,13 @@
                 <h2 class="block_subtitle">{{ $aspeccategorytValue->lang[0]->title }}</h2>
                 <div class="table">
                     @if(!empty($aspectList))
-                        @foreach($aspectList as $aspectValue)            
-                            <div class="tr">
-                                <div class="th">{{ $aspectValue->lang[0]->title }}</div>
-                                <div class="td">{{ $aspectValue->lang[0]->content }}</div>
-                            </div>
+                        @foreach($aspectList as $aspectValue)
+                            @if($aspectValue->category == $aspeccategorytValue->Id)            
+                                <div class="tr">
+                                    <div class="th">{{ $aspectValue->lang[0]->title }}</div>
+                                    <div class="td">{{ $aspectValue->lang[0]->content }}</div>
+                                </div>
+                            @endif
                         @endforeach
                     @endif
                 </div>

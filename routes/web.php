@@ -52,6 +52,13 @@ Route::group(['prefix' => 'backend'], function () {
         Route::post('/aspect/order_save', array('as' => 'solution.aspect.order_save', 'uses' => 'Backend\SolutionController@aspect_order_save'));
         Route::get('/aspect/delete/{aId}', array('as' => 'solution.aspect.delete', 'uses' => 'Backend\SolutionController@aspect_delete'));
 
+        //特點類別
+        Route::match(['get'],'/aspect/category/{solutionid}',array('as' => 'solution.aspect_category','uses' => 'Backend\SolutionController@aspect_category'));
+        Route::match(['get','post'],'/aspect/category/add/{solutionid}',array('as' => 'solution.aspect_category.add','uses' => 'Backend\SolutionController@addaspect_category'));        
+        Route::match(['get','post'],'/aspect/category/edit/{categoryid}',array('as' => 'solution.aspect_category.edit','uses' => 'Backend\SolutionController@editaspect_category'));
+        Route::get('/aspect_category/delete/{cId}', array('as' => 'solution.aspect_category.delete', 'uses' => 'Backend\SolutionController@aspect_category_delete'));
+        Route::post('/aspect_category/order_save', array('as' => 'solution.aspect_category.order_save', 'uses' => 'Backend\SolutionController@aspect_category_order_save'));
+
         //keyfeature區
         Route::match(['get', 'post'], '/key_feature', array('as' => 'solution.key_feature', 'uses' => 'Backend\SolutionController@key_feature'));
         Route::match(['get', 'post'], '/key_feature/add', array('as' => 'solution.key_feature.add', 'uses' => 'Backend\SolutionController@addkey_feature'));
