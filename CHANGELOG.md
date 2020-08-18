@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2020-08-18
+
+### Changed
+
+1.更新搜尋頁面
+
+/Http/Controllers/Frontend/MainController.php
+
+/resources/views/frontend/search.blade.php
+
+/resources/views/frontend/shared/_header.blade.php
+
+/routes/web.php
+
+/public/frontend/styles/main.css
+
+/public/frontend/images/img_solution_service.jpg
+
+/public/frontend/images/search_images.jpg
+
 ## 2020-08-17
 
 ### Changed
