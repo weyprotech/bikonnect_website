@@ -22,7 +22,7 @@ Route::get('/blog/{page}/{locale?}', array('as' => 'blog.index', 'uses' => 'Fron
 Route::match(['get', 'post'], '/blog_detail/{url}/{page}/{locale?}', array('as' => 'blog.detail', 'uses' => 'Frontend\MainController@blog_detail'));
 Route::post('/ajax/get_blog', array('as' => 'ajax.get_blog', 'uses' => 'Frontend\AjaxController@get_blog'));
 Route::post('/send_email', array('as' => 'main.send_email', 'uses' => 'Frontend\MainController@send_email'));
-Route::get('/search/{locale?}',array('as' => 'main.search','uses' => 'Frontend\MainController@search'));
+Route::get('/search/{locale?}/{page?}',array('as' => 'main.search','uses' => 'Frontend\MainController@search'));
 
 Route::get('/error/index', array('as' => 'main.error', 'uses' => 'Frontend\ErrorController@index'));
 

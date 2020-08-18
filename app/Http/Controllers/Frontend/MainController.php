@@ -622,7 +622,7 @@ class MainController extends Controller
         }
     }
 
-    public function search($locale,Request $request){
+    public function search($locale,$page,Request $request){
         if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
             //設定語系
             $this->set_locale();
@@ -646,7 +646,8 @@ class MainController extends Controller
             'q' => $request['q'],
             'solutionList' => $solutionList,
             'productList' => $productList,
-            'contact' => $contact
+            'contact' => $contact,
+            'page' => $page
         );
         return view('frontend.search',$data);
     }

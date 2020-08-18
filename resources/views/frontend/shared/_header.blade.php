@@ -35,9 +35,8 @@
             <div class="row">
               <div class="">
                 <div class="controls search_controls">
-                  <form role="search" method="get" id="searchform1" class="search-form" action="{{ route('main.search', app()->getLocale()) }}">
-                    @csrf
-                    <input type="hidden" name="cx" value="013085341302766272419:jv_-ew83yiw"/>
+                  <form role="search" method="get" id="searchform1" class="search-form" action="{{ route('main.search', [app()->getLocale(),1]) }}">
+                    <!-- <input type="hidden" name="cx" value="cb4f830c52fc9dbfd"/> -->
                     <input type="search" name="q"  size="31" value="" class="csetext">
                     <button type="submit"><i class="icon_search"></i></button>            
                   </form>

@@ -5291,7 +5291,29 @@ nav ul {
   margin: 20px;
 }
 
+#search a {
+  color: #4a4a4a;
+}
 
+#search p {
+  vertical-align: top;
+}
+
+.search_list {
+  padding: 20px 0;
+  border-bottom: 1px solid #dadada;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.search_text {
+  vertical-align: top;
+  margin-top: 20px;
+  padding-left: 70px;
+  background: url(../images/search_images.jpg) no-repeat left;
+  background-size: 60px;
+  height: 40px;
+}
 
 @media (min-width: 1366px) {
   .index_banner_slider .slide .slide_content_btn {
