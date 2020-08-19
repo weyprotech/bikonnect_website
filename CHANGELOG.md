@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2020-08-19
+
+### Changed
+
+1.後台blog更新
+
+/resources/views/backend/blog/comment/index.blade.php
+
 ## 2020-08-18
 
 ### Changed
