@@ -34,56 +34,51 @@
                         <!-- end widget edit box -->
 
                         <!-- widget content -->
-                        <div class="widget-body">
-                            
-                            <form id="form" method="post" action="{{ route('solution.content.order_save') }}">
-                                @csrf
-                                <div class="widget-body-toolbar">
+                        <div class="widget-body">                                                        
+                            <div class="widget-body-toolbar">
 
-                                    <div class="row">
+                                <div class="row">
 
-                                        <div class="form-inline">
+                                    <div class="form-inline">
 
-                                            <div class="col-sm-10">
-                                                <a class="btn btn-success btn-labeled" type="button" href="{{ URL::route('blog.content') }}">返回部落格維護</a>
-                                            </div>
-
+                                        <div class="col-sm-10">
+                                            <a class="btn btn-success btn-labeled" type="button" href="{{ URL::route('blog.content') }}">返回部落格維護</a>
                                         </div>
-                                        
+
                                     </div>
-
+                                    
                                 </div>
 
-                                <div class="table-responsive">
+                            </div>
 
-                                    <table id="dt_basic" class="table table-striped table-bordered table-hover">
-                                        <thead>			                
-                                            <tr>
-                                                <th class="text-center" width="10%">部落格標題</th>   
-                                                <th>姓名</th>                                             
-                                                <th>評論內容</th>
-                                                <th>回應內容</th>
-                                                <th width="5%" class="text-center">回應</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @if(!empty($commentList))
-                                                @foreach($commentList as $commentKey => $commentValue)
-                                                    <tr>
-                                                        <td class="text-center">{{ $commentValue->getblog->bloglang[0]->title }}</td>
-                                                        <td>{{$commentValue->name}}</td>
-                                                        <td>{{$commentValue->message}}</td>
-                                                        <td>{{$commentValue->response}}</td>
-                                                        <td class="text-center"><a href="{{ route('blog.comment.response', $commentValue->Id) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>                                                        
-                                                    </tr>
-                                                @endforeach
-                                            @endif
-                                        </tbody>
-                                    </table>
+                            <div class="table-responsive">
 
-                                </div>
-                                
-                            </form>
+                                <table id="dt_basic" class="table table-striped table-bordered table-hover">
+                                    <thead>			                
+                                        <tr>
+                                            <th class="text-center" width="10%">部落格標題</th>   
+                                            <th>姓名</th>                                             
+                                            <th>評論內容</th>
+                                            <th>回應內容</th>
+                                            <th width="5%" class="text-center">回應</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @if(!empty($commentList))
+                                            @foreach($commentList as $commentKey => $commentValue)
+                                                <tr>
+                                                    <td class="text-center">{{ $commentValue->getblog->bloglang[0]->title }}</td>
+                                                    <td>{{$commentValue->name}}</td>
+                                                    <td>{{$commentValue->message}}</td>
+                                                    <td>{{$commentValue->response}}</td>
+                                                    <td class="text-center"><a href="{{ route('blog.comment.response', $commentValue->Id) }}" class="btn btn-info btn-xs"><i class="fa fa-edit"></i></a></td>                                                        
+                                                </tr>
+                                            @endforeach
+                                        @endif
+                                    </tbody>
+                                </table>
+
+                            </div>
 
                         </div>
                         <!-- end widget content -->
