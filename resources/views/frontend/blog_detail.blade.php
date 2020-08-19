@@ -92,7 +92,7 @@
                     <div class="blog_aside_items">
                         @foreach($related_blog as $relatedKey => $relatedValue)
                             <div class="item">
-                                <a href="{{ URL::route('blog.detail',[$relatedValue->Id,$page,app()->getLocale()]) }}">
+                                <a href="{{ URL::route('blog.detail',[$relatedValue->url,$page,app()->getLocale()]) }}">
                                     <div class="thumb" style="background-image: url({{ $relatedValue->img }});">
                                         <img src="{{ URL::asset('frontend/images/size_3x2.png') }}">
                                     </div>
