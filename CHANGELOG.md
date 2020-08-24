@@ -1,6 +1,19 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+## 2020-08-24
+
+### Changed
+
+1.語系語言包更新
+
+/resources/lang/en/lang.php
+
+/resources/lang/zh-tw/lang.php
+
+/resources/views/frontend/error.blade.php
+
+/resources/views/frontend/shared/_footer.blade.php
 
 ## 2020-08-19
 
