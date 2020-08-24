@@ -38,4 +38,6 @@ return [
     'phone' => 'Phone',
     'message' => 'Message',
     'send' => 'Send',
+    'errortitle' => "Sorry,Can't find the page you want",
+    'errorcontent' => 'Please click the menu above to go to the page you are interested in to continue browsing'
 ];

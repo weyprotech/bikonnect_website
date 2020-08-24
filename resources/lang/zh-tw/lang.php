@@ -1,15 +1,15 @@
 <?php
 
 return [
-    'solution' => 'Solution',
-    'products' => 'Products',
-    'aboutus' => 'About Us',
-    'contact' => 'Contact',
-    'blog' => 'Blog',
+    'solution' => '解決方案',
+    'products' => '產品列表',
+    'aboutus' => '關於我們',
+    'contact' => '聯絡我們',
+    'blog' => '部落格',
     'learnmore' => 'Learn More',
     'moreint' => 'More Intelligent Cycling<br>Experience',
     'moreintcontent' => 'Bikonnect provides one-stop technology digitalization services such as the E-Bike Computer, E-Bike App, Store Management System, and Cycling Data Platform to achieve a win-win situation between riders, brands, component manufacturers and stores.',
-    'ourstrength' => 'Our Strength',
+    'ourstrength' => '我們的力量',
     'smartintegration' => 'Smart Integration',
     'smartintegrationcontent' => 'Data Transmission Firmware Update',
     'businessstrategy' => 'Business Strategy',
@@ -17,9 +17,9 @@ return [
     'smartsolutions' => 'Smart Solutions',
     'datamanagement' =>  'Data Management & Analysis',
     'datamanagementcontent' => 'Visualized members’cycling data statistics<br>Assign easily to administrative authorizations of members’data',
-    'ourpartner' => 'Our Partners & Supporters',
-    'ourvision' => 'Our Vision',
-    'ourvisioncontent' => 'Your bike best secretary',
+    'ourpartner' => '合作夥伴',
+    'ourvision' => '我們的願景',
+    'ourvisioncontent' => '您自行車的最佳幫手',
     'readmore' => 'Read More',
     'solutiontitle' => 'E-Bike Data Service Solution',
     'cyclists' => 'Cyclists',
@@ -38,4 +38,6 @@ return [
     'phone' => 'Phone',
     'message' => 'Message',
     'send' => 'Send',
-];
+    'errortitle' => '很抱歉，找不到您要的頁面',
+    'errorcontent' => '請點選上方選單，前往您有興趣的頁面繼續瀏覽'
+]; ?>

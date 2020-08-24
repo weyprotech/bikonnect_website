@@ -14,7 +14,7 @@
           </div>
         </div>
         <div class="contact_map_right">
-          <div class="contact_map">Solution
+          <div class="contact_map">{{ trans('lang.solution') }}
             <div class="copyright">
               <ul>
                 @foreach($solutionList as $solutionKey => $solutionValue)
@@ -24,7 +24,7 @@
               </ul>
             </div>
           </div>
-          <div class="contact_map">Products
+          <div class="contact_map">{{ trans('lang.products') }}
             <div class="copyright">
               <ul>
                 @foreach($productList as $productKey => $productValue)
