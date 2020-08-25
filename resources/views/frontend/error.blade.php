@@ -1,4 +1,4 @@
-@extends('frontend.shared._layout',array('seoList' => array('en' => array('title' => 'error','keyword' => '','description' => ''),'zh-TW' => array('title' => 'error','keyword' => '','description' => ''))))
+@extends('frontend.shared._layout',array('seoList' => array('en' => array('title' => 'error','keyword' => '','description' => ''),'zh-tw' => array('title' => 'error','keyword' => '','description' => ''))))
 
 @section('title', 'Bikonnect')
 

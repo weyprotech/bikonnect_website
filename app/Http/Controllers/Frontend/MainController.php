@@ -51,7 +51,7 @@ class MainController extends Controller
 {
     public function index($locale = '') 
     {
-        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-tw' || $locale == ''){
             //設定語系
             $this->set_locale(); 
 
@@ -112,7 +112,7 @@ class MainController extends Controller
                     'keyword' => 'Bikonnect',
                     'description' => 'Bikonnect'
                 ),
-                'zh-TW' => array(
+                'zh-tw' => array(
                     'title' => 'Bikonnect',
                     'keyword' => 'Bikonnect',
                     'description' => 'Bikonnect' 
@@ -143,7 +143,7 @@ class MainController extends Controller
 
     public function about($locale = '') 
     {
-        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-tw' || $locale == ''){
             //設定語系
             $this->set_locale();        
             
@@ -194,7 +194,7 @@ class MainController extends Controller
                     'keyword' => 'About - Bikonnect',
                     'description' => 'About - Bikonnect'
                 ),
-                'zh-TW' => array(
+                'zh-tw' => array(
                     'title' => '關於我們 - Bikonnect',
                     'keyword' => '關於我們 - Bikonnect',
                     'description' => '關於我們 - Bikonnect' 
@@ -218,7 +218,7 @@ class MainController extends Controller
 
     public function solution($url,$locale = '') 
     {
-        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-tw' || $locale == ''){
             //設定語系
             $this->set_locale();        
             
@@ -272,7 +272,7 @@ class MainController extends Controller
                     // 'keyword' => 'E-Bike data service solution,bike solution,bicycle solution,smart e-bike solution,cycling data solution,bike data solution,bicycle data solution,cycling data sensor,bike data sensor,bicycle data sensor,smart cycling platform,bike platform,bicycle platform,smart cycling system,bike system,bicycle system,cycling digital service,bike digital service,bicycle digital service,cycling data service,bike data service,bicycle data service,cycling data integration,bike data integration,bicycle data integration,cycling IoT,bike IoT,bicycle IoT,connected cycling solution,connected bike solution,connected bicycle solution,cycling IoT solution,bike IoT solution,bicycle IoT solution,e-bike IoT,smart mobility solution,the future of cycling,connected cycling service,connected bike service,connected bicycle service,connected cycling platform,connected bike platform,connected bicycle platform,cycling connectivity,bike connectivity,e-bike connectivity,bicycle connectivity',
                     // 'description' => 'The E-Bike data service solution combines E-Bike computer, Apps, Dealer Management System and Cycling Data Platform to enhance the value of the E-Bike rider experience and bicycle brand service.'
                 ),
-                'zh-TW' => array(
+                'zh-tw' => array(
                     'title' => $solution[0]->lang[0]->meta_title.' - Bikonnect',
                     'keyword' => $solution[0]->lang[0]->meta_keywords.' - Bikonnect',
                     'description' => $solution[0]->lang[0]->meta_description.' - Bikonnect'
@@ -298,7 +298,7 @@ class MainController extends Controller
     }
 
     public function product($url,$locale){
-        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-tw' || $locale == ''){
             //設定語系
             $this->set_locale();        
             //產品列表
@@ -327,7 +327,7 @@ class MainController extends Controller
                     'keyword' => $product[0]->lang[0]->meta_keywords.' - Bikonnect',
                     'description' => $product[0]->lang[0]->meta_description.' - Bikonnect'
                 ),
-                'zh-TW' => array(
+                'zh-tw' => array(
                     'title' => $product[0]->lang[0]->meta_title.' - Bikonnect',
                     'keyword' => $product[0]->lang[0]->meta_keywords.' - Bikonnect',
                     'description' => $product[0]->lang[0]->meta_description.' - Bikonnect' 
@@ -348,7 +348,7 @@ class MainController extends Controller
 
     public function privacy($locale = '') 
     {
-        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-tw' || $locale == ''){
             //設定語系
             $this->set_locale();
 
@@ -374,7 +374,7 @@ class MainController extends Controller
                     'keyword' => 'Privacy - Bikonnect',
                     'description' => 'Privacy - Bikonnect'
                 ),
-                'zh-TW' => array(
+                'zh-tw' => array(
                     'title' => '隱私權 - Bikonnect',
                     'keyword' => '隱私權 - Bikonnect',
                     'description' => '隱私權 - Bikonnect' 
@@ -394,7 +394,7 @@ class MainController extends Controller
 
     public function term($locale = '') 
     {
-        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-tw' || $locale == ''){
             //設定語系
             $this->set_locale();
 
@@ -420,7 +420,7 @@ class MainController extends Controller
                     'keyword' => 'TERMS AND CONDITIONS - Bikonnect',
                     'description' => 'TERMS AND CONDITIONS - Bikonnect'
                 ),
-                'zh-TW' => array(
+                'zh-tw' => array(
                     'title' => '條款 - Bikonnect',
                     'keyword' => '條款 - Bikonnect',
                     'description' => '條款 - Bikonnect' 
@@ -469,7 +469,7 @@ class MainController extends Controller
     }
 
     public function blog($page, $locale = ''){
-        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-tw' || $locale == ''){
             //設定語系
             $this->set_locale();
 
@@ -517,7 +517,7 @@ class MainController extends Controller
                     'keyword' => 'Blog - Bikonnect',
                     'description' => 'Blog - Bikonnect'
                 ),
-                'zh-TW' => array(
+                'zh-tw' => array(
                     'title' => '部落格 - Bikonnect',
                     'keyword' => '部落格 - Bikonnect',
                     'description' => '部落格 - Bikonnect' 
@@ -542,7 +542,7 @@ class MainController extends Controller
     }
 
     public function blog_detail($url,$page,$locale = '',Request $request){
-        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-tw' || $locale == ''){
             //設定語系
             $this->set_locale();
 
@@ -601,7 +601,7 @@ class MainController extends Controller
                     'keyword' => $blog[0]->bloglang[0]->title.' - Bikonnect',
                     'description' => $blog[0]->bloglang[0]->title.' - Bikonnect'
                 ),
-                'zh-TW' => array(
+                'zh-tw' => array(
                     'title' => $blog[0]->bloglang[0]->title.' - Bikonnect',
                     'keyword' => $blog[0]->bloglang[0]->title.' - Bikonnect',
                     'description' => $blog[0]->bloglang[0]->title.' - Bikonnect' 
@@ -623,7 +623,7 @@ class MainController extends Controller
     }
 
     public function search($locale,$page,Request $request){
-        if($locale == 'en' || $locale == 'zh-TW' || $locale == ''){
+        if($locale == 'en' || $locale == 'zh-tw' || $locale == ''){
             //設定語系
             $this->set_locale();
             

@@ -22,8 +22,8 @@ class DetectLanguageMiddleware
             case 'en':
                 app()->setLocale('en');
                 break;
-            case 'zh-TW':
-                app()->setLocale('zh-TW');
+            case 'zh-tw':
+                app()->setLocale('zh-tw');
                 break;
             case '':
                 app()->setLocale('en');
