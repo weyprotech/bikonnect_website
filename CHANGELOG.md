@@ -1,6 +1,27 @@
 # Changelog
 
 All notable changes to this project will be documented in this file.
+
+## 2020-08-25
+
+### Changed
+
+1.語系讀取小寫語系資料夾
+
+/Http/Controllers/Frontend/MainController.php
+
+/Http/Middleware/DetectLanguageMiddleware.php
+
+/config/app.php
+
+/resources/views/frontend/error.blade.php
+
+/resources/views/frontend/search.blade.php
+
+/resources/views/frontend/shared/_header.blade.php
+
+/resources/views/frontend/shared/_sidebar.blade.php
+
 ## 2020-08-24
 
 ### Changed
