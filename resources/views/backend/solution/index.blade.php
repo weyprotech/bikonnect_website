@@ -59,6 +59,7 @@
                                     <table id="dt_basic" class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
+                                                <th class="text-center" width="15%">代表圖</th>   
                                                 <th class="text-center" width="30%">標題</th>
                                                 <th class="text-center" width="6%">排序</th>
                                                 <th width="5%" class="text-center">Application Range</th>
@@ -71,6 +72,7 @@
                                         <tbody>
                                             @foreach($solutionList as $contentKey => $contentValue)
                                             <tr>
+                                                <td class="text-center">{!! (!empty($contentValue->Img) ? '<img src="'.$contentValue->Img.'" width="140px">' : '') !!}</td>
                                                 <td class="text-center">{!! ($contentValue->lang[1]->title) !!}</td>
                                                 <td>
                                                     <label class="input">

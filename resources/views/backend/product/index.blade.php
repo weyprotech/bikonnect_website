@@ -19,7 +19,7 @@
 
                     <header>
                         <span class="widget-icon"> <i class="fa fa-table"></i> </span>
-                        <h2>圖文區維護</h2>
+                        <h2>產品維護</h2>
 
                     </header>
 
@@ -59,6 +59,7 @@
                                     <table id="dt_basic" class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
+                                                <th class="text-center" width="15%">代表圖</th>    
                                                 <th class="text-center" width="15%">圖片_1</th>
                                                 <th class="text-center" width="15%">圖片_2</th>
                                                 <th class="text-center" width="15%">圖片_3</th>
@@ -71,6 +72,7 @@
                                         <tbody>
                                             @foreach($productList as $contentKey => $contentValue)
                                             <tr>
+                                                <td class="text-center">{!! (!empty($contentValue->img) ? '<img src="'.$contentValue->img.'" width="140px">' : '') !!}</td>
                                                 <td class="text-center">{!! (!empty($contentValue->lang[1]->img_1) ? '<img src="'.$contentValue->lang[1]->img_1.'" width="150px">' : '') !!}</td>
                                                 <td class="text-center">{!! (!empty($contentValue->lang[1]->img_2) ? '<img src="'.$contentValue->lang[1]->img_2.'" width="150px">' : '') !!}</td>
                                                 <td class="text-center">{!! (!empty($contentValue->lang[1]->img_3) ? '<img src="'.$contentValue->lang[1]->img_3.'" width="150px">' : '') !!}</td>

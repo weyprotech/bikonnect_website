@@ -203,7 +203,19 @@ table {
 .row .grid:last-child {
   margin-bottom: 0;
 }
-
+/*list icon*/
+.header_nav .list_pic_01{
+  background: url(../images/list_01.png) no-repeat center;
+  height: 200px;
+}
+.nav_phone ul li ul li {
+  float:left;
+  width: 50%;
+  height: 180px;
+}
+.nav_phone ul li ul li p{
+  line-height: 20px;
+}
 @media (min-width: 768px) {
   .row .grid.g_6_12 {
     width: 48.7804878049%;

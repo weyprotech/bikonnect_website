@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+## 2020-10-03
+
+### Changed
+
+1.Solution與Product子選單顯示代表圖
+
+app/Http/Controllers/Backend/ProductController.php
+
+app/Http/Controllers/Backend/SolutionController.php
+
+public/frontend/styles/main.css
+
+resources/views/backend/product/add.blade.php
+
+resources/views/backend/product/edit.blade.php
+
+resources/views/backend/product/index.blade.php
+
+resources/views/backend/solution/add.blade.php
+
+resources/views/backend/solution/edit.blade.php
+
+resources/views/backend/solution/index.blade.php
+
+resources/views/frontend/shared/_header.blade.php
+
 ## 2020-08-25
 
 ### Changed

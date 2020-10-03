@@ -41,18 +41,41 @@ class SolutionController extends Controller
 
     /*** 新增解決方案 ****/
     public function add(Request $request){
+        $Id = Str::uuid();
         $uuid = Str::uuid();
        
         $solutionList = SolutionModel::limit(1)->orderby('order','desc')->get();
         
         if($request->isMethod('post')) {
 
+            if($request->hasFile('Img')){
+                if($request->file('Img')->isValid()){
+                    $destinationPath = base_path() . '/public/uploads/solution/'.$Id;
+
+                    // getting image extension
+                    $extension = $request->file('Img')->getClientOriginalExtension();
+                    
+                    if (!file_exists($destinationPath)) { //Verify if the directory exists
+                        mkdir($destinationPath, 0777, true); //create it if do not exists
+                    }
+                    
+                    // uuid renameing image
+                    $fileName = Str::uuid() . '.' .$extension;
+    
+                    Image::make($request->file('Img'))->resize('140',null,function($constraint){
+                        $constraint->aspectRatio();
+                    })->save($destinationPath.'/thumb_'.$fileName);
+                    $Img = '/uploads/solution/'.$Id.'/thumb_'.$fileName;
+                }
+            }
+
             $solution = new SolutionModel();
             $solution->is_enable = 1;
-            $solution->Id = $uuid;
+            $solution->Id = $Id;
             $solution->uuid = $uuid;
             $solution->url = $request->url;
             $solution->order = isset($solutionList[0]->order) ?  ($solutionList[0]->order + 1) : 1;
+            $solution->Img = $Img;
 
             $solution->save();
             
@@ -62,7 +85,7 @@ class SolutionController extends Controller
                 $application = new SolutionApplicationModel();
                 $application->is_enable = 1;
                 $application->Id = $applicationId;
-                $application->sId = $uuid;
+                $application->sId = $Id;
                 $application->uuid = $uuid;
                 $application->order = $i;
                 $application->save();
@@ -84,7 +107,7 @@ class SolutionController extends Controller
             foreach ($request->contentlangs as $langKey => $langValue) {
                 $lang = new solutionLangModel();
                 $lang->Id = Str::uuid();
-                $lang->solutionId = $uuid;                
+                $lang->solutionId = $Id;                
                 $lang->langId = $langValue['langId'];
                 $lang->title = $langValue['title'];
                 $lang->meta_title = $langValue['meta_title'];
@@ -176,6 +199,33 @@ class SolutionController extends Controller
         if($request->isMethod('post')){
             if($request->uuid == $request->uuid){
                 $solution->uuid = Uuid::uuid1();
+
+                if ($request->hasFile('Img')) {                                        
+                    if($request->file('Img')->isValid()){
+                        if(file_exists(base_path() . '/public/'.$solution->Img)){
+                            @chmod(base_path() . '/public/'.$solution->Img, 0777);
+                            @unlink(base_path() . '/public/'.$solution->Img);
+                        }
+
+                        $destinationPath = base_path() . '/public/uploads/solution/'.$solutionId;
+
+                        // getting image extension
+                        $extension = $request->file('Img')->getClientOriginalExtension();
+                        
+                        if (!file_exists($destinationPath)) { //Verify if the directory exists
+                            mkdir($destinationPath, 0777, true); //create it if do not exists
+                        }
+                        
+                        // uuid renameing image
+                        $fileName = Str::uuid() . '.' .$extension;
+        
+                        Image::make($request->file('Img'))->resize('140',null,function($constraint){
+                            $constraint->aspectRatio();
+                        })->save($destinationPath.'/thumb_'.$fileName);
+                        $solution->Img = '/uploads/solution/'.$solutionId.'/thumb_'.$fileName;                  
+                    }
+                }
+
                 $solution->url = $request->url;
                 $solution->save();
 

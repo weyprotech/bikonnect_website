@@ -18,7 +18,7 @@
                 <div class="jarviswidget" id="wid-id-4" data-widget-editbutton="false" data-widget-colorbutton="false" data-widget-togglebutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false" data-widget-custombutton="false" data-widget-collapsed="false" data-widget-sortable="false">
                     <header>
                         <span class="widget-icon"> <i class="fa fa-pencil-square-o"></i> </span>
-                        <h2>新增解決方案</h2>
+                        <h2>新增產品</h2>
 
                         <ul class="nav nav-tabs pull-right in">
                             <li class='active'>
@@ -45,7 +45,11 @@
                         <!-- widget content -->
                         <div class="widget-body">
 
-                            <form id="form" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('product.add') }}" data-bv-message="This value is not valid" data-bv-feedbackicons-valid="glyphicon glyphicon-ok" data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+                            <form id="form" method="post" class="form-horizontal" enctype="multipart/form-data" action="{{ route('product.add') }}" 
+                            data-bv-message="This value is not valid" 
+                            data-bv-feedbackicons-valid="glyphicon glyphicon-ok" 
+                            data-bv-feedbackicons-invalid="glyphicon glyphicon-remove" 
+                            data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
 
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="hb_0">
@@ -58,10 +62,29 @@
                                                     <input type="text" id="url" class="form-control" name="url" value="" data-bv-notempty="true" data-bv-notempty-message="請輸入產品連結" pattern="[A-Za-z0-9_]+" data-bv-regexp-message="只能輸入英文、數字、底線" />
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 control-label">代表圖</label>
+                                                <div class="col-lg-5">
+                                                    <p>
+                                                        <img id="preview" width="auto" style="max-width:140px" />
+                                                    </p>
+                                                    <input type="file" class="btn btn-default imageupload" name="img"
+                                                        data-prev="preview"
+                                                        data-bv-notempty="true"
+                                                        data-bv-notempty-message="請輸入代表圖"
+                                                        data-bv-file="true"
+                                                        data-bv-file-extension="png,gif,jpg,jpeg"
+                                                        data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif"
+                                                        data-bv-file-message="圖檔格式不符">
+                                                    <p class="help-block">
+                                                        圖片大小：140 x 95
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </fieldset>
                                     </div>
                                     @foreach($web_langList as $langKey => $langValue)
-                                    <div class="tab-pane {{ $langKey == 0 ? 'active' : '' }}" id="hb_{{ $langValue->langId }}">
+                                    <div class="tab-pane" id="hb_{{ $langValue->langId }}">
                                         <fieldset>
 
                                             <legend>{{ $langValue->name }}</legend>

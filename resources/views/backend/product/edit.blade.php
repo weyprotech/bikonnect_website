@@ -67,7 +67,24 @@
                                                     data-bv-regexp-message="只能輸入英文、數字、底線"
                                                     data-bv-trigger="change keyup" />                                                    
                                                 </div>
-                                            </div>                                           
+                                            </div>  
+                                            <div class="form-group">
+                                                <label class="col-lg-2 control-label">代表圖</label>
+                                                <div class="col-lg-5">
+                                                    <p>
+                                                        <img id="preview" width="auto" src="{{ $content->img }}" style="max-width:140px" />
+                                                    </p>
+                                                    <input type="file" class="btn btn-default imageupload" name="img"
+                                                        data-prev="preview"
+                                                        data-bv-file="true"
+                                                        data-bv-file-extension="png,gif,jpg,jpeg"
+                                                        data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif"
+                                                        data-bv-file-message="圖檔格式不符">
+                                                    <p class="help-block">
+                                                        圖片大小：140 x 95
+                                                    </p>
+                                                </div>
+                                            </div>                                         
                                         </fieldset>
                                     </div>
                                     @foreach($web_langList as $langKey => $langValue)

@@ -40,16 +40,39 @@ class ProductController extends Controller
      */
     public function add(Request $request)
     {
+        $Id = Str::uuid();
         $uuid = Str::uuid();
        
         $productList = ProductModel::limit(1)->orderby('order','desc')->get();
         
         if($request->isMethod('post')) {
 
+            if($request->hasFile('img')){
+                if($request->file('img')->isValid()){
+                    $destinationPath = base_path() . '/public/uploads/product/'.$Id;
+
+                    // getting image extension
+                    $extension = $request->file('img')->getClientOriginalExtension();
+                    
+                    if (!file_exists($destinationPath)) { //Verify if the directory exists
+                        mkdir($destinationPath, 0777, true); //create it if do not exists
+                    }
+                    
+                    // uuid renameing image
+                    $fileName = Str::uuid() . '.' .$extension;
+    
+                    Image::make($request->file('img'))->resize('140',null,function($constraint){
+                        $constraint->aspectRatio();
+                    })->save($destinationPath.'/thumb_'.$fileName);
+                    $img = '/uploads/product/'.$Id.'/thumb_'.$fileName;
+                }
+            }
+
             $productList = ProductModel::limit(1)->orderby('order','desc')->get();
             $product = new ProductModel();
             $product->is_enable = 1;
-            $product->Id = $uuid;
+            $product->Id = $Id;
+            $product->img = $img;
             $product->uuid = $uuid;
             $product->order = $productList[0]->order + 1;
             $product->save();
@@ -62,7 +85,7 @@ class ProductController extends Controller
                 $img_5 = $this->upload_img($request, 'productlangs.' . $langValue['langId'] . '.img_5', $uuid, false, 'img_5', 230);                
 
                 $lang = new ProductLangModel();
-                $lang->pId = $uuid;                
+                $lang->pId = $Id;                
                 $lang->langId = $langValue['langId'];
                 $lang->title = $langValue['title'];   
                 $lang->meta_title = $langValue['meta_title'];
@@ -104,6 +127,33 @@ class ProductController extends Controller
         if($request->isMethod('post')) {
             
             if($request->uuid == $content->uuid){
+
+                if ($request->hasFile('img')) {                                        
+                    if($request->file('img')->isValid()){
+                        if(file_exists(base_path() . '/public/'.$content->img)){
+                            @chmod(base_path() . '/public/'.$content->img, 0777);
+                            @unlink(base_path() . '/public/'.$content->img);
+                        }
+
+                        $destinationPath = base_path() . '/public/uploads/product/'.$productId;
+
+                        // getting image extension
+                        $extension = $request->file('img')->getClientOriginalExtension();
+                        
+                        if (!file_exists($destinationPath)) { //Verify if the directory exists
+                            mkdir($destinationPath, 0777, true); //create it if do not exists
+                        }
+                        
+                        // uuid renameing image
+                        $fileName = Str::uuid() . '.' .$extension;
+        
+                        Image::make($request->file('img'))->resize('140',null,function($constraint){
+                            $constraint->aspectRatio();
+                        })->save($destinationPath.'/thumb_'.$fileName);
+                        $content->img = '/uploads/product/'.$productId.'/thumb_'.$fileName;                  
+                    }
+                }
+
                 $content->url = $request->url;
                 $content->uuid = $uuid;
                 $content->save();

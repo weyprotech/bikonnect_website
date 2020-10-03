@@ -58,6 +58,25 @@
                                                     <input type="text" id="url" class="form-control" name="url" value="" data-bv-notempty="true" data-bv-notempty-message="請輸入產品連結" pattern="[A-Za-z0-9_]+" data-bv-regexp-message="只能輸入英文、數字、底線" />
                                                 </div>
                                             </div>
+                                            <div class="form-group">
+                                                <label class="col-lg-2 control-label">代表圖</label>
+                                                <div class="col-lg-5">
+                                                    <p>
+                                                        <img id="preview" width="auto" style="max-width:140px" />
+                                                    </p>
+                                                    <input type="file" class="btn btn-default imageupload" name="Img"
+                                                        data-prev="preview"
+                                                        data-bv-notempty="true"
+                                                        data-bv-notempty-message="請輸入代表圖"
+                                                        data-bv-file="true"
+                                                        data-bv-file-extension="png,gif,jpg,jpeg"
+                                                        data-bv-file-type="image/png,image/jpg,image/jpeg,image/gif"
+                                                        data-bv-file-message="圖檔格式不符">
+                                                    <p class="help-block">
+                                                        圖片大小：140 x 95
+                                                    </p>
+                                                </div>
+                                            </div>
                                         </fieldset>
                                     </div>
                                     @foreach($web_langList as $langKey => $langValue)                                    
