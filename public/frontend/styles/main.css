@@ -1357,17 +1357,19 @@ nav ul {
   }
 
   .header_nav>ul>li>ul>li:last-child {
-    border-right: 1px solid hsla(0, 0%, 78%, 0.5);
+    /*border-right: 1px solid hsla(0, 0%, 78%, 0.5);*/
+    padding-top: 15px;
   }
 
   .header_nav>ul>li>ul>li {
-    border-left: 1px solid hsla(0, 0%, 78%, 0.5);
+    /*border-left: 1px solid hsla(0, 0%, 78%, 0.5);*/
     display: inline-block;
+    padding-top: 15px;
   }
 
   .header_nav>ul>li>ul>li>a {
     display: block;
-    padding: 0.5em;
+    padding: 0.5em 0.8em;
     box-sizing: border-box;
     color: #4a4a4a;
     font-size: 1rem;
