@@ -32,6 +32,7 @@ use App\HomepageContent1Model;
 use App\HomepageContent2Model;
 use App\HomepageContent3Model;
 use App\HomepageContent4Model;
+use App\HomepageContent5Model;
 use App\LearnmoreModel;
 use App\LearnmoreLangModel;
 use App\BannerModel;
@@ -95,6 +96,11 @@ class MainController extends Controller
                 $query->where('langId','=',$this->langList[0]->langId);            
             }])->first();
 
+            //內文5
+            $content5List = HomepageContent5Model::where('is_enable',1)->orderby('order','asc')->with(['content5lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
+
             //learn more按鈕
             $learnmore = LearnmoreModel::where('Id',1)->with(['learnmorelang' => function($query){
                 $query->where('langId','=',$this->langList[0]->langId);
@@ -130,6 +136,7 @@ class MainController extends Controller
                 'content2List' => $content2List,
                 'content3List' => $content3List,
                 'content4' => $content4,
+                'content5List' => $content5List,
                 'learnmore' => $learnmore,
                 'contact' => $contact
             );

@@ -5,14 +5,14 @@
                 <li><a {{ stripos($_SERVER['REQUEST_URI'], 'solution') ? 'class=current' : ''}} href="javascript:;">{{ trans('lang.solution') }}</a>
                   <ul>
                       @foreach($solutionList as $solutionKey => $solutionValue)
-                        <li><img src="{{ $solutionValue->Img }}" /><a {{ stripos($_SERVER['REQUEST_URI'], $solutionValue->url) ? 'class=current' : ''}} href="{{ route('main.solution', [$solutionValue->url,app()->getLocale()]) }}"><p>{{ $solutionValue->lang[0]->title }}</p></a></li>
+                        <li><a {{ stripos($_SERVER['REQUEST_URI'], $solutionValue->url) ? 'class=current' : ''}} href="{{ route('main.solution', [$solutionValue->url,app()->getLocale()]) }}"><img src="{{ $solutionValue->Img }}" /><p>{{ $solutionValue->lang[0]->title }}</p></a></li>
                       @endforeach
                   </ul>
                 </li>
                 <li><a {{ stripos($_SERVER['REQUEST_URI'], 'product') ? 'class=current' : ''}} href="javascript:;">{{ trans('lang.products') }}</a>
                     <ul>
                         @foreach($productList as $productKey => $productValue)
-                        <li><img src="{{ $productValue->img }}" /><a {{ stripos($_SERVER['REQUEST_URI'], $productValue->url) ? 'class=current' : ''}} href="{{ route('main.product', [$productValue->url, app()->getLocale()]) }}"><p>{{ $productValue->lang[0]->title }}</p></a></li>
+                        <li><a {{ stripos($_SERVER['REQUEST_URI'], $productValue->url) ? 'class=current' : ''}} href="{{ route('main.product', [$productValue->url, app()->getLocale()]) }}"><img src="{{ $productValue->img }}" /><p>{{ $productValue->lang[0]->title }}</p></a></li>
                         @endforeach
                     </ul>
                 </li>

@@ -64,27 +64,15 @@
                     <div class="item">
                         <div class="mobile_img"><img src="{{ URL::asset('frontend/images/img_index_strength_m02.png') }}" alt="Strangth Mobile Picture 02"></div>
                         <div class="slider">
+                        @foreach($content5List as $content5Key => $content5Value)
                             <div class="slide">
                                 <div class="slide_inner">
-                                    <h3>{{ trans('lang.businessstrategy') }}</h3>
+                                    <h3>{!! nl2br(e($content5Value->content5lang[0]->title)) !!}</h3>
                                     <hr>
-                                    <p>{{ trans('lang.businessstrategycontent') }}</p>
+                                    <p>{!! nl2br(e($content5Value->content5lang[0]->content)) !!}</p>
                                 </div>
                             </div>
-                            <div class="slide">
-                                <div class="slide_inner">
-                                    <h3>{{ trans('lang.businessstrategy') }}</h3>
-                                    <hr>
-                                    <p>{{ trans('lang.businessstrategycontent') }}</p>
-                                </div>
-                            </div>
-                            <div class="slide">
-                                <div class="slide_inner">
-                                    <h3>{{ trans('lang.businessstrategy') }}</h3>
-                                    <hr>
-                                    <p>{{ trans('lang.businessstrategycontent') }}</p>
-                                </div>
-                            </div>
+                        @endforeach
                         </div>
                     </div>
                 </div>

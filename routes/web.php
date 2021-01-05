@@ -163,6 +163,13 @@ Route::group(['prefix' => 'backend'], function () {
         //內文4
         Route::match(['get', 'post'], '/content4/edit/{content4id}', array('as' => 'content4.edit', 'uses' => 'Backend\Homepage\Content4Controller@edit'));
 
+        //內文5
+        Route::match(['get', 'post'], '/content5/index', array('as' => 'content5.index', 'uses' => 'Backend\Homepage\Content5Controller@index'));
+        Route::match(['get', 'post'], '/content5/add', array('as' => 'content5.add', 'uses' => 'Backend\Homepage\Content5Controller@add'));
+        Route::match(['get', 'post'], '/content5/edit/{content5id}', array('as' => 'content5.edit', 'uses' => 'Backend\Homepage\Content5Controller@edit'));
+        Route::post('/content5/order_save', array('as' => 'content5.order_save', 'uses' => 'Backend\Homepage\Content5Controller@order_save'));
+        Route::get('/content5/delete/{content1id}', array('as' => 'content5.delete', 'uses' => 'Backend\Homepage\Content5Controller@delete'));
+
         //Learn more
         Route::match(['get', 'post'], '/learnmore/edit/{learnmoreid}', array('as' => 'learnmore.edit', 'uses' => 'Backend\Homepage\LearnmoreController@edit'));
     });
