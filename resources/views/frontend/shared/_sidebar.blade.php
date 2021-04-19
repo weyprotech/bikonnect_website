@@ -4,7 +4,10 @@
         <ul>
         <li><a {{ stripos($_SERVER['REQUEST_URI'], 'solution') ? 'class=current' : ''}} href="javascript:;">{{ trans('lang.solution') }}</a>
                   <ul>
-                    <li><a href="{{ route('main.solution', app()->getLocale()) }}">{{ trans('lang.solution') }}</a></li>
+                    <!--<li><a href="{{ route('main.solution', app()->getLocale()) }}">{{ trans('lang.solution') }}</a></li>-->
+                    @foreach($solutionList as $solutionKey => $solutionValue)
+                    <li><a {{ stripos($_SERVER['REQUEST_URI'], $solutionValue->url) ? 'class=current' : ''}} href="{{ route('main.solution', [$solutionValue->url,app()->getLocale()]) }}">{{ $solutionValue->lang[0]->title }}</a></li>
+                    @endforeach
                   </ul>
                 </li>
             <li><a {{ stripos($_SERVER['REQUEST_URI'], 'product') ? 'class=current' : ''}} href="javascript:;">{{ trans('lang.products') }}</a>
