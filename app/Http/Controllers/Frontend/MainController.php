@@ -249,8 +249,10 @@ class MainController extends Controller
             
 
             //特點列表
-            $aspeccategorytList = SolutionAspectCategoryModel::where('is_enable',1)->where('sId',$solution[0]->Id)->orderby('order','asc')->get();
-            $aspectList = SolutionAspectModel::where('is_enable',1)->where('sId',$solution[0]->Id)->orderby('order','asc')->with(['lang' => function($query){
+            $aspeccategorytList = SolutionAspectCategoryModel::where('is_enable', 1)->where('sId', $solution[0]->Id)->orderby('order', 'asc')->with(['lang' => function($query){
+                $query->where('langId','=',$this->langList[0]->langId);
+            }])->get();
+            $aspectList = SolutionAspectModel::where('is_enable',1)->where('sId', $solution[0]->Id)->orderby('order', 'asc')->with(['lang' => function($query){
                 $query->where('langId','=',$this->langList[0]->langId);
             }])->get();
             foreach ($aspectList as $contentKey => $contentValue){
